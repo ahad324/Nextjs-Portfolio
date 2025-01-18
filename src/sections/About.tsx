@@ -3,12 +3,18 @@ import Image from "next/image";
 import { Card } from "@/components/Card";
 import { SectionHeader } from "@/components/SectionHeader";
 import bookImage from "@/assets/images/book-cover.png";
-import JavascriptIcon from "@/assets/icons/square-js.svg";
+import JavascriptIcon from "@/assets/icons/js.svg";
 import HTMLIcon from "@/assets/icons/html5.svg";
 import CSSIcon from "@/assets/icons/css3.svg";
 import ReactIcon from "@/assets/icons/react.svg";
-import ChromeIcon from "@/assets/icons/chrome.svg";
 import GithubIcon from "@/assets/icons/github.svg";
+import GitIcon from "@/assets/icons/git.svg"
+import NextJsIcon from "@/assets/icons/nextjs.svg"
+import NodeJsIcon from "@/assets/icons/nodejs.svg"
+import CppIcon from "@/assets/icons/cpp.svg"
+import TailwindIcon from "@/assets/icons/tailwind.svg"
+import TypescriptIcon from "@/assets/icons/typescript.svg"
+import VSCodeIcon from "@/assets/icons/vscode.svg"
 import mapImage from "@/assets/images/map.png";
 import smileMemoji from "@/assets/images/memoji-smile.png";
 import { CardHeader } from "@/components/CardHeader";
@@ -34,18 +40,42 @@ const toolboxItems = [
     iconType: ReactIcon,
   },
   {
-    title: "Chrome",
-    iconType: ChromeIcon,
-  },
-  {
     title: "Github",
     iconType: GithubIcon,
   },
+  {
+    title:"TypeScript",
+    iconType: TypescriptIcon,
+  },
+  {
+    title:"Git",
+    iconType: GitIcon,
+  },
+  {
+    title:"C++",
+    iconType:CppIcon
+  },
+  {
+    title:"NodeJs",
+    iconType: NodeJsIcon
+  },
+  {
+    title:"NextJs",
+    iconType: NextJsIcon
+  },
+  {
+    title:"Tailwind",
+    iconType: TailwindIcon
+  },
+  {
+    title:"VSCode",
+    iconType: VSCodeIcon,
+  }
 ];
 
 const hobbies = [
-  { title: "Painting", emoji: "🎨", left: "5%", top: "5%" },
-  { title: "Photography", emoji: "📷", left: "50%", top: "5%" },
+  { title: "Cricket", emoji: "🏏", left: "5%", top: "5%" },
+  { title: "Footbal", emoji: "⚽", left: "50%", top: "5%" },
   { title: "Hiking", emoji: "🥾", left: "35%", top: "40%" },
   { title: "Gaming", emoji: "🎮", left: "10%", top: "35%" },
   { title: "Music", emoji: "🎵", left: "70%", top: "45%" },
@@ -87,7 +117,7 @@ export const AboutSection = () => {
               />
               <ToolboxItems
                 items={toolboxItems}
-                itemsWrapperClassName="animate-move-left [animation-duration:30s]"
+                itemsWrapperClassName="animate-move-left [animation-duration:40s]"
               />
               <ToolboxItems
                 items={toolboxItems}
