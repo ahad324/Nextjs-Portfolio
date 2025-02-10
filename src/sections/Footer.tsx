@@ -1,10 +1,8 @@
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 
 const footerLinks = [
-  { title: "YouTube", href: "#" },
-  { title: "Twitter", href: "#" },
-  { title: "Instagram", href: "#" },
-  { title: "LinkedIn", href: "#" },
+  { title: "Github", href: "https://github.com/ahad324/" },
+  { title: "LinkedIn", href: "https://www.linkedin.com/in/abdul-ahad-a08263273" },
 ];
 
 export const Footer = () => {

@@ -10,7 +10,7 @@ export const HeroSection = () => {
     <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
-          className="absolute inset-0 -z-30 opacity-5"
+          className="absolute inset-0 -z-30 opacity-5 pointer-events-none"
           style={{ backgroundImage: `url(${grainImage.src})` }}
         ></div>
         <div className="size-[620px] hero-ring"></div>
@@ -97,7 +97,7 @@ export const HeroSection = () => {
           <StarIcon className="size-20 text-emerald-300" />
         </HeroOrbit>
       </div>
-      <div className="container">
+      <div className="container relative z-[2]">
         <div className="flex flex-col items-center">
           <Image
             src={memojiImage}
