@@ -1,3 +1,4 @@
+import Link from "next/link";
 import memojiImage from "@/assets/images/memoji-computer.png";
 import Image from "next/image";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
@@ -5,9 +6,13 @@ import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
+
 export const HeroSection = () => {
   return (
-    <div className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip">
+    <section
+      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
+      id="hero"
+    >
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
         <div
           className="absolute inset-0 -z-30 opacity-5 pointer-events-none"
@@ -119,20 +124,27 @@ export const HeroSection = () => {
           </h1>
           <p className="mt-4 text-center text-white/60 md:text-lg">
             I specialize in transforming designs into functional,
-            high-perofmring web applications. Let&apos;s discuss your next project.
+            high-perofmring web applications. Let&apos;s discuss your next
+            project.
           </p>
         </div>
         <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
-          <button className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl">
+          <Link
+            href="#projects"
+            className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl"
+          >
             <span className="font-semibold">Explore My Work </span>
             <ArrowDown className="size-4" />
-          </button>
-          <button className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl">
+          </Link>
+          <Link
+            href="#contact"
+            className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
+          >
             <span>👋</span>
             <span className="font-semibold">Let&apos;s Connect</span>
-          </button>
+          </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

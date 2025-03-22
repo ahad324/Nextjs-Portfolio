@@ -8,13 +8,13 @@ import HTMLIcon from "@/assets/icons/html5.svg";
 import CSSIcon from "@/assets/icons/css3.svg";
 import ReactIcon from "@/assets/icons/react.svg";
 import GithubIcon from "@/assets/icons/github.svg";
-import GitIcon from "@/assets/icons/git.svg"
-import NextJsIcon from "@/assets/icons/nextjs.svg"
-import NodeJsIcon from "@/assets/icons/nodejs.svg"
-import CppIcon from "@/assets/icons/cpp.svg"
-import TailwindIcon from "@/assets/icons/tailwind.svg"
-import TypescriptIcon from "@/assets/icons/typescript.svg"
-import VSCodeIcon from "@/assets/icons/vscode.svg"
+import GitIcon from "@/assets/icons/git.svg";
+import NextJsIcon from "@/assets/icons/nextjs.svg";
+import NodeJsIcon from "@/assets/icons/nodejs.svg";
+import CppIcon from "@/assets/icons/cpp.svg";
+import TailwindIcon from "@/assets/icons/tailwind.svg";
+import TypescriptIcon from "@/assets/icons/typescript.svg";
+import VSCodeIcon from "@/assets/icons/vscode.svg";
 import mapImage from "@/assets/images/map.png";
 import smileMemoji from "@/assets/images/memoji-smile.png";
 import { CardHeader } from "@/components/CardHeader";
@@ -44,33 +44,33 @@ const toolboxItems = [
     iconType: GithubIcon,
   },
   {
-    title:"TypeScript",
+    title: "TypeScript",
     iconType: TypescriptIcon,
   },
   {
-    title:"Git",
+    title: "Git",
     iconType: GitIcon,
   },
   {
-    title:"C++",
-    iconType:CppIcon
+    title: "C++",
+    iconType: CppIcon,
   },
   {
-    title:"NodeJs",
-    iconType: NodeJsIcon
+    title: "NodeJs",
+    iconType: NodeJsIcon,
   },
   {
-    title:"NextJs",
-    iconType: NextJsIcon
+    title: "NextJs",
+    iconType: NextJsIcon,
   },
   {
-    title:"Tailwind",
-    iconType: TailwindIcon
+    title: "Tailwind",
+    iconType: TailwindIcon,
   },
   {
-    title:"VSCode",
+    title: "VSCode",
     iconType: VSCodeIcon,
-  }
+  },
 ];
 
 const hobbies = [
@@ -86,7 +86,7 @@ const hobbies = [
 export const AboutSection = () => {
   const constrainRef = useRef(null);
   return (
-    <div className="py-20 lg:py-28">
+    <section className="py-20 lg:py-28" id="about">
       <div className="container">
         <SectionHeader
           eyebrow="About Me"
@@ -173,6 +173,6 @@ export const AboutSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };

@@ -12,9 +12,10 @@ const portfolioProjects = [
     title: "TransferX",
     company: "TransferX",
     year: "2025",
-    description: "The ultimate offline file-sharing solution, meticulously crafted to make transferring files across your local network intuitive, seamless, and secure.",
+    description:
+      "The ultimate offline file-sharing solution, meticulously crafted to make transferring files across your local network intuitive, seamless, and secure.",
     link: "https://transferx.netlify.app/",
-    image:transferx,
+    image: transferx,
     results: [
       { title: "Intuitive User Interface" },
       { title: "Secure File Transfers" },
@@ -25,9 +26,10 @@ const portfolioProjects = [
     title: "DocNow",
     company: "DocNow",
     year: "2025",
-    description: "Easily upload, download, and manage files with real-time updates and admin controls. Built with a sleek drag-and-drop interface for effortless file sharing.",
+    description:
+      "Easily upload, download, and manage files with real-time updates and admin controls. Built with a sleek drag-and-drop interface for effortless file sharing.",
     link: "https://docnow.netlify.app",
-    image:docnow,
+    image: docnow,
     results: [
       { title: "File Upload and Download" },
       { title: "Admin Authentication" },
@@ -38,9 +40,10 @@ const portfolioProjects = [
     title: "GradeGenie",
     company: "GradeGenie",
     year: "2025",
-    description: "A powerful tool for calculating GPA, CGPA, SGPA, and more, all in one place. Customize your inputs, track your progress, and enjoy a seamless experience across devices.",
+    description:
+      "A powerful tool for calculating GPA, CGPA, SGPA, and more, all in one place. Customize your inputs, track your progress, and enjoy a seamless experience across devices.",
     link: "https://gradegenie.site",
-    image:gradegenie,
+    image: gradegenie,
     results: [
       { title: "Advanced GPA Calculators" },
       { title: "Customizable Inputs" },
@@ -51,7 +54,7 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16 lg:py-24">
+    <section className="pb-16 lg:py-24" id="projects">
       <div className="container">
         <SectionHeader
           eyebrow={"Real-world Results"}
@@ -100,7 +103,7 @@ export const ProjectsSection = () => {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    className="rounded-tl-3xl mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
+                    className="rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
                   />
                 </div>
               </div>
