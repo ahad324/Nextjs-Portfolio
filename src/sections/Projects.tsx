@@ -1,6 +1,7 @@
 import transferx from "@/assets/images/transferx.png";
 import docnow from "@/assets/images/docnow.png";
 import gradegenie from "@/assets/images/gradegenie.png";
+import homebudget from "@/assets/images/homebudget.png";
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
@@ -42,12 +43,26 @@ const portfolioProjects = [
     year: "2025",
     description:
       "A powerful tool for calculating GPA, CGPA, SGPA, and more, all in one place. Customize your inputs, track your progress, and enjoy a seamless experience across devices.",
-    link: "https://gradegenie.site",
+    link: "https://gradegenie.netlify.app",
     image: gradegenie,
     results: [
       { title: "Advanced GPA Calculators" },
       { title: "Customizable Inputs" },
       { title: "Responsive Design" },
+    ],
+  },
+  {
+    title: "HomeBudget",
+    company: "HomeBudget",
+    year: "2025",
+    description:
+      "A smart expense tracking and budgeting tool designed to help users manage their monthly income, control spending habits, and visualize savings goals. Built with a clean, user-friendly interface and real-time calculations for seamless financial planning.",
+    link: "https://homebudget-react.netlify.app",
+    image: homebudget,
+    results: [
+      { title: "Monthly Income & Expense Tracking" },
+      { title: "Interactive Budget Visualizations" },
+      { title: "Responsive and Intuitive UI" },
     ],
   },
 ];
