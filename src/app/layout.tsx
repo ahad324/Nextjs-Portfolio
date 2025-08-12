@@ -11,11 +11,11 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "Abdul Ahad | MERN-Stack Developer Portfolio",
+  title: "Abdul Ahad | Full-Stack Developer Portfolio",
   description:
     "Explore Abdul Ahad's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more.",
   keywords:
-    "Abdul Ahad, MERN Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio, modern web design",
+    "Abdul Ahad, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design",
   authors: [
     {
       name: "Abdul Ahad",
