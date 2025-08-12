@@ -7,6 +7,10 @@ const footerLinks = [
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/abdul-ahad-a08263273",
   },
+  {
+    title: "Upwork",
+    href: "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3?mp_source=share",
+  },
 ];
 
 export const Footer = () => {
