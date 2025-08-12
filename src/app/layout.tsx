@@ -35,7 +35,7 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Abdul Ahad" />
         <meta name="theme-color" content="#5355d6" />
-        <link rel="canonical" href="https://your-portfolio-domain.com" />
+        <link rel="canonical" href="https://ahad-devsite.netlify.app" />
       </head>
       <body
         className={twMerge(
