@@ -11,14 +11,14 @@ const calistoga = Calistoga({
 });
 
 export const metadata: Metadata = {
-  title: "Abdul Ahad | Full-Stack Developer Portfolio",
+  title: "Muhammad Hussnain | Full-Stack Developer Portfolio",
   description:
-    "Explore Abdul Ahad's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more.",
+    "Explore Hussnain's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more.",
   keywords:
-    "Abdul Ahad, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design",
+    "Hussnain, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design",
   authors: [
     {
-      name: "Abdul Ahad",
+      name: "Hussnain",
     },
   ],
 };
@@ -33,9 +33,9 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="robots" content="index, follow" />
-        <meta name="author" content="Abdul Ahad" />
+        <meta name="author" content="Hussnain" />
         <meta name="theme-color" content="#5355d6" />
-        <link rel="canonical" href="https://ahad-devsite.netlify.app" />
+        <link rel="canonical" href="https://hussnain-devsite.netlify.app" />
       </head>
       <body
         className={twMerge(
