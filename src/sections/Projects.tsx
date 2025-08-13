@@ -10,62 +10,63 @@ import { Card } from "@/components/Card";
 
 const portfolioProjects = [
   {
-    title: "TransferX",
-    company: "TransferX",
+    title: "AI-Driven Multi-Channel Data Automation",
+    company: "Year",
     year: "2025",
     description:
-      "The ultimate offline file-sharing solution, meticulously crafted to make transferring files across your local network intuitive, seamless, and secure.",
-    link: "https://transferx.netlify.app/",
+      "A fully automated workflow that connects multiple platforms to analyze images, audio, and text, manage orders, and generate AI-driven responses in real time. Integrates seamlessly with TAKE APP, Google Docs, and AI models for end-to-end process automation.",
+    link: "#",
     image: transferx,
     results: [
-      { title: "Intuitive User Interface" },
-      { title: "Secure File Transfers" },
-      { title: "Effortless Sharing Across Networks" },
+      { title: "Automated Multi-Step Workflows" },
+      { title: "Third-Party Platform Integrations" },
+      { title: "AI-Powered Data Insights" },
     ],
   },
   {
-    title: "DocNow",
-    company: "DocNow",
+    title: "RefraX – Secure Healthcare Document Exchange",
+    company: "Year",
     year: "2025",
     description:
-      "Easily upload, download, and manage files with real-time updates and admin controls. Built with a sleek drag-and-drop interface for effortless file sharing.",
-    link: "https://docnow.netlify.app",
+      "A secure platform for exchanging healthcare documents, featuring encrypted storage, role-based access control, and GDPR compliance. Designed for privacy-focused interactions between providers and patients with a mobile-friendly interface.",
+    link: "#",
     image: docnow,
     results: [
-      { title: "File Upload and Download" },
-      { title: "Admin Authentication" },
-      { title: "Real-time Updates" },
+      { title: "Encrypted Data Storage" },
+      { title: "Role-Based Access Control" },
+      { title: "GDPR-Compliant Document Sharing" },
     ],
   },
   {
-    title: "GradeGenie",
-    company: "GradeGenie",
+    title: "Naqtax – Custom Full-Stack Web Solution",
+    company: "Year",
     year: "2025",
     description:
-      "A powerful tool for calculating GPA, CGPA, SGPA, and more, all in one place. Customize your inputs, track your progress, and enjoy a seamless experience across devices.",
-    link: "https://gradegenie.netlify.app",
+      "A custom-built website delivering both frontend and backend functionality tailored to client specifications. Developed with modern technologies to ensure responsive design, optimized performance, and timely delivery.",
+    link: "#",
     image: gradegenie,
     results: [
-      { title: "Advanced GPA Calculators" },
-      { title: "Customizable Inputs" },
-      { title: "Responsive Design" },
+      { title: "Full-Stack Development" },
+      { title: "Responsive UI Design" },
+      { title: "On-Time Project Delivery" },
     ],
   },
   {
-    title: "HomeBudget",
-    company: "HomeBudget",
+    title: "The Current – Real-Time News & Trends",
+    company: "Year",
     year: "2025",
     description:
-      "A smart expense tracking and budgeting tool designed to help users manage their monthly income, control spending habits, and visualize savings goals. Built with a clean, user-friendly interface and real-time calculations for seamless financial planning.",
-    link: "https://homebudget-react.netlify.app",
+      "A dynamic web platform displaying daily news updates, trending topics, and curated insights. Built with a clean frontend and real-time API integrations for fresh, relevant content.",
+    link: "#",
     image: homebudget,
     results: [
-      { title: "Monthly Income & Expense Tracking" },
-      { title: "Interactive Budget Visualizations" },
-      { title: "Responsive and Intuitive UI" },
+      { title: "Live News Feed Integration" },
+      { title: "Trending Topics Display" },
+      { title: "Clean and Responsive UI" },
     ],
   },
 ];
+
 
 export const ProjectsSection = () => {
   return (
