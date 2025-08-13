@@ -7,6 +7,7 @@ import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
+import { AllProjectsSection } from "./AllProjects";
 
 const portfolioProjects = [
   {
@@ -128,6 +129,7 @@ export const ProjectsSection = () => {
           ))}
         </div>
       </div>
+      <AllProjectsSection />
     </section>
   );
 };
