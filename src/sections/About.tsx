@@ -22,7 +22,9 @@ import { ToolboxItems } from "@/components/ToolboxItems";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
-import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
+import { Button } from "@/components/Button";
+import { SkillTag } from "@/components/SkillTag";
+import { GradientAccent } from "@/components/GradientAccent";
 
 const toolboxItems = [
   {
@@ -151,10 +153,10 @@ export const AboutSection = () => {
             {/* Main Description */}
             <div className="space-y-4 mb-8">
               <p className="text-white/80 text-lg leading-relaxed">
-                I'm a results-oriented full-stack developer with over 6 years of experience delivering high-performance web applications, backend systems, and powerful automation solutions for startups, SMEs, and enterprise clients.
+                I&apos;m a results-oriented full-stack developer with over 6 years of experience delivering high-performance web applications, backend systems, and powerful automation solutions for startups, SMEs, and enterprise clients.
               </p>
               <p className="text-white/80 text-lg leading-relaxed">
-                More than just a coder, I'm a strategic partner—translating business needs into robust technical solutions that scale and drive real impact.
+                More than just a coder, I&apos;m a strategic partner—translating business needs into robust technical solutions that scale and drive real impact.
               </p>
             </div>
 
@@ -221,9 +223,10 @@ export const AboutSection = () => {
 
             {/* Resume Download Button */}
             <div className="flex justify-center">
-              <a href="/Muhammad-Hussnain-Resume.pdf" target="_blank" download className="inline-flex items-center gap-2 bg-white text-gray-950 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-                <span>Download Resume</span>
-                <ArrowUpRightIcon className="size-5" />
+              <a href="/Muhammad-Hussnain-Resume.pdf" target="_blank" download>
+                <Button variant="white" size="lg" showArrow>
+                  Download Resume
+                </Button>
               </a>
             </div>
           </Card>
@@ -236,49 +239,49 @@ export const AboutSection = () => {
               <h4 className="text-2xl lg:text-3xl font-serif font-semibold text-white mb-3">
                 Technical Expertise
               </h4>
-              <div className="w-24 h-1 bg-gradient-to-r from-emerald-400 to-sky-400 mx-auto rounded-full"></div>
+              <GradientAccent variant="line" size="lg" className="mx-auto" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
               <div className="space-y-8">
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
+                    <GradientAccent variant="bar" size="md" />
                     <h5 className="text-lg font-semibold text-white">Frontend Development</h5>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.frontend.map((skill, index) => (
-                      <span key={index} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200">
+                      <SkillTag key={index}>
                         {skill}
-                      </span>
+                      </SkillTag>
                     ))}
                   </div>
                 </div>
 
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
+                    <GradientAccent variant="bar" size="md" />
                     <h5 className="text-lg font-semibold text-white">Backend Development</h5>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.backend.map((skill, index) => (
-                      <span key={index} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200">
+                      <SkillTag key={index}>
                         {skill}
-                      </span>
+                      </SkillTag>
                     ))}
                   </div>
                 </div>
 
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
+                    <GradientAccent variant="bar" size="md" />
                     <h5 className="text-lg font-semibold text-white">Database Management</h5>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.databases.map((skill, index) => (
-                      <span key={index} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200">
+                      <SkillTag key={index}>
                         {skill}
-                      </span>
+                      </SkillTag>
                     ))}
                   </div>
                 </div>
@@ -287,28 +290,28 @@ export const AboutSection = () => {
               <div className="space-y-8">
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
+                    <GradientAccent variant="bar" size="md" />
                     <h5 className="text-lg font-semibold text-white">Cloud & DevOps</h5>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.cloud.map((skill, index) => (
-                      <span key={index} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200">
+                      <SkillTag key={index}>
                         {skill}
-                      </span>
+                      </SkillTag>
                     ))}
                   </div>
                 </div>
 
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-1 h-6 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
+                    <GradientAccent variant="bar" size="md" />
                     <h5 className="text-lg font-semibold text-white">Automation & Integrations</h5>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {skills.automation.map((skill, index) => (
-                      <span key={index} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm text-white/80 hover:bg-white/10 hover:border-white/20 transition-all duration-200">
+                      <SkillTag key={index}>
                         {skill}
-                      </span>
+                      </SkillTag>
                     ))}
                   </div>
                 </div>

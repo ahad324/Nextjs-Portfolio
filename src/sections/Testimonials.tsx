@@ -24,7 +24,7 @@ const testimonials = [
   {
     name: "Daniel White",
     position: "CEO @ InnovateCo",
-    text: "Hussnain's ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
+    text: "Hussnains ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
     avatar: memojiAvatar3,
   },
   {
@@ -49,7 +49,7 @@ export const TestimonialsSection = () => {
           eyebrow={"Happy Clients"}
           title={"What Clients Say about Me"}
           description={
-            "Don't just take my word for it. See what my clients have to say about my work."
+            "Dont just take my word for it. See what my clients have to say about my work."
           }
         />
 

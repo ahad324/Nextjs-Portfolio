@@ -3,9 +3,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
-import ArrowLeftIcon from "@/assets/icons/arrow-left.svg";
-import ArrowRightIcon from "@/assets/icons/arrow-right.svg";
-import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
+import { Button } from "@/components/Button";
+import { NavigationButton } from "@/components/NavigationButton";
 
 // Import project images
 import transferx from "@/assets/images/transferx.png";
@@ -150,12 +149,13 @@ export const AllProjectsSection = () => {
                     </div>
 
                     {/* View Project Button - themed like site (white button) */}
-                    <a href={project.link} target="_blank" className="inline-block w-full mt-4">
-                      <button className="bg-white text-gray-950 h-10 w-full px-5 rounded-xl font-semibold inline-flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
-                        <span>View Project</span>
-                        <ArrowUpRightIcon className="size-4" />
-                      </button>
-                    </a>
+                    <div className="mt-4">
+                      <a href={project.link} target="_blank" className="inline-block w-full">
+                        <Button variant="white" size="sm" showArrow fullWidth>
+                          View Project
+                        </Button>
+                      </a>
+                    </div>
                   </div>
 
                   {/* Hover Effect Overlay */}
@@ -167,13 +167,12 @@ export const AllProjectsSection = () => {
 
           {/* Navigation Controls */}
           <div className="flex items-center justify-center gap-6 mt-16">
-            <button
+            <NavigationButton
+              direction="left"
+              size="lg"
               onClick={prevPage}
               disabled={currentPage === 0}
-              className="flex items-center justify-center w-14 h-14 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/10 group"
-            >
-              <ArrowLeftIcon className="size-5 group-hover:translate-x-[-2px] transition-transform" />
-            </button>
+            />
 
             {/* Pagination Dots - per page */}
             <div className="flex gap-2">
@@ -187,13 +186,12 @@ export const AllProjectsSection = () => {
               ))}
             </div>
 
-            <button
+            <NavigationButton
+              direction="right"
+              size="lg"
               onClick={nextPage}
               disabled={currentPage >= totalPages - 1}
-              className="flex items-center justify-center w-14 h-14 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white/5 disabled:hover:border-white/10 group"
-            >
-              <ArrowRightIcon className="size-5 group-hover:translate-x-[2px] transition-transform" />
-            </button>
+            />
           </div>
 
           {/* Page Indicator */}
