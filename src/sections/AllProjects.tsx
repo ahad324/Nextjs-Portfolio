@@ -63,7 +63,7 @@ const allProjects = [
 export const AllProjectsSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [expandedProjects, setExpandedProjects] = useState<Set<number>>(new Set());
-  const projectsPerPage = 3;
+  const projectsPerPage = 2;
   const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
   const nextPage = () => {
@@ -104,7 +104,7 @@ export const AllProjectsSection = () => {
 
         <div className="mt-12 md:mt-20">
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {visibleProjects.map((project, index) => {
               const globalIndex = startIndex + index;
               const isExpanded = expandedProjects.has(globalIndex);
@@ -132,24 +132,26 @@ export const AllProjectsSection = () => {
                       {project.title}
                     </h3>
 
-                    {/* Description with inline Show More/Less */}
+                    {/* Description with inline Show More/Less and consistent collapsed height */}
                     <div className="mb-4">
-                      <p className="text-white/70 text-sm leading-relaxed">
-                        {isExpanded ? project.description : shortDescription}
-                        {project.description.length > 100 && (
+                      <div className="relative">
+                        <p className={`text-white/70 text-sm leading-relaxed pr-14 ${!isExpanded ? "line-clamp-2" : ""}`}>
+                          {project.description}
+                        </p>
+                        {project.description.length > 80 && (
                           <button
                             onClick={() => toggleExpanded(globalIndex)}
-                            className="ml-1 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors"
+                            className="absolute bottom-0 right-0 text-[11px] text-white/60 hover:text-white/80 underline underline-offset-2 bg-black/0"
                           >
-                            {isExpanded ? " Show Less" : " Show More"}
+                            {isExpanded ? "Show Less" : "Show More"}
                           </button>
                         )}
-                      </p>
+                      </div>
                     </div>
 
-                    {/* View Project Button */}
-                    <a href={project.link} target="_blank" className="inline-block w-full">
-                      <button className="w-full bg-gradient-to-r from-emerald-500 to-sky-500 hover:from-emerald-600 hover:to-sky-600 text-white h-11 px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]">
+                    {/* View Project Button - themed like site (white button) */}
+                    <a href={project.link} target="_blank" className="inline-block w-full mt-4">
+                      <button className="bg-white text-gray-950 h-10 w-full px-5 rounded-xl font-semibold inline-flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors">
                         <span>View Project</span>
                         <ArrowUpRightIcon className="size-4" />
                       </button>
@@ -173,15 +175,13 @@ export const AllProjectsSection = () => {
               <ArrowLeftIcon className="size-5 group-hover:translate-x-[-2px] transition-transform" />
             </button>
 
-            {/* Pagination Dots */}
-            <div className="flex gap-3">
+            {/* Pagination Dots - per page */}
+            <div className="flex gap-2">
               {Array.from({ length: totalPages }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToPage(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === index
-                    ? "bg-gradient-to-r from-emerald-400 to-sky-400 scale-125"
-                    : "bg-white/20 hover:bg-white/40 hover:scale-110"
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${currentPage === index ? "bg-white" : "bg-white/20 hover:bg-white/40"
                     }`}
                 />
               ))}
