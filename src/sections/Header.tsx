@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export const Header = () => {
   const links = [
@@ -13,7 +13,16 @@ export const Header = () => {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isInitialized, setIsInitialized] = useState(false);
   const linkRefs = useRef<(HTMLElement | null)[]>([]);
+
+  // Ensure background element is visible on initial load
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsInitialized(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className="w-full flex justify-center items-center fixed top-3 z-10">
@@ -31,17 +40,19 @@ export const Header = () => {
           }}
         >
           {/* Simple animated background */}
-          <motion.div
-            className="absolute bg-white rounded-full"
-            initial={false}
-            animate={{
-              x: (linkRefs.current[activeIndex]?.offsetLeft || 0) - 5,
-              width: (linkRefs.current[activeIndex]?.offsetWidth || 0),
-              height: (linkRefs.current[activeIndex]?.offsetHeight || 0),
-              top: (linkRefs.current[activeIndex]?.offsetTop || 0) - 0,
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          />
+          {isInitialized && (
+            <motion.div
+              className="absolute bg-white rounded-full"
+              initial={false}
+              animate={{
+                x: (linkRefs.current[activeIndex]?.offsetLeft || 0) - 5,
+                width: (linkRefs.current[activeIndex]?.offsetWidth || 0),
+                height: (linkRefs.current[activeIndex]?.offsetHeight || 0),
+                top: (linkRefs.current[activeIndex]?.offsetTop || 0) - 0,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            />
+          )}
 
           {links.map((link, index) => (
             <Link
