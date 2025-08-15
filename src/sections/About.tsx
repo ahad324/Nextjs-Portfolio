@@ -192,16 +192,16 @@ export const AboutSection = () => {
                     description: "I understand your goals and deliver smart, user-centric solutions that make a real impact."
                   }
                 ].map((item, index) => (
-                  <div key={index} className="group relative h-64">
-                    <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 group-hover:border-white/20 transition-all duration-300 hover:scale-[1.02] overflow-hidden h-full flex flex-col">
+                  <div key={index} className="group relative min-h-[16rem] md:min-h-[18rem] lg:min-h-[16rem]">
+                    <div className="relative bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10 group-hover:border-white/20 transition-all duration-300 hover:scale-[1.02] h-full flex flex-col">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-400 to-sky-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                      <div className="space-y-4 flex-1">
+                      <div className="space-y-4 flex-1 flex flex-col">
                         <div>
-                          <h5 className="text-xl font-bold text-white mb-2">
+                          <h5 className="text-lg md:text-xl font-bold text-white mb-2">
                             {item.title}
                           </h5>
-                          <p className="text-sm font-medium text-white/60 uppercase tracking-wider">
+                          <p className="text-xs md:text-sm font-medium text-white/60 uppercase tracking-wider">
                             {item.subtitle}
                           </p>
                         </div>
@@ -210,7 +210,7 @@ export const AboutSection = () => {
                           {item.description}
                         </p>
 
-                        <div className="flex items-center gap-2 pt-2">
+                        <div className="flex items-center gap-2 pt-2 mt-auto">
                           <div className="w-8 h-0.5 bg-gradient-to-r from-emerald-400 to-sky-400 rounded-full"></div>
                           <span className="text-xs text-white/40 uppercase tracking-wider">Core Strength</span>
                         </div>

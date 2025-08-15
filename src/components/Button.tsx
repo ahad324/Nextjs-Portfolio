@@ -31,7 +31,7 @@ export const Button = ({
   const sizeClasses = {
     sm: "h-10 px-4 text-sm",
     md: "h-12 px-6",
-    lg: "h-14 px-8 text-lg"
+    lg: "h-14 px-4 sm:px-8 text-lg"
   };
 
   const widthClass = fullWidth ? "w-full" : "";
@@ -47,7 +47,7 @@ export const Button = ({
       )}
       {...props}
     >
-      <span>{children}</span>
+      {children}
       {showArrow && <ArrowUpRightIcon className="size-4" />}
     </button>
   );
