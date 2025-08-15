@@ -30,7 +30,7 @@ export const Header = () => {
         <Scrollspy
           items={["hero", "projects", "about", "contact"]}
           currentClassName=""
-          className="flex gap-1 p-2 rounded-full bg-gray-900 relative"
+          className="flex gap-1 p-2 rounded-full bg-gray-900 relative overflow-hidden"
           offset={-50}
           onUpdate={(el) => {
             if (el) {
