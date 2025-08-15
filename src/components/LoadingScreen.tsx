@@ -5,25 +5,29 @@ import grainImage from "@/assets/images/grain.jpg";
 
 interface LoadingScreenProps {
   onComplete: () => void;
+  pageLoaded: boolean;
 }
 
-export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
+export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) => {
   const [phase, setPhase] = useState<"loading" | "textFade" | "ringShrink" | "bgFade" | "done">("loading");
 
-  // Phase control sequence
+  // Phase control sequence - only start when page is actually loaded
   useEffect(() => {
+    if (!pageLoaded) return; // Don't start animation until page is loaded
+
     const timers: NodeJS.Timeout[] = [];
 
-    timers.push(setTimeout(() => setPhase("textFade"), 3000));       // Phase 2
-    timers.push(setTimeout(() => setPhase("ringShrink"), 3800));     // Phase 3
-    timers.push(setTimeout(() => setPhase("bgFade"), 5800));         // Phase 4
+    // Start fade-out sequence immediately when page loads
+    timers.push(setTimeout(() => setPhase("textFade"), 0));          // Phase 2 - start immediately
+    timers.push(setTimeout(() => setPhase("ringShrink"), 800));      // Phase 3 - after text fade
+    timers.push(setTimeout(() => setPhase("bgFade"), 2800));         // Phase 4 - after ring shrink
     timers.push(setTimeout(() => {
       setPhase("done");
       onComplete();
-    }, 6600));                                                       // Phase 5
+    }, 3600));                                                       // Phase 5 - total fade-out time
 
     return () => timers.forEach(clearTimeout);
-  }, [onComplete]);
+  }, [onComplete, pageLoaded]);
 
   // Variants as functions, not typed as Variants (to avoid TS error)
   const ringVariants = {
@@ -45,7 +49,11 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         ease: "easeInOut",
         delay: i * 0.15
       }
-    })
+    }),
+    hidden: {
+      scale: 0,
+      opacity: 0
+    }
   };
 
   return (
@@ -64,26 +72,28 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           />
 
           {/* Rings */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                className={`loader-ring ring-sz-${i + 1}`}
-                style={{ x: "-50%", y: "-50%" }}
-                animate={
-                  phase === "loading"
-                    ? "loading"
-                    : phase === "ringShrink"
-                      ? "ringShrink"
-                      : phase === "bgFade" || phase === "textFade"
-                        ? "loading" // Keep pulsing until shrink starts
-                        : "hidden"
-                }
-                variants={ringVariants}
-              />
-            ))}
-          </div>
+          {phase !== "bgFade" && (
+            <div className="absolute inset-0 flex items-center justify-center">
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  custom={i}
+                  className={`loader-ring ring-sz-${i + 1}`}
+                  style={{ x: "-50%", y: "-50%" }}
+                  animate={
+                    phase === "loading"
+                      ? "loading"
+                      : phase === "ringShrink"
+                        ? "ringShrink"
+                        : phase === "textFade"
+                          ? "loading" // Keep pulsing until shrink starts
+                          : "hidden" // Completely hidden after animation
+                  }
+                  variants={ringVariants}
+                />
+              ))}
+            </div>
+          )}
 
           {/* Spinner + text */}
           <div className="relative z-10 flex flex-col items-center gap-4">
@@ -103,9 +113,12 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               />
             </motion.div>
             <motion.p
-              initial={{ opacity: 1 }}
-              animate={{ opacity: phase === "textFade" || phase === "ringShrink" || phase === "bgFade" ? 0 : 1 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{
+                opacity: phase === "textFade" || phase === "ringShrink" || phase === "bgFade" ? 0 : 1,
+                y: 0
+              }}
+              transition={{ duration: 0.6, ease: "easeInOut", delay: 0.2 }}
               className="text-white/80 text-sm tracking-wide"
             >
               Loading
