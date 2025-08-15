@@ -20,7 +20,7 @@ export const ContactSection = () => {
                 discuss how I can help you achieve your goals.
               </p>
             </div>
-            <a href="mailto:ahadg446@gmail.com">
+            <a href="mailto:mhussnainrg@gmail.com">
               <Button variant="dark" size="md" showArrow>
                 Contact Me
               </Button>
