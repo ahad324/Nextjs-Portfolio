@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
 import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import LenisProvider from "@/components/LenisProvider";
+import LoadingWrapper from "@/components/LoadingWrapper";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const calistoga = Calistoga({
@@ -11,24 +11,12 @@ const calistoga = Calistoga({
   weight: ["400"],
 });
 
-export const metadata: Metadata = {
-  title: "Muhammad Hussnain | Full-Stack Developer Portfolio",
-  description:
-    "Explore Hussnain's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more.",
-  keywords:
-    "Hussnain, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design",
-  authors: [
-    {
-      name: "Hussnain",
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <head>
@@ -37,6 +25,9 @@ export default function RootLayout({
         <meta name="author" content="Hussnain" />
         <meta name="theme-color" content="#5355d6" />
         <link rel="canonical" href="https://hussnain-devsite.netlify.app" />
+        <title>Muhammad Hussnain | Full-Stack Developer Portfolio</title>
+        <meta name="description" content="Explore Hussnain's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more." />
+        <meta name="keywords" content="Hussnain, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design" />
       </head>
       <body
         className={twMerge(
@@ -45,7 +36,9 @@ export default function RootLayout({
           "bg-gray-900 text-white antialiased font-sans"
         )}
       >
-        <LenisProvider>{children}</LenisProvider>
+        <LoadingWrapper>
+          <LenisProvider>{children}</LenisProvider>
+        </LoadingWrapper>
       </body>
     </html>
   );

@@ -46,6 +46,41 @@
     @apply lg:max-w-5xl
   }
 
+  /* Loading rings - reusable, responsive sizes */
+  .loader-ring {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5 pointer-events-none;
+  }
+
+  .ring-sz-1 {
+    width: clamp(260px, 32vmin, 480px);
+    height: clamp(260px, 32vmin, 480px);
+  }
+
+  .ring-sz-2 {
+    width: clamp(380px, 44vmin, 640px);
+    height: clamp(380px, 44vmin, 640px);
+  }
+
+  .ring-sz-3 {
+    width: clamp(520px, 56vmin, 820px);
+    height: clamp(520px, 56vmin, 820px);
+  }
+
+  .ring-sz-4 {
+    width: clamp(660px, 68vmin, 1020px);
+    height: clamp(660px, 68vmin, 1020px);
+  }
+
+  .ring-sz-5 {
+    width: clamp(800px, 80vmin, 1220px);
+    height: clamp(800px, 80vmin, 1220px);
+  }
+
+  .ring-sz-6 {
+    width: clamp(940px, 92vmin, 1420px);
+    height: clamp(940px, 92vmin, 1420px);
+  }
+
   .line-clamp-1 {
     overflow: hidden;
     display: -webkit-box;
