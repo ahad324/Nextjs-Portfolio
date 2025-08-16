@@ -80,7 +80,7 @@ const allProjects = [
 export const AllProjectsSection = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [expandedProjects, setExpandedProjects] = useState<Set<number>>(new Set());
-  const projectsPerPage = 2;
+  const projectsPerPage = 3;
   const totalPages = Math.ceil(allProjects.length / projectsPerPage);
 
   const nextPage = () => {
@@ -126,7 +126,7 @@ export const AllProjectsSection = () => {
 
         <div className="mt-16 md:mt-24">
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {visibleProjects.map((project, index) => {
               const globalIndex = startIndex + index;
               const isExpanded = expandedProjects.has(globalIndex);
