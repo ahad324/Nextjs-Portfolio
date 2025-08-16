@@ -8,7 +8,14 @@
   body {
     overscroll-behavior-y: contain;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
   }
+
+    /* Hide scrollbars */
+    ::-webkit-scrollbar {
+      display: none;
+    }
 
   /* Lenis helper classes */
   html.lenis,
@@ -100,5 +107,126 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+  }
+
+  /* Modal content scrolling utilities */
+  .modal-scroll {
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior: contain; /* Prevent body scrolling */
+  }
+
+  .modal-scroll::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  /* Additional modal utilities for perfect scrolling */
+  .modal-content-scroll {
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    pointer-events: auto;
+  }
+
+  .modal-content-scroll::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  .modal-content-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-content-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .modal-content-scroll::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  /* Enhanced modal content accessibility */
+  .modal-content-scroll {
+    position: relative;
+    z-index: 10;
+    pointer-events: auto !important;
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+  }
+
+  .modal-content-scroll * {
+    pointer-events: auto;
+  }
+
+  .modal-content-scroll button,
+  .modal-content-scroll a {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  /* Enhanced mobile modal scrolling */
+  @media (max-width: 1023px) {
+    .modal-scroll {
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      overscroll-behavior: contain !important;
+      max-height: 100vh;
+    }
+  }
+
+  /* Ensure modal content is properly scrollable on mobile */
+  @media (max-width: 1023px) {
+    .modal-content-scroll {
+      overflow-y: visible;
+      pointer-events: auto !important;
+    }
+  }
+
+  /* Mobile-first modal scrolling */
+  .modal-scroll {
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    overscroll-behavior: contain; /* Prevent body scrolling */
+  }
+
+  .modal-scroll::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .modal-scroll::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  /* Ensure modal doesn't scroll the body on mobile */
+  .modal-scroll {
+    overscroll-behavior: contain;
   }
 }
