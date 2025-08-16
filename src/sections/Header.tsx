@@ -41,7 +41,7 @@ export const Header = () => {
 
   return (
     <div className="w-full flex justify-center items-center fixed top-3 z-10">
-      <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full sm:w-auto">
+      <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full md:w-auto">
         <div className="flex items-center justify-center rounded-full">
           <Image src={BookImage.src} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
         </div>
@@ -96,7 +96,7 @@ export const Header = () => {
             {/* Dropdown trigger button */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2 px-4 py-2 rounded-full"
+              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2 px-4 py-2 rounded-full bg-gray-600"
               style={{
                 color: "#111827",
               }}
