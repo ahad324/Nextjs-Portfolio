@@ -63,10 +63,10 @@ export const Header = () => {
               className="absolute bg-white rounded-full hidden md:block"
               initial={false}
               animate={{
-                x: (linkRefs.current[activeIndex]?.offsetLeft || 0) - 8,
+                x: (linkRefs.current[activeIndex]?.offsetLeft || 0) - 140,
                 width: (linkRefs.current[activeIndex]?.offsetWidth || 0),
                 height: (linkRefs.current[activeIndex]?.offsetHeight || 0),
-                top: (linkRefs.current[activeIndex]?.offsetTop || 0) - 0,
+                top: (linkRefs.current[activeIndex]?.offsetTop || 0) ,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
             />
@@ -96,7 +96,7 @@ export const Header = () => {
             {/* Dropdown trigger button */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2"
+              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2 px-4 py-2 rounded-full"
               style={{
                 color: "#111827",
               }}
@@ -107,7 +107,7 @@ export const Header = () => {
                   className="absolute bg-white rounded-full inset-0"
                   initial={false}
                   animate={{
-                    opacity: 1,
+                    opacity: isDropdownOpen ? 0 : 1,
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
@@ -126,16 +126,16 @@ export const Header = () => {
             {/* Dropdown menu */}
             {isDropdownOpen && (
               <div className="absolute top-full left-0 mt-2 bg-gray-900 rounded-xl shadow-lg border border-white/15 overflow-hidden z-50" style={{ width: 'fit-content', minWidth: '100px' }}>
-                {/* White background for active link in dropdown - same effect as large devices but vertical */}
+                {/* White background for active link in dropdown */}
                 {isInitialized && (
                   <motion.div
                     className="absolute bg-white rounded-full"
                     initial={false}
                     animate={{
                       width: "100%",
-                      height: (linkRefs.current[activeIndex]?.offsetHeight || 40),
+                      height: 40,
                       x: 0,
-                      y: (linkRefs.current[activeIndex]?.offsetTop || 0),
+                      y: activeIndex * 40,
                     }}
                     transition={{ type: "spring", stiffness: 300, damping: 25 }}
                   />
@@ -145,12 +145,9 @@ export const Header = () => {
                   <Link
                     key={link.id}
                     href={link.href}
-                    className="block px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center"
+                    className="block px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center h-10 flex items-center justify-center"
                     style={{
                       color: activeIndex === index ? "#111827" : "rgba(255, 255, 255, 0.8)",
-                    }}
-                    ref={(el) => {
-                      linkRefs.current[index] = el;
                     }}
                     onClick={() => {
                       setIsDropdownOpen(false);
