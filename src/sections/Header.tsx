@@ -41,10 +41,10 @@ export const Header = () => {
 
   return (
     <div className="w-full flex justify-center items-center fixed top-3 z-10">
-      <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full md:w-auto">
-        <div className="flex items-center justify-center rounded-full">
+      <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full ml-4 mr-4 md:w-auto">
+        <Link href="/" className="flex items-center justify-center rounded-full">
           <Image src={BookImage.src} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
-        </div>
+        </Link>
         <Scrollspy
           items={["hero", "projects", "about", "contact"]}
           currentClassName=""
@@ -60,16 +60,18 @@ export const Header = () => {
           {/* Animated background for large devices */}
           {isInitialized && (
             <motion.div
-              className="absolute bg-white rounded-full hidden md:block"
-              initial={false}
-              animate={{
-                x: (linkRefs.current[activeIndex]?.offsetLeft || 0) - 140,
-                width: (linkRefs.current[activeIndex]?.offsetWidth || 0),
-                height: (linkRefs.current[activeIndex]?.offsetHeight || 0),
-                top: (linkRefs.current[activeIndex]?.offsetTop || 0) ,
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            />
+            className="absolute bg-white rounded-full hidden md:block"
+            initial={false}
+            animate={{
+              // Use fallback values to avoid undefined errors
+              x: (linkRefs.current[activeIndex]?.offsetLeft ?? 0) + (linkRefs.current[activeIndex]?.offsetWidth ?? 0) / 2 - 187, // Centering logic
+              width: linkRefs.current[activeIndex]?.offsetWidth ?? 0,
+              height: linkRefs.current[activeIndex]?.offsetHeight ?? 0,
+              top: linkRefs.current[activeIndex]?.offsetTop ?? 0,
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 25 }}
+          />
+          
           )}
 
           {/* Large devices: Show all links */}
