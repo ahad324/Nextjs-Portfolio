@@ -96,7 +96,7 @@ export const Header = () => {
             {/* Dropdown trigger button */}
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2 px-4 py-2 rounded-full bg-gray-600"
+              className="nav-item relative z-10 text-sm md:text-base flex items-center gap-2 px-4 py-2 rounded-full bg-gray-500"
               style={{
                 color: "#111827",
               }}
