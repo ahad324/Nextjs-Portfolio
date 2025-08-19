@@ -1,10 +1,11 @@
 "use client"
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import { SectionHeader } from "@/components/SectionHeader"
 import { Button } from "@/components/Button"
 import { NavigationButton } from "@/components/NavigationButton"
+import Lenis from "lenis"
 
 // Import project images
 import transferx from "@/assets/images/transferx.png"
@@ -78,7 +79,7 @@ const allProjects = [
   },
 ]
 
-// Project Modal Component - SIMPLIFIED ANIMATION
+// Project Modal Component - REDESIGNED FOR BETTER UX
 const ProjectModal = ({
   project,
   isOpen,
@@ -88,6 +89,9 @@ const ProjectModal = ({
   isOpen: boolean
   onClose: () => void
 }) => {
+  const scrollableRef = useRef<HTMLDivElement>(null)
+  const lenisRef = useRef<Lenis | null>(null)
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden"
@@ -99,6 +103,33 @@ const ProjectModal = ({
       document.body.style.overflow = ""
       document.body.style.paddingRight = ""
       document.documentElement.style.overflow = ""
+    }
+  }, [isOpen])
+
+  useEffect(() => {
+    if (isOpen && scrollableRef.current) {
+      lenisRef.current = new Lenis({
+        wrapper: scrollableRef.current,
+        content: scrollableRef.current.firstElementChild as HTMLElement,
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+        touchMultiplier: 2,
+      })
+
+      const raf = (time: number) => {
+        lenisRef.current?.raf(time)
+        requestAnimationFrame(raf)
+      }
+      requestAnimationFrame(raf)
+    }
+
+    return () => {
+      if (lenisRef.current) {
+        lenisRef.current.destroy()
+        lenisRef.current = null
+      }
     }
   }, [isOpen])
 
@@ -128,8 +159,8 @@ const ProjectModal = ({
 
   if (!isOpen) return null
 
-  const modalWidth = Math.min(window.innerWidth - 32, 1200)
-  const modalHeight = Math.min(window.innerHeight - 64, 800)
+  const modalWidth = Math.min(window.innerWidth - 32, 1400)
+  const modalHeight = Math.min(window.innerHeight - 64, 900)
 
   return (
     <>
@@ -139,7 +170,7 @@ const ProjectModal = ({
         onClick={handleClose}
       />
 
-      {/* Modal Container - SIMPLIFIED ANIMATION */}
+      {/* Modal Container - REDESIGNED LAYOUT */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
         <div
           className="relative overflow-hidden rounded-2xl bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl pointer-events-auto animate-in fade-in-0 zoom-in-95 duration-300"
@@ -157,11 +188,11 @@ const ProjectModal = ({
 
           <button
             onClick={handleClose}
-            className="absolute top-6 right-6 z-20 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500/20 hover:text-red-300 transition-all duration-300 hover:scale-110 border border-white/20 cursor-pointer select-none group"
+            className="absolute top-4 right-4 z-20 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500/20 hover:text-red-300 transition-all duration-300 hover:scale-110 border border-white/20 cursor-pointer select-none group"
             aria-label="Close modal"
           >
             <svg
-              className="w-6 h-6 transition-transform group-hover:rotate-90"
+              className="w-5 h-5 transition-transform group-hover:rotate-90"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -170,229 +201,245 @@ const ProjectModal = ({
             </svg>
           </button>
 
-          <div className="flex flex-col h-full">
-            {/* Header Section with Image and Basic Info */}
-            <div className="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
+          <div className="flex flex-col lg:flex-row h-full">
+            {/* Left Side - Image Section (40% on desktop) */}
+            <div className="relative lg:w-2/5 h-64 lg:h-full overflow-hidden flex-shrink-0">
               <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-gray-900/80 via-gray-900/40 to-transparent" />
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="px-3 py-1.5 bg-emerald-500 text-white text-sm font-bold rounded-full">
-                        {project.year}
-                      </span>
-                      <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium rounded-full border border-white/20">
-                        {project.category}
-                      </span>
-                    </div>
-                    <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                      {project.title}
-                    </h2>
-                  </div>
+              <div className="absolute top-4 left-4 flex gap-2">
+                <span className="px-3 py-1.5 bg-emerald-500 text-white text-sm font-bold rounded-full">
+                  {project.year}
+                </span>
+                <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium rounded-full border border-white/20">
+                  {project.category}
+                </span>
+              </div>
 
-                  <div className="flex-shrink-0">
+              <div className="absolute bottom-4 left-4 right-4 lg:hidden">
+                <h2 className="font-serif text-xl font-bold text-white leading-tight">{project.title}</h2>
+              </div>
+            </div>
+
+            {/* Right Side - Content Section (60% on desktop) */}
+            <div className="flex-1 flex flex-col min-h-0">
+              <div className="hidden lg:block p-6 border-b border-white/10">
+                <h2 className="font-serif text-2xl xl:text-3xl font-bold text-white leading-tight mb-3">
+                  {project.title}
+                </h2>
+                <div className="flex items-center justify-between">
+                  <p className="text-white/70 text-sm">
+                    {project.category} • {project.year}
+                  </p>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    showArrow
+                    onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
+                    className="hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 bg-emerald-600 hover:bg-emerald-500"
+                  >
+                    View Live
+                  </Button>
+                </div>
+              </div>
+
+              <div
+                ref={scrollableRef}
+                className="flex-1 overflow-y-auto"
+                style={{
+                  minHeight: 0,
+                  maxHeight: `calc(${modalHeight}px - 120px)`,
+                }}
+                onWheel={(e) => e.stopPropagation()}
+              >
+                <div className="p-6 space-y-6">
+                  <div className="lg:hidden">
                     <Button
                       variant="primary"
                       size="sm"
                       showArrow
+                      fullWidth
                       onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
                       className="hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 bg-emerald-600 hover:bg-emerald-500"
                     >
                       View Live Project
                     </Button>
                   </div>
-                </div>
-              </div>
-            </div>
 
-            <div
-              className="flex-1 overflow-y-auto"
-              style={{
-                minHeight: 0,
-                maxHeight: `calc(${modalHeight}px - 320px)`,
-              }}
-              onWheel={(e) => e.stopPropagation()}
-            >
-              <div className="p-6 md:p-8 space-y-8">
-                <div>
-                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                      />
-                    </svg>
-                    Technology Stack
-                  </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
-                    {project.tech.map((tech, techIndex) => (
-                      <div
-                        key={techIndex}
-                        className="group relative overflow-hidden bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 border border-emerald-500/20 rounded-xl p-3 hover:from-emerald-500/20 hover:to-emerald-600/10 hover:border-emerald-400/30 transition-all duration-300 hover:scale-105"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        <span className="relative text-emerald-300 text-sm font-medium text-center block">{tech}</span>
+                  <div>
+                    <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12h6m4 4h4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Project Overview
+                    </h3>
+                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                      <p className="text-white/90 text-sm lg:text-base leading-relaxed">{project.description}</p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                        />
+                      </svg>
+                      Tech Stack
+                    </h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tech.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-lg text-emerald-300 text-sm font-medium hover:bg-emerald-500/20 transition-colors duration-200"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Key Features
+                    </h3>
+                    <div className="space-y-2">
+                      {project.category === "AI/ML" && (
+                        <>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Advanced machine learning algorithms</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Real-time data processing and automation</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Multi-platform API integrations</span>
+                          </div>
+                        </>
+                      )}
+                      {project.category === "Healthcare" && (
+                        <>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>GDPR compliant security measures</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Role-based access control system</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Encrypted document storage</span>
+                          </div>
+                        </>
+                      )}
+                      {(project.category === "Web Development" || project.category === "News Platform") && (
+                        <>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Responsive design across all devices</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Optimized performance and loading</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Modern UI/UX design patterns</span>
+                          </div>
+                        </>
+                      )}
+                      {(project.category === "Library System" || project.category === "Data Visualization") && (
+                        <>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Advanced search and filtering</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Real-time data visualization</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                            <span>Comprehensive analytics dashboard</span>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 10V3L4 14h7v7l9-11h-7z"
+                        />
+                      </svg>
+                      Technical Highlights
+                    </h3>
+                    <div className="grid gap-3">
+                      <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                        <h4 className="text-white font-medium text-sm mb-1">Performance Optimization</h4>
+                        <p className="text-white/70 text-xs">
+                          Advanced caching and code splitting for optimal loading times.
+                        </p>
                       </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12h6m4 4h4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    Project Overview
-                  </h3>
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-                    <p className="text-white/90 text-base md:text-lg leading-relaxed">{project.description}</p>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    Key Features
-                  </h3>
-                  <div className="grid gap-3">
-                    {project.category === "AI/ML" && (
-                      <>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Advanced machine learning algorithms</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Real-time data processing and automation</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Multi-platform API integrations</span>
-                        </div>
-                      </>
-                    )}
-                    {project.category === "Healthcare" && (
-                      <>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>GDPR compliant security measures</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Role-based access control system</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Encrypted document storage</span>
-                        </div>
-                      </>
-                    )}
-                    {(project.category === "Web Development" || project.category === "News Platform") && (
-                      <>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Responsive design across all devices</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Optimized performance and loading</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Modern UI/UX design patterns</span>
-                        </div>
-                      </>
-                    )}
-                    {(project.category === "Library System" || project.category === "Data Visualization") && (
-                      <>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Advanced search and filtering</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Real-time data visualization</span>
-                        </div>
-                        <div className="flex items-center gap-3 text-white/80">
-                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
-                          <span>Comprehensive analytics dashboard</span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                    Technical Highlights
-                  </h3>
-                  <div className="space-y-4">
-                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
-                      <h4 className="text-white font-medium mb-2">Performance Optimization</h4>
-                      <p className="text-white/70 text-sm">
-                        Implemented advanced caching strategies and code splitting for optimal loading times.
-                      </p>
-                    </div>
-                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
-                      <h4 className="text-white font-medium mb-2">Scalable Architecture</h4>
-                      <p className="text-white/70 text-sm">
-                        Built with microservices architecture to handle high traffic and easy maintenance.
-                      </p>
-                    </div>
-                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
-                      <h4 className="text-white font-medium mb-2">Security First</h4>
-                      <p className="text-white/70 text-sm">
-                        Implemented industry-standard security practices including encryption and secure authentication.
-                      </p>
+                      <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                        <h4 className="text-white font-medium text-sm mb-1">Scalable Architecture</h4>
+                        <p className="text-white/70 text-xs">
+                          Microservices architecture for high traffic and easy maintenance.
+                        </p>
+                      </div>
+                      <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-2 border-emerald-500 p-3 rounded-r-lg">
+                        <h4 className="text-white font-medium text-sm mb-1">Security First</h4>
+                        <p className="text-white/70 text-xs">
+                          Industry-standard security with encryption and secure authentication.
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div>
-                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      />
-                    </svg>
-                    Project Impact
-                  </h3>
-                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
-                    <p className="text-white/90 text-base leading-relaxed mb-4">
-                      This project demonstrates advanced technical capabilities and real-world problem-solving skills.
-                      The implementation showcases modern development practices and attention to user experience.
-                    </p>
-                    <p className="text-white/70 text-sm">
-                      Built with scalability and maintainability in mind, this solution serves as a foundation for
-                      future enhancements and demonstrates proficiency in full-stack development.
-                    </p>
+                  <div>
+                    <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        />
+                      </svg>
+                      Project Impact
+                    </h3>
+                    <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+                      <p className="text-white/90 text-sm leading-relaxed">
+                        This project demonstrates advanced technical capabilities and real-world problem-solving skills.
+                        Built with scalability and maintainability in mind, showcasing proficiency in modern full-stack
+                        development.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -599,7 +646,7 @@ export const AllProjectsSection = () => {
         </div>
       </div>
 
-      {/* Project Modal - SIMPLIFIED */}
+      {/* Project Modal - REDESIGNED */}
       {selectedProject && <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />}
     </section>
   )
