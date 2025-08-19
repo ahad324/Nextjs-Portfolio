@@ -1,6 +1,4 @@
 import Link from "next/link";
-import memojiImage from "@/assets/images/memoji-computer.png";
-import Image from "next/image";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
@@ -11,7 +9,7 @@ import { Button } from "@/components/Button";
 export const HeroSection = () => {
   return (
     <section
-      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
+      className="py-40 md:py-52 lg:py-72 relative z-0 overflow-x-clip"
       id="hero"
     >
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
@@ -105,11 +103,16 @@ export const HeroSection = () => {
       </div>
       <div className="container relative z-[2]">
         <div className="flex flex-col items-center">
-          <Image
-            src={memojiImage}
-            className="size-[100px]"
-            alt="Person peeking from behind laptop"
-          />
+          <div className="w-full h-[400px] -top-60 absolute -z-10 rounded-br-full ml-16">
+            <iframe 
+              src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/' 
+              frameBorder='0' 
+              width='100%' 
+              height='100%'
+              className="rounded-br-full "
+              title="3D Greeting Robot"
+            />
+          </div>
           <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
             <div className="bg-green-500 size-2.5 rounded-full relative">
               <div className="bg-green-500 absolute inset-0 animate-ping-large rounded-full"></div>
@@ -119,8 +122,9 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-        <div className="max-w-lg mx-auto">
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide ">
+        
+        <div className="max-w-lg mx-auto mt-8">
+          <h1 className="font-serif text-3xl md:text-5xl text-center tracking-wide">
             Building Exceptional User Experiences
           </h1>
           <p className="mt-4 text-center text-white/60 md:text-lg">
