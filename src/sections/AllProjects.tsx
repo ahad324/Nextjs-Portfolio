@@ -77,7 +77,7 @@ const allProjects = [
   },
 ]
 
-// Project Modal Component
+// Project Modal Component - REDESIGNED for better UX
 const ProjectModal = ({
   project,
   isOpen,
@@ -100,6 +100,8 @@ const ProjectModal = ({
       setAnimationPhase("opening")
 
       document.body.style.overflow = "hidden"
+      document.body.style.paddingRight = "0px" // Prevent layout shift
+      document.documentElement.style.overflow = "hidden"
 
       // Trigger opening animation
       setTimeout(() => {
@@ -108,7 +110,9 @@ const ProjectModal = ({
     }
 
     return () => {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = ""
+      document.body.style.paddingRight = ""
+      document.documentElement.style.overflow = ""
     }
   }, [isOpen, cardRef])
 
@@ -124,10 +128,30 @@ const ProjectModal = ({
     }, 500)
   }
 
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isOpen) {
+        handleClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleEscape)
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscape)
+    }
+  }, [isOpen])
+
+  const handleModalScroll = (e: React.WheelEvent) => {
+    e.stopPropagation()
+  }
+
   if (!isOpen || !cardRect) return null
 
-  const modalWidth = Math.min(window.innerWidth - 32, 1000)
-  const modalHeight = Math.min(window.innerHeight - 32, 700)
+  const modalWidth = Math.min(window.innerWidth - 32, 1200)
+  const modalHeight = Math.min(window.innerHeight - 64, 800) // More padding from viewport edges
 
   const centerX = window.innerWidth / 2
   const centerY = window.innerHeight / 2
@@ -167,7 +191,7 @@ const ProjectModal = ({
     <>
       {/* Enhanced Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/70 backdrop-blur-md z-50 transition-all duration-500 ease-out ${
+        className={`fixed inset-0 bg-black/80 backdrop-blur-lg z-50 transition-all duration-500 ease-out ${
           animationPhase === "closing" ? "opacity-0" : "opacity-100"
         }`}
         onClick={handleClose}
@@ -176,7 +200,7 @@ const ProjectModal = ({
       {/* Modal Container */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="relative overflow-hidden rounded-3xl bg-gray-800/95 backdrop-blur-xl border border-white/20 shadow-2xl pointer-events-auto"
+          className="relative overflow-hidden rounded-2xl bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl pointer-events-auto"
           style={{
             width: modalWidth,
             height: modalHeight,
@@ -184,94 +208,290 @@ const ProjectModal = ({
             transition: "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
             ...getTransformStyle(),
           }}
+          onWheel={handleModalScroll}
         >
           {/* Grain Background Effect */}
-          <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: `url(${grainImage.src})` }} />
+          <div
+            className="absolute inset-0 opacity-5 pointer-events-none"
+            style={{ backgroundImage: `url(${grainImage.src})` }}
+          />
 
-          {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 md:top-6 md:right-6 z-20 w-10 h-10 md:w-12 md:h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 border border-white/20 cursor-pointer select-none"
+            className="absolute top-6 right-6 z-20 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500/20 hover:text-red-300 transition-all duration-300 hover:scale-110 border border-white/20 cursor-pointer select-none group"
+            aria-label="Close modal"
           >
-            <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-6 h-6 transition-transform group-hover:rotate-90"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
 
-          {/* Modal Content - PERFECT responsive scrolling implementation */}
           <div
-            className="flex flex-col lg:flex-row h-full overflow-y-auto lg:overflow-hidden modal-scroll"
+            className="flex flex-col h-full"
             style={{
               opacity: animationPhase === "open" ? 1 : 0,
               transition: "opacity 0.3s ease-out",
               transitionDelay: animationPhase === "open" ? "0.2s" : "0s",
             }}
           >
-            {/* Image Section - Fixed height on large devices */}
-            <div className="relative w-full lg:w-2/5 aspect-[16/10] lg:aspect-auto lg:h-full overflow-hidden flex-shrink-0">
+            {/* Header Section with Image and Basic Info */}
+            <div className="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
               <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent" />
 
-              {/* Year Badge */}
-              <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6">
-                <span className="px-3 py-1.5 md:px-4 md:py-2 bg-emerald-500/90 text-white text-xs md:text-sm font-bold rounded-full select-text">
-                  {project.year}
-                </span>
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="px-3 py-1.5 bg-emerald-500 text-white text-sm font-bold rounded-full">
+                        {project.year}
+                      </span>
+                      <span className="px-3 py-1.5 bg-white/10 backdrop-blur-sm text-white/90 text-sm font-medium rounded-full border border-white/20">
+                        {project.category}
+                      </span>
+                    </div>
+                    <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+                      {project.title}
+                    </h2>
+                  </div>
+
+                  <div className="flex-shrink-0">
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      showArrow
+                      onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
+                      className="hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 bg-emerald-600 hover:bg-emerald-500"
+                    >
+                      View Live Project
+                    </Button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Content Section - PERFECT scrolling implementation */}
-            <div className="flex-1 p-4 md:p-6 lg:p-8 xl:p-10 lg:modal-content-scroll relative z-10">
-              <h2 className="font-serif text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6 text-white leading-tight select-text cursor-text">
-                {project.title}
-              </h2>
+            <div
+              className="flex-1 overflow-y-auto"
+              style={{
+                minHeight: 0, // Critical for flex child to shrink
+                maxHeight: `calc(${modalHeight}px - 320px - 120px)`, // Header height - footer height
+              }}
+              onWheel={(e) => e.stopPropagation()} // Prevent scroll bubbling
+            >
+              <div className="p-6 md:p-8 space-y-8">
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                      />
+                    </svg>
+                    Technology Stack
+                  </h3>
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                    {project.tech.map((tech, techIndex) => (
+                      <div
+                        key={techIndex}
+                        className="group relative overflow-hidden bg-gradient-to-br from-emerald-500/10 to-emerald-600/5 border border-emerald-500/20 rounded-xl p-3 hover:from-emerald-500/20 hover:to-emerald-600/10 hover:border-emerald-400/30 transition-all duration-300 hover:scale-105"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <span className="relative text-emerald-300 text-sm font-medium text-center block">{tech}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Tech Stack */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-xs md:text-sm font-semibold text-white/60 uppercase tracking-wider mb-3 md:mb-4 select-text cursor-text">
-                  Technologies Used
-                </h3>
-                <div className="flex flex-wrap gap-2 md:gap-3">
-                  {project.tech.map((tech, techIndex) => (
-                    <span
-                      key={techIndex}
-                      className="px-3 py-1.5 md:px-4 md:py-2 bg-emerald-500/20 text-emerald-300 text-xs md:text-sm font-medium rounded-lg border border-emerald-500/30 hover:bg-emerald-500/30 hover:scale-105 transition-all duration-200 cursor-default select-text"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m4 4h4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    Project Overview
+                  </h3>
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <p className="text-white/90 text-base md:text-lg leading-relaxed">{project.description}</p>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    Key Features
+                  </h3>
+                  <div className="grid gap-3">
+                    {project.category === "AI/ML" && (
+                      <>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Advanced machine learning algorithms</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Real-time data processing and automation</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Multi-platform API integrations</span>
+                        </div>
+                      </>
+                    )}
+                    {project.category === "Healthcare" && (
+                      <>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>GDPR compliant security measures</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Role-based access control system</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Encrypted document storage</span>
+                        </div>
+                      </>
+                    )}
+                    {(project.category === "Web Development" || project.category === "News Platform") && (
+                      <>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Responsive design across all devices</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Optimized performance and loading</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Modern UI/UX design patterns</span>
+                        </div>
+                      </>
+                    )}
+                    {(project.category === "Library System" || project.category === "Data Visualization") && (
+                      <>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Advanced search and filtering</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Real-time data visualization</span>
+                        </div>
+                        <div className="flex items-center gap-3 text-white/80">
+                          <div className="w-2 h-2 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>Comprehensive analytics dashboard</span>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    Technical Highlights
+                  </h3>
+                  <div className="space-y-4">
+                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                      <h4 className="text-white font-medium mb-2">Performance Optimization</h4>
+                      <p className="text-white/70 text-sm">
+                        Implemented advanced caching strategies and code splitting for optimal loading times.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                      <h4 className="text-white font-medium mb-2">Scalable Architecture</h4>
+                      <p className="text-white/70 text-sm">
+                        Built with microservices architecture to handle high traffic and easy maintenance.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-emerald-500/10 to-transparent border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                      <h4 className="text-white font-medium mb-2">Security First</h4>
+                      <p className="text-white/70 text-sm">
+                        Implemented industry-standard security practices including encryption and secure authentication.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-bold text-emerald-400 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      />
+                    </svg>
+                    Project Impact
+                  </h3>
+                  <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <p className="text-white/90 text-base leading-relaxed mb-4">
+                      This project demonstrates advanced technical capabilities and real-world problem-solving skills.
+                      The implementation showcases modern development practices and attention to user experience.
+                    </p>
+                    <p className="text-white/70 text-sm">
+                      Built with scalability and maintainability in mind, this solution serves as a foundation for
+                      future enhancements and demonstrates proficiency in full-stack development.
+                    </p>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              {/* Description */}
-              <div className="mb-6 md:mb-8">
-                <h3 className="text-xs md:text-sm font-semibold text-white/60 uppercase tracking-wider mb-3 md:mb-4 select-text cursor-text">
-                  Project Overview
-                </h3>
-                <p className="text-white/80 text-base md:text-lg leading-relaxed select-text cursor-text hover:text-white/90 transition-colors duration-200">
-                  {project.description}
-                </p>
-              </div>
-
-              {/* Action Buttons - Using Button Component for Consistency */}
-              <div className="flex flex-col sm:flex-row gap-3 mt-auto pt-4">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  showArrow
-                  onClick={() => window.open(project.link, '_blank', 'noopener,noreferrer')}
-                  className="flex-1 hover:scale-[1.02] active:scale-[0.98] hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200"
-                >
-                  View Project
-                </Button>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={handleClose}
-                  className="flex-1 hover:scale-[0.98] transition-all duration-200"
-                >
-                  Close Details
-                </Button>
+            {/* Footer - Fixed at bottom */}
+            <div className="border-t border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex-shrink-0">
+              <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                <div className="text-center sm:text-left">
+                  <p className="text-white/60 text-sm">Interested in this project?</p>
+                  <p className="text-white/80 text-sm font-medium">View the live demo or get in touch for details</p>
+                </div>
+                <div className="flex gap-3">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={handleClose}
+                    className="hover:scale-105 transition-all duration-200 min-w-[100px]"
+                  >
+                    Close
+                  </Button>
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    showArrow
+                    onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
+                    className="hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 bg-emerald-600 hover:bg-emerald-500 min-w-[140px]"
+                  >
+                    View Project
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -368,7 +588,7 @@ export const AllProjectsSection = () => {
 
                     {/* Year Badge */}
                     <div className="absolute top-4 right-4">
-                      <span className="px-2.5 py-1.5 bg-emerald-500/90 text-white text-xs font-medium rounded-full">
+                      <span className="px-2.5 py-1.5 bg-emerald-500 text-white text-xs font-medium rounded-full">
                         {project.year}
                       </span>
                     </div>
