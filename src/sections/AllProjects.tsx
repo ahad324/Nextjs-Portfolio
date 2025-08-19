@@ -1,5 +1,6 @@
 "use client"
-import React, { useState, useEffect } from "react"
+import type React from "react"
+import { useState, useEffect } from "react"
 import Image from "next/image"
 import { SectionHeader } from "@/components/SectionHeader"
 import { Button } from "@/components/Button"
@@ -77,36 +78,21 @@ const allProjects = [
   },
 ]
 
-// Project Modal Component - REDESIGNED for better UX
+// Project Modal Component - SIMPLIFIED ANIMATION
 const ProjectModal = ({
   project,
   isOpen,
   onClose,
-  cardRef,
 }: {
   project: (typeof allProjects)[0]
   isOpen: boolean
   onClose: () => void
-  cardRef: React.RefObject<HTMLDivElement>
 }) => {
-  const [isAnimating, setIsAnimating] = useState(false)
-  const [cardRect, setCardRect] = useState<DOMRect | null>(null)
-  const [animationPhase, setAnimationPhase] = useState<"opening" | "open" | "closing">("opening")
-
   useEffect(() => {
-    if (isOpen && cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect()
-      setCardRect(rect)
-      setAnimationPhase("opening")
-
+    if (isOpen) {
       document.body.style.overflow = "hidden"
-      document.body.style.paddingRight = "0px" // Prevent layout shift
+      document.body.style.paddingRight = "0px"
       document.documentElement.style.overflow = "hidden"
-
-      // Trigger opening animation
-      setTimeout(() => {
-        setAnimationPhase("open")
-      }, 50)
     }
 
     return () => {
@@ -114,18 +100,10 @@ const ProjectModal = ({
       document.body.style.paddingRight = ""
       document.documentElement.style.overflow = ""
     }
-  }, [isOpen, cardRef])
+  }, [isOpen])
 
   const handleClose = () => {
-    setAnimationPhase("closing")
-    setIsAnimating(true)
-
-    setTimeout(() => {
-      onClose()
-      setIsAnimating(false)
-      setCardRect(null)
-      setAnimationPhase("opening")
-    }, 500)
+    onClose()
   }
 
   useEffect(() => {
@@ -148,65 +126,26 @@ const ProjectModal = ({
     e.stopPropagation()
   }
 
-  if (!isOpen || !cardRect) return null
+  if (!isOpen) return null
 
   const modalWidth = Math.min(window.innerWidth - 32, 1200)
-  const modalHeight = Math.min(window.innerHeight - 64, 800) // More padding from viewport edges
-
-  const centerX = window.innerWidth / 2
-  const centerY = window.innerHeight / 2
-
-  const cardCenterX = cardRect.left + cardRect.width / 2
-  const cardCenterY = cardRect.top + cardRect.height / 2
-
-  const translateX = cardCenterX - centerX
-  const translateY = cardCenterY - centerY
-
-  const scaleX = cardRect.width / modalWidth
-  const scaleY = cardRect.height / modalHeight
-
-  const getTransformStyle = () => {
-    switch (animationPhase) {
-      case "opening":
-        return {
-          transform: `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`,
-          opacity: 0.8,
-        }
-      case "open":
-        return {
-          transform: "translate(0px, 0px) scale(1, 1)",
-          opacity: 1,
-        }
-      case "closing":
-        return {
-          transform: `translate(${translateX}px, ${translateY}px) scale(${scaleX}, ${scaleY})`,
-          opacity: 0,
-        }
-      default:
-        return {}
-    }
-  }
+  const modalHeight = Math.min(window.innerHeight - 64, 800)
 
   return (
     <>
       {/* Enhanced Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/80 backdrop-blur-lg z-50 transition-all duration-500 ease-out ${
-          animationPhase === "closing" ? "opacity-0" : "opacity-100"
-        }`}
+        className="fixed inset-0 bg-black/80 backdrop-blur-lg z-50 transition-opacity duration-300 ease-out"
         onClick={handleClose}
       />
 
-      {/* Modal Container */}
+      {/* Modal Container - SIMPLIFIED ANIMATION */}
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
         <div
-          className="relative overflow-hidden rounded-2xl bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl pointer-events-auto"
+          className="relative overflow-hidden rounded-2xl bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl pointer-events-auto animate-in fade-in-0 zoom-in-95 duration-300"
           style={{
             width: modalWidth,
             height: modalHeight,
-            transformOrigin: "center center",
-            transition: "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-            ...getTransformStyle(),
           }}
           onWheel={handleModalScroll}
         >
@@ -231,14 +170,7 @@ const ProjectModal = ({
             </svg>
           </button>
 
-          <div
-            className="flex flex-col h-full"
-            style={{
-              opacity: animationPhase === "open" ? 1 : 0,
-              transition: "opacity 0.3s ease-out",
-              transitionDelay: animationPhase === "open" ? "0.2s" : "0s",
-            }}
-          >
+          <div className="flex flex-col h-full">
             {/* Header Section with Image and Basic Info */}
             <div className="relative h-64 md:h-80 overflow-hidden flex-shrink-0">
               <Image src={project.image || "/placeholder.svg"} alt={project.title} fill className="object-cover" />
@@ -278,10 +210,10 @@ const ProjectModal = ({
             <div
               className="flex-1 overflow-y-auto"
               style={{
-                minHeight: 0, // Critical for flex child to shrink
-                maxHeight: `calc(${modalHeight}px - 320px - 120px)`, // Header height - footer height
+                minHeight: 0,
+                maxHeight: `calc(${modalHeight}px - 320px)`,
               }}
-              onWheel={(e) => e.stopPropagation()} // Prevent scroll bubbling
+              onWheel={(e) => e.stopPropagation()}
             >
               <div className="p-6 md:p-8 space-y-8">
                 <div>
@@ -465,35 +397,6 @@ const ProjectModal = ({
                 </div>
               </div>
             </div>
-
-            {/* Footer - Fixed at bottom */}
-            <div className="border-t border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex-shrink-0">
-              <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
-                <div className="text-center sm:text-left">
-                  <p className="text-white/60 text-sm">Interested in this project?</p>
-                  <p className="text-white/80 text-sm font-medium">View the live demo or get in touch for details</p>
-                </div>
-                <div className="flex gap-3">
-                  <Button
-                    variant="secondary"
-                    size="sm"
-                    onClick={handleClose}
-                    className="hover:scale-105 transition-all duration-200 min-w-[100px]"
-                  >
-                    Close
-                  </Button>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    showArrow
-                    onClick={() => window.open(project.link, "_blank", "noopener,noreferrer")}
-                    className="hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 bg-emerald-600 hover:bg-emerald-500 min-w-[140px]"
-                  >
-                    View Project
-                  </Button>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -505,14 +408,8 @@ export const AllProjectsSection = () => {
   const [currentPage, setCurrentPage] = useState(0)
   const [selectedProject, setSelectedProject] = useState<(typeof allProjects)[0] | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [cardRefs, setCardRefs] = useState<React.RefObject<HTMLDivElement>[]>([])
   const projectsPerPage = 3
   const totalPages = Math.ceil(allProjects.length / projectsPerPage)
-
-  // Initialize card refs
-  React.useEffect(() => {
-    setCardRefs(Array.from({ length: allProjects.length }, () => React.createRef<HTMLDivElement>()))
-  }, [])
 
   const nextPage = () => {
     setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
@@ -528,17 +425,12 @@ export const AllProjectsSection = () => {
 
   const openModal = (project: (typeof allProjects)[0]) => {
     setSelectedProject(project)
-    // Small delay to ensure DOM is ready for position calculation
-    setTimeout(() => {
-      setIsModalOpen(true)
-    }, 50)
+    setIsModalOpen(true)
   }
 
   const closeModal = () => {
     setIsModalOpen(false)
-    setTimeout(() => {
-      setSelectedProject(null)
-    }, 400)
+    setSelectedProject(null)
   }
 
   const startIndex = currentPage * projectsPerPage
@@ -562,13 +454,9 @@ export const AllProjectsSection = () => {
           {/* Projects Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {visibleProjects.map((project, index) => {
-              const globalIndex = startIndex + index
-              const cardRef = cardRefs[globalIndex]
-
               return (
                 <div
                   key={project.title}
-                  ref={cardRef}
                   className="group relative overflow-hidden hover:scale-[1.02] transition-all duration-500 ease-out bg-white/5 backdrop-blur-sm border-white/10 hover:border-white/20 hover:bg-white/10 bg-gray-800 rounded-3xl relative z-0 overflow-hidden after:z-10 after:content-[''] after:absolute after:inset-0 after:outline-2 after:outline after:-outline-offset-2 after:rounded-3xl after:outline-white/20 after:pointer-events-none"
                 >
                   {/* Grain Background Effect */}
@@ -711,15 +599,8 @@ export const AllProjectsSection = () => {
         </div>
       </div>
 
-      {/* Project Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          cardRef={cardRefs[allProjects.findIndex((p) => p.title === selectedProject.title)] || React.createRef()}
-        />
-      )}
+      {/* Project Modal - SIMPLIFIED */}
+      {selectedProject && <ProjectModal project={selectedProject} isOpen={isModalOpen} onClose={closeModal} />}
     </section>
   )
 }
