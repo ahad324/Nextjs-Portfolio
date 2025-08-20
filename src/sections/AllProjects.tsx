@@ -7,77 +7,8 @@ import { Button } from "@/components/Button"
 import { NavigationButton } from "@/components/NavigationButton"
 import Lenis from "lenis"
 
-// Import project images
-import transferx from "@/assets/images/transferx.png"
-import docnow from "@/assets/images/docnow.png"
-import gradegenie from "@/assets/images/gradegenie.png"
-import homebudget from "@/assets/images/homebudget.png"
-import bookCover from "@/assets/images/book-cover.png"
-import map from "@/assets/images/map.png"
 import grainImage from "@/assets/images/grain.jpg"
-
-const allProjects = [
-  {
-    title: "AI-Driven Multi-Channel Data Automation",
-    description:
-      "A fully automated workflow that connects multiple platforms to analyze images, audio, and text, manage orders, and generate AI-driven responses in real time. Integrates seamlessly with TAKE APP, Google Docs, and AI models for end-to-end process automation with advanced machine learning algorithms.",
-    link: "#",
-    image: transferx,
-    category: "AI/ML",
-    tech: ["Python", "AI", "Automation", "API Integration"],
-    year: "2024",
-  },
-  {
-    title: "RefraX – Secure Healthcare Document Exchange",
-    description:
-      "A secure platform for exchanging healthcare documents, featuring encrypted storage, role-based access control, and GDPR compliance. Designed for privacy-focused interactions between providers and patients with a mobile-friendly interface and real-time notifications.",
-    link: "#",
-    image: docnow,
-    category: "Healthcare",
-    tech: ["React", "Node.js", "Security", "GDPR"],
-    year: "2024",
-  },
-  {
-    title: "Naqtax – Custom Full-Stack Web Solution",
-    description:
-      "A custom-built website delivering both frontend and backend functionality tailored to client specifications. Developed with modern technologies to ensure responsive design, optimized performance, and timely delivery with comprehensive testing and deployment pipelines.",
-    link: "#",
-    image: gradegenie,
-    category: "Web Development",
-    tech: ["Full-Stack", "React", "Node.js", "Custom"],
-    year: "2024",
-  },
-  {
-    title: "The Current – Real-Time News & Trends",
-    description:
-      "A dynamic web platform displaying daily news updates, trending topics, and curated insights. Built with a clean frontend and real-time API integrations for fresh, relevant content with advanced filtering and personalization features.",
-    link: "#",
-    image: homebudget,
-    category: "News Platform",
-    tech: ["React", "Real-time", "API", "News"],
-    year: "2023",
-  },
-  {
-    title: "Digital Library Management System",
-    description:
-      "A comprehensive digital library platform with advanced search, categorization, and user management features. Includes digital asset management, advanced search algorithms, and robust user management system with analytics and reporting capabilities.",
-    link: "#",
-    image: bookCover,
-    category: "Library System",
-    tech: ["Database", "Search", "Management", "Analytics"],
-    year: "2023",
-  },
-  {
-    title: "Interactive Map Visualization",
-    description:
-      "An interactive mapping solution with real-time data visualization and location-based services. Features real-time data integration, interactive UI components, and comprehensive location-based services with custom markers and routing.",
-    link: "#",
-    image: map,
-    category: "Data Visualization",
-    tech: ["Maps", "Real-time", "Interactive", "Location"],
-    year: "2023",
-  },
-]
+import { allProjects } from "@/data/Data"
 
 // Project Modal Component - REDESIGNED FOR BETTER UX
 const ProjectModal = ({
