@@ -9,7 +9,7 @@ import { Button } from "@/components/Button";
 export const HeroSection = () => {
   return (
     <section
-      className="py-40 md:py-52 lg:py-72 relative z-0 overflow-x-clip"
+      className="py-40 md:py-72 lg:py-72 relative z-0 overflow-x-clip"
       id="hero"
     >
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
@@ -103,13 +103,13 @@ export const HeroSection = () => {
       </div>
       <div className="container relative z-[2] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
-          <div className="w-full h-[400px] -top-60 absolute -z-10 rounded-br-full ml-16">
+          <div className="w-full md:h-[400px] bg-red-500 -top-28 md:-top-60 absolute -z-10 rounded-br-full ml-16">
             <iframe 
               src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/' 
               frameBorder='0' 
               width='100%' 
               height='100%'
-              className="rounded-br-full "
+              className="rounded-br-full"
               title="3D Greeting Robot"
             />
           </div>
