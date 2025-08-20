@@ -1,72 +1,12 @@
-import transferx from "@/assets/images/transferx.png";
-import docnow from "@/assets/images/docnow.png";
-import gradegenie from "@/assets/images/gradegenie.png";
-import homebudget from "@/assets/images/homebudget.png";
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 import { Button } from "@/components/Button";
 import { AllProjectsSection } from "./AllProjects";
+import { getFeaturedProjects } from "@/data/Data";
 
-const portfolioProjects = [
-  {
-    title: "AI-Driven Multi-Channel Data Automation",
-    company: "Year",
-    year: "2025",
-    description:
-      "A fully automated workflow that connects multiple platforms to analyze images, audio, and text, manage orders, and generate AI-driven responses in real time. Integrates seamlessly with TAKE APP, Google Docs, and AI models for end-to-end process automation.",
-    link: "#",
-    image: transferx,
-    results: [
-      { title: "Automated Multi-Step Workflows" },
-      { title: "Third-Party Platform Integrations" },
-      { title: "AI-Powered Data Insights" },
-    ],
-  },
-  {
-    title: "RefraX – Secure Healthcare Document Exchange",
-    company: "Year",
-    year: "2025",
-    description:
-      "A secure platform for exchanging healthcare documents, featuring encrypted storage, role-based access control, and GDPR compliance. Designed for privacy-focused interactions between providers and patients with a mobile-friendly interface.",
-    link: "#",
-    image: docnow,
-    results: [
-      { title: "Encrypted Data Storage" },
-      { title: "Role-Based Access Control" },
-      { title: "GDPR-Compliant Document Sharing" },
-    ],
-  },
-  {
-    title: "Naqtax – Custom Full-Stack Web Solution",
-    company: "Year",
-    year: "2025",
-    description:
-      "A custom-built website delivering both frontend and backend functionality tailored to client specifications. Developed with modern technologies to ensure responsive design, optimized performance, and timely delivery.",
-    link: "#",
-    image: gradegenie,
-    results: [
-      { title: "Full-Stack Development" },
-      { title: "Responsive UI Design" },
-      { title: "On-Time Project Delivery" },
-    ],
-  },
-  {
-    title: "The Current – Real-Time News & Trends",
-    company: "Year",
-    year: "2025",
-    description:
-      "A dynamic web platform displaying daily news updates, trending topics, and curated insights. Built with a clean frontend and real-time API integrations for fresh, relevant content.",
-    link: "#",
-    image: homebudget,
-    results: [
-      { title: "Live News Feed Integration" },
-      { title: "Trending Topics Display" },
-      { title: "Clean and Responsive UI" },
-    ],
-  },
-];
+const portfolioProjects = getFeaturedProjects();
 
 
 export const ProjectsSection = () => {
@@ -99,7 +39,7 @@ export const ProjectsSection = () => {
                   </h3>
                   <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
                   <ul className="flex flex-col gap-4 mt-4 md:mt-5">
-                    {project.results.map((result) => (
+                    {project.results?.map((result) => (
                       <li
                         key={result.title}
                         className="flex items-center gap-2 text-sm md:text-base text-white/50"
