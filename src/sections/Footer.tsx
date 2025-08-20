@@ -9,7 +9,7 @@ const footerLinks = [
   // },
   {
     title: "Upwork",
-    href: "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3?mp_source=share",
+    href: "https://www.upwork.com/freelancers/~01fca1f62ecf781358",
   },
 ];
 
