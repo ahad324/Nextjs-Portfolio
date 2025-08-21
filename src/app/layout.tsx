@@ -24,10 +24,14 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Hussnain" />
         <meta name="theme-color" content="#5355d6" />
+
         <link rel="canonical" href="https://hussnain-devsite.netlify.app" />
         <title>Muhammad Hussnain | Full-Stack Developer Portfolio</title>
         <meta name="description" content="Explore Hussnain's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more." />
         <meta name="keywords" content="Hussnain, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design" />
+        <link rel="icon" href="/logo.webp" type="image/png" />
+        {/* for Apple devices */}
+        <link rel="apple-touch-icon" href="/logo.webp" />
       </head>
       <body
         className={twMerge(

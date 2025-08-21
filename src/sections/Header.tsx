@@ -3,7 +3,7 @@ import Link from "next/link";
 import Scrollspy from "react-scrollspy";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
-import BookImage from "../app/favicon.ico";
+import logo from "../app/logo.webp";
 import Image from "next/image";
 
 export const Header = () => {
@@ -43,7 +43,7 @@ export const Header = () => {
     <div className="w-full flex justify-center items-center fixed top-3 z-50">
       <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full ml-4 mr-4 md:w-auto">
         <Link href="/" className="flex items-center justify-center rounded-full">
-          <Image src={BookImage.src} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
+          <Image src={logo.src} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
         </Link>
         <Scrollspy
           items={["hero", "projects", "about", "contact"]}
