@@ -61,7 +61,7 @@ export const allProjects: Project[] = [
     title: "Refrax Healthcare Platform",
     description:
       "RefraX is a secure healthcare document exchange platform with React frontend and Node.js backend. The system uses unique tokens for patient document uploads, ensuring privacy and GDPR compliance. Features include encrypted storage (Supabase), role-based access control, email notifications, and mobile-responsive design. Built with React, TailwindCSS, and Express, RefraX streamlines secure document collection between healthcare providers and patients without exposing personal information.",
-    link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1950951708516737024",
+    link: "https://refrax.co.uk/",
     image: refrax,
     category: "Healthcare",
     tech: ["React", "Node.js", "GDPR", "Responsive Design", "Supabase"],
@@ -189,12 +189,13 @@ export const allTestimonials: Testimonial[] = [
     text: "Working with Hussnain was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
     avatar: memojiAvatar2,
   },
-  {
-    name: "Daniel White",
-    position: "CEO @ InnovateCo",
-    text: "Hussnains ability to create seamless user experiences is unmatched. Our website has seen a significant increase in conversions since launching the new design. We couldn't be happier.",
-    avatar: memojiAvatar3,
-  },
+{
+  name: "Peter",
+  position: "Co-founder @ StarStruck",
+  text: "Hussnain transformed our platform’s UI into a modern, responsive experience while also building reliable web scraping solutions that power our business. His work brought both design precision and technical depth.",
+  avatar: memojiAvatar3,
+}
+,
   {
     name: "Emily Carter",
     position: "Product Manager @ GlobalTech",
