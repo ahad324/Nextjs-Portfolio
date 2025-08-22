@@ -1,41 +1,41 @@
 // Import project images
-import thecurrent from "@/assets/images/thecurrent.png"
-import refrax from "@/assets/images/refrax.png"
-import naqtax from "@/assets/images/naqtax.png"
-import aidriven from "@/assets/images/ai-driven.png"
-import scorespot from "@/assets/images/scorespot.png"
-import n8nfacebook from "@/assets/images/n8n-facebook.png"
-import starstruck from "@/assets/images/starstruck.png"
-import paragon from "@/assets/images/paragon.png"
-import pulsebot from "@/assets/images/pulsebot.png"
+import thecurrent from "@/assets/images/thecurrent.png";
+import refrax from "@/assets/images/refrax.png";
+import naqtax from "@/assets/images/naqtax.png";
+import aidriven from "@/assets/images/ai-driven.png";
+import scorespot from "@/assets/images/scorespot.png";
+import n8nfacebook from "@/assets/images/n8n-facebook.png";
+import starstruck from "@/assets/images/starstruck.png";
+import paragon from "@/assets/images/paragon.png";
+import pulsebot from "@/assets/images/pulsebot.png";
 
 // Import testimonial avatars
-import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png"
-import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png"
-import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png"
-import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png"
-import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png"
+import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
+import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png";
+import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
+import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png";
+import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
 
 // Project type definition
 export interface Project {
-  title: string
-  description: string
-  link: string
-  image: any
-  category: string
-  tech: string[]
-  year: string
-  featured?: boolean
-  company?: string
-  results?: { title: string }[]
+  title: string;
+  description: string;
+  link: string;
+  image: any;
+  category: string;
+  tech: string[];
+  year: string;
+  featured?: boolean;
+  company?: string;
+  results?: { title: string }[];
 }
 
 // Testimonial type definition
 export interface Testimonial {
-  name: string
-  position: string
-  text: string
-  avatar: any
+  name: string;
+  position: string;
+  text: string;
+  avatar: any;
 }
 
 // All projects data with featured field
@@ -81,7 +81,13 @@ export const allProjects: Project[] = [
     link: "https://www.getstarstruck.com/",
     image: starstruck,
     category: "Web Development",
-    tech: ["Front-End Development", "Python", "Web Scraping", "Bug Fix", "Selenium"],
+    tech: [
+      "Front-End Development",
+      "Python",
+      "Web Scraping",
+      "Bug Fix",
+      "Selenium",
+    ],
     year: "2024",
     featured: true,
     company: "Year",
@@ -93,8 +99,7 @@ export const allProjects: Project[] = [
   },
   {
     title: "The Current News Platform",
-    description:
-      "Website which shows daily news, top trends etc.",
+    description: "Website which shows daily news, top trends etc.",
     link: "https://thecurrent.pk/",
     image: thecurrent,
     category: "News Platform",
@@ -123,17 +128,22 @@ export const allProjects: Project[] = [
     title: "N8n Facebook Leads Manager",
     description:
       "This n8n automation workflow is designed to streamline the management of Facebook lead data. It triggers when a new lead is submitted via Facebook Ads, stores the lead data in a Supabase database, and sends a message to a moderator for review. The workflow also includes outgoing messages and follow-up actions, such as retrieving data, editing fields, and scheduling follow-up tasks. This automated system enhances efficiency and ensures timely follow-up for better lead management.",
-    link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1952770404081303552",  
+    link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1952770404081303552",
     image: n8nfacebook,
     category: "Automation",
-    tech: ["ChatGPT API Integration", "Database Management", "Automation", "Supabase", "Automated Workflow"],
+    tech: [
+      "ChatGPT API Integration",
+      "Database Management",
+      "Automation",
+      "Supabase",
+      "Automated Workflow",
+    ],
     year: "2023",
     featured: false,
   },
   {
     title: "Score Spot UI Design",
-    description:
-      "Complete amd pixel perfect UI design from figma to REACT",
+    description: "Complete amd pixel perfect UI design from figma to REACT",
     link: "https://score-spot-eta.vercel.app/",
     image: scorespot,
     category: "Web Development",
@@ -143,8 +153,7 @@ export const allProjects: Project[] = [
   },
   {
     title: "Paragon CRM System",
-    description:
-      "CRM for leads management",
+    description: "CRM for leads management",
     link: "https://portal.paragoneducation.pk/admin/crm-dashboard",
     image: paragon,
     category: "Web Development",
@@ -159,21 +168,31 @@ export const allProjects: Project[] = [
     link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1670119039946682368",
     image: naqtax,
     category: "Web Development",
-    tech: ["HTML", "CSS", "Bootstrap", "Angular", "Node.js", "PSD to HTML", "JavaScript", "MongoDB", "Responsive Design"],
+    tech: [
+      "HTML",
+      "CSS",
+      "Bootstrap",
+      "Angular",
+      "Node.js",
+      "PSD to HTML",
+      "JavaScript",
+      "MongoDB",
+      "Responsive Design",
+    ],
     year: "2023",
     featured: false,
   },
-]
+];
 
 // Get featured projects only
 export const getFeaturedProjects = (): Project[] => {
-  return allProjects.filter(project => project.featured === true)
-}
+  return allProjects.filter((project) => project.featured === true);
+};
 
 // Get non-featured projects only
 export const getNonFeaturedProjects = (): Project[] => {
-  return allProjects.filter(project => project.featured !== true)
-}
+  return allProjects.filter((project) => project.featured !== true);
+};
 
 // All testimonials data
 export const allTestimonials: Testimonial[] = [
@@ -189,13 +208,12 @@ export const allTestimonials: Testimonial[] = [
     text: "Working with Hussnain was a pleasure. His expertise in frontend development brought our designs to life in a way we never imagined. The website has exceeded our expectations.",
     avatar: memojiAvatar2,
   },
-{
-  name: "Peter",
-  position: "Co-founder @ StarStruck",
-  text: "Hussnain transformed our platform’s UI into a modern, responsive experience while also building reliable web scraping solutions that power our business. His work brought both design precision and technical depth.",
-  avatar: memojiAvatar3,
-}
-,
+  {
+    name: "Peter",
+    position: "Co-founder @ StarStruck",
+    text: "Hussnain transformed our platform’s UI into a modern, responsive experience while also building reliable web scraping solutions that power our business. His work brought both design precision and technical depth.",
+    avatar: memojiAvatar3,
+  },
   {
     name: "Emily Carter",
     position: "Product Manager @ GlobalTech",
@@ -208,4 +226,4 @@ export const allTestimonials: Testimonial[] = [
     text: "Hussnain's work on our website has been nothing short of exceptional. He's a talented developer who is also a great communicator. We highly recommend him.",
     avatar: memojiAvatar5,
   },
-]
+];
