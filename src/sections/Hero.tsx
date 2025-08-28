@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import memojiImage from "@/assets/images/memoji-computer.png";
 import Image from "next/image";
@@ -8,6 +9,19 @@ import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
 
 export const HeroSection = () => {
+  // Handle smooth scrolling for anchor links
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 20, // Adjust for header height
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section
       className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
@@ -132,6 +146,7 @@ export const HeroSection = () => {
           <Link
             href="#projects"
             className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl"
+            onClick={(e) => handleAnchorClick(e, "projects")}
           >
             <span className="font-semibold">Explore My Work </span>
             <ArrowDown className="size-4" />
@@ -139,6 +154,7 @@ export const HeroSection = () => {
           <Link
             href="#contact"
             className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
+            onClick={(e) => handleAnchorClick(e, "contact")}
           >
             <span>👋</span>
             <span className="font-semibold">Let&apos;s Connect</span>
