@@ -2,6 +2,7 @@ import transferx from "@/assets/images/transferx.png";
 import docnow from "@/assets/images/docnow.png";
 import gradegenie from "@/assets/images/gradegenie.png";
 import homebudget from "@/assets/images/homebudget.png";
+import pixelarena from "@/assets/images/pixelarena.png"
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
@@ -10,9 +11,23 @@ import { Card } from "@/components/Card";
 
 const portfolioProjects = [
   {
+  title: "PixelArena",
+  company: "PixelArena",
+  year: "2025",
+  description:
+    "A vibrant gaming platform designed to bring players together with retro-inspired aesthetics, dynamic themes, and an immersive experience tailored for the modern web.",
+  link: "https://pixelarena.netlify.app/",
+  image: pixelarena,
+  results: [
+    { title: "Retro-Inspired Design" },
+    { title: "Dynamic Theme System" },
+    { title: "Immersive Player Experience" },
+  ],
+},
+  {
     title: "TransferX",
     company: "TransferX",
-    year: "2025",
+    year: "2024",
     description:
       "The ultimate offline file-sharing solution, meticulously crafted to make transferring files across your local network intuitive, seamless, and secure.",
     link: "https://transferx.netlify.app/",
@@ -26,7 +41,7 @@ const portfolioProjects = [
   {
     title: "DocNow",
     company: "DocNow",
-    year: "2025",
+    year: "2024",
     description:
       "Easily upload, download, and manage files with real-time updates and admin controls. Built with a sleek drag-and-drop interface for effortless file sharing.",
     link: "https://docnow.netlify.app",
@@ -40,7 +55,7 @@ const portfolioProjects = [
   {
     title: "GradeGenie",
     company: "GradeGenie",
-    year: "2025",
+    year: "2023",
     description:
       "A powerful tool for calculating GPA, CGPA, SGPA, and more, all in one place. Customize your inputs, track your progress, and enjoy a seamless experience across devices.",
     link: "https://gradegenie.netlify.app",
@@ -54,7 +69,7 @@ const portfolioProjects = [
   {
     title: "HomeBudget",
     company: "HomeBudget",
-    year: "2025",
+    year: "2024",
     description:
       "A smart expense tracking and budgeting tool designed to help users manage their monthly income, control spending habits, and visualize savings goals. Built with a clean, user-friendly interface and real-time calculations for seamless financial planning.",
     link: "https://homebudget-react.netlify.app",
