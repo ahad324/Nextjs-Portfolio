@@ -101,7 +101,7 @@ export const HeroSection = () => {
           <StarIcon className="size-20 text-emerald-300" />
         </HeroOrbit>
       </div>
-      <div className="container relative mt-20 md:mt-auto z-[2] px-4 sm:px-6 lg:px-8">
+      <div className="container relative mt-28 md:mt-auto z-[2] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <div className="w-full h-[350px] md:h-[400px] -top-52 md:-top-60 absolute -z-10 rounded-br-full ml-16">
             <iframe 
