@@ -11,6 +11,7 @@ import pulsebot from "@/assets/images/pulsebot.png";
 import digitalismd from "@/assets/images/digitalismd.png";
 import redditloginautomation from "@/assets/images/redditloginautomation.png"
 import drippy from "@/assets/images/drippy.png"
+import cstrack from "@/assets/images/cstrack.png"
 
 // Import testimonial avatars
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
@@ -242,7 +243,23 @@ export const allProjects: Project[] = [
       { title: "Performance Optimizations" },
     ],
   },
-
+  {
+    title: "CESR Track",
+    description:
+      "An AI-assisted interactive portfolio builder for doctors applying for Specialist Registration in the UK via the Portfolio pathway (formerly known as CESR). I worked as a full stack developer on the project, implementing core features and integrations.",
+    link: "https://cesrtrack.co.uk/",
+    image: cstrack,
+    category: "Healthcare / AI",
+    tech: ["NGINX", "Next.js", "Supabase", "Gemini", "Third-Party Integration"],
+    year: "2024",
+    featured: false,
+    company: "CESR Track",
+    results: [
+      { title: "Full Stack Development" },
+      { title: "AI-Assisted Portfolio Builder" },
+      { title: "Third-Party Integrations" },
+    ],
+  },
 ];
 
 // Get featured projects only
