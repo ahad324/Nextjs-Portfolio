@@ -133,7 +133,7 @@ export const HeroSection = () => {
             project.
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row justify-center items-center mt-8 sm:mt-12 lg:mt-16 gap-4 sm:gap-6 w-full max-w-md mx-auto">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-8 sm:mt-12 lg:mt-16 gap-4 sm:gap-6 w-full max-w-md mx-auto">
           <Link href="#projects" className="w-full sm:w-auto">
             <Button variant="secondary" size="md" className="w-full sm:w-auto">
               <span>Explore My Work</span>
