@@ -8,6 +8,9 @@ import n8nfacebook from "@/assets/images/n8n-facebook.png";
 import starstruck from "@/assets/images/starstruck.png";
 import paragon from "@/assets/images/paragon.png";
 import pulsebot from "@/assets/images/pulsebot.png";
+import digitalismd from "@/assets/images/digitalismd.png";
+import redditloginautomation from "@/assets/images/redditloginautomation.png"
+import drippy from "@/assets/images/drippy.png"
 
 // Import testimonial avatars
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
@@ -182,6 +185,64 @@ export const allProjects: Project[] = [
     year: "2023",
     featured: false,
   },
+    {
+    title: "Digitalismd",
+    description:
+      "An innovative health-tech company creating smart, user-friendly tools that make doctors' work easier, faster, and more accurate. I created the landing page, user panel, and admin panel, and also integrated Stripe as a payment gateway.",
+    link: "https://digitalismd.com/",
+    image: digitalismd,
+    category: "Healthcare",
+    tech: ["Stripe", "Landing Page", "Amazon EC2", "Amazon S3", "OAuth"],
+    year: "2024",
+    featured: false,
+    company: "Digitalismd",
+    results: [
+      { title: "Landing Page Development" },
+      { title: "Admin & User Panels" },
+      { title: "Stripe Payment Integration" },
+    ],
+  },
+  {
+    title: "Reddit Login Automation",
+    description:
+      "Built a stealth Puppeteer script that launches an undetectable browser and automates login with provided Reddit account credentials.",
+    link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1960603243748724736",
+    image: redditloginautomation,
+    category: "Automation",
+    tech: ["Scripting", "Web Scraping", "Node.js", "Puppeteer", "Reddit"],
+    year: "2024",
+    featured: false,
+    company: "Upwork Client",
+    results: [
+      { title: "Undetectable Browser Automation" },
+      { title: "Reddit Login Workflow" },
+      { title: "Web Scraping with Puppeteer" },
+    ],
+  },
+  {
+    title: "Drippy",
+    description:
+      "Drippy is a marketplace where fans can bid on and purchase authenticated items directly from their favorite athletes and celebrities. A portion of every sale supports a charity of their choice. I contributed as a frontend developer by integrating APIs, refactoring code, and building features on Google Cloud Platform.",
+    link: "https://www.getdrippy.io/",
+    image: drippy,
+    category: "Marketplace",
+    tech: [
+      "API Integration",
+      "Front-End Development",
+      "React",
+      "Code Refactoring",
+      "Google Cloud Platform",
+    ],
+    year: "2024",
+    featured: false,
+    company: "Drippy",
+    results: [
+      { title: "Frontend Development" },
+      { title: "API Integrations" },
+      { title: "Performance Optimizations" },
+    ],
+  },
+
 ];
 
 // Get featured projects only
