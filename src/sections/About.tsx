@@ -88,10 +88,10 @@ const hobbies = [
 ];
 
 const skills = {
-  frontend: ["React.js", "Angular", "Next.js", "Vue.js", "Redux Toolkit", "Tailwind CSS", "MUI", "Bootstrap"],
+  frontend: ["React.js","React Native", "Angular", "Next.js", "Vue.js", "Redux Toolkit", "Tailwind CSS", "MUI", "Bootstrap"],
   backend: ["Node.js", "Express.js", "NestJS", "Python", "Django", "FastAPI", "PHP", "Laravel", "RESTful APIs", "GraphQL"],
   databases: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Supabase", "Mongoose", "Sequelize"],
-  cloud: ["AWS", "Heroku", "Vercel", "DigitalOcean", "Docker", "CI/CD Pipelines"],
+  cloud: ["AWS", "Heroku", "Vercel", "DigitalOcean", "Docker", "CI/CD Pipelines","Teams Integration","Google Meet integration","Zoom Integration"],
   automation: ["n8n", "Make.com", "Puppeteer", "Selenium", "BeautifulSoup", "Stripe", "Twilio", "Google Maps"]
 };
 
