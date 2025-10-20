@@ -147,7 +147,7 @@ export const Header = () => {
                   <Link
                     key={link.id}
                     href={link.href}
-                    className="block px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center h-10 flex items-center justify-center"
+                    className="px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center h-10 flex items-center justify-center"
                     style={{
                       color: activeIndex === index ? "#111827" : "rgba(255, 255, 255, 0.8)",
                     }}

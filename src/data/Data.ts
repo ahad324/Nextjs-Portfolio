@@ -134,7 +134,7 @@ export const allProjects: Project[] = [
   description:
     "Fixed major bugs and optimized the MealsDeals website and scraper. Improved data scraping with Puppeteer, added Redis caching for faster performance, and automated deployments using CI/CD pipelines for reliability and scalability.",
   link: "https://mealsdeals.app/",
-  image: mealsdeals, // replace this with the correct imported image when you have it (e.g., mealsdeals)
+  image: mealsdeals,
   category: "Web Scraping / Automation",
   tech: ["Puppeteer", "Redis", "CI/CD", "Deployment Automation", "Web Scraping"],
   year: "2024",
