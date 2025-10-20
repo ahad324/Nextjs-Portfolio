@@ -12,6 +12,7 @@ import digitalismd from "@/assets/images/digitalismd.png";
 import redditloginautomation from "@/assets/images/redditloginautomation.png"
 import drippy from "@/assets/images/drippy.png"
 import cstrack from "@/assets/images/cstrack.png"
+import mealsdeals from "@/assets/images/mealsdeals.png"
 
 // Import testimonial avatars
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
@@ -128,6 +129,24 @@ export const allProjects: Project[] = [
     year: "2023",
     featured: false,
   },
+  {
+  title: "MealsDeals Web & Scraper",
+  description:
+    "Fixed major bugs and optimized the MealsDeals website and scraper. Improved data scraping with Puppeteer, added Redis caching for faster performance, and automated deployments using CI/CD pipelines for reliability and scalability.",
+  link: "https://mealsdeals.app/",
+  image: mealsdeals, // replace this with the correct imported image when you have it (e.g., mealsdeals)
+  category: "Web Scraping / Automation",
+  tech: ["Puppeteer", "Redis", "CI/CD", "Deployment Automation", "Web Scraping"],
+  year: "2024",
+  featured: false,
+  company: "MealsDeals",
+  results: [
+    { title: "Improved Scraper Reliability" },
+    { title: "Optimized Redis Caching" },
+    { title: "Automated Deployment via CI/CD" },
+  ],
+},
+
   {
     title: "N8n Facebook Leads Manager",
     description:

@@ -88,12 +88,11 @@ const hobbies = [
 ];
 
 const skills = {
-  frontend: ["React.js", "React Native", "Angular", "Next.js", "Vue.js", "Redux Toolkit", "Tailwind CSS", "MUI", "Bootstrap"],
+  frontend: ["React.js", "Angular", "Next.js", "Vue.js", "Redux Toolkit", "Tailwind CSS", "MUI", "Bootstrap"],
   backend: ["Node.js", "Express.js", "NestJS", "Python", "Django", "FastAPI", "PHP", "Laravel", "RESTful APIs", "GraphQL"],
   databases: ["MongoDB", "PostgreSQL", "MySQL", "Firebase", "Supabase", "Mongoose", "Sequelize"],
   cloud: ["AWS", "Heroku", "Vercel", "DigitalOcean", "Docker", "CI/CD Pipelines"],
-  automation: ["n8n", "Make.com", "Puppeteer", "Selenium", "BeautifulSoup", "Stripe", "Twilio", "Google Maps"],
-  integrations: ["Teams Integration", "Google Meet integration", "Zoom Integration", "Third Party Integrations"]
+  automation: ["n8n", "Make.com", "Puppeteer", "Selenium", "BeautifulSoup", "Stripe", "Twilio", "Google Maps","Teams Integration","Google Meet integration","Zoom Integration","Third Party Integrations"]
 };
 
 export const AboutSection = () => {
@@ -289,20 +288,6 @@ export const AboutSection = () => {
               </div>
 
               <div className="space-y-8">
-                <div className="group">
-                  <div className="flex items-center gap-3 mb-4">
-                    <GradientAccent variant="bar" size="md" />
-                    <h5 className="text-lg font-semibold text-white">Integrations</h5>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {skills.integrations.map((skill, index) => (
-                      <SkillTag key={index}>
-                        {skill}
-                      </SkillTag>
-                    ))}
-                  </div>
-                </div>
-
                 <div className="group">
                   <div className="flex items-center gap-3 mb-4">
                     <GradientAccent variant="bar" size="md" />
