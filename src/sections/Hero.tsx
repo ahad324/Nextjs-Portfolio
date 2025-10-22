@@ -136,9 +136,9 @@ export const HeroSection = () => {
           </div>
         </div>
         
-        <div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
+<div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight">
-            Building Exceptional User Experiences
+            Building Exceptional<br /> User Experiences
           </h1>
           <p className="mt-4 sm:mt-6 text-center text-white/60 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed">
             I specialize in transforming designs into functional,
