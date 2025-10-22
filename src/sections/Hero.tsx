@@ -1,7 +1,5 @@
 "use client"
 import Link from "next/link";
-import memojiImage from "@/assets/images/memoji-computer.png";
-import Image from "next/image";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
@@ -9,7 +7,7 @@ import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
 
 export const HeroSection = () => {
-  // Handle smooth scrolling for anchor links
+    // Handle smooth scrolling for anchor links
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
@@ -24,7 +22,7 @@ export const HeroSection = () => {
 
   return (
     <section
-      className="py-32 md:py-48 lg:py-60 relative z-0 overflow-x-clip"
+      className="py-40 md:py-72 lg:py-72 relative z-0 overflow-x-clip"
       id="hero"
     >
       <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_70%,transparent)]">
@@ -116,33 +114,39 @@ export const HeroSection = () => {
           <StarIcon className="size-20 text-emerald-300" />
         </HeroOrbit>
       </div>
-      <div className="container relative z-[2]">
-        <div className="flex flex-col items-center">
-          <Image
-            src={memojiImage}
-            className="size-[100px]"
-            alt="Person peeking from behind laptop"
-          />
-          <div className="bg-gray-950 border border-gray-800 px-4 py-1.5 inline-flex items-center gap-4 rounded-lg">
-            <div className="bg-green-500 size-2.5 rounded-full relative">
+      <div className="container relative mt-28 md:mt-auto z-[2] px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col items-center text-center">
+          <div className="w-full h-[350px] md:h-[400px] -top-52 md:-top-60 absolute -z-10 rounded-br-full ml-16">
+            <iframe 
+              src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/' 
+              frameBorder='0' 
+              width='100%' 
+              height='100%'
+              className="rounded-br-full"
+              title="3D Greeting Robot"
+            />
+          </div>
+          <div className="bg-gray-950 border border-gray-800 px-3 sm:px-4 py-1.5 sm:py-2 inline-flex items-center gap-2 sm:gap-4 rounded-lg sm:rounded-xl">
+            <div className="bg-green-500 size-2 sm:size-2.5 rounded-full relative">
               <div className="bg-green-500 absolute inset-0 animate-ping-large rounded-full"></div>
             </div>
-            <div className="text-sm font-medium">
+            <div className="text-xs sm:text-sm font-medium">
               Available for new projects
             </div>
           </div>
         </div>
-        <div className="max-w-lg mx-auto">
-          <h1 className="font-serif text-3xl md:text-5xl text-center mt-8 tracking-wide ">
+        
+        <div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
+          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight">
             Building Exceptional User Experiences
           </h1>
-          <p className="mt-4 text-center text-white/60 md:text-lg">
+          <p className="mt-4 sm:mt-6 text-center text-white/60 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed">
             I specialize in transforming designs into functional,
-            high-perofmring web applications. Let&apos;s discuss your next
+            high-performing web applications. Let&apos;s discuss your next
             project.
           </p>
         </div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 gap-4">
+        <div className="flex flex-col md:flex-row justify-center items-center mt-8 sm:mt-12 lg:mt-16 gap-4 sm:gap-6 w-full max-w-md mx-auto">
           <Link
             href="#projects"
             className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl"
