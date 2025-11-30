@@ -94,16 +94,44 @@ export const AboutSection = () => {
         />
         <div className="mt-20 flex flex-col gap-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-           <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden">
-              <Image
-                src={profileImage || "/placeholder.svg"}
-                alt="Abdul Ahad - Professional Profile"
-                className="h-full w-full object-cover object-center"
-              />
-              {/* Subtle gradient overlay for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
-              {/* Elegant inset glow effect using emerald accent */}
-              <div className="absolute inset-0 rounded-3xl shadow-[inset_0_0_30px_rgba(16,185,129,0.1)] pointer-events-none"></div>
+            <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden group">
+              {/* Dark Gradient Background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black"></div>
+
+              {/* Geometric Halo (Removed as per user request) */}
+
+              {/* Chromatic Prism Effect */}
+              <div className="h-full w-full relative flex items-end justify-center">
+                {/* Red Channel (Left Shift) */}
+                <div className="absolute inset-0 flex items-end justify-center mix-blend-screen opacity-0 group-hover:opacity-70 transition-opacity duration-300 group-hover:translate-x-[-4px] pointer-events-none">
+                  <Image
+                    src={profileImage || "/placeholder.svg"}
+                    alt="Chromatic Red"
+                    className="h-[90%] w-auto object-cover object-bottom opacity-80"
+                    style={{ filter: 'sepia(100%) saturate(300%) hue-rotate(-50deg)' }}
+                  />
+                </div>
+
+                {/* Blue Channel (Right Shift) */}
+                <div className="absolute inset-0 flex items-end justify-center mix-blend-screen opacity-0 group-hover:opacity-70 transition-opacity duration-300 group-hover:translate-x-[4px] pointer-events-none">
+                  <Image
+                    src={profileImage || "/placeholder.svg"}
+                    alt="Chromatic Blue"
+                    className="h-[90%] w-auto object-cover object-bottom opacity-80"
+                    style={{ filter: 'sepia(100%) saturate(300%) hue-rotate(180deg)' }}
+                  />
+                </div>
+
+                {/* Main Image */}
+                <Image
+                  src={profileImage || "/placeholder.svg"}
+                  alt="Abdul Ahad - Professional Profile"
+                  className="h-[90%] w-auto object-cover object-bottom relative z-10 grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
+                />
+              </div>
+
+              {/* Film Grain Overlay */}
+              <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
             </Card>
             <Card className="h-[320px] md:col-span-3 lg:col-span-2">
               <CardHeader

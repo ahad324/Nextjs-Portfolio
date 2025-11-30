@@ -29,6 +29,8 @@ const config: Config = {
         "ping-large": "ping-large 1s ease-in-out infinite",
         "move-left": "move-left 1s linear infinite",
         "move-right": "move-right 1s linear infinite",
+        "spin-slow": "spin 8s linear infinite",
+        "blob": "blob 7s infinite",
       },
       keyframes: {
         "ping-large": { "75%, 100%": { transform: "scale(3)", opacity: "0" } },
@@ -39,6 +41,20 @@ const config: Config = {
         "move-right": {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0%)" },
+        },
+        blob: {
+          "0%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
+          "33%": {
+            transform: "translate(30px, -50px) scale(1.1)",
+          },
+          "66%": {
+            transform: "translate(-20px, 20px) scale(0.9)",
+          },
+          "100%": {
+            transform: "translate(0px, 0px) scale(1)",
+          },
         },
       },
     },
