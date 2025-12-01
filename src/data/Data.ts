@@ -13,6 +13,7 @@ import redditloginautomation from "@/assets/images/redditloginautomation.png"
 import drippy from "@/assets/images/drippy.png"
 import cstrack from "@/assets/images/cstrack.png"
 import mealsdeals from "@/assets/images/mealsdeals.png"
+import sitescout from "@/assets/images/sitescout.png"
 
 // Import testimonial avatars
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
@@ -45,6 +46,24 @@ export interface Testimonial {
 
 // All projects data with featured field
 export const allProjects: Project[] = [
+  {
+    title: "The Site Scout Chrome Extension",
+    description:
+      "Developed a comprehensive Chrome extension for real-time on-page SEO analysis and auditing. Built with Chrome Extension APIs (Manifest V3), JavaScript, and modern web technologies, the extension provides instant insights into page metadata, structured data, keyword usage, and heading structure directly within the browser.",
+    link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1990469203680608256",
+    image: sitescout,
+    category: "Chrome Extension",
+    tech: [
+      "Google Chrome Extension",
+      "SEO Audit",
+      "JavaScript",
+      "Web Scraping",
+      "PSD to XHTML",
+    ],
+    year: "2024",
+    featured: false,
+    company: "Upwork Client",
+  },
   {
     title: "AI-Driven Data Automation Workflow",
     description:
@@ -130,22 +149,22 @@ export const allProjects: Project[] = [
     featured: false,
   },
   {
-  title: "MealsDeals Web & Scraper",
-  description:
-    "Fixed major bugs and optimized the MealsDeals website and scraper. Improved data scraping with Puppeteer, added Redis caching for faster performance, and automated deployments using CI/CD pipelines for reliability and scalability.",
-  link: "https://mealsdeals.app/",
-  image: mealsdeals,
-  category: "Web Scraping / Automation",
-  tech: ["Puppeteer", "Redis", "CI/CD", "Deployment Automation", "Web Scraping"],
-  year: "2024",
-  featured: false,
-  company: "MealsDeals",
-  results: [
-    { title: "Improved Scraper Reliability" },
-    { title: "Optimized Redis Caching" },
-    { title: "Automated Deployment via CI/CD" },
-  ],
-},
+    title: "MealsDeals Web & Scraper",
+    description:
+      "Fixed major bugs and optimized the MealsDeals website and scraper. Improved data scraping with Puppeteer, added Redis caching for faster performance, and automated deployments using CI/CD pipelines for reliability and scalability.",
+    link: "https://mealsdeals.app/",
+    image: mealsdeals,
+    category: "Web Scraping / Automation",
+    tech: ["Puppeteer", "Redis", "CI/CD", "Deployment Automation", "Web Scraping"],
+    year: "2024",
+    featured: false,
+    company: "MealsDeals",
+    results: [
+      { title: "Improved Scraper Reliability" },
+      { title: "Optimized Redis Caching" },
+      { title: "Automated Deployment via CI/CD" },
+    ],
+  },
 
   {
     title: "N8n Facebook Leads Manager",
@@ -205,7 +224,7 @@ export const allProjects: Project[] = [
     year: "2023",
     featured: false,
   },
-    {
+  {
     title: "Digitalismd",
     description:
       "An innovative health-tech company creating smart, user-friendly tools that make doctors' work easier, faster, and more accurate. I created the landing page, user panel, and admin panel, and also integrated Stripe as a payment gateway.",
@@ -312,9 +331,9 @@ export const allTestimonials: Testimonial[] = [
     avatar: memojiAvatar3,
   },
   {
-    name: "Emily Carter",
-    position: "Product Manager @ GlobalTech",
-    text: "Hussnain is a true frontend wizard. He took our complex product and transformed it into an intuitive and engaging user interface. We're already seeing positive feedback from our customers.",
+    name: "Chrome Extension Development",
+    position: "Upwork Client",
+    text: "Muhammad was fast working and very knowledgeable. Would definitely work with him again!",
     avatar: memojiAvatar4,
   },
   {
