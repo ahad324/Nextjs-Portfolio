@@ -266,6 +266,23 @@ const ProjectModal = ({
                           </div>
                         </>
                       )}
+                      {project.category === "Browser Extensions" && (
+                        <>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
+                            <span>Real-time on-page SEO analysis</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
+                            <span>Manifest V3 Chrome extension architecture</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-white/80 text-sm">
+                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
+                            <span>Automated content and metadata auditing</span>
+                          </div>
+                        </>
+                      )}
+
                       {project.category === "Healthcare" && (
                         <>
                           <div className="flex items-center gap-3 text-white/80 text-sm">
@@ -549,11 +566,10 @@ export const AllProjectsSection = () => {
                 <button
                   key={index}
                   onClick={() => goToPage(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentPage === index
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === index
                       ? "bg-emerald-400 scale-125 shadow-lg shadow-emerald-400/25"
                       : "bg-white/30 hover:bg-white/50 hover:scale-110"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

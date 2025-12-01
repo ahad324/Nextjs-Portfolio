@@ -52,7 +52,7 @@ export const allProjects: Project[] = [
       "Developed a comprehensive Chrome extension for real-time on-page SEO analysis and auditing. Built with Chrome Extension APIs (Manifest V3), JavaScript, and modern web technologies, the extension provides instant insights into page metadata, structured data, keyword usage, and heading structure directly within the browser.",
     link: "https://www.upwork.com/freelancers/~01fca1f62ecf781358?p=1990469203680608256",
     image: sitescout,
-    category: "Chrome Extension",
+    category: "Browser Extensions",
     tech: [
       "Google Chrome Extension",
       "SEO Audit",
