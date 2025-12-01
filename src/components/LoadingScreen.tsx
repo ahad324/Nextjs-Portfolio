@@ -37,6 +37,8 @@ export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) =>
           className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900"
           exit={{
             y: "-100%",
+            borderBottomLeftRadius: ["0%", "100%"], // Elastic effect
+            borderBottomRightRadius: ["0%", "100%"], // Elastic effect
             transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
           }}
         >
