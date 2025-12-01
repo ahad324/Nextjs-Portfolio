@@ -7,11 +7,11 @@ import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
 
 export const HeroSection = () => {
-    // Handle smooth scrolling for anchor links
+  // Handle smooth scrolling for anchor links
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
-    
+
     if (targetElement) {
       window.scrollTo({
         top: targetElement.offsetTop - 20, // Adjust for header height
@@ -117,10 +117,10 @@ export const HeroSection = () => {
       <div className="container relative mt-28 md:mt-auto z-[2] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <div className="w-full h-[350px] md:h-[400px] -top-52 md:-top-60 absolute -z-10 rounded-br-full ml-16">
-            <iframe 
-              src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/' 
-              frameBorder='0' 
-              width='100%' 
+            <iframe
+              src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/'
+              frameBorder='0'
+              width='100%'
               height='100%'
               className="rounded-br-full"
               title="3D Greeting Robot"
@@ -135,8 +135,8 @@ export const HeroSection = () => {
             </div>
           </div>
         </div>
-        
-<div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
+
+        <div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
           <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight">
             Building Exceptional<br /> User Experiences
           </h1>
@@ -156,12 +156,12 @@ export const HeroSection = () => {
             <ArrowDown className="size-4" />
           </Link>
           <Link
-            href="#contact"
+            download
+            href="/assets/MyResume.pdf"
             className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
-            onClick={(e) => handleAnchorClick(e, "contact")}
           >
-            <span>👋</span>
-            <span className="font-semibold">Let&apos;s Connect</span>
+            <span>📥</span>
+            <span className="font-semibold">Download CV</span>
           </Link>
         </div>
       </div>
