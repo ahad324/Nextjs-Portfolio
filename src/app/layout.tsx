@@ -3,6 +3,7 @@ import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import LoadingWrapper from "@/components/LoadingWrapper";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const calistoga = Calistoga({
@@ -37,6 +38,8 @@ export default function RootLayout({
         <meta name="author" content="Abdul Ahad" />
         <meta name="theme-color" content="#5355d6" />
         <link rel="canonical" href="https://ahad-devsite.netlify.app" />
+
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={twMerge(
@@ -46,8 +49,9 @@ export default function RootLayout({
         )}
       >
         <LoadingWrapper>
-
-        {children}
+          <SmoothScrolling>
+            {children}
+          </SmoothScrolling>
         </LoadingWrapper>
       </body>
     </html>
