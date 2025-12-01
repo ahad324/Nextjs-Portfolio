@@ -24,7 +24,7 @@ export default function LoadingWrapper({ children }: { children: React.ReactNode
   }, []);
 
   const handleComplete = () => {
-    setShowLoader(true);
+    setShowLoader(false);
   };
 
   return (
