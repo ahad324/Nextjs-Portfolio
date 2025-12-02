@@ -31,6 +31,7 @@ const config: Config = {
         "move-right": "move-right 1s linear infinite",
         "spin-slow": "spin 8s linear infinite",
         "blob": "blob 7s infinite",
+        "text-shimmer": "text-shimmer 2.5s ease-out infinite alternate",
       },
       keyframes: {
         "ping-large": { "75%, 100%": { transform: "scale(3)", opacity: "0" } },
@@ -55,6 +56,10 @@ const config: Config = {
           "100%": {
             transform: "translate(0px, 0px) scale(1)",
           },
+        },
+        "text-shimmer": {
+          "0%": { backgroundPosition: "0% 50%" },
+          "100%": { backgroundPosition: "100% 50%" },
         },
       },
     },

@@ -149,7 +149,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight"
           >
-            <span className="block">Building Exceptional</span>
+            <span className="block">Building <span className="bg-gradient-to-r from-emerald-300 via-sky-400 to-emerald-300 bg-clip-text text-transparent bg-[length:200%_100%] animate-text-shimmer">Exceptional</span></span>
             <span className="block">User Experiences</span>
           </motion.h1>
           <motion.p
