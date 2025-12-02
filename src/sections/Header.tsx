@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Scrollspy from "react-scrollspy";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 
@@ -45,11 +45,11 @@ export const Header = () => {
       e.preventDefault();
       const targetId = href.substring(1);
       const targetElement = document.getElementById(targetId);
-      
+
       if (targetElement) {
         // Update active index immediately for visual feedback
         setActiveIndex(index);
-        
+
         window.scrollTo({
           top: targetElement.offsetTop - 80, // Adjust for header height
           behavior: 'smooth'
@@ -60,9 +60,19 @@ export const Header = () => {
 
   return (
     <div className="w-full flex justify-center items-center fixed top-3 z-50">
-      <nav className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full ml-4 mr-4 md:w-auto">
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, type: "spring", stiffness: 100, damping: 20 }}
+        className="flex gap-4 md:gap-10 p-2 border border-white/15 rounded-full bg-white/10 backdrop-blur items-center justify-between w-full ml-4 mr-4 md:w-auto"
+      >
         <Link href="/" className="flex items-center justify-center rounded-full">
-          <Image src={"/favicon.ico"} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
+          <motion.div
+            whileHover={{ scale: 1.1, rotate: 360 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Image src={"/favicon.ico"} alt="Logo" width={48} height={48} className="size-12 rounded-full" />
+          </motion.div>
         </Link>
         <Scrollspy
           items={["hero", "projects", "about", "contact"]}
@@ -79,18 +89,18 @@ export const Header = () => {
           {/* Animated background for large devices */}
           {isInitialized && (
             <motion.div
-            className="absolute bg-white rounded-full hidden md:block"
-            initial={false}
-            animate={{
-              // Use fallback values to avoid undefined errors
-              x: (linkRefs.current[activeIndex]?.offsetLeft ?? 0) + (linkRefs.current[activeIndex]?.offsetWidth ?? 0) / 2 - 187, // Centering logic
-              width: linkRefs.current[activeIndex]?.offsetWidth ?? 0,
-              height: linkRefs.current[activeIndex]?.offsetHeight ?? 0,
-              top: linkRefs.current[activeIndex]?.offsetTop ?? 0,
-            }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          />
-          
+              className="absolute bg-white rounded-full hidden md:block"
+              initial={false}
+              animate={{
+                // Use fallback values to avoid undefined errors
+                x: (linkRefs.current[activeIndex]?.offsetLeft ?? 0) + (linkRefs.current[activeIndex]?.offsetWidth ?? 0) / 2 - 187, // Centering logic
+                width: linkRefs.current[activeIndex]?.offsetWidth ?? 0,
+                height: linkRefs.current[activeIndex]?.offsetHeight ?? 0,
+                top: linkRefs.current[activeIndex]?.offsetTop ?? 0,
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            />
+
           )}
 
           {/* Large devices: Show all links */}
@@ -146,45 +156,52 @@ export const Header = () => {
             </button>
 
             {/* Dropdown menu */}
-            {isDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 bg-gray-900 rounded-xl shadow-lg border border-white/15 overflow-hidden z-50" style={{ width: 'fit-content', minWidth: '100px' }}>
-                {/* White background for active link in dropdown */}
-                {isInitialized && (
-                  <motion.div
-                    className="absolute bg-white rounded-full"
-                    initial={false}
-                    animate={{
-                      width: "100%",
-                      height: 40,
-                      x: 0,
-                      y: activeIndex * 40,
-                    }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  />
-                )}
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, height: 0 }}
+                  animate={{ opacity: 1, y: 0, height: 'auto' }}
+                  exit={{ opacity: 0, y: -10, height: 0 }}
+                  className="absolute top-full left-0 mt-2 bg-gray-900 rounded-xl shadow-lg border border-white/15 overflow-hidden z-50" style={{ width: 'fit-content', minWidth: '100px' }}
+                >
+                  {/* White background for active link in dropdown */}
+                  {isInitialized && (
+                    <motion.div
+                      className="absolute bg-white rounded-full"
+                      initial={false}
+                      animate={{
+                        width: "100%",
+                        height: 40,
+                        x: 0,
+                        y: activeIndex * 40,
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    />
+                  )}
 
-                {links.map((link, index) => (
-                  <Link
-                    key={link.id}
-                    href={link.href}
-                    className="block px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center h-10 flex items-center justify-center"
-                    style={{
-                      color: activeIndex === index ? "#111827" : "rgba(255, 255, 255, 0.8)",
-                    }}
-                    onClick={(e) => {
-                      setIsDropdownOpen(false);
-                      setActiveIndex(index);
-                      handleAnchorClick(e, link.href, index);
-                    }}
-                  >
-                    {link.name}
-                  </Link>
-                ))}
-              </div>
-            )}
+                  {links.map((link, index) => (
+                    <Link
+                      key={link.id}
+                      href={link.href}
+                      className="block px-3 py-2 text-sm transition-colors relative z-10 font-medium text-center h-10 flex items-center justify-center"
+                      style={{
+                        color: activeIndex === index ? "#111827" : "rgba(255, 255, 255, 0.8)",
+                      }}
+                      onClick={(e) => {
+                        setIsDropdownOpen(false);
+                        setActiveIndex(index);
+                        handleAnchorClick(e, link.href, index);
+                      }}
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </Scrollspy>
-      </nav>
+      </motion.nav>
     </div>
   );
 };

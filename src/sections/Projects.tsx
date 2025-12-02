@@ -1,3 +1,4 @@
+"use client";
 import transferx from "@/assets/images/transferx.png";
 import docnow from "@/assets/images/docnow.png";
 import gradegenie from "@/assets/images/gradegenie.png";
@@ -8,22 +9,23 @@ import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
+import { motion } from "framer-motion";
 
 const portfolioProjects = [
   {
-  title: "PixelArena",
-  company: "PixelArena",
-  year: "2025",
-  description:
-    "A vibrant gaming platform designed to bring players together with retro-inspired aesthetics, dynamic themes, and an immersive experience tailored for the modern web.",
-  link: "https://pixelarena.netlify.app/",
-  image: pixelarena,
-  results: [
-    { title: "Retro-Inspired Design" },
-    { title: "Dynamic Theme System" },
-    { title: "Immersive Player Experience" },
-  ],
-},
+    title: "PixelArena",
+    company: "PixelArena",
+    year: "2025",
+    description:
+      "A vibrant gaming platform designed to bring players together with retro-inspired aesthetics, dynamic themes, and an immersive experience tailored for the modern web.",
+    link: "https://pixelarena.netlify.app/",
+    image: pixelarena,
+    results: [
+      { title: "Retro-Inspired Design" },
+      { title: "Dynamic Theme System" },
+      { title: "Immersive Player Experience" },
+    ],
+  },
   {
     title: "TransferX",
     company: "TransferX",
@@ -99,6 +101,7 @@ export const ProjectsSection = () => {
               key={project.title}
               className="px-8 pt-8 pb-0 md:pt-12 md:px-10 lg:pt-16 lg:px-20 sticky"
               style={{ top: `calc(64px + ${projectIndex * 40}px` }}
+              whileHover={{ scale: 1.02 }}
             >
               <div className="lg:grid lg:grid-cols-2 lg:gap-16">
                 <div className="lg:pb-16">
@@ -123,18 +126,28 @@ export const ProjectsSection = () => {
                     ))}
                   </ul>
                   <a href={project.link} target="_blank">
-                    <button className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-white text-gray-950 h-12 w-full md:w-auto px-6 rounded-xl font-semibold inline-flex items-center justify-center gap-2 mt-8"
+                    >
                       <span>Visit Live Site</span>
                       <ArrowUpRightIcon className="size-4" />
-                    </button>
+                    </motion.button>
                   </a>
                 </div>
                 <div className="relative">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    className="rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
-                  />
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
+                  >
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      className="rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl h-full w-full object-cover"
+                    />
+                  </motion.div>
                 </div>
               </div>
             </Card>

@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
 import { ElasticLine } from "@/components/ElasticLine";
+import { motion } from "framer-motion";
 
 const footerLinks = [
   { title: "Github", href: "https://github.com/ahad324/" },
@@ -20,7 +22,13 @@ export const Footer = () => {
       <div className="absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/30 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)] -z-10"></div>
       <div className="container relative">
         <ElasticLine />
-        <div className="py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8 relative z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8 relative z-20"
+        >
           <div className="text-white/40">
             &copy; {new Date().getFullYear()} All rights reserved.
           </div>
@@ -32,12 +40,18 @@ export const Footer = () => {
                 target="_blank"
                 className="inline-flex items-center gap-1.5"
               >
-                <span className="font-semibold">{link.title}</span>
+                <motion.span
+                  className="font-semibold"
+                  whileHover={{ color: "#6ee7b7" }} // emerald-300
+                  transition={{ duration: 0.2 }}
+                >
+                  {link.title}
+                </motion.span>
                 <ArrowUpRightIcon className="size-4" />
               </Link>
             ))}
           </nav>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

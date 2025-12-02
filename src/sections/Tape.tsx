@@ -1,5 +1,7 @@
+"use client";
 import StarIcon from "@/assets/icons/star.svg";
 import { Fragment } from "react";
+import { motion } from "framer-motion";
 
 const words = [
   "Performant",
@@ -16,7 +18,13 @@ const words = [
 ];
 export const TapeSection = () => {
   return (
-    <div className="py-16 lg:py-24 overflow-x-clip">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.5 }}
+      className="py-16 lg:py-24 overflow-x-clip"
+    >
       <div className="bg-gradient-to-r from-emerald-300 to-sky-400 -rotate-3 -mx-1">
         <div className="flex items-center justify-center [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
           <div className="flex flex-none gpa-4 pr-4 py-3 animate-move-left [animation-duration:30s]">
@@ -35,6 +43,6 @@ export const TapeSection = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };

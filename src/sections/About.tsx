@@ -94,7 +94,13 @@ export const AboutSection = () => {
         />
         <div className="mt-20 flex flex-col gap-8">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden group">
+            <Card
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+              className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden group"
+            >
               {/* Dark Gradient Background */}
               <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black"></div>
 
@@ -133,7 +139,13 @@ export const AboutSection = () => {
               {/* Film Grain Overlay */}
               <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
             </Card>
-            <Card className="h-[320px] md:col-span-3 lg:col-span-2">
+            <Card
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="h-[320px] md:col-span-3 lg:col-span-2"
+            >
               <CardHeader
                 title="My Toolbox"
                 description=" Explore the technologis and tools I use to creaft the digital
@@ -148,7 +160,13 @@ export const AboutSection = () => {
             </Card>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:grid-cols-3">
-            <Card className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2">
+            <Card
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2"
+            >
               <CardHeader
                 title="Beyond the Code"
                 description=" Explore my insterests and hobbies beyond the digital realme."
@@ -166,6 +184,7 @@ export const AboutSection = () => {
                     whileDrag={{ scale: 1.1, cursor: "grabbing" }}
                     dragMomentum={true}
                     dragTransition={{ bounceStiffness: 100, bounceDamping: 7 }}
+                    whileHover={{ scale: 1.1 }}
                   >
                     <span className="font-medium text-gray-950">{hobby.title}</span>
                     <span>{hobby.emoji}</span>
@@ -173,7 +192,13 @@ export const AboutSection = () => {
                 ))}
               </div>
             </Card>
-            <Card className="h-[320px] md:col-span-2 lg:col-span-1">
+            <Card
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="h-[320px] md:col-span-2 lg:col-span-1"
+            >
               <CardHeader title="My Reads" description="Explore the books shaping my perspectives." />
               <div className="w-40 mx-auto mt-2 md:mt-0">
                 <Image src={bookImage.src || "/placeholder.svg"} alt="Book Cover" width={200} height={300} />

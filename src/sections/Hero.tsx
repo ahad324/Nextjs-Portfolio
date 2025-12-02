@@ -5,6 +5,7 @@ import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
+import { motion } from "framer-motion";
 
 export const HeroSection = () => {
   // Handle smooth scrolling for anchor links
@@ -126,44 +127,75 @@ export const HeroSection = () => {
               title="3D Greeting Robot"
             />
           </div>
-          <div className="bg-gray-950 border border-gray-800 px-3 sm:px-4 py-1.5 sm:py-2 inline-flex items-center gap-2 sm:gap-4 rounded-lg sm:rounded-xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-gray-950 border border-gray-800 px-3 sm:px-4 py-1.5 sm:py-2 inline-flex items-center gap-2 sm:gap-4 rounded-lg sm:rounded-xl"
+          >
             <div className="bg-green-500 size-2 sm:size-2.5 rounded-full relative">
               <div className="bg-green-500 absolute inset-0 animate-ping-large rounded-full"></div>
             </div>
             <div className="text-xs sm:text-sm font-medium">
               Available for new projects
             </div>
-          </div>
+          </motion.div>
         </div>
 
         <div className="max-w-2xl mx-auto mt-8 sm:mt-12 lg:mt-16">
-          <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight">
-            Building Exceptional<br /> User Experiences
-          </h1>
-          <p className="mt-4 sm:mt-6 text-center text-white/60 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed">
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center tracking-wide leading-tight"
+          >
+            <span className="block">Building Exceptional</span>
+            <span className="block">User Experiences</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 sm:mt-6 text-center text-white/60 text-sm sm:text-base md:text-lg lg:text-xl max-w-xl mx-auto leading-relaxed"
+          >
             I specialize in transforming designs into functional,
             high-performing web applications. Let&apos;s discuss your next
             project.
-          </p>
+          </motion.p>
         </div>
-        <div className="flex flex-col md:flex-row justify-center items-center mt-8 sm:mt-12 lg:mt-16 gap-4 sm:gap-6 w-full max-w-md mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex flex-col md:flex-row justify-center items-center mt-8 sm:mt-12 lg:mt-16 gap-4 sm:gap-6 w-full max-w-md mx-auto"
+        >
           <Link
             href="#projects"
-            className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl"
             onClick={(e) => handleAnchorClick(e, "projects")}
           >
-            <span className="font-semibold">Explore My Work </span>
-            <ArrowDown className="size-4" />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl group cursor-pointer"
+            >
+              <span className="font-semibold group-hover:text-emerald-300 transition-colors">Explore My Work </span>
+              <ArrowDown className="size-4 group-hover:translate-y-1 transition-transform" />
+            </motion.button>
           </Link>
           <Link
             download
             href="/assets/MyResume.pdf"
-            className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl"
           >
-            <span>📥</span>
-            <span className="font-semibold">Download CV</span>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl group cursor-pointer"
+            >
+              <span className="group-hover:rotate-12 transition-transform">📥</span>
+              <span className="font-semibold">Download CV</span>
+            </motion.button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

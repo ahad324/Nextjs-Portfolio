@@ -1,6 +1,9 @@
+"use client";
 import { TechIcon } from "@/components/TechIcon";
 import { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
+import { motion } from "framer-motion";
+
 export const ToolboxItems = ({
   items,
   className,
@@ -29,13 +32,14 @@ export const ToolboxItems = ({
         {[...new Array(2)].fill(0).map((_, idx) => (
           <Fragment key={idx}>
             {items.map((item) => (
-              <div
+              <motion.div
                 key={item.title}
-                className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-white/10 rounded-lg"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-white/10 rounded-lg cursor-default"
               >
                 <TechIcon component={item.iconType} />
                 <span className="font-semibold">{item.title}</span>
-              </div>
+              </motion.div>
             ))}
           </Fragment>
         ))}
