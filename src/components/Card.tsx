@@ -8,7 +8,7 @@ export const Card = ({
   className,
   children,
   ...other
-}: ComponentPropsWithoutRef<typeof motion.div>) => {
+}: ComponentPropsWithoutRef<typeof motion.div> & { children: React.ReactNode }) => {
   return (
     <motion.div
       className={twMerge(
