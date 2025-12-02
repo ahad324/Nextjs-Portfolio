@@ -34,7 +34,7 @@ export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) =>
       {!isExiting ? (
         <motion.div
           key="loader"
-          className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900"
           exit={{
             y: "-100%",
             borderBottomLeftRadius: ["0%", "100%"], // Elastic effect
