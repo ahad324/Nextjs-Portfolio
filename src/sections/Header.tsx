@@ -47,13 +47,17 @@ export const Header = () => {
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
+        setIsDropdownOpen(false); // Close dropdown if open
         // Update active index immediately for visual feedback
         setActiveIndex(index);
 
-        window.scrollTo({
-          top: targetElement.offsetTop - 80, // Adjust for header height
-          behavior: 'smooth'
-        });
+        // Use a small timeout to ensure the dropdown closing doesn't interfere with scroll
+        setTimeout(() => {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80, // Adjust for header height
+            behavior: 'smooth'
+          });
+        }, 50);
       }
     }
   };
@@ -188,8 +192,6 @@ export const Header = () => {
                         color: activeIndex === index ? "#111827" : "rgba(255, 255, 255, 0.8)",
                       }}
                       onClick={(e) => {
-                        setIsDropdownOpen(false);
-                        setActiveIndex(index);
                         handleAnchorClick(e, link.href, index);
                       }}
                     >
