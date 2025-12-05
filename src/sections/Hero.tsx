@@ -1,10 +1,12 @@
 "use client"
 import Link from "next/link";
+import Image from "next/image";
 import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
 import StarIcon from "@/assets/icons/star.svg";
 import SparkleIcon from "@/assets/icons/sparkle.svg";
 import { HeroOrbit } from "@/components/HeroOrbit";
+import { SplineModel } from "@/components/SplineModel";
 import { motion } from "framer-motion";
 
 export const HeroSection = () => {
@@ -117,15 +119,8 @@ export const HeroSection = () => {
       </div>
       <div className="container relative mt-28 md:mt-auto z-[2] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
-          <div className="w-full h-[350px] md:h-[400px] -top-52 md:-top-60 absolute -z-10 rounded-br-full ml-16">
-            <iframe
-              src='https://my.spline.design/genkubgreetingrobot-l9LkjVwKy5x6iNABPdyUJOfa/'
-              frameBorder='0'
-              width='100%'
-              height='100%'
-              className="rounded-br-full"
-              title="3D Greeting Robot"
-            />
+          <div className="w-full h-[350px] md:h-[400px] -top-52 md:-top-60 absolute -z-10 rounded-br-full ml-16 overflow-hidden">
+            <SplineModel />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

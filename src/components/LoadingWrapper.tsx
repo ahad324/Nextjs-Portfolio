@@ -10,17 +10,13 @@ const LoadingLogic = ({ children }: { children: React.ReactNode }) => {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   useEffect(() => {
-    if (document.readyState === "complete") {
+    // We don't want to wait for the heavy 3D model (iframe) or large images involved in window.onload
+    // Instead, we just wait a brief moment for the app to hydrate and initial styles to apply.
+    const timer = setTimeout(() => {
       setPageLoaded(true);
-    } else {
-      const handleLoad = () => {
-        setPageLoaded(true);
-      };
-      window.addEventListener("load", handleLoad);
-      return () => {
-        window.removeEventListener("load", handleLoad);
-      };
-    }
+    }, 1000); // 1-second max wait for "feeling" of loading, or shorten as desired.
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleComplete = () => {

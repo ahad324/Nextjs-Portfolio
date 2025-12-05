@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Calistoga } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
@@ -12,6 +12,12 @@ const calistoga = Calistoga({
   weight: ["400"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#5355d6",
+};
+
 export const metadata: Metadata = {
   title: "Abdul Ahad | Full-Stack Developer Portfolio",
   description:
@@ -23,6 +29,16 @@ export const metadata: Metadata = {
       name: "Abdul Ahad",
     },
   ],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://ahad-devsite.netlify.app",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -32,15 +48,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Abdul Ahad" />
-        <meta name="theme-color" content="#5355d6" />
-        <link rel="canonical" href="https://ahad-devsite.netlify.app" />
-
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body
         className={twMerge(
           inter.variable,
