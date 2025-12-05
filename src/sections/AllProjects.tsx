@@ -250,87 +250,12 @@ const ProjectModal = ({
                       Key Features
                     </h3>
                     <div className="space-y-2">
-                      {project.category === "AI/ML" && (
-                        <>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Advanced machine learning algorithms</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Real-time data processing and automation</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Multi-platform API integrations</span>
-                          </div>
-                        </>
-                      )}
-                      {project.category === "Browser Extensions" && (
-                        <>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
-                            <span>Real-time on-page SEO analysis</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
-                            <span>Manifest V3 Chrome extension architecture</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-blue-400 rounded-full flex-shrink-0" />
-                            <span>Automated content and metadata auditing</span>
-                          </div>
-                        </>
-                      )}
-
-                      {project.category === "Healthcare" && (
-                        <>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>GDPR compliant security measures</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Role-based access control system</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Encrypted document storage</span>
-                          </div>
-                        </>
-                      )}
-                      {(project.category === "Web Development" || project.category === "News Platform") && (
-                        <>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Responsive design across all devices</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Optimized performance and loading</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Modern UI/UX design patterns</span>
-                          </div>
-                        </>
-                      )}
-                      {(project.category === "Library System" || project.category === "Data Visualization") && (
-                        <>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Advanced search and filtering</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Real-time data visualization</span>
-                          </div>
-                          <div className="flex items-center gap-3 text-white/80 text-sm">
-                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
-                            <span>Comprehensive analytics dashboard</span>
-                          </div>
-                        </>
-                      )}
+                      {project.results?.map((result, index) => (
+                        <div key={index} className="flex items-center gap-3 text-white/80 text-sm">
+                          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full flex-shrink-0" />
+                          <span>{result.title}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
@@ -567,8 +492,8 @@ export const AllProjectsSection = () => {
                   key={index}
                   onClick={() => goToPage(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${currentPage === index
-                      ? "bg-emerald-400 scale-125 shadow-lg shadow-emerald-400/25"
-                      : "bg-white/30 hover:bg-white/50 hover:scale-110"
+                    ? "bg-emerald-400 scale-125 shadow-lg shadow-emerald-400/25"
+                    : "bg-white/30 hover:bg-white/50 hover:scale-110"
                     }`}
                 />
               ))}

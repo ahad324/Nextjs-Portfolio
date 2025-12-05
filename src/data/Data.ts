@@ -63,6 +63,11 @@ export const allProjects: Project[] = [
     year: "2024",
     featured: false,
     company: "Upwork Client",
+    results: [
+      { title: "Real-time on-page SEO analysis" },
+      { title: "Manifest V3 Chrome extension architecture" },
+      { title: "Automated content and metadata auditing" },
+    ],
   },
   {
     title: "AI-Driven Data Automation Workflow",
@@ -147,6 +152,11 @@ export const allProjects: Project[] = [
     tech: ["React", "Blockchain", "API Integration", "ChatGPT API Integration"],
     year: "2023",
     featured: false,
+    results: [
+      { title: "Advanced machine learning algorithms" },
+      { title: "Real-time data processing and automation" },
+      { title: "Multi-platform API integrations" },
+    ],
   },
   {
     title: "MealsDeals Web & Scraper",
@@ -182,6 +192,11 @@ export const allProjects: Project[] = [
     ],
     year: "2023",
     featured: false,
+    results: [
+      { title: "Automated Lead Management" },
+      { title: "Database Integration with Supabase" },
+      { title: "Streamlined Review Process" },
+    ],
   },
   {
     title: "Score Spot UI Design",
@@ -192,6 +207,11 @@ export const allProjects: Project[] = [
     tech: ["React", "Tailwind CSS", "Responsive Design", "API Integration"],
     year: "2023",
     featured: false,
+    results: [
+      { title: "Responsive design across all devices" },
+      { title: "Optimized performance and loading" },
+      { title: "Modern UI/UX design patterns" },
+    ],
   },
   {
     title: "Paragon CRM System",
@@ -202,6 +222,11 @@ export const allProjects: Project[] = [
     tech: ["JavaScript", "Laravel", "PostgreSQL"],
     year: "2023",
     featured: false,
+    results: [
+      { title: "Responsive design across all devices" },
+      { title: "Optimized performance and loading" },
+      { title: "Efficient Lead Management" },
+    ],
   },
   {
     title: "Naqtax Website",
@@ -223,6 +248,11 @@ export const allProjects: Project[] = [
     ],
     year: "2023",
     featured: false,
+    results: [
+      { title: "Responsive design across all devices" },
+      { title: "Optimized performance and loading" },
+      { title: "Cross-platform Compatibility" },
+    ],
   },
   {
     title: "Digitalismd",
