@@ -130,7 +130,7 @@ export const Header = () => {
             )}
 
             {/* Large devices: Show all links */}
-            <div className="hidden md:flex gap-1">
+            <li className="hidden md:flex gap-1">
               {links.map((link, index) => (
                 <Link
                   key={link.id}
@@ -147,10 +147,10 @@ export const Header = () => {
                   {link.name}
                 </Link>
               ))}
-            </div>
+            </li>
 
             {/* Small devices: Dropdown navigation */}
-            <div className="md:hidden relative dropdown-container z-30">
+            <li className="md:hidden relative dropdown-container z-30">
               {/* Dropdown trigger button */}
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -223,7 +223,7 @@ export const Header = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </li>
           </Scrollspy>
         </motion.div>
       </motion.nav>
