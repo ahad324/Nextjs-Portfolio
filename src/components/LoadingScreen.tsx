@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 
 interface LoadingScreenProps {
   onComplete: () => void;
+  onExitStart?: () => void; // New prop to signal start of exit animation
   pageLoaded: boolean;
 }
 
-export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) => {
+export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingScreenProps) => {
   const [isSqueezing, setIsSqueezing] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
@@ -21,6 +22,7 @@ export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) =>
       // Total time approx 1s
       const timer = setTimeout(() => {
         setIsExiting(true);
+        if (onExitStart) onExitStart(); // Trigger navbar animation immediately
       }, 1000);
 
       return () => clearTimeout(timer);
@@ -36,10 +38,8 @@ export const LoadingScreen = ({ onComplete, pageLoaded }: LoadingScreenProps) =>
           key="loader"
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900"
           exit={{
-            y: "-100%",
-            borderBottomLeftRadius: ["0%", "100%"], // Elastic effect
-            borderBottomRightRadius: ["0%", "100%"], // Elastic effect
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+            opacity: 0, // Fade out instead of slide up
+            transition: { duration: 0.8, ease: "easeInOut" }
           }}
         >
           {/* Eye Loader */}
