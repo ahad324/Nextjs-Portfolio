@@ -179,7 +179,7 @@ export const HeroSection = () => {
           </Link>
           <Link
             download
-            href="/assets/MyResume.pdf"
+            href="/assets/AbdulAhad-Resume.pdf"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}

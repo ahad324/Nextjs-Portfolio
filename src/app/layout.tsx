@@ -55,7 +55,7 @@ export default function RootLayout({
           "bg-gray-900 text-white antialiased font-sans"
         )}
       >
-        <div className="fixed inset-0 z-[60] pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.6)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.6)_100%)]" />
+        {/* <div className="fixed inset-0 z-[60] pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.6)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.6)_100%)]" /> */}
         <LoadingWrapper>
           <SmoothScrolling>
             {children}
