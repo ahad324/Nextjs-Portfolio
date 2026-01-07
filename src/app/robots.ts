@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
         },
-        // sitemap: 'https://acme.com/sitemap.xml', // Add sitemap if/when available
+        sitemap: 'https://ahad-devsite.netlify.app/sitemap.xml',
     };
 }
