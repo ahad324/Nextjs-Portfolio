@@ -145,7 +145,7 @@ export const ProjectsSection = () => {
                     <Image
                       src={project.image}
                       alt={project.title}
-                      className="rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl h-full w-full object-cover"
+                      className="rounded-tl-3xl rounded-tr-3xl md:rounded-tl-3xl mt-8 -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full lg:w-auto lg:max-w-none"
                     />
                   </motion.div>
                 </div>
