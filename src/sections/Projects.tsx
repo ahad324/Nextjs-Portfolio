@@ -172,12 +172,25 @@ const Projects = () => {
               key={idx}
               className="group relative bg-dark-gray border border-white/10 rounded-xl overflow-hidden hover-lift"
             >
-              <div className="aspect-video overflow-hidden">
+              <div className="aspect-video overflow-hidden relative">
                 <img
                   src={project.image}
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+                
+                {/* Hover overlay */}
+                <div className="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-6 py-3 bg-accent-green text-dark font-semibold rounded-full flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                  >
+                    View Project
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                </div>
               </div>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-3">
