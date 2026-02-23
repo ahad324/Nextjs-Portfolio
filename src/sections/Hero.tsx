@@ -142,16 +142,8 @@ const Hero = () => {
               ref={avatarRef}
               src="/profile-avatar.png"
               alt="Muhammad Hussnain"
-              className="w-48 h-48 sm:w-64 sm:h-64 object-contain relative z-10"
+              className="w-48 h-48 sm:w-64 sm:h-64 object-cover object-top relative z-10"
               style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
-            />
-            
-            {/* Robot */}
-            <img
-              ref={robotRef}
-              src="/robot-3d.png"
-              alt="3D Robot"
-              className="absolute -right-16 -bottom-4 w-32 h-32 sm:w-40 sm:h-40 object-contain z-20"
             />
           </div>
 

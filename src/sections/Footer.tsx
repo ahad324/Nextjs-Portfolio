@@ -1,4 +1,4 @@
-import { ArrowUp, Github, Briefcase, Linkedin } from 'lucide-react';
+import { ArrowUp, Github, Briefcase } from 'lucide-react';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -18,7 +18,6 @@ const Footer = () => {
   const socialLinks = [
     { icon: Github, href: 'https://github.com/techInnovator1999', label: 'GitHub' },
     { icon: Briefcase, href: 'https://www.upwork.com/freelancers/~01fca1f62ecf781358', label: 'Upwork' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
   ];
 
   const scrollToSection = (href: string) => {

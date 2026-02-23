@@ -160,7 +160,7 @@ const About = () => {
                     <img
                       src="/profile-avatar.png"
                       alt="Muhammad Hussnain"
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-cover object-top"
                     />
                   </div>
                 ))}
@@ -195,7 +195,7 @@ const About = () => {
             </p>
 
             <a
-              href="/Muhammad-Hussnain-Resume.pdf"
+              href="/assets/Muhammad-Hussnain-Resume.pdf"
               download
               className="inline-flex items-center gap-2 px-6 py-3 bg-accent-green text-dark font-semibold rounded-full hover:bg-accent-green/90 transition-all duration-300 hover:shadow-glow-green"
             >

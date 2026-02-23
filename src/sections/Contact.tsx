@@ -29,27 +29,6 @@ const Contact = () => {
     return () => ctx.revert();
   }, []);
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: 'Email',
-      value: 'hussnain@example.com',
-      href: 'mailto:hussnain@example.com',
-    },
-    {
-      icon: Phone,
-      label: 'Phone',
-      value: '+92 300 1234567',
-      href: 'tel:+923001234567',
-    },
-    {
-      icon: MapPin,
-      label: 'Location',
-      value: 'Lahore, Pakistan',
-      href: 'https://share.google/JLpamlcgXPa2yswHe',
-    },
-  ];
-
   return (
     <section
       id="contact"
@@ -73,28 +52,6 @@ const Contact = () => {
               Ready to bring your next project to life? Let's connect and discuss
               how I can help you achieve your goals.
             </p>
-
-            {/* Contact info */}
-            <div className="space-y-6 mb-12 text-left">
-              {contactInfo.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="flex items-center gap-4 group"
-                >
-                  <div className="p-3 bg-white/5 rounded-xl group-hover:bg-accent-green/20 transition-colors">
-                    <item.icon className="w-6 h-6 text-accent-green" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/50">{item.label}</p>
-                    <p className="text-white group-hover:text-accent-green transition-colors">
-                      {item.value}
-                    </p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-white/30 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
-              ))}
-            </div>
 
             {/* Social links */}
             <div className="text-left">
