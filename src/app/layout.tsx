@@ -14,16 +14,34 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Abdul Ahad | Full Stack Developer",
+  title: "Abdul Ahad — Interface Architect & Full-Stack Systems Engineer",
   description:
-    "Swiss International Style Portfolio. Engineer focusing on objective clarity, performant solutions, and functional excellence.",
+    "Expert in Swiss International Style UI and high-performance Next.js engineering. Specializing in modular systems, objective communication, and precision software architecture.",
   keywords:
-    "Abdul Ahad, Swiss Design, Portfolio, Lead Developer, React, Next.js, Tailwind CSS, Typography",
-  authors: [
-    {
-      name: "Abdul Ahad",
-    },
-  ],
+    "Abdul Ahad, Interface Architect, Systems Engineer, Swiss Design, Next.js Portfolio, Full-Stack Developer, React Expert, Minimalist UI Design",
+  authors: [{ name: "Abdul Ahad" }],
+  openGraph: {
+    title: "Abdul Ahad | Interface Architect",
+    description: "Swiss-inspired development and high-precision UI engineering.",
+    url: "https://ahad-devsite.netlify.app",
+    siteName: "Abdul Ahad Portfolio",
+    images: [
+      {
+        url: "favicon.ico",
+        width: 1200,
+        height: 630,
+        alt: "Abdul Ahad Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abdul Ahad | Systems Engineer",
+    description: "Architecting objective digital experiences with precision and clarity.",
+    images: ["favicon.ico"],
+  },
   robots: {
     index: true,
     follow: true,
@@ -34,6 +52,23 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
+  other: {
+    "google-site-verification": "_t_voY5kuMVEL4CtmBOVDuZ0j6_MRBKwBxG5mDwkK90",
+  }
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Abdul Ahad",
+  "jobTitle": "Full-Stack Systems Engineer & Interface Architect",
+  "url": "https://ahad-devsite.netlify.app",
+  "sameAs": [
+    "https://github.com/ahad324",
+    "https://linkedin.com/in/yourprofile" // Replace with actual if known, or leave as placeholder
+  ],
+  "description": "Professional developer specializing in Swiss International Style UI design and high-performance Next.js applications.",
+  "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Swiss Design", "Systems Architecture"]
 };
 
 export default function RootLayout({
@@ -43,7 +78,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-      <meta name="google-site-verification" content="_t_voY5kuMVEL4CtmBOVDuZ0j6_MRBKwBxG5mDwkK90" />
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={twMerge(
           inter.variable,

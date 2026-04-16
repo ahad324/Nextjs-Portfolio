@@ -55,9 +55,9 @@ export const ProjectsSection = () => {
       <div className="container">
         <SectionHeader
           number="02"
-          eyebrow="Portfolio"
-          title="Selected Projects"
-          description="A selection of engineered solutions focused on objective clarity and functional excellence."
+          eyebrow="Expertise"
+          title="Case Studies"
+          description="A systematic breakdown of engineered solutions focused on objective clarity and functional excellence."
         />
 
         <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-0 border-t-4 border-l-4 border-black">
@@ -88,7 +88,7 @@ export const ProjectsSection = () => {
                 <div className="aspect-video relative mb-12 overflow-hidden border-4 border-black bg-swiss-muted">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} - High-performance web system architecture`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover grayscale hover:grayscale-0 transition-all duration-500 rounded-none scale-100 group-hover:scale-105"

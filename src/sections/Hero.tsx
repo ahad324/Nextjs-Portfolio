@@ -13,7 +13,7 @@ export const HeroSection = () => {
           
           {/* Section Number & Vertical Line */}
           <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4">
-            <span className="text-swiss-accent font-black text-xl tracking-tighter">01</span>
+            <span className="text-swiss-accent font-black text-xl tracking-tighter">SYS_01</span>
             <div className="w-1 h-32 bg-swiss-accent" />
           </div>
 
@@ -34,11 +34,11 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1], delay: 0.1 }}
-              className="text-[clamp(3.5rem,11vw,14rem)] font-black leading-[0.85] tracking-tighter uppercase mb-12"
+              className="text-[clamp(2.5rem,11vw,14rem)] font-black leading-[0.85] tracking-tighter uppercase mb-12"
             >
-              Building <br />
-              <span className="text-swiss-accent">Radical</span> <br />
-              Digital
+              Architecting <br />
+              <span className="text-swiss-accent">Objective</span> <br />
+              Systems
             </motion.h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-24">
@@ -48,8 +48,8 @@ export const HeroSection = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="text-xl md:text-2xl font-medium max-w-lg leading-tight text-black/70 border-l-4 border-black pl-8"
               >
-                I specialize in transforming complex concepts into functional, 
-                high-performing web applications through the lens of objective communication.
+                I engineer high-performance digital interfaces through a lens of structural discipline 
+                and functional clarity. Expert in Next.js systems and modular design.
               </motion.p>
               
               <motion.div 

@@ -12,12 +12,12 @@ export const ContactSection = () => {
           
           <div className="flex-1 z-10">
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-none tracking-tighter">
-              Let&apos;s create <br />
-              something <span className="text-swiss-accent">radical</span>.
+              Let&apos;s architect <br />
+              something <span className="text-swiss-accent">Objective</span>.
             </h2>
             <p className="text-xl md:text-2xl mt-8 font-medium text-white/60 max-w-xl">
-              Ready to bring objective precision to your next project? 
-              Let&apos;s discuss how we can build something exceptional.
+              Equipped for strategic system integration. 
+              Initiate communication to discuss high-precision technical requirements.
             </p>
           </div>
 
@@ -31,7 +31,7 @@ export const ContactSection = () => {
 
           {/* Decorative Section Number */}
           <div className="absolute top-0 right-0 p-8">
-            <span className="text-swiss-accent font-black text-6xl opacity-50 tracking-tighter">04</span>
+            <span className="text-swiss-accent font-black text-6xl opacity-20 tracking-tighter">SYS_04</span>
           </div>
         </div>
       </div>

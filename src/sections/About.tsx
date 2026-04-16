@@ -63,7 +63,7 @@ export const AboutSection = () => {
           <div className="lg:col-span-4 border-4 border-black bg-white p-0 overflow-hidden relative group">
             <Image
               src={profileImage}
-              alt="Profile"
+              alt="Abdul Ahad - Full Stack Developer specializing in high-performance web system architecture"
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
             />
             <div className="absolute bottom-0 left-0 w-full bg-black text-white p-6 border-t-4 border-black">
@@ -75,7 +75,7 @@ export const AboutSection = () => {
           {/* Toolbox Card */}
           <div className="lg:col-span-8 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden">
              <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10">TOOLS</div>
-             <h3 className="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 inline-block">My Toolbox</h3>
+             <h3 className="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 inline-block tracking-tighter">Structural Methodology</h3>
              <ToolboxItems items={toolboxItems} itemsWrapperClassName="animate-move-left [animation-duration:40s]" />
              <ToolboxItems items={toolboxItems} className="mt-8" itemsWrapperClassName="animate-move-right [animation-duration:20s]" />
           </div>
@@ -83,7 +83,7 @@ export const AboutSection = () => {
           {/* Hobbies Grid */}
           <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative">
              <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10">BEYOND</div>
-             <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block">Interests</h3>
+             <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter">Interests</h3>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {hobbies.map((hobby) => (
                   <div 

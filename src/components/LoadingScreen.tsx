@@ -86,12 +86,12 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
             {/* Header Area */}
             <div className="flex justify-between items-end mb-10 font-black uppercase tracking-tighter">
               <div className="flex flex-col">
-                <span className="text-white text-3xl md:text-5xl lg:text-7xl leading-none">Status</span>
-                <span className="text-swiss-accent text-3xl md:text-5xl lg:text-7xl leading-none tracking-[-0.05em]">Initializing</span>
+                <span className="text-white text-3xl md:text-5xl lg:text-7xl leading-none tracking-tighter">System</span>
+                <span className="text-swiss-accent text-3xl md:text-5xl lg:text-7xl leading-none tracking-[-0.05em]">Synthesis</span>
                 <div className="flex items-center gap-3 mt-4">
                   <div className="size-3 bg-swiss-accent animate-pulse" />
                   <span className="text-white/40 text-[10px] md:text-xs tracking-[0.5em] font-bold">
-                    {pageLoaded ? "ASSETS_STREAM_STABLE" : "BUFFERING_CORE_HYDRATION"}
+                    {pageLoaded ? "GRID_REDUNDANCY_PURGED" : "ENFORCING_TYPE_PRECISION"}
                   </span>
                 </div>
               </div>
@@ -100,7 +100,7 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
                  <span className="text-swiss-accent text-7xl md:text-9xl lg:text-[14rem] leading-[0.7] mb-2 tabular-nums">
                   {Math.round(progress)}
                 </span>
-                <span className="text-white/20 text-xs md:text-sm tracking-widest font-black uppercase">Mechanical_Readout</span>
+                <span className="text-white/20 text-xs md:text-sm tracking-widest font-black uppercase">Core_State_Readout_V2</span>
               </div>
             </div>
             
