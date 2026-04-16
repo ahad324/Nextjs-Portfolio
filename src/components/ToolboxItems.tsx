@@ -19,27 +19,26 @@ export const ToolboxItems = ({
   return (
     <div
       className={twMerge(
-        "flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]",
+        "flex overflow-hidden",
         className
       )}
     >
       <div
         className={twMerge(
-          "flex flex-none py-0.5 gap-6 pr-6",
+          "flex flex-none py-1 gap-4 pr-4",
           itemsWrapperClassName
         )}
       >
         {[...new Array(2)].fill(0).map((_, idx) => (
           <Fragment key={idx}>
             {items.map((item) => (
-              <motion.div
+              <div
                 key={item.title}
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-4 py-2 px-3 outline outline-2 outline-white/10 rounded-lg cursor-default"
+                className="inline-flex items-center gap-4 py-4 px-6 border-4 border-black bg-white hover:bg-black hover:text-white transition-colors duration-200 cursor-default"
               >
                 <TechIcon component={item.iconType} />
-                <span className="font-semibold">{item.title}</span>
-              </motion.div>
+                <span className="font-black uppercase tracking-tighter text-sm">{item.title}</span>
+              </div>
             ))}
           </Fragment>
         ))}
@@ -47,3 +46,4 @@ export const ToolboxItems = ({
     </div>
   );
 };
+

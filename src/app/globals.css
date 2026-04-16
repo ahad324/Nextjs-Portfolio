@@ -3,31 +3,80 @@
 @tailwind utilities;
 
 @layer base {
-    html,
+  :root {
+    --swiss-bg: #FFFFFF;
+    --swiss-fg: #000000;
+    --swiss-accent: #FF3000;
+    --swiss-muted: #F2F2F2;
+  }
+
+  html,
   body {
+    background-color: var(--swiss-bg);
+    color: var(--swiss-fg);
     overscroll-behavior-y: contain;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    font-family: var(--font-inter), sans-serif;
   }
 
-    /* Hide scrollbars */
-    ::-webkit-scrollbar {
-      display: none;
-    }
-
-  .nav-item {
-    @apply px-4 py-1.5 rounded-full text-white/70 text-sm font-semibold hover:bg-white/10 hover:text-white transition duration-300;
+  ::-webkit-scrollbar {
+    display: none;
   }
 
-  .hero-ring {
-    @apply absolute inset-0 border-2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border-emerald-300/5 shadow-[0_0_80px_inset] shadow-emerald-300/5
+  h1, h2, h3, h4, h5, h6 {
+    @apply uppercase tracking-tighter font-black leading-none;
+  }
+
+  p {
+    @apply leading-relaxed;
   }
 }
 
 @layer utilities {
-  .container {
-    @apply lg:max-w-5xl
+  .swiss-grid-pattern {
+    background-image: 
+      linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
-}
+
+  .swiss-dots {
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  .swiss-diagonal {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(0,0,0,0.02),
+      rgba(0,0,0,0.02) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+
+  .swiss-noise {
+    position: relative;
+  }
+
+  .swiss-noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  .container {
+    @apply lg:max-w-7xl px-6 md:px-12 lg:px-24;
+  }
+
+  .border-swiss {
+    @apply border-4 border-black;
+  }
+}

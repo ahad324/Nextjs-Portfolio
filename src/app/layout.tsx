@@ -1,29 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Calistoga } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import SmoothScrolling from "@/components/SmoothScrolling";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const calistoga = Calistoga({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["400"],
-});
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#5355d6",
+  themeColor: "#FF3000",
 };
 
 export const metadata: Metadata = {
-  title: "Abdul Ahad | Full-Stack Developer Portfolio",
+  title: "Abdul Ahad | Full Stack Developer",
   description:
-    "Explore Abdul Ahad's portfolio showcasing exceptional skills in React, Next.js, and modern web development. Discover projects, testimonials, and more.",
+    "Swiss International Style Portfolio. Engineer focusing on objective clarity, performant solutions, and functional excellence.",
   keywords:
-    "Abdul Ahad, Full Stack developer, web developer, React, Next.js, Tailwind CSS, portfolio,expressjs, mongodb, nodejs, modern web design",
+    "Abdul Ahad, Swiss Design, Portfolio, Lead Developer, React, Next.js, Tailwind CSS, Typography",
   authors: [
     {
       name: "Abdul Ahad",
@@ -47,16 +42,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <meta name="google-site-verification" content="_t_voY5kuMVEL4CtmBOVDuZ0j6_MRBKwBxG5mDwkK90" />
       <body
         className={twMerge(
           inter.variable,
-          calistoga.variable,
-          "bg-gray-900 text-white antialiased font-sans"
+          "bg-white text-black antialiased font-sans"
         )}
+        suppressHydrationWarning
       >
-        {/* <div className="fixed inset-0 z-[60] pointer-events-none bg-[linear-gradient(to_right,rgba(0,0,0,0.6)_0%,transparent_20%,transparent_80%,rgba(0,0,0,0.6)_100%)]" /> */}
         <LoadingWrapper>
           <SmoothScrolling>
             {children}
@@ -66,3 +60,4 @@ export default function RootLayout({
     </html>
   );
 }
+

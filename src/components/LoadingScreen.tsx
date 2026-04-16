@@ -1,101 +1,176 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface LoadingScreenProps {
   onComplete: () => void;
-  onExitStart?: () => void; // New prop to signal start of exit animation
+  onExitStart?: () => void;
   pageLoaded: boolean;
 }
 
 export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingScreenProps) => {
-  const [isSqueezing, setIsSqueezing] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
   useEffect(() => {
-    if (pageLoaded) {
-      // 1. Start squeezing effect
-      setIsSqueezing(true);
+    // 1. Minimum visibility (1.8s)
+    const minTimeTimer = setTimeout(() => setMinTimeElapsed(true), 1800);
 
-      // 2. Start exit (curtain up) after squeeze is done
-      // Squeeze sequence: Pupil (0.3s) -> Eyeball (0.3s) -> Socket (0.3s) + delays
-      // Total time approx 1s
-      const timer = setTimeout(() => {
+    // 2. ORGANIC PROGRESS LOGIC
+    // We simulate real-world asset loading with "spurts" and "stutters"
+    const startTime = Date.now();
+    const targetDuration = 5000; 
+
+    const interval = setInterval(() => {
+      const now = Date.now();
+      const elapsed = now - startTime;
+      
+      if (pageLoaded && minTimeElapsed) {
+        setProgress(100);
+        clearInterval(interval);
+        return;
+      }
+
+      // Base progress calculation
+      let base = (elapsed / targetDuration) * 100;
+      
+      // Inject "Liquid Noise" - organic fluctuations
+      // This mimics chunks of data arriving at different speeds
+      const noise = Math.sin(elapsed * 0.005) * 1.5;
+      const stutter = Math.random() > 0.95 ? -0.8 : 0; // Occasional processing hang
+      
+      let calculated = base + noise + stutter;
+
+      if (calculated >= 99) {
+        // Asymptotically approach 99 until finished
+        const factor = (calculated - 99) / 20; 
+        calculated = 99 + (0.9 * (1 - Math.exp(-factor)));
+      }
+
+      setProgress(Math.max(0, Math.min(calculated, 99.9)));
+    }, 16);
+
+    return () => {
+      clearTimeout(minTimeTimer);
+      clearInterval(interval);
+    };
+  }, [pageLoaded, minTimeElapsed]);
+
+  useEffect(() => {
+    if (pageLoaded && minTimeElapsed && progress >= 100) {
+      const exitTimer = setTimeout(() => {
         setIsExiting(true);
-        if (onExitStart) onExitStart(); // Trigger navbar animation immediately
-      }, 1000);
-
-      return () => clearTimeout(timer);
+        if (onExitStart) onExitStart();
+      }, 500);
+      return () => clearTimeout(exitTimer);
     }
-  }, [pageLoaded]);
+  }, [pageLoaded, minTimeElapsed, progress]);
 
   return (
-    <AnimatePresence
-      onExitComplete={onComplete}
-    >
-      {!isExiting ? (
+    <AnimatePresence onExitComplete={onComplete}>
+      {!isExiting && (
         <motion.div
           key="loader"
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-gray-900"
-          exit={{
-            opacity: 0, // Fade out instead of slide up
-            transition: { duration: 0.8, ease: "easeInOut" }
+          className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center p-8 select-none"
+          exit={{ 
+            y: "-100%",
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
           }}
         >
-          {/* Eye Loader */}
-          <div className="relative flex items-center justify-center gap-8">
-            {/* Left Eye */}
-            <div className="relative">
-              {/* Eye socket */}
-              <motion.div
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 border border-white/20 shadow-lg backdrop-blur-sm"
-                animate={isSqueezing ? { scale: 0 } : { scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.6, ease: "backIn" }} // Last to shrink
+          {/* Static Background Texture */}
+          <div className="absolute inset-0 opacity-15 swiss-noise pointer-events-none z-0" />
+          <div className="absolute inset-0 opacity-10 swiss-grid pointer-events-none z-0" />
+          
+          <div className="w-full max-w-5xl relative z-10">
+            {/* Header Area */}
+            <div className="flex justify-between items-end mb-10 font-black uppercase tracking-tighter">
+              <div className="flex flex-col">
+                <span className="text-white text-3xl md:text-5xl lg:text-7xl leading-none">Status</span>
+                <span className="text-swiss-accent text-3xl md:text-5xl lg:text-7xl leading-none tracking-[-0.05em]">Initializing</span>
+                <div className="flex items-center gap-3 mt-4">
+                  <div className="size-3 bg-swiss-accent animate-pulse" />
+                  <span className="text-white/40 text-[10px] md:text-xs tracking-[0.5em] font-bold">
+                    {pageLoaded ? "ASSETS_STREAM_STABLE" : "BUFFERING_CORE_HYDRATION"}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="flex flex-col items-end">
+                 <span className="text-swiss-accent text-7xl md:text-9xl lg:text-[14rem] leading-[0.7] mb-2 tabular-nums">
+                  {Math.round(progress)}
+                </span>
+                <span className="text-white/20 text-xs md:text-sm tracking-widest font-black uppercase">Mechanical_Readout</span>
+              </div>
+            </div>
+            
+            {/* PRECISION WHITE PROGRESS BAR */}
+            <div className="h-12 md:h-16 w-full border-4 border-white bg-white/5 relative overflow-hidden flex items-center justify-center">
+              {/* Solid White Progress Fill */}
+              <motion.div 
+                className="absolute inset-y-0 left-0 bg-white z-20"
+                initial={{ width: 0 }}
+                animate={{ width: `${progress}%` }}
+                transition={{ type: "spring", damping: 25, stiffness: 60 }}
               />
+              
+              {/* Internal Percentage Readout */}
+              <div className="relative z-50 mix-blend-difference">
+                <span className="text-white font-black text-xl md:text-2xl tracking-tighter tabular-nums antialiased">
+                  {Math.round(progress)}%
+                </span>
+              </div>
 
-              {/* Eyeball - rotating clockwise */}
-              <motion.div
-                className="absolute inset-2 md:inset-3 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg"
-                animate={isSqueezing ? { scale: 0, rotate: 0 } : { scale: 1, rotate: 360 }}
-                transition={isSqueezing ? { duration: 0.3, delay: 0.3, ease: "backIn" } : { rotate: { duration: 1, repeat: Infinity, ease: "linear" } }}
-              >
-                {/* Pupil - nested inside eyeball to rotate with it */}
-                <motion.div
-                  className="absolute w-3 h-3 rounded-full bg-black z-10"
-                  style={{ top: "30%", left: "30%" }} // Offset to create orbit effect
-                  animate={isSqueezing ? { scale: 0 } : { scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0, ease: "backIn" }} // First to shrink
-                />
-              </motion.div>
+              {/* Static scanline overlay */}
+              <div className="absolute inset-0 z-30 bg-[linear-gradient(rgba(255,255,255,0.05)_50%,transparent_50%)] bg-[length:100%_4px] pointer-events-none opacity-50" />
+              
+              {/* Slot indicators */}
+              <div className="absolute inset-0 z-10 flex justify-between px-2">
+                {[...Array(40)].map((_, i) => (
+                  <div key={i} className="w-[1px] h-full bg-white/10" />
+                ))}
+              </div>
             </div>
 
-            {/* Right Eye */}
-            <div className="relative">
-              {/* Eye socket */}
-              <motion.div
-                className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white/10 border border-white/20 shadow-lg backdrop-blur-sm"
-                animate={isSqueezing ? { scale: 0 } : { scale: 1 }}
-                transition={{ duration: 0.3, delay: 0.6, ease: "backIn" }}
-              />
+            {/* TAGS GRID */}
+            <div className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-12 border-t-4 border-white/10 pt-12">
+               {[
+                 { label: "OBJECTIVE", tag: "SYS_01" },
+                 { label: "FUNCTIONAL", tag: "SYS_02" },
+                 { label: "ACCURATE", tag: "SYS_03" },
+                 { label: "MINIMAL", tag: "SYS_04" }
+               ].map((item) => (
+                 <div key={item.label} className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-swiss-accent text-[10px] font-black tracking-widest px-2 py-0.5 border-2 border-swiss-accent">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <span className="text-white text-xs md:text-sm font-bold tracking-[0.3em] uppercase">{item.label}</span>
+                 </div>
+               ))}
+            </div>
+          </div>
 
-              {/* Eyeball - rotating counter-clockwise */}
-              <motion.div
-                className="absolute inset-2 md:inset-3 w-12 h-12 md:w-14 md:h-14 rounded-full bg-white shadow-lg"
-                animate={isSqueezing ? { scale: 0, rotate: 0 } : { scale: 1, rotate: -360 }}
-                transition={isSqueezing ? { duration: 0.3, delay: 0.3, ease: "backIn" } : { rotate: { duration: 1, repeat: Infinity, ease: "linear", delay: -0.1 } }}
-              >
-                {/* Pupil */}
-                <motion.div
-                  className="absolute w-3 h-3 rounded-full bg-black z-10"
-                  style={{ top: "30%", left: "30%" }} // Offset to create orbit effect
-                  animate={isSqueezing ? { scale: 0 } : { scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0, ease: "backIn" }}
-                />
-              </motion.div>
+          {/* Footer Metadata */}
+          <div className="absolute bottom-12 left-12 right-12 flex justify-between items-end">
+            <div className="flex flex-col gap-1">
+              <span className="text-white/30 text-[10px] font-black uppercase tracking-widest">AA_PORTFOLIO_V2.5 // CORE_CORE</span>
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-[4px] bg-swiss-accent" />
+                <span className="text-swiss-accent font-black text-3xl uppercase tracking-tighter">SWISS_INTL</span>
+              </div>
+            </div>
+            <div className="hidden lg:flex flex-col items-end opacity-20">
+               <span className="text-white text-xs font-mono">01100001 01101000 01100001 01100100</span>
             </div>
           </div>
         </motion.div>
-      ) : null}
+      )}
     </AnimatePresence>
   );
 };
+
+
+
+

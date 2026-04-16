@@ -1,6 +1,5 @@
 "use client";
-import grainImage from "@/assets/images/grain.jpg";
-import { ComponentPropsWithoutRef, PropsWithChildren } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { motion } from "framer-motion";
 
@@ -12,16 +11,16 @@ export const Card = ({
   return (
     <motion.div
       className={twMerge(
-        "bg-gray-800 rounded-3xl relative z-0 overflow-hidden after:z-10 after:content-[''] after:absolute after:inset-0 after:outline-2 after:outline after:-outline-offset-2 after:rounded-3xl after:outline-white/20 after:pointer-events-none",
+        "bg-white border-4 border-black relative z-0 overflow-hidden rounded-none swiss-noise",
+        "transition-colors duration-200",
         className
       )}
       {...other}
     >
-      <div
-        className="absolute inset-0 -z-10 opacity-5"
-        style={{ backgroundImage: `url(${grainImage.src})` }}
-      ></div>
-      {children}
+      <div className="relative z-10 h-full w-full">
+        {children}
+      </div>
     </motion.div>
   );
 };
+

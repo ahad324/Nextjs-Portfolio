@@ -1,58 +1,52 @@
 "use client";
 import Link from "next/link";
-import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import { ElasticLine } from "@/components/ElasticLine";
-import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
 const footerLinks = [
   { title: "Github", href: "https://github.com/ahad324/" },
-  {
-    title: "LinkedIn",
-    href: "https://www.linkedin.com/in/abdul-ahad-a08263273",
-  },
-  {
-    title: "Upwork",
-    href: "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3?mp_source=share",
-  },
+  { title: "LinkedIn", href: "https://www.linkedin.com/in/abdul-ahad-a08263273" },
+  { title: "Upwork", href: "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3" },
 ];
 
 export const Footer = () => {
   return (
-    <footer className="relative z-0 overflow-x-clip">
-      <div className="absolute h-[400px] w-[1600px] bottom-0 left-1/2 -translate-x-1/2 bg-emerald-300/30 [mask-image:radial-gradient(50%_50%_at_bottom_center,black,transparent)] -z-10"></div>
-      <div className="container relative">
-        <ElasticLine />
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="py-6 text-sm flex flex-col md:flex-row md:justify-between items-center gap-8 relative z-20"
-        >
-          <div className="text-white/40">
-            &copy; {new Date().getFullYear()} All rights reserved.
+    <footer className="border-t-4 border-black bg-white relative z-0">
+      <div className="container px-0 md:px-0 lg:px-0">
+        <div className="flex flex-col lg:flex-row items-stretch">
+          
+          {/* Brand Block */}
+          <div className="lg:w-1/2 p-12 lg:p-24 border-b-4 lg:border-b-0 lg:border-r-4 border-black bg-black text-white">
+            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">AA</h2>
+            <p className="font-bold uppercase tracking-widest text-swiss-accent text-sm">Full Stack Developer</p>
           </div>
-          <nav className="flex flex-col md:flex-row items-center gap-8">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                target="_blank"
-                className="inline-flex items-center gap-1.5"
-              >
-                <motion.span
-                  className="font-semibold"
-                  whileHover={{ color: "#6ee7b7" }} // emerald-300
-                  transition={{ duration: 0.2 }}
+
+          {/* Links Block */}
+          <div className="lg:w-1/2 flex flex-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 flex-1">
+              {footerLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  target="_blank"
+                  className="flex items-center justify-between p-12 border-b-4 border-black md:even:border-l-0 md:border-l-4 first:border-l-0 hover:bg-black hover:text-white transition-colors duration-300 group"
                 >
-                  {link.title}
-                </motion.span>
-                <ArrowUpRightIcon className="size-4" />
-              </Link>
-            ))}
-          </nav>
-        </motion.div>
+                  <span className="text-2xl font-black uppercase tracking-tighter transition-colors">{link.title}</span>
+                  <ArrowUpRight className="size-8 group-hover:translate-x-1 group-hover:translate-y--1 transition-transform" />
+                </Link>
+              ))}
+              <div className="p-12 border-b-4 border-black border-l-4 hidden md:block bg-swiss-muted swiss-grid-pattern" />
+            </div>
+            
+            {/* Copyright Area */}
+            <div className="p-12 flex justify-between items-center bg-white">
+              <span className="font-bold uppercase tracking-widest text-xs">
+                &copy; {new Date().getFullYear()} / ALL RIGHTS RESERVED
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );
 };
+

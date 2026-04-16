@@ -2,211 +2,120 @@
 import Image from "next/image"
 import { Card } from "@/components/Card"
 import { SectionHeader } from "@/components/SectionHeader"
-import bookImage from "@/assets/images/book-cover.png"
-import JavascriptIcon from "@/assets/icons/js.svg"
-import HTMLIcon from "@/assets/icons/html5.svg"
-import CSSIcon from "@/assets/icons/css3.svg"
-import ReactIcon from "@/assets/icons/react.svg"
-import GithubIcon from "@/assets/icons/github.svg"
-import GitIcon from "@/assets/icons/git.svg"
-import NextJsIcon from "@/assets/icons/nextjs.svg"
-import NodeJsIcon from "@/assets/icons/nodejs.svg"
-import CppIcon from "@/assets/icons/cpp.svg"
-import TailwindIcon from "@/assets/icons/tailwind.svg"
-import TypescriptIcon from "@/assets/icons/typescript.svg"
-import VSCodeIcon from "@/assets/icons/vscode.svg"
 import profileImage from "@/assets/images/profile.png"
-import { CardHeader } from "@/components/CardHeader"
-import { ToolboxItems } from "@/components/ToolboxItems"
+import bookImage from "@/assets/images/book-cover.png"
 import { motion } from "framer-motion"
-import { useRef } from "react"
+import { ToolboxItems } from "@/components/ToolboxItems"
+import { 
+  FileJson, 
+  Layout, 
+  Palette, 
+  Atom, 
+  Github, 
+  Type, 
+  GitBranch, 
+  Terminal, 
+  Server, 
+  Zap, 
+  Wind, 
+  Laptop 
+} from "lucide-react"
 
 const toolboxItems = [
-  {
-    title: "Javascript",
-    iconType: JavascriptIcon,
-  },
-  {
-    title: "Html5",
-    iconType: HTMLIcon,
-  },
-  {
-    title: "CSS3",
-    iconType: CSSIcon,
-  },
-  {
-    title: "React",
-    iconType: ReactIcon,
-  },
-  {
-    title: "Github",
-    iconType: GithubIcon,
-  },
-  {
-    title: "TypeScript",
-    iconType: TypescriptIcon,
-  },
-  {
-    title: "Git",
-    iconType: GitIcon,
-  },
-  {
-    title: "C++",
-    iconType: CppIcon,
-  },
-  {
-    title: "NodeJs",
-    iconType: NodeJsIcon,
-  },
-  {
-    title: "NextJs",
-    iconType: NextJsIcon,
-  },
-  {
-    title: "Tailwind",
-    iconType: TailwindIcon,
-  },
-  {
-    title: "VSCode",
-    iconType: VSCodeIcon,
-  },
-]
+  { title: "Javascript", iconType: FileJson },
+  { title: "Html5", iconType: Layout },
+  { title: "CSS3", iconType: Palette },
+  { title: "React", iconType: Atom },
+  { title: "Github", iconType: Github },
+  { title: "TypeScript", iconType: Type },
+  { title: "Git", iconType: GitBranch },
+  { title: "C++", iconType: Terminal },
+  { title: "NodeJs", iconType: Server },
+  { title: "NextJs", iconType: Zap },
+  { title: "Tailwind", iconType: Wind },
+  { title: "VSCode", iconType: Laptop },
+];
 
 const hobbies = [
-  { title: "Cricket", emoji: "🏏", left: "5%", top: "5%" },
-  { title: "Footbal", emoji: "⚽", left: "50%", top: "5%" },
-  { title: "Hiking", emoji: "🥾", left: "35%", top: "40%" },
-  { title: "Gaming", emoji: "🎮", left: "10%", top: "35%" },
-  { title: "Sleeping", emoji: "😴", left: "70%", top: "45%" },
-  { title: "Fitness", emoji: "🏋️‍♂️", left: "5%", top: "65%" },
-  { title: "Reading", emoji: "📚", left: "45%", top: "70%" },
-]
+  { title: "Cricket", emoji: "🏏" },
+  { title: "Football", emoji: "⚽" },
+  { title: "Hiking", emoji: "🥾" },
+  { title: "Gaming", emoji: "🎮" },
+  { title: "Sleeping", emoji: "😴" },
+  { title: "Fitness", emoji: "🏋️‍♂️" },
+  { title: "Reading", emoji: "📚" },
+];
 
 export const AboutSection = () => {
-  const constrainRef = useRef(null)
   return (
-    <section className="py-20 lg:py-28" id="about">
+    <section className="py-24 border-t-4 border-black swiss-dots" id="about">
       <div className="container">
         <SectionHeader
-          eyebrow="About Me"
-          title="A Glimpse Into My World"
-          description="Learn more about who I am, what I do, and what inspires me."
+          number="03"
+          eyebrow="Identity"
+          title="Method & Focus"
+          description="A systematic breakdown of the tools and interests that drive my objective-oriented development process."
         />
-        <div className="mt-20 flex flex-col gap-8">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-5 lg:grid-cols-3">
-            <Card
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5 }}
-              className="h-[320px] p-0 relative md:col-span-2 lg:col-span-1 overflow-hidden group"
-            >
-              {/* Dark Gradient Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-950 to-black"></div>
 
-              {/* Geometric Halo (Removed as per user request) */}
-
-              {/* Chromatic Prism Effect */}
-              <div className="h-full w-full relative flex items-end justify-center">
-                {/* Red Channel (Left Shift) */}
-                <div className="absolute inset-0 flex items-end justify-center mix-blend-screen opacity-0 group-hover:opacity-70 transition-opacity duration-300 group-hover:translate-x-[-4px] pointer-events-none">
-                  <Image
-                    src={profileImage || "/placeholder.svg"}
-                    alt="Chromatic Red"
-                    className="h-[90%] w-auto object-cover object-bottom opacity-80"
-                    style={{ filter: 'sepia(100%) saturate(300%) hue-rotate(-50deg)' }}
-                  />
-                </div>
-
-                {/* Blue Channel (Right Shift) */}
-                <div className="absolute inset-0 flex items-end justify-center mix-blend-screen opacity-0 group-hover:opacity-70 transition-opacity duration-300 group-hover:translate-x-[4px] pointer-events-none">
-                  <Image
-                    src={profileImage || "/placeholder.svg"}
-                    alt="Chromatic Blue"
-                    className="h-[90%] w-auto object-cover object-bottom opacity-80"
-                    style={{ filter: 'sepia(100%) saturate(300%) hue-rotate(180deg)' }}
-                  />
-                </div>
-
-                {/* Main Image */}
-                <Image
-                  src={profileImage || "/placeholder.svg"}
-                  alt="Abdul Ahad - Professional Profile"
-                  className="h-[90%] w-auto object-cover object-bottom relative z-10 grayscale-[10%] group-hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-
-              {/* Film Grain Overlay */}
-              <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")' }}></div>
-            </Card>
-            <Card
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="h-[320px] md:col-span-3 lg:col-span-2"
-            >
-              <CardHeader
-                title="My Toolbox"
-                description=" Explore the technologis and tools I use to creaft the digital
-                experiences."
-              />
-              <ToolboxItems items={toolboxItems} itemsWrapperClassName="animate-move-left [animation-duration:40s]" />
-              <ToolboxItems
-                items={toolboxItems}
-                className="mt-6"
-                itemsWrapperClassName="animate-move-right [animation-duration:20s]"
-              />
-            </Card>
+        <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          {/* Profile Card */}
+          <div className="lg:col-span-4 border-4 border-black bg-white p-0 overflow-hidden relative group">
+            <Image
+              src={profileImage}
+              alt="Profile"
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105"
+            />
+            <div className="absolute bottom-0 left-0 w-full bg-black text-white p-6 border-t-4 border-black">
+              <span className="block font-black uppercase text-2xl tracking-tighter">Abdul Ahad</span>
+              <span className="block text-swiss-accent font-bold uppercase text-xs tracking-widest mt-1">Full Stack Developer</span>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 lg:grid-cols-3">
-            <Card
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="h-[320px] p-0 flex flex-col md:col-span-3 lg:col-span-2"
-            >
-              <CardHeader
-                title="Beyond the Code"
-                description=" Explore my insterests and hobbies beyond the digital realme."
-                className="px-6 py-6"
-              />
-              <div className="relative flex-1" ref={constrainRef}>
+
+          {/* Toolbox Card */}
+          <div className="lg:col-span-8 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10">TOOLS</div>
+             <h3 className="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 inline-block">My Toolbox</h3>
+             <ToolboxItems items={toolboxItems} itemsWrapperClassName="animate-move-left [animation-duration:40s]" />
+             <ToolboxItems items={toolboxItems} className="mt-8" itemsWrapperClassName="animate-move-right [animation-duration:20s]" />
+          </div>
+
+          {/* Hobbies Grid */}
+          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative">
+             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10">BEYOND</div>
+             <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block">Interests</h3>
+             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {hobbies.map((hobby) => (
-                  <motion.div
+                  <div 
                     key={hobby.title}
-                    className="inline-flex items-center gap-2 px-6 bg-gradient-to-r from-emerald-300 to-sky-400 rounded-full py-1.5 absolute hover:cursor-grab"
-                    style={{ left: hobby.left, top: hobby.top }}
-                    drag
-                    dragConstraints={constrainRef}
-                    dragElastic={0.5}
-                    whileDrag={{ scale: 1.1, cursor: "grabbing" }}
-                    dragMomentum={true}
-                    dragTransition={{ bounceStiffness: 100, bounceDamping: 7 }}
-                    whileHover={{ scale: 1.1 }}
+                    className="border-4 border-black p-4 flex flex-col items-center justify-center aspect-square hover:bg-black group transition-all duration-300 cursor-default"
                   >
-                    <span className="font-medium text-gray-950">{hobby.title}</span>
-                    <span>{hobby.emoji}</span>
-                  </motion.div>
+                    <span className="text-3xl mb-2 group-hover:scale-125 transition-transform duration-300 group-hover:rotate-12">{hobby.emoji}</span>
+                    <span className="font-black uppercase text-[10px] tracking-widest text-black group-hover:text-white transition-colors duration-200">{hobby.title}</span>
+                  </div>
                 ))}
-              </div>
-            </Card>
-            <Card
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="h-[320px] md:col-span-2 lg:col-span-1"
-            >
-              <CardHeader title="My Reads" description="Explore the books shaping my perspectives." />
-              <div className="w-40 mx-auto mt-2 md:mt-0">
-                <Image src={bookImage.src || "/placeholder.svg"} alt="Book Cover" width={200} height={300} />
-              </div>
-            </Card>
+             </div>
+          </div>
+
+          {/* Reads Card */}
+          <div className="lg:col-span-5 border-4 border-black bg-black text-white p-8 md:p-12 flex flex-col justify-between group">
+             <div>
+                <h3 className="text-3xl font-black uppercase mb-4 text-swiss-accent">Read Map</h3>
+                <p className="text-white/60 font-medium">Currently exploring architectural systems and minimalist philosophy.</p>
+             </div>
+             <div className="mt-8 relative aspect-[4/5] border-4 border-white overflow-hidden">
+                <Image 
+                  src={bookImage} 
+                  alt="Book" 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-cover grayscale hover:grayscale-0 transition-all" 
+                />
+             </div>
           </div>
         </div>
       </div>
     </section>
   )
 }
+

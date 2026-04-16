@@ -18,23 +18,36 @@ const config: Config = {
       padding: {
         DEFAULT: "1rem",
         md: "2rem",
+        lg: "4rem",
       },
     },
     extend: {
+      colors: {
+        swiss: {
+          bg: "#FFFFFF",
+          fg: "#000000",
+          accent: "#FF3000",
+          muted: "#F2F2F2",
+          border: "#000000",
+        },
+      },
       fontFamily: {
-        sans: "var(--font-sans)",
-        serif: "var(--font-serif)",
+        sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
+        mono: ["var(--font-roboto-mono)", "monospace"],
+      },
+      borderRadius: {
+        none: "0px",
+      },
+      borderWidth: {
+        '4': '4px',
       },
       animation: {
-        "ping-large": "ping-large 1s ease-in-out infinite",
-        "move-left": "move-left 1s linear infinite",
-        "move-right": "move-right 1s linear infinite",
+        "move-left": "move-left 40s linear infinite",
+        "move-right": "move-right 40s linear infinite",
         "spin-slow": "spin 8s linear infinite",
-        "blob": "blob 7s infinite",
-        "text-shimmer": "text-shimmer 2.5s ease-out infinite alternate",
+        "snap-color": "snap-color 0.2s ease-out forwards",
       },
       keyframes: {
-        "ping-large": { "75%, 100%": { transform: "scale(3)", opacity: "0" } },
         "move-left": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
@@ -43,23 +56,9 @@ const config: Config = {
           "0%": { transform: "translateX(-50%)" },
           "100%": { transform: "translateX(0%)" },
         },
-        blob: {
-          "0%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-          "33%": {
-            transform: "translate(30px, -50px) scale(1.1)",
-          },
-          "66%": {
-            transform: "translate(-20px, 20px) scale(0.9)",
-          },
-          "100%": {
-            transform: "translate(0px, 0px) scale(1)",
-          },
-        },
-        "text-shimmer": {
-          "0%": { backgroundPosition: "0% 50%" },
-          "100%": { backgroundPosition: "100% 50%" },
+        "snap-color": {
+          "0%": { backgroundColor: "transparent" },
+          "100%": { backgroundColor: "#FF3000" },
         },
       },
     },
@@ -67,3 +66,4 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
