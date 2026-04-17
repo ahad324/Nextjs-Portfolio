@@ -9,6 +9,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { ElasticLine } from "@/components/ElasticLine";
 
 const portfolioProjects = [
   {
@@ -57,14 +58,18 @@ export const ProjectsSection = () => {
           number="02"
           eyebrow="Expertise"
           title="Case Studies"
-          description="A systematic breakdown of engineered solutions focused on objective clarity and functional excellence."
+          description="A systematic breakdown of technical solutions focused on high-performance engineering and architectural excellence."
         />
 
         <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-0 border-t-4 border-l-4 border-black">
           {portfolioProjects.map((project, index) => (
-            <div 
+            <motion.div 
               key={project.title} 
-              className="border-r-4 border-b-4 border-black bg-white group hover:bg-black transition-colors duration-300 relative overflow-hidden"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.8, delay: index * 0.1, ease: [0.33, 1, 0.68, 1] }}
+              className="border-r-4 border-b-4 border-black bg-white group hover:bg-black transition-colors duration-500 relative overflow-hidden"
             >
               <div className="p-6 md:p-12 relative z-10">
                 <div className="flex justify-between items-start gap-4 mb-12">
@@ -110,9 +115,12 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full h-[120px]">
+        <ElasticLine />
       </div>
     </section>
   );

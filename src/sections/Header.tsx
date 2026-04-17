@@ -4,7 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
+import { useLoading } from "@/context/LoadingContext";
+
 export const Header = () => {
+  const { isLoading } = useLoading();
+  const isReady = !isLoading;
+  
   const links = [
     { name: "Home", href: "#hero", id: "hero" },
     { name: "Projects", href: "#projects", id: "projects" },
@@ -70,7 +75,12 @@ export const Header = () => {
   };
 
   return (
-    <header className="w-full fixed top-0 left-0 z-50 bg-white border-b-4 border-black box-border">
+    <motion.header 
+      initial={{ y: -100 }}
+      animate={isReady ? { y: 0 } : { y: -100 }}
+      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.3 }}
+      className="w-full fixed top-0 left-0 z-50 bg-white border-b-4 border-black box-border"
+    >
       <div className="container mx-auto flex items-stretch justify-between h-20 px-0">
         {/* Logo / Brand */}
         <Link 
@@ -123,17 +133,6 @@ export const Header = () => {
         >
           {isDropdownOpen ? "Close" : "Menu"}
         </button>
-
-        {/* Resume Button - Desktop */}
-        <div className="hidden lg:flex items-center px-8 border-l-4 border-black">
-          <a 
-            href="/assets/AbdulAhad-Resume.pdf" 
-            download 
-            className="bg-swiss-accent text-white px-8 py-3 font-black uppercase tracking-widest text-xs hover:bg-black transition-colors duration-200 border-2 border-transparent hover:border-black"
-          >
-            Resume.PDF
-          </a>
-        </div>
       </div>
 
       {/* Mobile Dropdown */}
@@ -164,7 +163,7 @@ export const Header = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 

@@ -10,7 +10,13 @@ export const ContactSection = () => {
           {/* Background Texture */}
           <div className="absolute inset-0 opacity-10 swiss-diagonal pointer-events-none" />
           
-          <div className="flex-1 z-10">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex-1 z-10"
+          >
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-none tracking-tighter">
               Let&apos;s architect <br />
               something <span className="text-swiss-accent">Objective</span>.
@@ -19,15 +25,19 @@ export const ContactSection = () => {
               Equipped for strategic system integration. 
               Initiate communication to discuss high-precision technical requirements.
             </p>
-          </div>
+          </motion.div>
 
-          <a 
+          <motion.a 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
             href="mailto:ahadg446@gmail.com"
             className="group/btn relative z-10 w-full md:w-auto overflow-hidden border-4 border-white bg-white text-black hover:bg-swiss-accent hover:border-swiss-accent transition-all duration-300 px-6 py-8 md:px-12 flex items-center justify-center gap-2"
           >
             <span className="font-black uppercase tracking-widest text-lg whitespace-nowrap">Send Message</span>
             <ArrowUpRight className="size-8 flex-shrink-0 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
-          </a>
+          </motion.a>
 
           {/* Decorative Section Number */}
           <div className="absolute top-0 right-0 p-8">

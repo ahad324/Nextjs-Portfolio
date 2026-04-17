@@ -50,8 +50,8 @@ export const ElasticLine = () => {
     return (
         <div
             ref={container}
-            // Height 120px (60px up/down). Z-index 10.
-            className="absolute top-0 left-0 w-full h-[120px] -translate-y-1/2 z-10"
+            // Lowered Z-index to z-0 and added relative positioning to ensure it stays below interactive text/buttons
+            className="absolute top-0 left-0 w-full h-[60px] -translate-y-1/2 z-0"
             onMouseEnter={() => {
                 if (reqId.current) {
                     cancelAnimationFrame(reqId.current);
@@ -61,7 +61,7 @@ export const ElasticLine = () => {
             onMouseLeave={manageMouseLeave}
         >
             <div
-                className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
+                className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing pointer-events-auto"
                 onMouseMove={(e) => {
                     const rect = container.current?.getBoundingClientRect();
                     if (rect) {

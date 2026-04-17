@@ -6,6 +6,7 @@ import profileImage from "@/assets/images/profile.png"
 import bookImage from "@/assets/images/book-cover.png"
 import { motion } from "framer-motion"
 import { ToolboxItems } from "@/components/ToolboxItems"
+import { ElasticLine } from "@/components/ElasticLine"
 import { 
   FileJson, 
   Layout, 
@@ -22,17 +23,21 @@ import {
 } from "lucide-react"
 
 const toolboxItems = [
+  { title: "React", iconType: Atom },
+  { title: "NextJs", iconType: Zap },
+  { title: "NodeJs", iconType: Server },
+  { title: "Express", iconType: Terminal },
+  { title: "MongoDB", iconType: FileJson },
+  { title: "TypeScript", iconType: Type },
+  { title: "Tailwind", iconType: Wind },
+  { title: "Prisma", iconType: GitBranch },
+  { title: "Firebase", iconType: Zap },
+  { title: "Python", iconType: FileJson },
   { title: "Javascript", iconType: FileJson },
   { title: "Html5", iconType: Layout },
   { title: "CSS3", iconType: Palette },
-  { title: "React", iconType: Atom },
   { title: "Github", iconType: Github },
-  { title: "TypeScript", iconType: Type },
   { title: "Git", iconType: GitBranch },
-  { title: "C++", iconType: Terminal },
-  { title: "NodeJs", iconType: Server },
-  { title: "NextJs", iconType: Zap },
-  { title: "Tailwind", iconType: Wind },
   { title: "VSCode", iconType: Laptop },
 ];
 
@@ -50,12 +55,19 @@ export const AboutSection = () => {
   return (
     <section className="py-24 border-t-4 border-black swiss-dots" id="about">
       <div className="container">
-        <SectionHeader
-          number="03"
-          eyebrow="Identity"
-          title="Method & Focus"
-          description="A systematic breakdown of the tools and interests that drive my objective-oriented development process."
-        />
+        <motion.div
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.8 }}
+        >
+          <SectionHeader
+            number="03"
+            eyebrow="Identity"
+            title="Method & Focus"
+            description="A systematic breakdown of the skillsets and engineering methodologies that drive my Full Stack development process."
+          />
+        </motion.div>
 
         <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           
@@ -80,20 +92,39 @@ export const AboutSection = () => {
              <ToolboxItems items={toolboxItems} className="mt-8" itemsWrapperClassName="animate-move-right [animation-duration:20s]" />
           </div>
 
-          {/* Hobbies Grid */}
-          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative">
-             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10">BEYOND</div>
+          {/* REFINED TECHNICAL INTERESTS SECTION */}
+          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden group">
+             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-5">BEYOND</div>
              <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter">Interests</h3>
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {hobbies.map((hobby) => (
-                  <div 
+             
+             <div className="grid grid-cols-2 md:grid-cols-3 gap-0 border-t-2 border-l-2 border-black/10">
+                {hobbies.map((hobby, i) => (
+                  <motion.div 
                     key={hobby.title}
-                    className="border-4 border-black p-4 flex flex-col items-center justify-center aspect-square hover:bg-black group transition-all duration-300 cursor-default"
+                    whileHover={{ scale: 0.98 }}
+                    className="border-r-2 border-b-2 border-black/10 p-6 flex flex-col items-center justify-center relative hover:bg-black group/hobby transition-all duration-300 overflow-hidden"
                   >
-                    <span className="text-3xl mb-2 group-hover:scale-125 transition-transform duration-300 group-hover:rotate-12">{hobby.emoji}</span>
-                    <span className="font-black uppercase text-[10px] tracking-widest text-black group-hover:text-white transition-colors duration-200">{hobby.title}</span>
-                  </div>
+                     {/* Technical Crosshair (Visible on Hover) */}
+                     <div className="absolute top-2 left-2 size-2 border-t-2 border-l-2 border-swiss-accent opacity-0 group-hover/hobby:opacity-100" />
+                     <div className="absolute bottom-2 right-2 size-2 border-b-2 border-r-2 border-swiss-accent opacity-0 group-hover/hobby:opacity-100" />
+                     
+                     <span className="text-4xl mb-3 group-hover/hobby:scale-125 transition-transform duration-500">{hobby.emoji}</span>
+                     <span className="font-black uppercase tracking-widest text-[10px] text-black/40 group-hover/hobby:text-swiss-accent transition-colors">
+                        {hobby.title}
+                     </span>
+                  </motion.div>
                 ))}
+                {/* Visual Filler for Grid Alignment */}
+                <div className="border-r-2 border-b-2 border-black/10 p-6 bg-swiss-muted/30 flex items-center justify-center">
+                   <div className="size-4 border-2 border-black/10 rotate-45" />
+                </div>
+                <div className="border-r-2 border-b-2 border-black/10 p-6 bg-black flex items-center justify-center overflow-hidden">
+                   <motion.div 
+                     animate={{ rotate: 360 }}
+                     transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                     className="size-16 border-2 border-swiss-accent/30 border-dashed rounded-full"
+                   />
+                </div>
              </div>
           </div>
 
@@ -169,6 +200,9 @@ export const AboutSection = () => {
              </div>
           </div>
         </div>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full h-[120px]">
+        <ElasticLine />
       </div>
     </section>
   )
