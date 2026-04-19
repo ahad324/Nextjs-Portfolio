@@ -1,4 +1,5 @@
 "use client";
+import React, { useRef } from "react";
 import transferx from "@/assets/images/transferx.png";
 import docnow from "@/assets/images/docnow.png";
 import gradegenie from "@/assets/images/gradegenie.png";
@@ -7,9 +8,10 @@ import pixelarena from "@/assets/images/pixelarena.png"
 import Image from "next/image";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useVelocity, useSpring, useMotionValue } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
+import { Magnetic } from "@/components/Magnetic";
 
 const portfolioProjects = [
   {
@@ -50,6 +52,39 @@ const portfolioProjects = [
   },
 ];
 
+const ProjectImage = ({ src, alt }: { src: any; alt: string }) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const scrollVelocity = useVelocity(scrollYProgress);
+  const skew = useSpring(useTransform(scrollVelocity, [-1, 1], [-10, 10]), {
+    stiffness: 100,
+    damping: 30
+  });
+  
+  const y = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+
+  return (
+    <div ref={ref} className="aspect-video relative mb-12 overflow-hidden border-4 border-black bg-swiss-muted perspective-1000">
+      <motion.div 
+        style={{ skewY: skew, y }}
+        className="size-full relative scale-125"
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover grayscale hover:grayscale-0 transition-all duration-500 rounded-none scale-100 group-hover:scale-105"
+        />
+      </motion.div>
+    </div>
+  );
+};
+
 export const ProjectsSection = () => {
   return (
     <section className="py-24 border-t-4 border-black swiss-noise" id="projects">
@@ -81,24 +116,19 @@ export const ProjectsSection = () => {
                       {project.title}
                     </h3>
                   </div>
-                  <a 
-                    href={project.link} 
-                    target="_blank" 
-                    className="p-3 md:p-5 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all duration-300 flex-shrink-0 group/link"
-                  >
-                    <ArrowUpRight className="size-5 md:size-8 lg:size-10 text-black group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                  </a>
+                  <Magnetic strength={0.2}>
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      data-cursor="OPEN"
+                      className="p-3 md:p-5 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all duration-300 flex-shrink-0 group/link block"
+                    >
+                      <ArrowUpRight className="size-5 md:size-8 lg:size-10 text-black group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                    </a>
+                  </Magnetic>
                 </div>
 
-                <div className="aspect-video relative mb-12 overflow-hidden border-4 border-black bg-swiss-muted">
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} - High-performance web system architecture`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover grayscale hover:grayscale-0 transition-all duration-500 rounded-none scale-100 group-hover:scale-105"
-                  />
-                </div>
+                <ProjectImage src={project.image} alt={`${project.title} - High-performance web system architecture`} />
 
                 <p className="text-lg font-medium text-black/60 group-hover:text-white/60 mb-8 max-w-md">
                   {project.description}

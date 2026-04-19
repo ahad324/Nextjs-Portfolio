@@ -1,3 +1,5 @@
+import { SplitText } from "./SplitText";
+
 export const SectionHeader = ({
   title,
   eyebrow,
@@ -21,8 +23,8 @@ export const SectionHeader = ({
           {eyebrow}
         </p>
       </div>
-      <h2 className="text-4xl md:text-7xl lg:text-8xl mt-4 break-words">
-        {title}
+      <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl mt-4 break-words font-black uppercase tracking-tighter leading-[0.9]">
+        <SplitText text={title} />
       </h2>
       <p className="text-lg md:text-xl text-black/60 mt-6 max-w-2xl font-medium">
         {description}

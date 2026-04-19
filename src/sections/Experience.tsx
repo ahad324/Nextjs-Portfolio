@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Building2, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
 import { useLoading } from "@/context/LoadingContext";
+import { Magnetic } from "@/components/Magnetic";
 
 const experiences = [
   {
@@ -84,13 +85,16 @@ export const ExperienceSection = () => {
                                                         {exp.role}
                                                     </h3>
                                                 </div>
-                                                <a 
-                                                    href={exp.link} 
-                                                    target="_blank"
-                                                    className="p-3 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all group-hover:border-white"
-                                                >
-                                                    <ArrowUpRight className="size-6 text-black" />
-                                                </a>
+                                                <Magnetic strength={0.3}>
+                                                    <a 
+                                                        href={exp.link} 
+                                                        target="_blank"
+                                                        data-cursor="VISIT"
+                                                        className="p-3 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all group-hover:border-white block"
+                                                    >
+                                                        <ArrowUpRight className="size-6 text-black" />
+                                                    </a>
+                                                </Magnetic>
                                             </div>
 
                                             <div className="flex flex-wrap gap-6 mb-8 border-t-2 border-black/10 pt-6 group-hover:border-white/20">

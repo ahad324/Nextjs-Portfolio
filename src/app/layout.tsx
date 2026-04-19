@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import SmoothScrolling from "@/components/SmoothScrolling";
 import { SwissCursor } from "@/components/SwissCursor";
+import { SystemSidebar } from "@/components/SystemSidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -15,6 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   title: "Abdul Ahad | Full-Stack Developer Portfolio",
   description:
     "I specialize in transforming designs into functional, high-performing web applications. Let's discuss your next project.",
@@ -93,6 +95,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SwissCursor />
+        <SystemSidebar />
         <LoadingWrapper>
           <SmoothScrolling>
             {children}

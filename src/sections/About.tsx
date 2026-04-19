@@ -8,6 +8,7 @@ import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from
 import { useRef, useState, useEffect } from "react"
 import { ToolboxItems } from "@/components/ToolboxItems"
 import { ElasticLine } from "@/components/ElasticLine"
+import { Magnetic } from "@/components/Magnetic"
 
 const toolboxItemsTop = [
   { title: "NextJs", iconUrl: "https://cdn.simpleicons.org/nextdotjs/000000" },
@@ -205,16 +206,18 @@ export const AboutSection = () => {
 
         <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Profile Card */}
-          <div className="lg:col-span-4 border-4 border-black bg-white p-0 overflow-hidden relative group">
-            <Image src={profileImage} alt="Abdul Ahad" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" />
-            <div className="absolute bottom-0 left-0 w-full bg-black text-white p-6 border-t-4 border-black">
-              <span className="block font-black uppercase text-2xl tracking-tighter">Abdul Ahad</span>
-              <span className="block text-swiss-accent font-bold uppercase text-xs tracking-widest mt-1">Full Stack Developer</span>
+          <Magnetic strength={0.2} className="lg:col-span-4">
+            <div className="border-4 border-black bg-white p-0 overflow-hidden relative group" data-cursor="ME">
+              <Image src={profileImage} alt="Abdul Ahad" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" />
+              <div className="absolute bottom-0 left-0 w-full bg-black text-white p-6 border-t-4 border-black">
+                <span className="block font-black uppercase text-2xl tracking-tighter">Abdul Ahad</span>
+                <span className="block text-swiss-accent font-bold uppercase text-xs tracking-widest mt-1">Full Stack Developer</span>
+              </div>
             </div>
-          </div>
+          </Magnetic>
 
           {/* Toolbox Card */}
-          <div className="lg:col-span-8 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden">
+          <div className="lg:col-span-8 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden" data-cursor="STACK">
              <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10 uppercase">Tools</div>
              <h3 className="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading">Structural Methodology</h3>
              <ToolboxItems items={toolboxItemsTop} itemsWrapperClassName="animate-move-left [animation-duration:40s]" />
@@ -222,7 +225,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Interests Section */}
-          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden group">
+          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden group" data-cursor="GRID">
              <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-5 uppercase tracking-tighter">Beyond</div>
              <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading">Interests</h3>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-l-2 border-black/10">
@@ -234,7 +237,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Knowledge Map */}
-          <div className="lg:col-span-5 border-4 border-black bg-black text-white p-8 md:p-12 flex flex-col justify-between group overflow-hidden relative">
+          <div className="lg:col-span-5 border-4 border-black bg-black text-white p-8 md:p-12 flex flex-col justify-between group overflow-hidden relative" data-cursor="MAP">
              <div className="absolute inset-0 opacity-10 swiss-grid pointer-events-none" />
              <div>
                 <h3 className="text-3xl font-black uppercase mb-4 text-swiss-accent font-heading">Read Map</h3>

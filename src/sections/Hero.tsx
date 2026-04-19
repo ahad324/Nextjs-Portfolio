@@ -5,33 +5,12 @@ import { HeroOrbit } from "@/components/HeroOrbit";
 import { Star, Circle, Square, Plus } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
 import { useLoading } from "@/context/LoadingContext";
+import { SplitText } from "@/components/SplitText";
+import { Magnetic } from "@/components/Magnetic";
 
 export const HeroSection = () => {
   const { isLoading } = useLoading();
   const isReady = !isLoading;
-
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const wordVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.33, 1, 0.68, 1] as Easing,
-      },
-    },
-  };
 
   return (
     <section
@@ -80,16 +59,11 @@ export const HeroSection = () => {
               </span>
             </motion.div>
 
-            <motion.h1
-              variants={containerVariants}
-              initial="hidden"
-              animate={isReady ? "visible" : "hidden"}
-              className="text-[clamp(2rem,11vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase mb-12 flex flex-col"
-            >
-              <motion.span variants={wordVariants}>Architecting</motion.span>
-              <motion.span variants={wordVariants} className="text-swiss-accent">Performant</motion.span>
-              <motion.span variants={wordVariants}>Systems</motion.span>
-            </motion.h1>
+            <h1 className="text-[clamp(2rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase mb-12 flex flex-col">
+              <SplitText text="Architecting" delay={0.5} />
+              <SplitText text="Performant" className="text-swiss-accent" delay={0.7} />
+              <SplitText text="Systems" delay={0.9} />
+            </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-16">
               <motion.p
@@ -106,21 +80,27 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 1.8 }}
-                className="flex flex-col sm:flex-row gap-0 border-4 border-black box-content overflow-hidden w-fit relative z-30"
+                className="flex flex-col sm:flex-row gap-0 border-4 border-black box-content overflow-hidden w-fit relative z-30 bg-white"
               >
-                <Link
-                  href="#projects"
-                  className="bg-black text-white px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-swiss-accent transition-colors duration-300 text-center cursor-pointer"
-                >
-                  Explore Work
-                </Link>
-                <Link
-                  download
-                  href="/assets/AbdulAhad-Resume.pdf"
-                  className="bg-white text-black px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors duration-300 text-center border-t-4 sm:border-t-0 sm:border-l-4 border-black cursor-pointer"
-                >
-                  Download CV
-                </Link>
+                <Magnetic strength={0.3}>
+                  <Link
+                    href="#projects"
+                    data-cursor="EXPLORE"
+                    className="bg-black text-white px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-swiss-accent transition-colors duration-300 text-center cursor-pointer block"
+                  >
+                    Explore Work
+                  </Link>
+                </Magnetic>
+                <Magnetic strength={0.3}>
+                  <Link
+                    download
+                    href="/assets/AbdulAhad-Resume.pdf"
+                    data-cursor="RESUME"
+                    className="bg-white text-black px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors duration-300 text-center border-t-4 sm:border-t-0 sm:border-l-4 border-black cursor-pointer block"
+                  >
+                    Download CV
+                  </Link>
+                </Magnetic>
               </motion.div>
             </div>
           </div>
