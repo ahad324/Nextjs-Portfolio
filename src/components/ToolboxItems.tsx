@@ -11,7 +11,8 @@ export const ToolboxItems = ({
 }: {
   items: {
     title: string;
-    iconType: React.ElementType;
+    iconType?: React.ElementType;
+    iconUrl?: string;
   }[];
   className?: string;
   itemsWrapperClassName?: string;
@@ -25,7 +26,7 @@ export const ToolboxItems = ({
     >
       <div
         className={twMerge(
-          "flex flex-none py-1 gap-4 pr-4",
+          "flex flex-none py-1 gap-4 pr-4 hover:[animation-play-state:paused]",
           itemsWrapperClassName
         )}
       >
@@ -36,7 +37,7 @@ export const ToolboxItems = ({
                 key={item.title}
                 className="inline-flex items-center gap-4 py-4 px-6 border-4 border-black bg-white hover:bg-black hover:text-white transition-colors duration-200 cursor-default"
               >
-                <TechIcon component={item.iconType} />
+                <TechIcon component={item.iconType} iconUrl={item.iconUrl} />
                 <span className="font-black uppercase tracking-tighter text-sm">{item.title}</span>
               </div>
             ))}

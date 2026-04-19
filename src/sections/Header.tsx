@@ -13,6 +13,7 @@ export const Header = () => {
   const links = [
     { name: "Home", href: "#hero", id: "hero" },
     { name: "Projects", href: "#projects", id: "projects" },
+    { name: "Experience", href: "#experience", id: "experience" },
     { name: "About", href: "#about", id: "about" },
     { name: "Contact", href: "#contact", id: "contact" },
   ];

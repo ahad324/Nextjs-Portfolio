@@ -41,7 +41,7 @@ export const ContactSection = () => {
 
           {/* Decorative Section Number */}
           <div className="absolute top-0 right-0 p-8">
-            <span className="text-swiss-accent font-black text-6xl opacity-20 tracking-tighter">SYS_04</span>
+            <span className="text-swiss-accent font-black text-6xl opacity-20 tracking-tighter">SYS_05</span>
           </div>
         </div>
       </div>
