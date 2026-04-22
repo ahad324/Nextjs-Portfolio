@@ -286,7 +286,7 @@ export const AboutSection = () => {
                 Engineering <br/> with <span className="text-swiss-accent">Intent</span>.
               </h3>
               <p className="text-xl md:text-2xl font-medium text-black/70 leading-relaxed max-w-xl italic">
-                "I don't just build websites; I architect systems. Every line of code is a structural decision, aimed at creating high-performance digital environments that scale without friction."
+                "I architect resilient systems as a Full-Stack Developer by day and a Cybersecurity Defender by night. Every line of code is a strategic decision, aimed at creating high-performance, secure digital environments."
               </p>
               
               <div className="mt-12 flex gap-4 border-t-4 border-black pt-8">

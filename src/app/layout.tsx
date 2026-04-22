@@ -23,15 +23,26 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ahad-devsite.netlify.app"),
-  title: "Abdul Ahad | Full-Stack Developer Portfolio",
+  title: "Abdul Ahad | Full-Stack Developer & Cybersecurity Expert",
   description:
-    "I specialize in transforming designs into functional, high-performing web applications. Let's discuss your next project.",
-  keywords:
-    "Abdul Ahad, Full-Stack Developer, Systems Engineer, Next.js Portfolio, React Expert, Software Architecture, Web Development",
+    "Abdul Ahad is a high-performance Full-Stack Developer and Cybersecurity specialist based in Lahore, Pakistan. Expert in Next.js, React, and scalable system architecture.",
+  keywords: [
+    "Abdul Ahad",
+    "Full-Stack Developer",
+    "Cybersecurity Expert",
+    "Next.js Developer",
+    "React Developer",
+    "Software Engineer Lahore",
+    "Web Security",
+    "System Architecture",
+    "Performance Optimization",
+    "MERN Stack",
+    "Freelance Developer Pakistan",
+  ],
   authors: [{ name: "Abdul Ahad" }],
   openGraph: {
-    title: "Abdul Ahad | Full-Stack Developer Portfolio",
-    description: "I specialize in transforming designs into functional, high-performing web applications.",
+    title: "Abdul Ahad | Full-Stack Developer & Cybersecurity Expert",
+    description: "Abdul Ahad is a high-performance Full-Stack Developer and Cybersecurity specialist based in Lahore, Pakistan. Expert in Next.js, React, and scalable system architecture.",
     url: "https://ahad-devsite.netlify.app",
     siteName: "Abdul Ahad Portfolio",
     images: [
@@ -70,14 +81,20 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Abdul Ahad",
-  "jobTitle": "Full-Stack Developer & Systems Engineer",
+  "jobTitle": "Full-Stack Web Developer & Cybersecurity Expert",
   "url": "https://ahad-devsite.netlify.app",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lahore",
+    "addressCountry": "PK"
+  },
   "sameAs": [
     "https://github.com/ahad324",
-    "https://www.linkedin.com/in/abdul-ahad-a08263273" 
+    "https://www.linkedin.com/in/abdul-ahad-a08263273",
+    "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3"
   ],
-  "description": "Professional developer specializing in high-performance Full-Stack engineering and scalable Next.js applications.",
-  "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Systems Architecture", "Full-Stack Development"]
+  "description": "Professional Full-Stack developer specializing in high-performance engineering, scalable Next.js applications, and digital security architecture.",
+  "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Systems Architecture", "Full-Stack Development", "Cybersecurity", "DevOps"]
 };
 
 import { ScrollArchitecture } from "@/components/ScrollArchitecture";

@@ -36,7 +36,7 @@ const portfolioProjects = [
     title: "DocNow",
     company: "DocNow",
     year: "2024",
-    description: "Easily upload, download, and manage files with real-time updates and admin controls.",
+    description: "Easily upload, download, and manage files with real-time updates and admin controls. Built with high-concurrency Node.js and React architecture.",
     link: "https://docnow.netlify.app",
     image: docnow,
     results: ["File Management", "Admin Controls", "Real-time Updates"],
