@@ -94,8 +94,8 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
 
     return (
         <motion.div
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            // initial={{ opacity: 0, y: 50 }}
+            // whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
             className={`relative flex flex-col lg:flex-row items-center gap-8 ${

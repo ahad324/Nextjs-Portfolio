@@ -31,8 +31,8 @@ export const SectionHeader = ({
       <div className="flex items-center gap-4">
         {number && (
           <motion.span 
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             className="text-swiss-accent font-black tracking-widest text-xl font-mono"
           >
             [{number}]

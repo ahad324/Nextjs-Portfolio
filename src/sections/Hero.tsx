@@ -83,8 +83,8 @@ export const HeroSection = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-16">
               <motion.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={isReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 1.4 }}
                 className="text-xl md:text-2xl font-medium max-w-lg leading-tight text-black/70 border-l-4 border-black pl-8"
               >
