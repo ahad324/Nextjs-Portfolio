@@ -16,33 +16,34 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
   // Persistence for start time to prevent resets on re-renders
   const startTimeRef = useRef(Date.now());
 
+  const progressRef = useRef(0);
+
   useEffect(() => {
-    // 1. Minimum visibility (1.8s)
-    const minTimeTimer = setTimeout(() => setMinTimeElapsed(true), 1800);
+    // 1. Branding Minimum visibility (800ms) - Snappy but present
+    const minTimeTimer = setTimeout(() => setMinTimeElapsed(true), 800);
 
-    // 2. STABLE & SMOOTH PROGRESS LOGIC
-    const targetDuration = 4000; 
-
+    // 2. ADAPTIVE VELOCITY ENGINE
     const interval = setInterval(() => {
-      const now = Date.now();
-      const elapsed = now - startTimeRef.current;
-      
-      if (pageLoaded && minTimeElapsed) {
-        setProgress(100);
-        clearInterval(interval);
-        return;
+      const step = pageLoaded ? 2.5 : 0.4;
+      let nextProgress = progressRef.current + step;
+
+      // Ensure we NEVER go backwards and cap based on readiness
+      if (!pageLoaded && nextProgress >= 99) {
+        nextProgress = 99;
       }
 
-      // Smooth logical increment
-      let calculated = (elapsed / targetDuration) * 99;
-      
-      // Asymptotic slowdown near 99%
-      if (calculated >= 99) {
-        calculated = 99 + (0.9 * (1 - Math.exp(-(elapsed - targetDuration) / 1000)));
+      if (nextProgress >= 100) {
+        if (pageLoaded && minTimeElapsed) {
+          setProgress(100);
+          clearInterval(interval);
+          return;
+        }
+        nextProgress = 99.9;
       }
 
-      setProgress(Math.max(0, Math.min(calculated, 100)));
-    }, 16);
+      progressRef.current = nextProgress;
+      setProgress(nextProgress);
+    }, 20);
 
     return () => {
       clearTimeout(minTimeTimer);

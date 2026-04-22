@@ -13,30 +13,16 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
     damping: 40,
   });
 
-  // REAL-TIME BACKGROUND (No Spring for instant feedback)
-  const backgroundColor = useTransform(
-    scrollYProgress,
-    [0.1, 0.25, 0.4, 0.5, 0.65, 0.8, 0.9, 1],
-    ["#FFFFFF", "#0A0A0A", "#0A0A0A", "#F7F7F7", "#F7F7F7", "#FF3000", "#FF3000", "#000000"]
-  );
-
-  const gridColor = useTransform(
-    scrollYProgress,
-    [0, 0.25, 0.5, 0.75, 1],
-    ["rgba(0,0,0,0.08)", "rgba(255,48,0,0.15)", "rgba(0,0,0,0.08)", "rgba(255,255,255,0.15)", "rgba(255,48,0,0.3)"]
-  );
-
   const nodes = Array.from({ length: NODE_COUNT });
 
   return (
-    <motion.div style={{ backgroundColor }} className="transition-none min-h-screen relative">
+    <div className="min-h-screen relative bg-white">
       <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <motion.div 
+        <div 
             style={{ 
-                backgroundImage: `radial-gradient(circle, var(--grid-color) 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px)`,
                 backgroundSize: "40px 40px",
-                "--grid-color": gridColor as any
-            } as any}
+            }}
             className="absolute inset-0"
         />
 
@@ -52,7 +38,7 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
       <div className="relative z-10">
         {children}
       </div>
-    </motion.div>
+    </div>
   );
 };
 

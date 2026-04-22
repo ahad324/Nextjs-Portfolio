@@ -11,12 +11,19 @@ const LoadingLogic = ({ children }: { children: React.ReactNode }) => {
   const [pageLoaded, setPageLoaded] = useState(false);
 
   useEffect(() => {
-    // Basic hydration wait
-    const timer = setTimeout(() => {
-      setPageLoaded(true);
-    }, 1000); 
+    const checkLoad = () => {
+      if (document.readyState === "complete") {
+        setPageLoaded(true);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    // Check immediately in case it's already loaded (cached)
+    checkLoad();
+
+    // Listen for the official load event
+    window.addEventListener("load", checkLoad);
+    
+    return () => window.removeEventListener("load", checkLoad);
   }, []);
 
   const handleComplete = () => {

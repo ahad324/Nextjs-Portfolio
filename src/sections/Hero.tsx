@@ -96,25 +96,40 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 1.8 }}
-                className="flex flex-col sm:flex-row gap-0 border-4 border-black box-content overflow-hidden w-fit relative z-30 bg-white"
+                className="flex flex-col sm:flex-row gap-0 border-4 border-black box-content w-fit relative z-30 bg-black"
               >
-                <Magnetic strength={0.3}>
+                {/* EXPLORE WORK - 3D SLAB */}
+                <Magnetic strength={0.2}>
                   <Link
                     href="#projects"
                     data-cursor="EXPLORE"
-                    className="bg-black text-white px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-swiss-accent transition-colors duration-300 text-center cursor-pointer block"
+                    className="relative group block overflow-visible"
                   >
-                    Explore Work
+                    {/* Shadow/Depth Layer */}
+                    <div className="absolute inset-0 bg-swiss-accent translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300" />
+                    
+                    {/* Surface Layer */}
+                    <div className="relative bg-black text-white px-10 py-6 font-black uppercase tracking-widest text-sm border-r-0 sm:border-r-4 border-black group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 flex items-center justify-center min-w-[220px]">
+                      Explore Work
+                    </div>
                   </Link>
                 </Magnetic>
-                <Magnetic strength={0.3}>
+
+                {/* DOWNLOAD CV - 3D SLAB */}
+                <Magnetic strength={0.2}>
                   <Link
                     download
                     href="/assets/AbdulAhad-Resume.pdf"
                     data-cursor="RESUME"
-                    className="bg-white text-black px-10 py-6 font-black uppercase tracking-widest text-sm hover:bg-black hover:text-white transition-colors duration-300 text-center border-t-4 sm:border-t-0 sm:border-l-4 border-black cursor-pointer block"
+                    className="relative group block overflow-visible bg-white"
                   >
-                    Download CV
+                    {/* Shadow/Depth Layer */}
+                    <div className="absolute inset-0 bg-black translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300" />
+                    
+                    {/* Surface Layer */}
+                    <div className="relative bg-white text-black px-10 py-6 font-black uppercase tracking-widest text-sm group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 flex items-center justify-center min-w-[220px] border-t-4 sm:border-t-0 border-black">
+                      Download CV
+                    </div>
                   </Link>
                 </Magnetic>
               </motion.div>
