@@ -1,24 +1,37 @@
 "use client"
 import Link from "next/link";
-import { motion, Variants, Transition, Easing } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { HeroOrbit } from "@/components/HeroOrbit";
 import { Star, Circle, Square, Plus } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
 import { useLoading } from "@/context/LoadingContext";
 import { SplitText } from "@/components/SplitText";
 import { Magnetic } from "@/components/Magnetic";
+import { useRef } from "react";
 
 export const HeroSection = () => {
   const { isLoading } = useLoading();
   const isReady = !isLoading;
+  const containerRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section
+      ref={containerRef}
       className="pt-40 pb-20 md:pt-60 md:pb-32 relative z-0 overflow-hidden swiss-grid-pattern min-h-screen flex flex-col justify-center"
       id="hero"
     >
       {/* GEOMETRIC ORBIT CONSTELLATION - Cinematic Entrance */}
       <motion.div
+        style={{ y: y1, opacity, rotate }}
         initial={{ scale: 0.8, opacity: 0 }}
         animate={isReady ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
         transition={{ duration: 2.5, ease: "easeOut", delay: 0.5 }}
@@ -59,11 +72,14 @@ export const HeroSection = () => {
               </span>
             </motion.div>
 
-            <h1 className="text-[clamp(2rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase mb-12 flex flex-col">
+            <motion.h1 
+                style={{ y: y2 }}
+                className="text-[clamp(2rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase mb-12 flex flex-col"
+            >
               <SplitText text="Architecting" delay={0.5} />
               <SplitText text="Performant" className="text-swiss-accent" delay={0.7} />
               <SplitText text="Systems" delay={0.9} />
-            </h1>
+            </motion.h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-16">
               <motion.p

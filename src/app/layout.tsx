@@ -74,6 +74,8 @@ const jsonLd = {
   "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Systems Architecture", "Full-Stack Development"]
 };
 
+import { ScrollArchitecture } from "@/components/ScrollArchitecture";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -97,9 +99,11 @@ export default function RootLayout({
         <SwissCursor />
         <SystemSidebar />
         <LoadingWrapper>
-          <SmoothScrolling>
-            {children}
-          </SmoothScrolling>
+          <ScrollArchitecture>
+            <SmoothScrolling>
+              {children}
+            </SmoothScrolling>
+          </ScrollArchitecture>
         </LoadingWrapper>
       </body>
     </html>
