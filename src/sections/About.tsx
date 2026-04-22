@@ -9,6 +9,7 @@ import { useRef, useState, useEffect } from "react"
 import { ToolboxItems } from "@/components/ToolboxItems"
 import { ElasticLine } from "@/components/ElasticLine"
 import { Magnetic } from "@/components/Magnetic"
+import { twMerge } from "tailwind-merge"
 
 const toolboxItemsTop = [
   { title: "NextJs", iconUrl: "https://cdn.simpleicons.org/nextdotjs/000000" },
@@ -53,18 +54,13 @@ const hobbies = [
   { title: "Hiking", emoji: "🥾" },
   { title: "Gaming", emoji: "🎮" },
   { title: "Sleeping", emoji: "😴" },
-  { title: "Fitness", emoji: "🏋️‍♂️" },
-  { title: "Reading", emoji: "📚" },
 ];
 
 const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }) => {
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
-  const rotateX = useTransform(y, [0, 1], [15, -15]);
-  const rotateY = useTransform(x, [0, 1], [-15, 15]);
-  const springConfig = { stiffness: 150, damping: 20 };
-  const springX = useSpring(rotateX, springConfig);
-  const springY = useSpring(rotateY, springConfig);
+  const rotateX = useSpring(useTransform(y, [0, 1], [15, -15]), { stiffness: 150, damping: 20 });
+  const rotateY = useSpring(useTransform(x, [0, 1], [-15, 15]), { stiffness: 150, damping: 20 });
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -72,42 +68,75 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
     y.set((event.clientY - rect.top) / rect.height);
   };
 
+  const isLarge = index === 0 || index === 5;
+
   return (
     <motion.div 
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0.5); y.set(0.5); }}
-      style={{ rotateX: springX, rotateY: springY, transformStyle: "preserve-3d" }}
-      className="border-r-2 border-b-2 border-black/10 p-6 flex flex-col items-center justify-center relative hover:bg-black group/hobby transition-all duration-300 overflow-hidden perspective-1000"
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+      className={twMerge(
+        "border border-black/10 p-6 flex flex-col justify-between relative group/hobby transition-all duration-500 overflow-hidden perspective-1000 bg-white",
+        isLarge ? "md:col-span-2 md:row-span-2" : "col-span-1"
+      )}
     >
-      <div className="absolute inset-0 bg-swiss-accent/5 opacity-0 group-hover/hobby:opacity-100 transition-opacity" />
-      <div className="absolute inset-0 p-2 pointer-events-none z-20 opacity-0 group-hover/hobby:opacity-100 transition-opacity">
-        <div className="size-full border border-swiss-accent/20 flex flex-col justify-between p-2">
-           <div className="flex justify-between text-[6px] font-mono text-swiss-accent/60">
-             <span>ID: {index.toString().padStart(2, '0')}</span>
-             <span>LVL: MAX</span>
-           </div>
-           <div className="flex justify-between text-[6px] font-mono text-swiss-accent/60">
-             <span>METRIC: OK</span>
-             <span>SYNC_A</span>
-           </div>
+      {/* Diagnostic Scan Overlay */}
+      <div className="absolute inset-0 bg-swiss-accent/0 group-hover/hobby:bg-swiss-accent/[0.03] transition-colors duration-500" />
+      <div className="absolute top-0 left-0 w-full h-1 bg-swiss-accent scale-x-0 group-hover/hobby:scale-x-100 transition-transform duration-700 origin-left" />
+      
+      <div className="relative z-10">
+        <div className="flex justify-between items-start mb-4">
+          <span className="text-[10px] font-mono text-black/20 group-hover/hobby:text-swiss-accent transition-colors">UNIT_{index.toString().padStart(2, '0')}</span>
+          <div className="size-1.5 bg-black/10 group-hover/hobby:bg-swiss-accent rounded-full animate-pulse" />
+        </div>
+        
+        <div className="flex flex-col">
+          <span className="text-4xl mb-4 grayscale group-hover/hobby:grayscale-0 transition-all duration-500 transform group-hover/hobby:scale-110 origin-left">
+            {hobby.emoji}
+          </span>
+          <h4 className="font-black uppercase tracking-tighter text-lg leading-none mb-1">{hobby.title}</h4>
+          <span className="text-[8px] font-mono text-black/40 uppercase">Class: Peripheral_Interest</span>
         </div>
       </div>
-      <motion.span style={{ translateZ: 40 }} className="text-4xl mb-3 group-hover/hobby:drop-shadow-[0_0_15px_#FF3000]">
-        {hobby.emoji}
-      </motion.span>
-      <motion.span style={{ translateZ: 20 }} className="font-black uppercase tracking-widest text-[9px] text-black/40 group-hover/hobby:text-swiss-accent transition-colors">
-        {hobby.title}
-      </motion.span>
+
+      <div className="mt-8 flex flex-col gap-2 relative z-10">
+        <div className="flex justify-between items-end text-[8px] font-mono uppercase">
+          <span className="text-black/40">Engagement</span>
+          <span className="text-swiss-accent">{Math.floor(80 + Math.random() * 20)}%</span>
+        </div>
+        <div className="w-full h-1 bg-black/5 relative overflow-hidden">
+          <motion.div 
+            initial={{ width: 0 }}
+            whileInView={{ width: "85%" }}
+            className="absolute inset-0 bg-black group-hover/hobby:bg-swiss-accent transition-colors"
+          />
+        </div>
+      </div>
+
+      {/* Mechanical Corner Brackets */}
+      <div className="absolute bottom-2 right-2 flex gap-1 opacity-0 group-hover/hobby:opacity-100 transition-opacity">
+         <div className="size-1 bg-swiss-accent" />
+         <div className="size-1 bg-swiss-accent" />
+      </div>
     </motion.div>
   );
 };
 
 const KnowledgeMap = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [log, setLog] = useState<string[]>(["INITIATING_SYNC", "MAPPING_NODES..."]);
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
   const rotateX = useSpring(useTransform(y, [0, 1], [10, -10]), { stiffness: 100, damping: 30 });
   const rotateY = useSpring(useTransform(x, [0, 1], [-10, 10]), { stiffness: 100, damping: 30 });
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const messages = ["SIGNAL_STABLE", "NODE_ACTIVE", "DATA_PKT_SENT", "ARCH_OPTIMIZED"];
+      setLog(prev => [...prev.slice(-3), messages[Math.floor(Math.random() * messages.length)]]);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -129,33 +158,19 @@ const KnowledgeMap = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0.5); y.set(0.5); }}
-      className="mt-8 relative aspect-[4/5] border-4 border-white bg-white/5 overflow-hidden perspective-1000"
+      className="mt-8 relative aspect-[4/5] border-4 border-white/10 bg-white/5 overflow-hidden perspective-1000"
     >
       <motion.div 
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="w-full h-full relative"
       >
-        {/* Connection Matrix */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none p-4" viewBox="0 0 100 100">
-           <defs>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-           </defs>
            <motion.path 
              d="M 30 30 L 70 25 L 80 80 L 50 60 L 20 85 L 30 30" 
              fill="none" stroke="white" strokeWidth="0.2" strokeDasharray="1 2" opacity="0.3"
            />
-           {/* Animated Data Packets */}
-           <motion.circle r="0.5" fill="#FF3000" filter="url(#glow)">
-              <animateMotion dur="4s" repeatCount="indefinite" path="M 30 30 L 70 25 L 80 80 L 50 60 L 20 85 L 30 30" />
-           </motion.circle>
         </svg>
 
-        {/* 3D Nodes */}
         {nodes.map((node, i) => (
           <motion.div
             key={node.label}
@@ -167,31 +182,38 @@ const KnowledgeMap = () => {
             }}
             className="absolute flex flex-col items-center group/node"
           >
-            <div className="size-2 bg-swiss-accent rounded-full shadow-[0_0_10px_#FF3000] relative">
+            <motion.div 
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
+              className="size-3 bg-swiss-accent rounded-full shadow-[0_0_15px_#FF3000] relative"
+            >
                <div className="absolute inset-0 bg-swiss-accent animate-ping rounded-full opacity-40" />
-            </div>
-            <div className="mt-2 text-center opacity-40 group-hover/node:opacity-100 transition-opacity">
-              <div className="text-[6px] font-black text-white leading-none">{node.label}</div>
-              <div className="text-[4px] font-mono text-swiss-accent">[{node.tag}]</div>
+            </motion.div>
+            <div className="mt-3 text-center opacity-40 group-hover/node:opacity-100 transition-opacity">
+              <div className="text-[8px] font-black text-white leading-none tracking-widest font-heading">{node.label}</div>
+              <div className="text-[6px] font-mono text-swiss-accent mt-1">[{node.tag}]</div>
             </div>
           </motion.div>
         ))}
       </motion.div>
 
-      {/* Static HUD Decoration */}
-      <div className="absolute inset-0 p-4 pointer-events-none flex flex-col justify-between">
-         <div className="flex justify-between items-start opacity-20 text-[8px] font-mono text-white">
-            <span>STATIC_HUD_V4.2</span>
-            <span>OS_STABLE</span>
+      <div className="absolute bottom-4 left-4 right-4 bg-white/5 backdrop-blur-md border border-white/10 p-4 font-mono">
+         <div className="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
+            <span className="text-[8px] text-white/40 uppercase">Neural_Telemetery</span>
+            <span className="text-[8px] text-swiss-accent">LIVE_SYNC</span>
          </div>
-         <div className="flex justify-between items-end">
-            <div className="border-l-2 border-swiss-accent pl-2">
-               <div className="text-[8px] font-black text-white/40 uppercase">Map Status</div>
-               <div className="text-[10px] font-black text-white uppercase tracking-widest">Tracking_Active</div>
-            </div>
-            <div className="text-[8px] font-mono text-white/20">COORD_SYNC: 100%</div>
+         <div className="space-y-1">
+            {log.map((entry, i) => (
+              <div key={i} className="text-[7px] text-white/60 flex justify-between font-mono">
+                <span>&gt; {entry}</span>
+                <span className="text-white/20">{Math.random().toString(16).slice(2, 6)}</span>
+              </div>
+            ))}
          </div>
       </div>
+
+      <div className="absolute top-4 left-4 size-4 border-t border-l border-white/20" />
+      <div className="absolute top-4 right-4 size-4 border-t border-r border-white/20" />
     </div>
   );
 };
