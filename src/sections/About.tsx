@@ -198,59 +198,131 @@ const KnowledgeMap = () => {
 
 export const AboutSection = () => {
   return (
-    <section className="py-24 border-t-4 border-black swiss-dots" id="about">
-      <div className="container">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-          <SectionHeader number="04" eyebrow="Identity" title="Method & Focus" description="A systematic breakdown of the skillsets and engineering methodologies that drive my Full Stack development process." />
+    <section className="py-32 border-t-4 border-black bg-white relative overflow-hidden" id="about">
+      {/* Background Architectural Grid */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none swiss-grid" />
+      
+      <div className="container relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }} 
+          whileInView={{ opacity: 1, x: 0 }} 
+          viewport={{ once: true }} 
+          transition={{ duration: 0.8 }}
+        >
+          <SectionHeader 
+            number="04" 
+            eyebrow="Architecture" 
+            title="The Human Hardware" 
+            description="Deconstructing the technical and philosophical framework behind my engineering process." 
+          />
         </motion.div>
 
-        <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
-          {/* Profile Card */}
-          <Magnetic strength={0.2} className="lg:col-span-4">
-            <div className="border-4 border-black bg-white p-0 overflow-hidden relative group" data-cursor="ME">
-              <Image src={profileImage} alt="Abdul Ahad" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-100 group-hover:scale-105" />
-              <div className="absolute bottom-0 left-0 w-full bg-black text-white p-6 border-t-4 border-black">
-                <span className="block font-black uppercase text-2xl tracking-tighter">Abdul Ahad</span>
-                <span className="block text-swiss-accent font-bold uppercase text-xs tracking-widest mt-1">Full Stack Developer</span>
+        <div className="mt-32 flex flex-col gap-12 lg:gap-24">
+          
+          {/* TOP ROW: Profile & Philosophy */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+            {/* Profile Diagnostic Scan */}
+            <div className="lg:col-span-5 relative group" data-cursor="SCAN">
+              <div className="absolute -top-6 -left-6 size-12 border-t-4 border-l-4 border-swiss-accent group-hover:-top-8 group-hover:-left-8 transition-all duration-500" />
+              <div className="absolute -bottom-6 -right-6 size-12 border-b-4 border-r-4 border-black group-hover:-bottom-8 group-hover:-right-8 transition-all duration-500" />
+              
+              <div className="border-4 border-black overflow-hidden relative aspect-[4/5] bg-swiss-muted">
+                <Image 
+                  src={profileImage} 
+                  alt="Abdul Ahad" 
+                  className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" 
+                />
+                {/* Diagnostic HUD Elements */}
+                <div className="absolute inset-0 p-6 flex flex-col justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="flex justify-between items-start">
+                    <div className="bg-black text-white px-2 py-1 text-[8px] font-mono tracking-widest">DETECTION_ACTIVE</div>
+                    <div className="text-[8px] font-mono text-black bg-white px-2 py-1 border border-black">V_1.0.2</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="w-full h-0.5 bg-swiss-accent/30 relative overflow-hidden">
+                       <motion.div 
+                         animate={{ x: ["-100%", "100%"] }} 
+                         transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                         className="absolute inset-0 bg-swiss-accent" 
+                       />
+                    </div>
+                    <div className="text-[10px] font-black text-black uppercase tracking-tighter">AHAD_DIAGNOSTIC_ANALYSIS</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="absolute -bottom-4 -left-4 bg-black text-white px-6 py-4 border-2 border-white z-20">
+                <span className="block font-black text-2xl uppercase font-heading leading-none">Ahad.sys</span>
               </div>
             </div>
-          </Magnetic>
 
-          {/* Toolbox Card */}
-          <div className="lg:col-span-8 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden" data-cursor="STACK">
-             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-10 uppercase">Tools</div>
-             <h3 className="text-3xl font-black uppercase mb-8 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading">Structural Methodology</h3>
-             <ToolboxItems items={toolboxItemsTop} itemsWrapperClassName="animate-move-left [animation-duration:40s]" />
-             <ToolboxItems items={toolboxItemsBottom} className="mt-8" itemsWrapperClassName="animate-move-right [animation-duration:40s]" />
-          </div>
-
-          {/* Interests Section */}
-          <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden group" data-cursor="GRID">
-             <div className="absolute top-0 right-0 p-4 font-black text-4xl opacity-5 uppercase tracking-tighter">Beyond</div>
-             <h3 className="text-3xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading">Interests</h3>
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-l-2 border-black/10">
-                {hobbies.map((hobby, i) => <HobbyCard key={hobby.title} hobby={hobby} index={i} />)}
-                <div className="border-r-2 border-b-2 border-black/10 p-6 bg-swiss-muted/30 flex items-center justify-center">
-                   <div className="size-4 border-2 border-black/10 rotate-45" />
+            {/* Philosophy Terminal */}
+            <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-16 relative">
+              <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-black/20 uppercase">Core_Philosophy</div>
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12 font-heading [word-break:keep-all]">
+                Engineering <br/> with <span className="text-swiss-accent">Intent</span>.
+              </h3>
+              <p className="text-xl md:text-2xl font-medium text-black/70 leading-relaxed max-w-xl italic">
+                "I don't just build websites; I architect systems. Every line of code is a structural decision, aimed at creating high-performance digital environments that scale without friction."
+              </p>
+              
+              <div className="mt-12 flex gap-4 border-t-4 border-black pt-8">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black text-swiss-accent uppercase tracking-widest">Experience</span>
+                  <span className="text-2xl font-black font-mono">04+ YRS</span>
                 </div>
+                <div className="w-[1px] h-12 bg-black/10 mx-4" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black text-swiss-accent uppercase tracking-widest">Systems Built</span>
+                  <span className="text-2xl font-black font-mono">42+ UNIT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* MIDDLE ROW: The Skill Treadmill */}
+          <div className="border-y-4 border-black bg-black py-12 -mx-4 md:-mx-24 relative overflow-hidden" data-cursor="STACK">
+             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#FF3000_1px,transparent_1px)] [background-size:20px_20px]" />
+             <div className="container relative z-10 overflow-hidden">
+                <ToolboxItems items={toolboxItemsTop} itemsWrapperClassName="animate-move-left [animation-duration:30s]" />
+                <ToolboxItems items={toolboxItemsBottom} itemsWrapperClassName="animate-move-right [animation-duration:35s]" className="mt-12" />
              </div>
           </div>
 
-          {/* Knowledge Map */}
-          <div className="lg:col-span-5 border-4 border-black bg-black text-white p-8 md:p-12 flex flex-col justify-between group overflow-hidden relative" data-cursor="MAP">
-             <div className="absolute inset-0 opacity-10 swiss-grid pointer-events-none" />
-             <div>
-                <h3 className="text-3xl font-black uppercase mb-4 text-swiss-accent font-heading">Read Map</h3>
-                <p className="text-white/60 font-medium text-xs leading-relaxed uppercase tracking-tighter">Mapping architectural systems and structural philosophies in real-time space.</p>
-             </div>
-             <KnowledgeMap />
+          {/* BOTTOM ROW: Knowledge Map & Interests */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            {/* Read Map Terminal */}
+            <div className="lg:col-span-5 border-4 border-black bg-black text-white p-8 md:p-12 flex flex-col justify-between group overflow-hidden relative" data-cursor="MAP">
+               <div className="absolute inset-0 opacity-10 swiss-grid pointer-events-none" />
+               <div className="relative z-10">
+                  <div className="flex justify-between items-center mb-8">
+                    <h3 className="text-3xl font-black uppercase text-swiss-accent font-heading">Neural_Map</h3>
+                    <div className="size-3 bg-swiss-accent animate-pulse" />
+                  </div>
+                  <p className="text-white/60 font-medium text-sm leading-relaxed uppercase tracking-tighter">Mapping architectural nodes and cognitive dependencies across the full-stack landscape.</p>
+               </div>
+               <KnowledgeMap />
+            </div>
+
+            {/* Interests Matrix */}
+            <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden" data-cursor="GRID">
+               <div className="absolute top-0 right-0 p-4 font-black text-5xl opacity-[0.03] uppercase tracking-tighter font-heading">Beyond_Code</div>
+               <h3 className="text-4xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading [word-break:keep-all]">Human_Interests</h3>
+               <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-l-2 border-black/10">
+                  {hobbies.map((hobby, i) => <HobbyCard key={hobby.title} hobby={hobby} index={i} />)}
+                  <div className="border-r-2 border-b-2 border-black/10 p-6 bg-swiss-muted/30 flex items-center justify-center">
+                     <div className="size-4 border-2 border-black/10 rotate-45" />
+                  </div>
+               </div>
+            </div>
           </div>
+
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-[120px]">
+      <div className="absolute bottom-0 left-0 w-full h-[120px] pointer-events-none">
         <ElasticLine />
       </div>
     </section>
-  )
-}
+  );
+};
 

@@ -43,7 +43,7 @@ export const SectionHeader = ({
         </p>
       </div>
 
-      <h2 className="text-3xl sm:text-3xl md:text-5xl lg:text-7xl mt-4 break-words font-black uppercase tracking-tighter leading-[0.9] relative">
+      <h2 className="text-4xl md:text-6xl lg:text-7xl mt-4 break-words font-black uppercase tracking-tighter leading-[0.9] relative [word-break:keep-all]">
         <SplitText text={title} />
         {/* Animated Underline */}
         <motion.div 
