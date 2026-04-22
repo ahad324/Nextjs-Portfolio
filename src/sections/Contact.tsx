@@ -297,7 +297,7 @@ export const ContactSection = () => {
                       </div>
                       <span className="font-bold text-xs uppercase underline decoration-swiss-accent/30 group-hover:decoration-swiss-accent transition-all">ahadg446@gmail.com</span>
                    </a>
-                   <a href="https://linkedin.com/in/yourprofile" target="_blank" className="flex items-center gap-4 group cursor-none">
+                   <a href="https://www.linkedin.com/in/abdul-ahad-a08263273" target="_blank" className="flex items-center gap-4 group cursor-none">
                       <div className="size-10 border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all transform group-hover:-rotate-3">
                          <Linkedin className="size-5" />
                       </div>

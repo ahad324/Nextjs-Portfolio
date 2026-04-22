@@ -92,10 +92,12 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
     const dotScale = useTransform(scrollYProgress, [threshold - 0.1, threshold, threshold + 0.1], [1, 1.8, 1]);
     const dotColor = useTransform(scrollYProgress, [threshold - 0.1, threshold], ["#000000", "#FF3000"]);
 
+    const yTransform = useTransform(scrollYProgress, [threshold - 0.2, threshold, threshold + 0.2], [20, 0, -20]);
+
     return (
         <motion.div
-            // initial={{ opacity: 0, y: 50 }}
-            // whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
             className={`relative flex flex-col lg:flex-row items-center gap-8 ${
@@ -109,7 +111,10 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
             />
 
             {/* Experience Card Content */}
-            <div className="w-full lg:w-[45%] group">
+            <motion.div 
+                style={{ y: yTransform }}
+                className="w-full lg:w-[45%] group"
+            >
                 <div className="border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden group-hover:bg-black transition-colors duration-500">
                     <div className="absolute top-0 right-0 p-4 font-black text-6xl opacity-5 group-hover:opacity-10 group-hover:text-white transition-all">
                         {index + 1 < 10 ? `0${index + 1}` : index + 1}
@@ -169,7 +174,7 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
                     </div>
                     <div className="absolute bottom-0 right-0 w-12 h-12 bg-swiss-accent translate-x-12 translate-y-12 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
                 </div>
-            </div>
+            </motion.div>
             
             <div className="hidden lg:block lg:w-[10%]" />
             <div className="hidden lg:block lg:w-[45%]" />

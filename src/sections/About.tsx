@@ -226,7 +226,7 @@ export const AboutSection = () => {
       
       <div className="container relative z-10">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }} 
+          initial={{ opacity: 0, y: 50 }} 
           whileInView={{ opacity: 1, y: 0 }} 
           viewport={{ once: true }} 
           transition={{ duration: 0.8 }}
@@ -252,6 +252,7 @@ export const AboutSection = () => {
                 <Image 
                   src={profileImage} 
                   alt="Abdul Ahad" 
+                  priority
                   className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-700" 
                 />
                 {/* Diagnostic HUD Elements */}

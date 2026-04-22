@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("http://localhost:3000"),
+  metadataBase: new URL("https://ahad-devsite.netlify.app"),
   title: "Abdul Ahad | Full-Stack Developer Portfolio",
   description:
     "I specialize in transforming designs into functional, high-performing web applications. Let's discuss your next project.",
@@ -74,7 +74,7 @@ const jsonLd = {
   "url": "https://ahad-devsite.netlify.app",
   "sameAs": [
     "https://github.com/ahad324",
-    "https://linkedin.com/in/yourprofile" 
+    "https://www.linkedin.com/in/abdul-ahad-a08263273" 
   ],
   "description": "Professional developer specializing in high-performance Full-Stack engineering and scalable Next.js applications.",
   "knowsAbout": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Systems Architecture", "Full-Stack Development"]
