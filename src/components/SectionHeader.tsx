@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { SplitText } from "./SplitText";
 
 export const SectionHeader = ({
@@ -12,23 +13,55 @@ export const SectionHeader = ({
   number?: string;
 }) => {
   return (
-    <div className="flex flex-col items-start text-left max-w-4xl">
+    <div className="flex flex-col items-start text-left max-w-4xl relative group">
+      {/* Blueprint Guides */}
+      <motion.div 
+        initial={{ width: 0 }}
+        whileInView={{ width: "100%" }}
+        transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
+        className="absolute -top-4 left-0 h-[1px] bg-black/10 hidden md:block"
+      />
+      <motion.div 
+        initial={{ height: 0 }}
+        whileInView={{ height: "100%" }}
+        transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
+        className="absolute top-0 -left-8 w-[1px] bg-black/10 hidden md:block"
+      />
+
       <div className="flex items-center gap-4">
         {number && (
-          <span className="text-swiss-accent font-black tracking-widest text-xl">
-            {number}
-          </span>
+          <motion.span 
+            initial={{ opacity: 0, x: -10 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-swiss-accent font-black tracking-widest text-xl font-mono"
+          >
+            [{number}]
+          </motion.span>
         )}
         <p className="uppercase font-bold tracking-[0.2em] text-swiss-accent text-sm">
           {eyebrow}
         </p>
       </div>
-      <h2 className="text-3xl sm:text-3xl md:text-5xl lg:text-7xl mt-4 break-words font-black uppercase tracking-tighter leading-[0.9]">
+
+      <h2 className="text-3xl sm:text-3xl md:text-5xl lg:text-7xl mt-4 break-words font-black uppercase tracking-tighter leading-[0.9] relative">
         <SplitText text={title} />
+        {/* Animated Underline */}
+        <motion.div 
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="absolute -bottom-2 left-0 w-24 h-2 bg-swiss-accent origin-left"
+        />
       </h2>
-      <p className="text-lg md:text-xl text-black/60 mt-6 max-w-2xl font-medium">
+
+      <motion.p 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="text-lg md:text-xl text-black/60 mt-8 max-w-2xl font-medium"
+      >
         {description}
-      </p>
+      </motion.p>
     </div>
   );
 };

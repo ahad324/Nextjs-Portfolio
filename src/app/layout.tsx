@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import LoadingWrapper from "@/components/LoadingWrapper";
@@ -8,6 +8,12 @@ import { SwissCursor } from "@/components/SwissCursor";
 import { SystemSidebar } from "@/components/SystemSidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" });
+const ibmPlexMono = IBM_Plex_Mono({ 
+  subsets: ["latin"], 
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-mono" 
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -92,6 +98,8 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.variable,
+          spaceGrotesk.variable,
+          ibmPlexMono.variable,
           "bg-white text-black antialiased font-sans cursor-none"
         )}
         suppressHydrationWarning

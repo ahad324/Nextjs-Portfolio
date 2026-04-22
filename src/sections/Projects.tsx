@@ -106,6 +106,12 @@ export const ProjectsSection = () => {
               transition={{ duration: 0.8, delay: index * 0.1, ease: [0.33, 1, 0.68, 1] }}
               className="border-r-4 border-b-4 border-black bg-white group hover:bg-black transition-colors duration-500 relative overflow-hidden"
             >
+              {/* DIAGNOSTIC HUD - Corner Brackets */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-black opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:top-4 group-hover:left-4 z-20 pointer-events-none group-hover:border-swiss-accent" />
+              <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-black opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:top-4 group-hover:right-4 z-20 pointer-events-none group-hover:border-swiss-accent" />
+              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-black opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bottom-4 group-hover:left-4 z-20 pointer-events-none group-hover:border-swiss-accent" />
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-black opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:bottom-4 group-hover:right-4 z-20 pointer-events-none group-hover:border-swiss-accent" />
+
               <div className="p-6 md:p-12 relative z-10">
                 <div className="flex justify-between items-start gap-4 mb-12">
                   <div className="flex flex-col min-w-0">
@@ -128,9 +134,19 @@ export const ProjectsSection = () => {
                   </Magnetic>
                 </div>
 
-                <ProjectImage src={project.image} alt={`${project.title} - High-performance web system architecture`} />
+                <div className="relative overflow-hidden group/image">
+                  <ProjectImage src={project.image} alt={`${project.title} - High-performance web system architecture`} />
+                  
+                  {/* SCANLINE EFFECT */}
+                  <motion.div 
+                    initial={{ top: "-100%" }}
+                    animate={{ top: "200%" }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                    className="absolute left-0 right-0 h-1 bg-swiss-accent/20 z-20 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </div>
 
-                <p className="text-lg font-medium text-black/60 group-hover:text-white/60 mb-8 max-w-md">
+                <p className="text-lg font-medium text-black/60 group-hover:text-white/60 mt-8 mb-8 max-w-md">
                   {project.description}
                 </p>
 

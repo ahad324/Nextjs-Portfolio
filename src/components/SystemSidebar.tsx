@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
 
 const sections = [
   { id: "hero", label: "SYS_01", theme: "INIT" },

@@ -6,6 +6,18 @@ const NODE_COUNT = 16;
 
 export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) => {
   const { scrollYProgress } = useScroll();
+  const mouseX = useSpring(0, { stiffness: 100, damping: 30 });
+  const mouseY = useSpring(0, { stiffness: 100, damping: 30 });
+
+  const handleMouseMove = (e: React.MouseEvent | MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
   
   // High-Responsiveness Spring for the ARTIFACT only (to keep it smooth but snappy)
   const artifactProgress = useSpring(scrollYProgress, {
@@ -16,8 +28,9 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
   const nodes = Array.from({ length: NODE_COUNT });
 
   return (
-    <div className="min-h-screen relative bg-white">
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="min-h-screen relative bg-white overflow-x-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {/* BASE GRID (Gray) */}
         <div 
             style={{ 
                 backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px)`,
@@ -26,6 +39,24 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
             className="absolute inset-0"
         />
 
+        {/* THERMAL REVEAL GRID (Swiss Red) */}
+        <motion.div 
+            style={{ 
+                backgroundImage: `radial-gradient(circle, rgba(255,48,0,0.15) 1px, transparent 1px)`,
+                backgroundSize: "40px 40px",
+                WebkitMaskImage: useTransform(
+                  [mouseX, mouseY],
+                  ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, black, transparent)`
+                ),
+                maskImage: useTransform(
+                  [mouseX, mouseY],
+                  ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, black, transparent)`
+                ),
+            }}
+            className="absolute inset-0 z-10"
+        />
+
+        {/* NEURAL CORE ARTIFACT */}
         <div className="absolute inset-0 flex items-center justify-center">
             <div className="relative size-[600px]">
                 {nodes.map((_, i) => (
