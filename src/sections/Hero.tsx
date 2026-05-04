@@ -95,7 +95,7 @@ export const HeroSection = () => {
 
               <motion.h1
                 style={{ y: y2 }}
-                className="text-[clamp(5rem,9vw,18rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
+                className="text-[clamp(5rem,9vw,16rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
                 aria-label="Abdul Ahad - Architecting Performant Systems"
               >
                 <SplitText text="Design" delay={0.5} />
