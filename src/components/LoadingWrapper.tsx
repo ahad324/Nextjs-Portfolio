@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { LoadingScreen } from "./LoadingScreen";
 import { LoadingProvider, useLoading } from "@/context/LoadingContext";
 
@@ -41,21 +41,21 @@ const LoadingLogic = ({ children }: { children: React.ReactNode }) => {
       {/* Cinematic Reveal Sequence */}
       <div className="relative overflow-hidden">
         {/* The 'Wipe & Flash' Accent Bar */}
-        <motion.div 
+        <m.div 
           initial={{ top: "-10%" }}
           animate={{ top: !isLoading ? "110%" : "-10%" }}
           transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.1 }}
           className="fixed left-0 w-full h-8 bg-swiss-accent z-[9998] shadow-[0_0_50px_rgba(255,48,0,0.5)] pointer-events-none"
         />
 
-        <motion.div 
+        <m.div 
           initial={{ clipPath: "inset(0 0 100% 0)" }}
           animate={{ clipPath: !isLoading ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)" }}
           transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
           className="relative z-0"
         >
           {children}
-        </motion.div>
+        </m.div>
       </div>
     </>
   );

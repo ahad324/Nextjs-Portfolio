@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
+import { m, useSpring, useMotionValue } from "framer-motion";
 
 interface MagneticProps {
   children: React.ReactNode;
@@ -37,7 +37,7 @@ export const Magnetic = ({ children, strength = 0.5, className = "" }: MagneticP
   };
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -45,6 +45,6 @@ export const Magnetic = ({ children, strength = 0.5, className = "" }: MagneticP
       className={`magnetic ${className}`}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 };

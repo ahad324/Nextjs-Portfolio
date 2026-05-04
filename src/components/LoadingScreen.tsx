@@ -1,5 +1,5 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 interface LoadingScreenProps {
@@ -64,7 +64,7 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
   return (
     <AnimatePresence onExitComplete={onComplete}>
       {!isExiting && (
-        <motion.div
+        <m.div
           key="loader"
           className="fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center p-8 select-none"
           exit={{ 
@@ -97,7 +97,7 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
             
             {/* PROGRESS BAR */}
             <div className="h-12 md:h-16 w-full border-4 border-white bg-white/5 relative overflow-hidden flex items-center justify-center">
-              <motion.div 
+              <m.div 
                 className="absolute inset-y-0 left-0 bg-white z-20"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
@@ -134,7 +134,7 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
           </div>
 
           
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

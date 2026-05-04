@@ -1,7 +1,7 @@
 "use client";
 import { useRef } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { m, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUpRight, Building2, MapPin, Calendar, ExternalLink } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
 import { useLoading } from "@/context/LoadingContext";
@@ -48,7 +48,7 @@ export const ExperienceSection = () => {
     return (
         <section ref={containerRef} className="py-24 border-t-4 border-black swiss-grid-pattern relative overflow-hidden" id="experience">
             <div className="container">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
                     transition={{ duration: 0.8 }}
@@ -59,13 +59,13 @@ export const ExperienceSection = () => {
                         title="Career Path"
                         description="A chronological log of professional contributions, focused on building robust system architectures and high-impact digital solutions."
                     />
-                </motion.div>
+                </m.div>
 
                 <div className="mt-24 relative">
                     {/* ACTIVE TIMELINE SPINE - Deterministic centering */}
                     <div className="absolute inset-y-0 left-0 right-0 w-[4px] hidden sm:block mx-auto z-0">
                         <div className="absolute inset-0 bg-black opacity-10" />
-                        <motion.div 
+                        <m.div 
                             style={{ scaleY, originY: 0 }}
                             className="absolute inset-0 bg-swiss-accent z-10"
                         />
@@ -95,7 +95,7 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
     const yTransform = useTransform(scrollYProgress, [threshold - 0.2, threshold, threshold + 0.2], [20, 0, -20]);
 
     return (
-        <motion.div
+        <m.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -105,13 +105,13 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
             }`}
         >
             {/* Timeline Dot / Junction - Deterministic centering */}
-            <motion.div 
+            <m.div 
                 style={{ scale: dotScale, backgroundColor: dotColor }}
                 className="absolute top-0 inset-x-0 mx-auto size-4 border-4 border-black z-20 hidden sm:block" 
             />
 
             {/* Experience Card Content */}
-            <motion.div 
+            <m.div 
                 style={{ y: yTransform }}
                 className="w-full lg:w-[45%] group"
             >
@@ -174,10 +174,10 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
                     </div>
                     <div className="absolute bottom-0 right-0 w-12 h-12 bg-swiss-accent translate-x-12 translate-y-12 group-hover:translate-x-6 group-hover:translate-y-6 transition-transform duration-500" />
                 </div>
-            </motion.div>
+            </m.div>
             
             <div className="hidden lg:block lg:w-[10%]" />
             <div className="hidden lg:block lg:w-[45%]" />
-        </motion.div>
+        </m.div>
     );
 };

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useSpring, useVelocity, useTransform, AnimatePresence } from "framer-motion";
+import { m, useMotionValue, useSpring, useVelocity, useTransform, AnimatePresence } from "framer-motion";
 
 export const SwissCursor = () => {
     const [cursorType, setCursorType] = useState<"default" | "magnetic" | "text">("default");
@@ -57,7 +57,7 @@ export const SwissCursor = () => {
     }, [cursorX, cursorY]);
 
     return (
-        <motion.div
+        <m.div
             className="fixed top-0 left-0 pointer-events-none z-[9999] hidden md:flex items-center justify-center mix-blend-difference"
             style={{
                 translateX: cursorXSpring,
@@ -71,7 +71,7 @@ export const SwissCursor = () => {
         >
             <AnimatePresence mode="wait">
                 {cursorType === "default" && (
-                    <motion.div 
+                    <m.div 
                         key="default"
                         initial={{ scale: 0, rotate: -45 }}
                         animate={{ scale: 1, rotate: 0 }}
@@ -80,11 +80,11 @@ export const SwissCursor = () => {
                     >
                         <div className="absolute w-[1px] h-6 bg-swiss-accent" />
                         <div className="absolute w-6 h-[1px] bg-swiss-accent" />
-                    </motion.div>
+                    </m.div>
                 )}
 
                 {cursorType === "text" && (
-                    <motion.div 
+                    <m.div 
                         key="text"
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
@@ -96,11 +96,11 @@ export const SwissCursor = () => {
                                 {cursorText}
                             </span>
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
 
                 {cursorType === "magnetic" && (
-                    <motion.div 
+                    <m.div 
                         key="magnetic"
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
@@ -109,6 +109,6 @@ export const SwissCursor = () => {
                     />
                 )}
             </AnimatePresence>
-        </motion.div>
+        </m.div>
     );
 };

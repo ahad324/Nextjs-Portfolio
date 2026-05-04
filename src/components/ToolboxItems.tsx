@@ -2,7 +2,6 @@
 import { TechIcon } from "@/components/TechIcon";
 import { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
-import { motion } from "framer-motion";
 
 export const ToolboxItems = ({
   items,

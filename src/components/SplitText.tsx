@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, Variants, Transition } from "framer-motion";
+import { m, Variants, Transition } from "framer-motion";
 
 interface SplitTextProps {
   text: string;
@@ -36,7 +36,7 @@ export const SplitText = ({ text, className = "", delay = 0 }: SplitTextProps) =
   };
 
   return (
-    <motion.span
+    <m.span
       variants={containerVariants}
       initial="initial"
       whileInView="animate"
@@ -44,15 +44,15 @@ export const SplitText = ({ text, className = "", delay = 0 }: SplitTextProps) =
       className={`inline-block overflow-hidden perspective-1000 ${className}`}
     >
       {letters.map((char, i) => (
-        <motion.span
+        <m.span
           key={i}
           variants={letterVariants}
           className="inline-block whitespace-pre will-change-transform"
           style={{ transformOrigin: "bottom" }}
         >
           {char}
-        </motion.span>
+        </m.span>
       ))}
-    </motion.span>
+    </m.span>
   );
 };

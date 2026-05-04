@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -81,7 +81,7 @@ export const Header = () => {
   };
 
   return (
-    <motion.header 
+    <m.header 
       initial={{ y: -100 }}
       animate={isReady ? { y: 0 } : { y: -100 }}
       transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1], delay: 0.3 }}
@@ -122,7 +122,7 @@ export const Header = () => {
                   >
                     {/* Sliding Background Pill */}
                     {isHighlighted && (
-                      <motion.div 
+                      <m.div 
                         layoutId="active-pill"
                         className="absolute inset-0 bg-black"
                         transition={{ 
@@ -136,7 +136,7 @@ export const Header = () => {
 
                     {/* Active Indicator (Swiss Red Line) */}
                     {isActive && (
-                      <motion.div 
+                      <m.div 
                         layoutId="active-indicator"
                         className="absolute bottom-0 left-0 w-full h-2 bg-swiss-accent z-20"
                         transition={{ 
@@ -170,7 +170,7 @@ export const Header = () => {
       {/* Mobile Dropdown */}
       <AnimatePresence>
         {isDropdownOpen && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -192,11 +192,9 @@ export const Header = () => {
                 </Link>
               ))}
             </nav>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
-    </motion.header>
+    </m.header>
   );
 };
-
-

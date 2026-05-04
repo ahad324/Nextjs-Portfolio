@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
+import { m, AnimatePresence, useScroll, useSpring, useTransform, useVelocity } from "framer-motion";
 
 const sections = [
   { id: "hero", label: "SYS_01", theme: "INIT" },
@@ -53,7 +53,7 @@ export const SystemSidebar = () => {
 
       {/* Progress Line */}
       <div className="h-64 w-[1px] bg-white/20 relative">
-        <motion.div 
+        <m.div 
             className="absolute top-0 left-0 w-full bg-swiss-accent"
             animate={{ height: `${((currentIdx + 1) / sections.length) * 100}%` }}
             transition={{ type: "spring", stiffness: 100, damping: 30 }}

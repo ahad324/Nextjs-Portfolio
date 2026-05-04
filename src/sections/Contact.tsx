@@ -3,7 +3,7 @@ import { ArrowUpRight, Mail, Github, Linkedin, Terminal, Loader2, CheckCircle2, 
 import { SectionHeader } from "@/components/SectionHeader";
 import { Magnetic } from "@/components/Magnetic";
 import { SplitText } from "@/components/SplitText";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
 import { sendEmail } from "@/app/actions/contact";
 
@@ -162,19 +162,19 @@ export const ContactSection = () => {
                 {/* Transmission Overlay */}
                 <AnimatePresence>
                     {status === "SENDING" && (
-                        <motion.div 
+                        <m.div 
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             className="absolute inset-0 z-30 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center p-12 text-center"
                         >
                             <div className="relative size-32 mb-8">
-                                <motion.div 
+                                <m.div 
                                     animate={{ rotate: 360 }}
                                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
                                     className="absolute inset-0 border-2 border-dashed border-swiss-accent/30 rounded-full"
                                 />
-                                <motion.div 
+                                <m.div 
                                     animate={{ rotate: -360 }}
                                     transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
                                     className="absolute inset-4 border border-dotted border-white/20 rounded-full"
@@ -189,20 +189,20 @@ export const ContactSection = () => {
                                         <HackerText text={log} />
                                     </div>
                                 ))}
-                                <motion.div 
+                                <m.div 
                                     initial={{ width: 0 }}
                                     animate={{ width: "100%" }}
                                     className="h-[1px] bg-swiss-accent/50 mt-4 mx-auto"
                                 />
                             </div>
-                        </motion.div>
+                        </m.div>
                     )}
                 </AnimatePresence>
 
                 {/* Success/Error Overlay */}
                 <AnimatePresence>
                     {(status === "SUCCESS" || status === "ERROR") && (
-                        <motion.div 
+                        <m.div 
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 1.05 }}
@@ -218,7 +218,7 @@ export const ContactSection = () => {
                                 {status === 'SUCCESS' ? "Data packet delivered into the core architecture." : "Uplink severed due to transmission protocols."}
                             </p>
                             <div className="mt-8 text-[8px] font-mono opacity-20 uppercase">Auto_Reset in 20.0s</div>
-                        </motion.div>
+                        </m.div>
                     )}
                 </AnimatePresence>
 

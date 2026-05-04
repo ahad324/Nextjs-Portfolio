@@ -4,8 +4,6 @@ import "./globals.css";
 import { twMerge } from "tailwind-merge";
 import LoadingWrapper from "@/components/LoadingWrapper";
 import SmoothScrolling from "@/components/SmoothScrolling";
-import { SwissCursor } from "@/components/SwissCursor";
-import { SystemSidebar } from "@/components/SystemSidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-heading" });
@@ -99,6 +97,9 @@ const jsonLd = {
 
 import { ScrollArchitecture } from "@/components/ScrollArchitecture";
 
+import { ClientElements } from "@/components/ClientElements";
+import MotionProvider from "@/components/MotionProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -121,15 +122,16 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <SwissCursor />
-        <SystemSidebar />
-        <LoadingWrapper>
-          <ScrollArchitecture>
-            <SmoothScrolling>
-              {children}
-            </SmoothScrolling>
-          </ScrollArchitecture>
-        </LoadingWrapper>
+        <MotionProvider>
+          <ClientElements />
+          <LoadingWrapper>
+            <ScrollArchitecture>
+              <SmoothScrolling>
+                {children}
+              </SmoothScrolling>
+            </ScrollArchitecture>
+          </LoadingWrapper>
+        </MotionProvider>
       </body>
     </html>
   );

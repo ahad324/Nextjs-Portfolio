@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { MoveLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function NotFound() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -38,7 +38,7 @@ export default function NotFound() {
 
             <div className="relative z-20 text-center px-4">
                 {/* Animated 404 Text */}
-                <motion.div
+                <m.div
                     animate={{
                         x: mousePosition.x * 2,
                         y: mousePosition.y * 2,
@@ -51,9 +51,9 @@ export default function NotFound() {
                     <h1 className="text-[12rem] md:text-[20rem] font-bold leading-none bg-clip-text text-transparent bg-gradient-to-b from-white via-white/50 to-transparent select-none font-serif">
                         404
                     </h1>
-                </motion.div>
+                </m.div>
 
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
@@ -73,13 +73,13 @@ export default function NotFound() {
                         <MoveLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                         Back to Home
                     </Link>
-                </motion.div>
+                </m.div>
             </div>
 
             {/* Floating Particles */}
             <div className="absolute inset-0 pointer-events-none">
                 {[...Array(20)].map((_, i) => (
-                    <motion.div
+                    <m.div
                         key={i}
                         className="absolute w-1 h-1 bg-white/20 rounded-full"
                         initial={{

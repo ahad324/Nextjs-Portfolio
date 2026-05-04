@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { HeroOrbit } from "@/components/HeroOrbit";
 import { Star, Circle, Square, Plus } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
@@ -33,7 +33,7 @@ export const HeroSection = () => {
       id="hero"
     >
       {/* GEOMETRIC ORBIT CONSTELLATION - Cinematic Entrance */}
-      <motion.div
+      <m.div
         style={{ y: y1, opacity, rotate }}
         initial={{ scale: 0.8, opacity: 0 }}
         animate={isReady ? { scale: 1, opacity: 1, x: "15%" } : { scale: 0.8, opacity: 0, x: "0%" }}
@@ -52,7 +52,7 @@ export const HeroSection = () => {
         <HeroOrbit size={430} rotation={79} shouldOrbit orbitDuration="50s">
           <Square className="size-6 text-black/10 border-2 border-black/10" />
         </HeroOrbit>
-      </motion.div>
+      </m.div>
 
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
@@ -68,7 +68,7 @@ export const HeroSection = () => {
 
           {/* Main Content Area */}
           <div className="lg:col-span-11 flex flex-col items-start px-4 md:px-0">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -81,19 +81,19 @@ export const HeroSection = () => {
               <span className="uppercase font-bold tracking-[0.3em] text-[10px] md:text-xs text-swiss-accent">
                 Availability: Open for Innovation
               </span>
-            </motion.div>
+            </m.div>
 
             <div className="relative w-full">
               {/* Floating Tech Badge */}
-              <motion.div
+              <m.div
                 style={{ y: y3 }}
                 className="absolute -top-10 right-[10%] lg:right-[20%] hidden md:flex items-center gap-2 bg-white border-2 border-black px-4 py-2 font-mono text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"
               >
                 <div className="w-2 h-2 bg-swiss-accent rounded-full animate-pulse" />
                 FULL-STACK ENG
-              </motion.div>
+              </m.div>
 
-              <motion.h1
+              <m.h1
                 style={{ y: y2 }}
                 className="text-[clamp(5rem,9vw,16rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
                 aria-label="Abdul Ahad - Architecting Performant Systems"
@@ -101,11 +101,11 @@ export const HeroSection = () => {
                 <SplitText text="Design" delay={0.5} />
                 <SplitText text="Build" className="text-swiss-accent" delay={0.7} />
                 <SplitText text="Scale" delay={0.9} />
-              </motion.h1>
+              </m.h1>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-16">
-              <motion.p
+              <m.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 1.4 }}
@@ -113,9 +113,9 @@ export const HeroSection = () => {
               >
                 I engineer end-to-end web applications through a lens of structural discipline
                 and functional clarity. Expert in Full Stack environments and modular software design.
-              </motion.p>
+              </m.p>
 
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 1.8 }}
@@ -155,7 +155,7 @@ export const HeroSection = () => {
                     </div>
                   </Link>
                 </Magnetic>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </div>
@@ -163,7 +163,7 @@ export const HeroSection = () => {
 
       {/* Decorative Geometric Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full hidden xl:block -z-10 bg-swiss-muted/30 border-l-4 border-black/5">
-        <motion.div
+        <m.div
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
           className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-48 bg-swiss-accent/10 rounded-none border-4 border-black/5 -translate-x-1/2 rotate-45"

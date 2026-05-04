@@ -8,7 +8,7 @@ import pixelarena from "@/assets/images/pixelarena.png"
 import Image from "next/image";
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
-import { motion, useScroll, useTransform, useVelocity, useSpring, useMotionValue } from "framer-motion";
+import { m, useScroll, useTransform, useVelocity, useSpring, useMotionValue } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { ElasticLine } from "@/components/ElasticLine";
 import { Magnetic } from "@/components/Magnetic";
@@ -69,7 +69,7 @@ const ProjectImage = ({ src, alt }: { src: any; alt: string }) => {
 
   return (
     <div ref={ref} className="aspect-video relative mb-12 overflow-hidden border-4 border-black bg-swiss-muted perspective-1000">
-      <motion.div 
+      <m.div 
         style={{ skewY: skew, y }}
         className="size-full relative scale-125"
       >
@@ -80,7 +80,7 @@ const ProjectImage = ({ src, alt }: { src: any; alt: string }) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover grayscale hover:grayscale-0 transition-all duration-500 rounded-none scale-100 group-hover:scale-105"
         />
-      </motion.div>
+      </m.div>
     </div>
   );
 };
@@ -98,7 +98,7 @@ export const ProjectsSection = () => {
 
         <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-0 border-t-4 border-l-4 border-black">
           {portfolioProjects.map((project, index) => (
-            <motion.div 
+            <m.div 
               key={project.title} 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ export const ProjectsSection = () => {
                   <ProjectImage src={project.image} alt={`${project.title} - High-performance web system architecture`} />
                   
                   {/* SCANLINE EFFECT */}
-                  <motion.div 
+                  <m.div 
                     initial={{ top: "-100%" }}
                     animate={{ top: "200%" }}
                     transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
@@ -161,7 +161,7 @@ export const ProjectsSection = () => {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

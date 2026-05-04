@@ -4,7 +4,7 @@ import { Card } from "@/components/Card"
 import { SectionHeader } from "@/components/SectionHeader"
 import profileImage from "@/assets/images/profile.png"
 import bookImage from "@/assets/images/book-cover.png"
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion"
+import { m, useMotionValue, useTransform, useSpring, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import { ToolboxItems } from "@/components/ToolboxItems"
 import { ElasticLine } from "@/components/ElasticLine"
@@ -71,7 +71,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
   const isLarge = index === 0 || index === 5;
 
   return (
-    <motion.div
+    <m.div
       onMouseMove={handleMouseMove}
       onMouseLeave={() => { x.set(0.5); y.set(0.5); }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
@@ -105,7 +105,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
           <span className="text-swiss-accent">{Math.floor(80 + Math.random() * 20)}%</span>
         </div>
         <div className="w-full h-1 bg-black/5 relative overflow-hidden">
-          <motion.div
+          <m.div
             initial={{ width: 0 }}
             whileInView={{ width: "85%" }}
             className="absolute inset-0 bg-black group-hover/hobby:bg-swiss-accent transition-colors"
@@ -118,7 +118,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
         <div className="size-1 bg-swiss-accent" />
         <div className="size-1 bg-swiss-accent" />
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -160,19 +160,19 @@ const KnowledgeMap = () => {
       onMouseLeave={() => { x.set(0.5); y.set(0.5); }}
       className="mt-8 relative aspect-[4/5] border-4 border-white/10 bg-white/5 overflow-hidden perspective-1000"
     >
-      <motion.div
+      <m.div
         style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
         className="w-full h-full relative"
       >
         <svg className="absolute inset-0 w-full h-full pointer-events-none p-4" viewBox="0 0 100 100">
-          <motion.path
+          <m.path
             d="M 30 30 L 70 25 L 80 80 L 50 60 L 20 85 L 30 30"
             fill="none" stroke="white" strokeWidth="0.2" strokeDasharray="1 2" opacity="0.3"
           />
         </svg>
 
         {nodes.map((node, i) => (
-          <motion.div
+          <m.div
             key={node.label}
             style={{
               left: `${node.x}%`,
@@ -182,20 +182,20 @@ const KnowledgeMap = () => {
             }}
             className="absolute flex flex-col items-center group/node"
           >
-            <motion.div
+            <m.div
               animate={{ scale: [1, 1.2, 1] }}
               transition={{ duration: 2, repeat: Infinity, delay: i * 0.4 }}
               className="size-3 bg-swiss-accent rounded-full shadow-[0_0_15px_#FF3000] relative"
             >
               <div className="absolute inset-0 bg-swiss-accent animate-ping rounded-full opacity-40" />
-            </motion.div>
+            </m.div>
             <div className="mt-3 text-center opacity-40 group-hover/node:opacity-100 transition-opacity">
               <div className="text-[8px] font-black text-white leading-none tracking-widest font-heading">{node.label}</div>
               <div className="text-[6px] font-mono text-swiss-accent mt-1">[{node.tag}]</div>
             </div>
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
 
       <div className="absolute bottom-4 left-4 right-4 bg-white/5 backdrop-blur-md border border-white/10 p-4 font-mono">
         <div className="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
@@ -225,7 +225,7 @@ export const AboutSection = () => {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none swiss-grid" />
 
       <div className="container relative z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -237,7 +237,7 @@ export const AboutSection = () => {
             title="Personal Bio"
             description="Deconstructing the technical and philosophical framework behind my engineering process."
           />
-        </motion.div>
+        </m.div>
 
         <div className="mt-32 flex flex-col gap-12 lg:gap-24">
 
@@ -263,7 +263,7 @@ export const AboutSection = () => {
                   </div>
                   <div className="space-y-1">
                     <div className="w-full h-0.5 bg-swiss-accent/30 relative overflow-hidden">
-                      <motion.div
+                      <m.div
                         animate={{ x: ["-100%", "100%"] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
                         className="absolute inset-0 bg-swiss-accent"

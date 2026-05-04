@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { m, useScroll, useTransform, useSpring } from "framer-motion";
 
 const NODE_COUNT = 16;
 
@@ -40,7 +40,7 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
         />
 
         {/* THERMAL REVEAL GRID (Swiss Red) */}
-        <motion.div 
+        <m.div 
             style={{ 
                 backgroundImage: `radial-gradient(circle, rgba(255,48,0,0.15) 1px, transparent 1px)`,
                 backgroundSize: "40px 40px",
@@ -123,7 +123,7 @@ const CoreNode = ({ index, progress }: { index: number, progress: any }) => {
   const opacity = useTransform(progress, [0, 0.25, 0.5, 0.75, 1], [0.2, 0.15, 0.2, 0.25, 0.15]);
 
   return (
-    <motion.div
+    <m.div
         style={{ x, y, rotate, scale, borderRadius, opacity, left: "50%", top: "50%" }}
         className="absolute size-8 md:size-12 border-2 border-swiss-accent bg-swiss-accent/5 backdrop-blur-sm -translate-x-1/2 -translate-y-1/2 will-change-transform"
     />
