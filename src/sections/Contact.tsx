@@ -126,7 +126,7 @@ export const ContactSection = () => {
         <SectionHeader
           number="05"
           eyebrow="Contact"
-          title="Contact Me"
+          title="Reach Out"
           description="Let's build something exceptional together. Reach out to discuss your project or explore potential collaborations."
         />
 
@@ -337,4 +337,4 @@ export const ContactSection = () => {
       </div>
     </section>
   );
-};
+};
