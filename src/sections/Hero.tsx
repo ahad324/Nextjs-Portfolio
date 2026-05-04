@@ -20,6 +20,8 @@ export const HeroSection = () => {
 
   const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -80]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 45]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
@@ -54,9 +56,12 @@ export const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Section Number & Vertical Line */}
-          <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4">
-            <span className="text-swiss-accent font-black text-xl tracking-tighter">SYS_01</span>
-            <div className="w-1 h-32 bg-swiss-accent" />
+          <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-3 mt-4">
+            <span className="text-swiss-accent font-black text-xs tracking-[0.4em] [writing-mode:vertical-lr] rotate-180 uppercase opacity-80">
+              System_Init
+            </span>
+            <span className="text-swiss-accent font-mono font-bold text-xl">01</span>
+            <div className="w-1 h-24 bg-swiss-accent" />
           </div>
 
           {/* Main Content Area */}
@@ -65,22 +70,37 @@ export const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={isReady ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="bg-black text-white px-4 py-1 mb-8 inline-block"
+              className="bg-black text-white px-4 py-2 mb-8 inline-flex items-center gap-3 border border-white/10 shadow-[4px_4px_0px_0px_rgba(255,68,0,0.3)]"
             >
+              <div className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-swiss-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-swiss-accent"></span>
+              </div>
               <span className="uppercase font-bold tracking-[0.3em] text-[10px] md:text-xs text-swiss-accent">
                 System Integration Status: Active
               </span>
             </motion.div>
 
-            <motion.h1 
+            <div className="relative w-full">
+              {/* Floating Tech Badges */}
+              <motion.div
+                style={{ y: y3 }}
+                className="absolute -top-10 right-[10%] lg:right-[20%] hidden md:flex items-center gap-2 bg-white border-2 border-black px-4 py-2 font-mono text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"
+              >
+                <div className="w-2 h-2 bg-swiss-accent rounded-full animate-pulse" />
+                FULL-STACK ENG
+              </motion.div>
+
+              <motion.h1
                 style={{ y: y2 }}
-                className="text-[clamp(2rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase sm:mb-12 flex flex-col"
+                className="text-[clamp(3.5rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
                 aria-label="Abdul Ahad - Architecting Performant Systems"
-            >
-              <SplitText text="Architecting" delay={0.5} />
-              <SplitText text="Performant" className="text-swiss-accent" delay={0.7} />
-              <SplitText text="Systems" delay={0.9} />
-            </motion.h1>
+              >
+                <SplitText text="Engineer" delay={0.5} />
+                <SplitText text="Scale" className="text-swiss-accent" delay={0.7} />
+                <SplitText text="Dominate" delay={0.9} />
+              </motion.h1>
+            </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full items-end mt-12 md:mt-16">
               <motion.p
@@ -89,15 +109,15 @@ export const HeroSection = () => {
                 transition={{ duration: 0.8, delay: 1.4 }}
                 className="text-xl md:text-2xl font-medium max-w-lg leading-tight text-black/70 border-l-4 border-black pl-8"
               >
-                I engineer end-to-end web applications through a lens of structural discipline 
+                I engineer end-to-end web applications through a lens of structural discipline
                 and functional clarity. Expert in Full Stack environments and modular software design.
               </motion.p>
-              
-              <motion.div 
+
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 1.8 }}
-                className="flex flex-col sm:flex-row gap-0 border-4 border-black box-content w-fit relative z-30 bg-black"
+                className="flex flex-col md:flex-row items-center gap-0 border-4 border-black box-content w-fit relative z-30 bg-black"
               >
                 {/* EXPLORE WORK - 3D SLAB */}
                 <Magnetic strength={0.2}>
@@ -108,7 +128,7 @@ export const HeroSection = () => {
                   >
                     {/* Shadow/Depth Layer */}
                     <div className="absolute inset-0 bg-swiss-accent translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300" />
-                    
+
                     {/* Surface Layer */}
                     <div className="relative bg-black text-white px-10 py-6 font-black uppercase tracking-widest text-sm border-r-0 sm:border-r-4 border-black group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 flex items-center justify-center min-w-[220px]">
                       Explore Work
@@ -126,7 +146,7 @@ export const HeroSection = () => {
                   >
                     {/* Shadow/Depth Layer */}
                     <div className="absolute inset-0 bg-black translate-x-0 translate-y-0 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform duration-300" />
-                    
+
                     {/* Surface Layer */}
                     <div className="relative bg-white text-black px-10 py-6 font-black uppercase tracking-widest text-sm group-hover:-translate-x-1 group-hover:-translate-y-1 transition-transform duration-300 flex items-center justify-center min-w-[220px] border-t-4 sm:border-t-0 border-black">
                       Download CV
@@ -141,10 +161,10 @@ export const HeroSection = () => {
 
       {/* Decorative Geometric Elements */}
       <div className="absolute top-0 right-0 w-1/3 h-full hidden xl:block -z-10 bg-swiss-muted/30 border-l-4 border-black/5">
-        <motion.div 
+        <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-48 bg-swiss-accent/10 rounded-none border-4 border-black/5 -translate-x-1/2 rotate-45" 
+          className="absolute top-1/2 left-0 -translate-y-1/2 w-48 h-48 bg-swiss-accent/10 rounded-none border-4 border-black/5 -translate-x-1/2 rotate-45"
         />
         <div className="absolute bottom-24 right-24 w-64 h-64 border-swiss swiss-dots opacity-20" />
       </div>

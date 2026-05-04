@@ -91,7 +91,7 @@ export const ProjectsSection = () => {
       <div className="container">
         <SectionHeader
           number="02"
-          eyebrow="Expertise"
+          eyebrow="Projects"
           title="Case Studies"
           description="A systematic breakdown of technical solutions focused on high-performance engineering and architectural excellence."
         />

@@ -15,7 +15,7 @@ const experiences = [
     location: "Lahore, Pakistan",
     type: "Full-time",
     link: "https://floty.ai/",
-    description: "Architecting high-performance AI-driven systems and streamlining end-to-end web architectures.",
+    description: "Architecting high-performance systems and streamlining end-to-end web architectures.",
     tech: ["Next.js", "AI Integration", "FastAPI", "PostgreSQL"]
   },
   {
@@ -55,7 +55,7 @@ export const ExperienceSection = () => {
                 >
                     <SectionHeader
                         number="03"
-                        eyebrow="Progression"
+                        eyebrow="Experience"
                         title="Engineering Ledger"
                         description="A chronological log of professional contributions, focused on building robust system architectures and high-impact digital solutions."
                     />

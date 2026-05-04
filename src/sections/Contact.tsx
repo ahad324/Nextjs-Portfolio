@@ -125,7 +125,7 @@ export const ContactSection = () => {
       <div className="container relative z-10">
         <SectionHeader
           number="05"
-          eyebrow="Communication"
+          eyebrow="Contact"
           title="System Access"
           description="Initialize a secure connection to discuss architectural implementations or potential system integrations."
         />
