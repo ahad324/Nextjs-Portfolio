@@ -62,16 +62,20 @@ export const Header = () => {
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        setIsDropdownOpen(false); // Close menu first
+        setIsDropdownOpen(false); 
         setActiveIndex(index); 
         
-        const navHeight = 84; 
-        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+        // Small delay to allow mobile menu closing animation/layout shift to settle
+        setTimeout(() => {
+          const navHeight = 84; 
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navHeight;
+          
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 100);
       }
     }
   };
