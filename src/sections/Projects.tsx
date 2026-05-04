@@ -92,8 +92,8 @@ export const ProjectsSection = () => {
         <SectionHeader
           number="02"
           eyebrow="Projects"
-          title="Case Studies"
-          description="A systematic breakdown of technical solutions focused on high-performance engineering and architectural excellence."
+          title="Selected Works"
+          description="A curated collection of digital experiences where design meets high-performance engineering to solve complex challenges."
         />
 
         <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-0 border-t-4 border-l-4 border-black">

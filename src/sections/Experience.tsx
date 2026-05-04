@@ -56,7 +56,7 @@ export const ExperienceSection = () => {
                     <SectionHeader
                         number="03"
                         eyebrow="Experience"
-                        title="Engineering Ledger"
+                        title="Career Path"
                         description="A chronological log of professional contributions, focused on building robust system architectures and high-impact digital solutions."
                     />
                 </motion.div>

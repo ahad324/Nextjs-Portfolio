@@ -11,6 +11,7 @@ import { useRef } from "react";
 
 export const HeroSection = () => {
   const { isLoading } = useLoading();
+  const currentYear = new Date().getFullYear().toString().slice(-2);
   const isReady = !isLoading;
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -35,7 +36,8 @@ export const HeroSection = () => {
       <motion.div
         style={{ y: y1, opacity, rotate }}
         initial={{ scale: 0.8, opacity: 0 }}
-        animate={isReady ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+        animate={isReady ? { scale: 1, opacity: 1, x: "15%" } : { scale: 0.8, opacity: 0, x: "0%" }}
+        className="lg:translate-x-[15%]"
         transition={{ duration: 2.5, ease: "easeOut", delay: 0.5 }}
       >
         <HeroOrbit size={800} rotation={-45} shouldOrbit orbitDuration="80s" shouldSpin spinDuration="10s">
@@ -56,12 +58,12 @@ export const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Section Number & Vertical Line */}
-          <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-3 mt-4">
-            <span className="text-swiss-accent font-black text-xs tracking-[0.4em] [writing-mode:vertical-lr] rotate-180 uppercase opacity-80">
-              System_Init
+          <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4 mt-4">
+            <span className="text-swiss-accent font-black text-xs tracking-[0.5em] [writing-mode:vertical-lr] rotate-180 uppercase opacity-60">
+              Portfolio
             </span>
-            <span className="text-swiss-accent font-mono font-bold text-xl">01</span>
-            <div className="w-1 h-24 bg-swiss-accent" />
+            <span className="text-swiss-accent font-mono font-bold text-xl">{currentYear}</span>
+            <div className="w-[2px] h-32 bg-gradient-to-b from-swiss-accent to-transparent" />
           </div>
 
           {/* Main Content Area */}
@@ -77,12 +79,12 @@ export const HeroSection = () => {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-swiss-accent"></span>
               </div>
               <span className="uppercase font-bold tracking-[0.3em] text-[10px] md:text-xs text-swiss-accent">
-                System Integration Status: Active
+                Availability: Open for Innovation
               </span>
             </motion.div>
 
             <div className="relative w-full">
-              {/* Floating Tech Badges */}
+              {/* Floating Tech Badge */}
               <motion.div
                 style={{ y: y3 }}
                 className="absolute -top-10 right-[10%] lg:right-[20%] hidden md:flex items-center gap-2 bg-white border-2 border-black px-4 py-2 font-mono text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] z-10"
@@ -93,12 +95,12 @@ export const HeroSection = () => {
 
               <motion.h1
                 style={{ y: y2 }}
-                className="text-[clamp(3.5rem,9vw,14rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
+                className="text-[clamp(5rem,9vw,18rem)] font-black leading-[0.8] tracking-tighter uppercase flex flex-col relative z-20"
                 aria-label="Abdul Ahad - Architecting Performant Systems"
               >
-                <SplitText text="Engineer" delay={0.5} />
-                <SplitText text="Scale" className="text-swiss-accent" delay={0.7} />
-                <SplitText text="Dominate" delay={0.9} />
+                <SplitText text="Design" delay={0.5} />
+                <SplitText text="Build" className="text-swiss-accent" delay={0.7} />
+                <SplitText text="Scale" delay={0.9} />
               </motion.h1>
             </div>
 

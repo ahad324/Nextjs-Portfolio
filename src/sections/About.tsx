@@ -234,7 +234,7 @@ export const AboutSection = () => {
           <SectionHeader
             number="04"
             eyebrow="About"
-            title="The Human Hardware"
+            title="Personal Bio"
             description="Deconstructing the technical and philosophical framework behind my engineering process."
           />
         </motion.div>
@@ -330,7 +330,7 @@ export const AboutSection = () => {
             {/* Interests Matrix */}
             <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-12 relative overflow-hidden" data-cursor="GRID">
               <div className="absolute top-0 right-0 p-4 font-black text-5xl opacity-[0.03] uppercase tracking-tighter font-heading">Beyond_Code</div>
-              <h3 className="text-3xl md:text-4xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading [word-break:keep-all]">Human_Interests</h3>
+              <h3 className="text-3xl md:text-4xl font-black uppercase mb-12 border-b-4 border-black pb-4 inline-block tracking-tighter font-heading [word-break:keep-all]">Personal Hobbies</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border-t-2 border-l-2 border-black/10">
                 {hobbies.map((hobby, i) => <HobbyCard key={hobby.title} hobby={hobby} index={i} />)}
                 <div className="border-r-2 border-b-2 border-black/10 p-6 bg-swiss-muted/30 flex items-center justify-center">

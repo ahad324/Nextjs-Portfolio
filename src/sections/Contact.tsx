@@ -126,7 +126,7 @@ export const ContactSection = () => {
         <SectionHeader
           number="05"
           eyebrow="Contact"
-          title="System Access"
+          title="Contact Me"
           description="Initialize a secure connection to discuss architectural implementations or potential system integrations."
         />
 
