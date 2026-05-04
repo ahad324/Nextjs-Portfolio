@@ -19,6 +19,7 @@ export const Header = () => {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const scrollTracker = useRef<Record<string, IntersectionObserverEntry>>({});
 
@@ -93,37 +94,63 @@ export const Header = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex flex-1">
-          <ul className="flex h-full w-full list-none p-0 m-0">
-            {links.map((link, index) => (
-              <li key={link.id} className="h-full flex-1 border-r-4 border-black last:border-r-0">
-                <Link
-                  href={link.href}
-                  onClick={(e) => handleAnchorClick(e, link.href, index)}
-                  className={twMerge(
-                    "group relative flex items-center justify-center h-full w-full uppercase font-bold tracking-widest text-sm overflow-hidden transition-colors duration-200",
-                    activeIndex === index ? 'bg-black text-white' : 'bg-white text-black hover:bg-swiss-muted'
-                  )}
+          <ul 
+            className="flex h-full w-full list-none p-0 m-0"
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            {links.map((link, index) => {
+              const isHighlighted = hoveredIndex !== null ? hoveredIndex === index : activeIndex === index;
+              const isActive = activeIndex === index;
+
+              return (
+                <li 
+                  key={link.id} 
+                  className="h-full flex-1 border-r-4 border-black last:border-r-0 relative"
+                  onMouseEnter={() => setHoveredIndex(index)}
                 >
-                  <motion.span
-                    initial={false}
-                    animate={{ y: 0 }}
-                    whileHover={{ y: -2 }}
-                    className="relative z-10"
+                  <Link
+                    href={link.href}
+                    onClick={(e) => handleAnchorClick(e, link.href, index)}
+                    className={twMerge(
+                      "group relative flex items-center justify-center h-full w-full uppercase font-bold tracking-widest text-xs transition-colors duration-500",
+                      isHighlighted ? 'text-white' : 'text-black'
+                    )}
                   >
-                    {link.name}
-                  </motion.span>
-                  
-                  {/* Active Indicator (Swiss Red Line) */}
-                  {activeIndex === index && (
-                    <motion.div 
-                      layoutId="active-indicator"
-                      className="absolute bottom-0 left-0 w-full h-2 bg-swiss-accent"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              </li>
-            ))}
+                    {/* Sliding Background Pill */}
+                    {isHighlighted && (
+                      <motion.div 
+                        layoutId="active-pill"
+                        className="absolute inset-0 bg-black"
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 350, 
+                          damping: 35,
+                          mass: 1
+                        }}
+                      />
+                    )}
+
+                    {/* Active Indicator (Swiss Red Line) */}
+                    {isActive && (
+                      <motion.div 
+                        layoutId="active-indicator"
+                        className="absolute bottom-0 left-0 w-full h-2 bg-swiss-accent z-20"
+                        transition={{ 
+                          type: "spring", 
+                          stiffness: 350, 
+                          damping: 35,
+                          mass: 1
+                        }}
+                      />
+                    )}
+
+                    <span className="relative z-10">
+                      {link.name}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
