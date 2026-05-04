@@ -57,7 +57,7 @@ export const ScrollArchitecture = ({ children }: { children: React.ReactNode }) 
         />
 
         {/* NEURAL CORE ARTIFACT */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute inset-0 flex items-center justify-center translate-y-[15%] md:translate-x-[15%] lg:translate-x-[20%] transition-transform duration-1000">
             <div className="relative size-[600px]">
                 {nodes.map((_, i) => (
                     <CoreNode key={i} index={i} progress={artifactProgress} />

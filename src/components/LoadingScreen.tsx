@@ -80,8 +80,8 @@ export const LoadingScreen = ({ onComplete, onExitStart, pageLoaded }: LoadingSc
             {/* Header Area */}
             <div className="flex justify-between items-end mb-10 font-black uppercase tracking-tighter">
               <div className="flex flex-col">
-                <span className="text-white text-3xl md:text-5xl lg:text-7xl leading-none tracking-tighter">Terminal</span>
-                <span className="text-swiss-accent text-3xl md:text-5xl lg:text-7xl leading-none tracking-[-0.05em]">Initialized</span>
+                <span className="text-white text-3xl md:text-5xl lg:text-7xl leading-none tracking-tighter">System</span>
+                <span className="text-swiss-accent text-3xl md:text-5xl lg:text-7xl leading-none tracking-[-0.05em]">Activated</span>
                 <div className="flex items-center gap-3 mt-4">
                   <div className="size-3 bg-swiss-accent animate-pulse" />
                   <span className="text-white/40 text-[10px] md:text-xs tracking-[0.5em] font-bold">

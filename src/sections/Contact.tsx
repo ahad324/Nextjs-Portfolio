@@ -127,7 +127,7 @@ export const ContactSection = () => {
           number="05"
           eyebrow="Contact"
           title="Contact Me"
-          description="Initialize a secure connection to discuss architectural implementations or potential system integrations."
+          description="Let's build something exceptional together. Reach out to discuss your project or explore potential collaborations."
         />
 
         <div className="mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
