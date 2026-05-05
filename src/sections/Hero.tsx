@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { m, useScroll, useTransform, useSpring } from "framer-motion";
 import { HeroOrbit } from "@/components/HeroOrbit";
@@ -7,11 +8,15 @@ import { ElasticLine } from "@/components/ElasticLine";
 import { useLoading } from "@/context/LoadingContext";
 import { SplitText } from "@/components/SplitText";
 import { Magnetic } from "@/components/Magnetic";
-import { useRef } from "react";
 
 export const HeroSection = () => {
   const { isLoading } = useLoading();
-  const currentYear = new Date().getFullYear().toString().slice(-2);
+  const [currentYear, setCurrentYear] = useState("");
+  
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear().toString().slice(-2));
+  }, []);
+
   const isReady = !isLoading;
   const containerRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
@@ -78,7 +83,7 @@ export const HeroSection = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-swiss-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-swiss-accent"></span>
               </div>
-              <span className="uppercase font-bold tracking-[0.3em] text-[10px] md:text-xs text-swiss-accent">
+              <span className="uppercase font-bold tracking-[0.3em] text-[10px] md:text-xs text-white">
                 Availability: Open for Innovation
               </span>
             </m.div>

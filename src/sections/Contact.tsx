@@ -289,7 +289,7 @@ export const ContactSection = () => {
           {/* Sidebar Info */}
           <div className="lg:col-span-4 space-y-8">
              <div className="border-4 border-black p-8 bg-white shadow-[10px_10px_0px_0px_rgba(255,48,0,0.1)]">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-swiss-accent mb-6 border-b-2 border-black pb-2 inline-block">Direct_Channels</h4>
+                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-swiss-accent mb-6 border-b-2 border-black pb-2 inline-block">Direct_Channels</h3>
                 <div className="space-y-6">
                    <a href="mailto:ahadg446@gmail.com" className="flex items-center gap-4 group cursor-none">
                       <div className="size-10 border-2 border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all transform group-hover:rotate-3">
@@ -314,7 +314,7 @@ export const ContactSection = () => {
 
              <div className="border-4 border-black p-8 bg-[#0A0A0A] text-white relative overflow-hidden group">
                 <div className="absolute inset-0 bg-swiss-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h4 className="text-[9px] font-mono text-swiss-accent uppercase mb-4 tracking-[0.3em]">System_Diagnostics</h4>
+                <h3 className="text-[9px] font-mono text-swiss-accent uppercase mb-4 tracking-[0.3em]">System_Diagnostics</h3>
                 <div className="text-[10px] font-mono opacity-90 leading-relaxed uppercase space-y-1">
                    <div>Availability: <span className={status === 'SENDING' ? 'text-swiss-accent animate-pulse' : 'text-green-500'}>100%_ACTIVE</span></div>
                    <div>Response_Lat: &lt; 24h</div>

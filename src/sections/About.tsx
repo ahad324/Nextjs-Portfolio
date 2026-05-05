@@ -59,6 +59,12 @@ const hobbies = [
 const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }) => {
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
+  const [engagement, setEngagement] = useState(0);
+
+  useEffect(() => {
+    setEngagement(Math.floor(80 + Math.random() * 20));
+  }, []);
+
   const rotateX = useSpring(useTransform(y, [0, 1], [15, -15]), { stiffness: 150, damping: 20 });
   const rotateY = useSpring(useTransform(x, [0, 1], [-15, 15]), { stiffness: 150, damping: 20 });
 
@@ -102,7 +108,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
       <div className="mt-8 flex flex-col gap-2 relative z-10">
         <div className="flex justify-between items-end text-[8px] font-mono uppercase">
           <span className="text-black/80">Engagement</span>
-          <span className="text-swiss-accent">{Math.floor(80 + Math.random() * 20)}%</span>
+          <span className="text-swiss-accent">{engagement}%</span>
         </div>
         <div className="w-full h-1 bg-black/5 relative overflow-hidden">
           <m.div
@@ -120,6 +126,14 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
       </div>
     </m.div>
   );
+};
+
+const LogId = () => {
+  const [id, setId] = useState("");
+  useEffect(() => {
+    setId(Math.random().toString(16).slice(2, 6));
+  }, []);
+  return <span className="text-white/70">{id}</span>;
 };
 
 const KnowledgeMap = () => {
@@ -206,7 +220,7 @@ const KnowledgeMap = () => {
           {log.map((entry, i) => (
             <div key={i} className="text-[7px] text-white/90 flex justify-between font-mono">
               <span>&gt; {entry}</span>
-              <span className="text-white/40">{Math.random().toString(16).slice(2, 6)}</span>
+              <LogId />
             </div>
           ))}
         </div>

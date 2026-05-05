@@ -1,12 +1,19 @@
 "use client";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const footerLinks = [
   { title: "Github", href: "https://github.com/ahad324/" },
   { title: "LinkedIn", href: "https://www.linkedin.com/in/abdul-ahad-a08263273" },
   { title: "Upwork", href: "https://www.upwork.com/freelancers/~0184f23bd97d54f1b3" },
 ];
+
+const Year = () => {
+  const [year, setYear] = useState<number | string>("");
+  useEffect(() => setYear(new Date().getFullYear()), []);
+  return <>{year}</>;
+};
 
 export const Footer = () => {
   return (
@@ -40,7 +47,7 @@ export const Footer = () => {
             {/* Copyright Area */}
             <div className="p-12 flex justify-between items-center bg-white">
               <span className="font-bold uppercase tracking-widest text-xs">
-                &copy; {new Date().getFullYear()} / ALL RIGHTS RESERVED
+                &copy; <Year /> / ALL RIGHTS RESERVED
               </span>
             </div>
           </div>

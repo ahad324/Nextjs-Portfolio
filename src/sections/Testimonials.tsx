@@ -71,7 +71,7 @@ export const TestimonialsSection = () => {
                         />
                       </div>
                       <div>
-                        <div className="font-semibold">{testimonial.name}</div>
+                        <h3 className="font-semibold">{testimonial.name}</h3>
                         <div className="text-sm text-black/80">
                           {testimonial.position}
                         </div>
