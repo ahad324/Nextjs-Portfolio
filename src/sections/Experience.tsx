@@ -123,7 +123,7 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
                     <div className="relative z-10">
                         <div className="flex justify-between items-start mb-6">
                             <div>
-                                <span className="text-swiss-accent font-black text-xs tracking-[0.3em] uppercase block mb-2">
+                                <span className="text-swiss-accent group-hover:text-white transition-colors font-black text-xs tracking-[0.3em] uppercase block mb-2">
                                     {exp.type} // {exp.duration}
                                 </span>
                                 <h3 className="text-3xl md:text-4xl font-black uppercase text-black group-hover:text-white transition-colors duration-200">

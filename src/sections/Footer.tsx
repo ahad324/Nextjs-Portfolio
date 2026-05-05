@@ -24,7 +24,7 @@ export const Footer = () => {
           {/* Brand Block */}
           <div className="lg:w-1/2 p-12 lg:p-24 border-b-4 lg:border-b-0 lg:border-r-4 border-black bg-black text-white">
             <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-4">AA</h2>
-            <p className="font-bold uppercase tracking-widest text-swiss-accent text-sm">Full Stack Developer</p>
+            <p className="font-bold uppercase tracking-widest text-[#FF4D00] text-sm">Full Stack Developer</p>
           </div>
 
           {/* Links Block */}

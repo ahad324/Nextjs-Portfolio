@@ -115,7 +115,7 @@ export const ProjectsSection = () => {
               <div className="p-6 md:p-12 relative z-10">
                 <div className="flex justify-between items-start gap-4 mb-12">
                   <div className="flex flex-col min-w-0">
-                    <span className="text-swiss-accent font-black text-sm tracking-widest uppercase mb-2">
+                    <span className="text-swiss-accent group-hover:text-white transition-colors font-black text-sm tracking-widest uppercase mb-2">
                       {project.company} / {project.year}
                     </span>
                     <h3 className="text-3xl md:text-4xl lg:text-5xl font-black uppercase text-black group-hover:text-white transition-colors duration-200 break-words">

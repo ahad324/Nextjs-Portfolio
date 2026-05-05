@@ -60,7 +60,7 @@ const BinaryRain = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-[0.03] pointer-events-none select-none font-mono text-[8px] leading-none break-all flex flex-wrap gap-1 content-start">
+    <div className="absolute inset-0 overflow-hidden opacity-[0.08] pointer-events-none select-none font-mono text-[8px] leading-none break-all flex flex-wrap gap-1 content-start">
       {bits.map((bit, i) => (
         <span key={i} className="text-white">{bit}</span>
       ))}
@@ -314,7 +314,7 @@ export const ContactSection = () => {
 
              <div className="border-4 border-black p-8 bg-[#0A0A0A] text-white relative overflow-hidden group">
                 <div className="absolute inset-0 bg-swiss-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <h3 className="text-[9px] font-mono text-swiss-accent uppercase mb-4 tracking-[0.3em]">System_Diagnostics</h3>
+                <h3 className="text-[9px] font-mono text-[#FF4D00] uppercase mb-4 tracking-[0.3em]">System_Diagnostics</h3>
                 <div className="text-[10px] font-mono opacity-90 leading-relaxed uppercase space-y-1">
                    <div>Availability: <span className={status === 'SENDING' ? 'text-swiss-accent animate-pulse' : 'text-green-500'}>100%_ACTIVE</span></div>
                    <div>Response_Lat: &lt; 24h</div>
