@@ -212,10 +212,10 @@ export const ContactSection = () => {
                                 {status === 'SUCCESS' ? <CheckCircle2 className="size-10" /> : <AlertCircle className="size-10" />}
                             </div>
                             <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">
-                                {status === 'SUCCESS' ? "SIGNAL_LOCKED" : "TRANS_FAILURE"}
+                                {status === 'SUCCESS' ? "MESSAGE SENT" : "SENDING FAILED"}
                             </h3>
                             <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest text-center max-w-[200px]">
-                                {status === 'SUCCESS' ? "Data packet delivered into the core architecture." : "Uplink severed due to transmission protocols."}
+                                {status === 'SUCCESS' ? "Thank you for reaching out. Your message has been received and I'll get back to you shortly." : "Unable to complete transmission. Please try again or reach out via direct channels."}
                             </p>
                             <div className="mt-8 text-[8px] font-mono opacity-40 uppercase">Auto_Reset in 20.0s</div>
                         </m.div>
