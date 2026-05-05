@@ -59,7 +59,7 @@ export const HeroSection = () => {
           
           {/* Section Number & Vertical Line */}
           <div className="hidden lg:flex lg:col-span-1 flex-col items-center gap-4 mt-4">
-            <span className="text-swiss-accent font-black text-xs tracking-[0.5em] [writing-mode:vertical-lr] rotate-180 uppercase opacity-60">
+            <span className="text-swiss-accent font-black text-xs tracking-[0.5em] [writing-mode:vertical-lr] rotate-180 uppercase opacity-100">
               Portfolio
             </span>
             <span className="text-swiss-accent font-mono font-bold text-xl">{currentYear}</span>
@@ -109,7 +109,7 @@ export const HeroSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 1.4 }}
-                className="text-xl md:text-2xl font-medium max-w-lg leading-tight text-black/70 border-l-4 border-black pl-8"
+                className="text-xl md:text-2xl font-medium max-w-lg leading-tight text-black border-l-4 border-black pl-8"
               >
                 I engineer end-to-end web applications through a lens of structural discipline
                 and functional clarity. Expert in Full Stack environments and modular software design.

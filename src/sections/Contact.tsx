@@ -143,7 +143,7 @@ export const ContactSection = () => {
                     <div className="size-2 rounded-full bg-red-500/50" />
                     <div className="size-2 rounded-full bg-yellow-500/50" />
                     <div className="size-2 rounded-full bg-green-500/50" />
-                    <span className="ml-4 text-[9px] font-mono text-white/40 uppercase tracking-[0.2em] flex items-center gap-2">
+                    <span className="ml-4 text-[9px] font-mono text-white/90 uppercase tracking-[0.2em] flex items-center gap-2">
                         <Terminal className="size-3" />
                         SYS_TERM_v4.2.0
                     </span>
@@ -151,7 +151,7 @@ export const ContactSection = () => {
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1.5">
                         <div className={`size-1.5 rounded-full ${status === 'SENDING' ? 'bg-swiss-accent animate-pulse' : 'bg-green-500/20'}`} />
-                        <span className="text-[8px] font-mono text-white/30 lowercase">uplink_status: {status.toLowerCase()}</span>
+                        <span className="text-[8px] font-mono text-white/90 lowercase">uplink_status: {status.toLowerCase()}</span>
                     </div>
                 </div>
             </div>
@@ -214,10 +214,10 @@ export const ContactSection = () => {
                             <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">
                                 {status === 'SUCCESS' ? "SIGNAL_LOCKED" : "TRANS_FAILURE"}
                             </h3>
-                            <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest text-center max-w-[200px]">
+                            <p className="text-[10px] font-mono text-white/90 uppercase tracking-widest text-center max-w-[200px]">
                                 {status === 'SUCCESS' ? "Data packet delivered into the core architecture." : "Uplink severed due to transmission protocols."}
                             </p>
-                            <div className="mt-8 text-[8px] font-mono opacity-20 uppercase">Auto_Reset in 20.0s</div>
+                            <div className="mt-8 text-[8px] font-mono opacity-40 uppercase">Auto_Reset in 20.0s</div>
                         </m.div>
                     )}
                 </AnimatePresence>
@@ -228,7 +228,7 @@ export const ContactSection = () => {
                         <div className="group/input">
                             <div className="flex items-center gap-4 text-swiss-accent font-mono text-xs mb-4">
                                 <span>user:~$</span>
-                                <span className="text-white/40 group-focus-within/input:text-swiss-accent transition-colors">set_id</span>
+                                <span className="text-white/70 group-focus-within/input:text-swiss-accent transition-colors">set_id</span>
                             </div>
                             <input 
                                 required
@@ -243,7 +243,7 @@ export const ContactSection = () => {
                         <div className="group/input">
                             <div className="flex items-center gap-4 text-swiss-accent font-mono text-xs mb-4">
                                 <span>user:~$</span>
-                                <span className="text-white/40 group-focus-within/input:text-swiss-accent transition-colors">set_ch</span>
+                                <span className="text-white/70 group-focus-within/input:text-swiss-accent transition-colors">set_ch</span>
                             </div>
                             <input 
                                 required
@@ -259,7 +259,7 @@ export const ContactSection = () => {
                     <div className="group/input">
                         <div className="flex items-center gap-4 text-swiss-accent font-mono text-xs mb-4">
                             <span>user:~$</span>
-                            <span className="text-white/40 group-focus-within/input:text-swiss-accent transition-colors">push_msg</span>
+                            <span className="text-white/70 group-focus-within/input:text-swiss-accent transition-colors">push_msg</span>
                         </div>
                         <textarea 
                             required
@@ -315,7 +315,7 @@ export const ContactSection = () => {
              <div className="border-4 border-black p-8 bg-[#0A0A0A] text-white relative overflow-hidden group">
                 <div className="absolute inset-0 bg-swiss-accent/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <h4 className="text-[9px] font-mono text-swiss-accent uppercase mb-4 tracking-[0.3em]">System_Diagnostics</h4>
-                <div className="text-[10px] font-mono opacity-40 leading-relaxed uppercase space-y-1">
+                <div className="text-[10px] font-mono opacity-90 leading-relaxed uppercase space-y-1">
                    <div>Availability: <span className={status === 'SENDING' ? 'text-swiss-accent animate-pulse' : 'text-green-500'}>100%_ACTIVE</span></div>
                    <div>Response_Lat: &lt; 24h</div>
                    <div>Loc: Lahore, PK</div>

@@ -58,7 +58,7 @@ export const SectionHeader = ({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className="text-lg md:text-xl text-black/60 mt-8 max-w-2xl font-medium"
+        className="text-lg md:text-xl text-black mt-8 max-w-2xl font-medium"
       >
         {description}
       </m.p>

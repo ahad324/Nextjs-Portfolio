@@ -90,7 +90,7 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
     // Each dot activates at a specific scroll point
     const threshold = index === 0 ? 0.2 : 0.8;
     const dotScale = useTransform(scrollYProgress, [threshold - 0.1, threshold, threshold + 0.1], [1, 1.8, 1]);
-    const dotColor = useTransform(scrollYProgress, [threshold - 0.1, threshold], ["#000000", "#FF3000"]);
+    const dotColor = useTransform(scrollYProgress, [threshold - 0.1, threshold], ["#000000", "#D92900"]);
 
     const yTransform = useTransform(scrollYProgress, [threshold - 0.2, threshold, threshold + 0.2], [20, 0, -20]);
 
@@ -134,6 +134,8 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
                                 <a 
                                     href={exp.link} 
                                     target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`Visit ${exp.company} website`}
                                     data-cursor="VISIT"
                                     className="p-3 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all group-hover:border-white block"
                                 >
@@ -145,19 +147,19 @@ const ExperienceCard = ({ exp, index, isReady, scrollYProgress }: { exp: any, in
                         <div className="flex flex-wrap gap-6 mb-8 border-t-2 border-black/10 pt-6 group-hover:border-white/20">
                             <div className="flex items-center gap-2">
                                 <Building2 className="size-4 text-swiss-accent" />
-                                <span className="text-sm font-bold uppercase tracking-wider text-black/60 group-hover:text-white/60">
+                                <span className="text-sm font-bold uppercase tracking-wider text-black group-hover:text-white/90">
                                     {exp.company}
                                 </span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <MapPin className="size-4 text-swiss-accent" />
-                                <span className="text-sm font-bold uppercase tracking-wider text-black/60 group-hover:text-white/60">
+                                <span className="text-sm font-bold uppercase tracking-wider text-black group-hover:text-white/90">
                                     {exp.location}
                                 </span>
                             </div>
                         </div>
 
-                        <p className="text-lg font-medium text-black/60 group-hover:text-white/70 mb-8 leading-relaxed">
+                        <p className="text-lg font-medium text-black group-hover:text-white mb-8 leading-relaxed">
                             {exp.description}
                         </p>
 

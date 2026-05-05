@@ -86,7 +86,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
 
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-4">
-          <span className="text-[10px] font-mono text-black/20 group-hover/hobby:text-swiss-accent transition-colors">UNIT_{index.toString().padStart(2, '0')}</span>
+          <span className="text-[10px] font-mono text-black/80 group-hover/hobby:text-swiss-accent transition-colors">UNIT_{index.toString().padStart(2, '0')}</span>
           <div className="size-1.5 bg-black/10 group-hover/hobby:bg-swiss-accent rounded-full animate-pulse" />
         </div>
 
@@ -95,13 +95,13 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
             {hobby.emoji}
           </span>
           <h4 className="font-black uppercase tracking-tighter text-lg leading-none mb-1">{hobby.title}</h4>
-          <span className="text-[8px] font-mono text-black/40 uppercase">Class: Peripheral_Interest</span>
+          <span className="text-[8px] font-mono text-black/80 uppercase">Class: Peripheral_Interest</span>
         </div>
       </div>
 
       <div className="mt-8 flex flex-col gap-2 relative z-10">
         <div className="flex justify-between items-end text-[8px] font-mono uppercase">
-          <span className="text-black/40">Engagement</span>
+          <span className="text-black/80">Engagement</span>
           <span className="text-swiss-accent">{Math.floor(80 + Math.random() * 20)}%</span>
         </div>
         <div className="w-full h-1 bg-black/5 relative overflow-hidden">
@@ -199,14 +199,14 @@ const KnowledgeMap = () => {
 
       <div className="absolute bottom-4 left-4 right-4 bg-white/5 backdrop-blur-md border border-white/10 p-4 font-mono">
         <div className="flex justify-between items-center mb-2 border-b border-white/10 pb-2">
-          <span className="text-[8px] text-white/40 uppercase">Neural_Telemetery</span>
-          <span className="text-[8px] text-swiss-accent">LIVE_SYNC</span>
+          <span className="text-[8px] text-white/80 uppercase">Neural_Telemetery</span>
+          <span className="text-[8px] text-swiss-accent font-bold">LIVE_SYNC</span>
         </div>
         <div className="space-y-1">
           {log.map((entry, i) => (
-            <div key={i} className="text-[7px] text-white/60 flex justify-between font-mono">
+            <div key={i} className="text-[7px] text-white/90 flex justify-between font-mono">
               <span>&gt; {entry}</span>
-              <span className="text-white/20">{Math.random().toString(16).slice(2, 6)}</span>
+              <span className="text-white/40">{Math.random().toString(16).slice(2, 6)}</span>
             </div>
           ))}
         </div>
@@ -281,11 +281,11 @@ export const AboutSection = () => {
 
             {/* Philosophy Terminal */}
             <div className="lg:col-span-7 border-4 border-black bg-white p-8 md:p-16 relative">
-              <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-black/20 uppercase">Core_Philosophy</div>
+              <div className="absolute top-0 right-0 p-4 font-mono text-[8px] text-black/80 uppercase">Core_Philosophy</div>
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12 font-heading [word-break:keep-all]">
                 Engineering <br /> with <span className="text-swiss-accent">Intent</span>.
               </h3>
-              <p className="text-xl md:text-2xl font-medium text-black/70 leading-relaxed max-w-xl italic">
+              <p className="text-xl md:text-2xl font-medium text-black/90 leading-relaxed max-w-xl italic">
                 "I architect resilient systems as a Full-Stack Developer by day and a Cybersecurity Defender by night. Every line of code is a strategic decision, aimed at creating high-performance, secure digital environments."
               </p>
 
@@ -322,7 +322,7 @@ export const AboutSection = () => {
                   <h3 className="text-3xl font-black uppercase text-swiss-accent font-heading">Neural_Map</h3>
                   <div className="size-3 bg-swiss-accent animate-pulse" />
                 </div>
-                <p className="text-white/60 font-medium text-sm leading-relaxed uppercase tracking-tighter">Mapping architectural nodes and cognitive dependencies across the full-stack landscape.</p>
+                <p className="text-white/80 font-medium text-sm leading-relaxed uppercase tracking-tighter">Mapping architectural nodes and cognitive dependencies across the full-stack landscape.</p>
               </div>
               <KnowledgeMap />
             </div>

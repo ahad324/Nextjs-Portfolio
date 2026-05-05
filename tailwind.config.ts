@@ -26,7 +26,7 @@ const config: Config = {
         swiss: {
           bg: "#FFFFFF",
           fg: "#000000",
-          accent: "#FF3000",
+          accent: "#D92900",
           muted: "#F2F2F2",
           border: "#000000",
         },

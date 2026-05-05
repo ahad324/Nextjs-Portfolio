@@ -126,6 +126,8 @@ export const ProjectsSection = () => {
                     <a 
                       href={project.link} 
                       target="_blank" 
+                      rel="noopener noreferrer"
+                      aria-label={`Visit ${project.title} live site`}
                       data-cursor="OPEN"
                       className="p-3 md:p-5 border-4 border-black bg-white group-hover:bg-swiss-accent transition-all duration-300 flex-shrink-0 group/link block"
                     >
@@ -146,7 +148,7 @@ export const ProjectsSection = () => {
                   />
                 </div>
 
-                <p className="text-lg font-medium text-black/60 group-hover:text-white/60 mt-8 mb-8 max-w-md">
+                <p className="text-lg font-medium text-black/80 group-hover:text-white/80 mt-8 mb-8 max-w-md">
                   {project.description}
                 </p>
 
