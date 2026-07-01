@@ -6,17 +6,17 @@ import { twMerge } from "tailwind-merge";
 
 import { useLoading } from "@/context/LoadingContext";
 
+const links = [
+  { name: "Home", href: "#hero", id: "hero" },
+  { name: "Projects", href: "#projects", id: "projects" },
+  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "About", href: "#about", id: "about" },
+  { name: "Contact", href: "#contact", id: "contact" },
+];
+
 export const Header = () => {
   const { isLoading } = useLoading();
   const isReady = !isLoading;
-  
-  const links = [
-    { name: "Home", href: "#hero", id: "hero" },
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Experience", href: "#experience", id: "experience" },
-    { name: "About", href: "#about", id: "about" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ];
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);

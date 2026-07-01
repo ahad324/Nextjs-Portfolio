@@ -18,12 +18,14 @@ export const SectionHeader = ({
       <m.div 
         initial={{ width: 0 }}
         whileInView={{ width: "100%" }}
+        viewport={{ once: true }}
         transition={{ duration: 1, ease: [0.33, 1, 0.68, 1] }}
         className="absolute -top-4 left-0 h-[1px] bg-black/10 hidden md:block"
       />
       <m.div 
         initial={{ height: 0 }}
         whileInView={{ height: "100%" }}
+        viewport={{ once: true }}
         transition={{ duration: 1.2, ease: [0.33, 1, 0.68, 1] }}
         className="absolute top-0 -left-8 w-[1px] bg-black/10 hidden md:block"
       />
@@ -33,6 +35,7 @@ export const SectionHeader = ({
           <m.span 
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-swiss-accent font-black tracking-widest text-xl font-mono"
           >
             [{number}]
@@ -49,6 +52,7 @@ export const SectionHeader = ({
         <m.div 
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="absolute -bottom-2 left-0 w-24 h-2 bg-swiss-accent origin-left"
         />
@@ -57,6 +61,7 @@ export const SectionHeader = ({
       <m.p 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-lg md:text-xl text-black mt-8 max-w-2xl font-medium"
       >

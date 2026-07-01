@@ -9,6 +9,7 @@ const LoadingLogic = ({ children }: { children: React.ReactNode }) => {
   const { isLoading, setIsLoading } = useLoading();
   const [showLoader, setShowLoader] = useState(true);
   const [pageLoaded, setPageLoaded] = useState(false);
+  const [animationFinished, setAnimationFinished] = useState(false);
 
   useEffect(() => {
     const checkLoad = () => {
@@ -52,6 +53,12 @@ const LoadingLogic = ({ children }: { children: React.ReactNode }) => {
           initial={{ clipPath: "inset(0 0 100% 0)" }}
           animate={{ clipPath: !isLoading ? "inset(0 0 0% 0)" : "inset(0 0 100% 0)" }}
           transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
+          onAnimationComplete={() => {
+            if (!isLoading) {
+              setAnimationFinished(true);
+            }
+          }}
+          style={animationFinished ? { clipPath: "none" } : {}}
           className="relative z-0"
         >
           {children}

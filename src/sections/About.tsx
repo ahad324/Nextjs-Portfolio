@@ -114,6 +114,7 @@ const HobbyCard = ({ hobby, index }: { hobby: typeof hobbies[0], index: number }
           <m.div
             initial={{ width: 0 }}
             whileInView={{ width: "85%" }}
+            viewport={{ once: true }}
             className="absolute inset-0 bg-black group-hover/hobby:bg-swiss-accent transition-colors"
           />
         </div>

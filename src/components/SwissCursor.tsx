@@ -34,16 +34,16 @@ export const SwissCursor = () => {
             
             if (interactive) {
                 if (interactive.classList.contains('magnetic')) {
-                    setCursorType("magnetic");
+                    setCursorType(prev => prev !== "magnetic" ? "magnetic" : prev);
                 } else {
-                    setCursorType("text");
+                    setCursorType(prev => prev !== "text" ? "text" : prev);
                     // Check for custom data-cursor text
-                    const text = interactive.getAttribute('data-cursor');
-                    setCursorText(text || "VIEW");
+                    const text = interactive.getAttribute('data-cursor') || "VIEW";
+                    setCursorText(prev => prev !== text ? text : prev);
                 }
             } else {
-                setCursorType("default");
-                setCursorText("");
+                setCursorType(prev => prev !== "default" ? "default" : prev);
+                setCursorText(prev => prev !== "" ? "" : prev);
             }
         };
 
