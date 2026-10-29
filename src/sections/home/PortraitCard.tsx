@@ -38,7 +38,7 @@ export function PortraitCard() {
           alt={`Portrait of ${site.name}`}
           sizes="(min-width: 768px) 30vw, 90vw"
           placeholder="blur"
-          className="absolute inset-x-0 bottom-0 mx-auto h-[96%] w-auto object-contain object-bottom grayscale contrast-[1.08] transition-[filter] duration-700 group-hover:grayscale-0"
+          className="absolute inset-x-0 bottom-0 mx-auto h-[96%] w-auto object-contain object-bottom contrast-[1.08] grayscale transition-[filter] duration-700 group-hover:grayscale-0"
         />
         <div className="grain absolute inset-0" aria-hidden />
         <figcaption

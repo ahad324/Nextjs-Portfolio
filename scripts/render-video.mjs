@@ -22,12 +22,21 @@ console.log("bundling…");
 const serveUrl = await bundle({ entryPoint: path.join(root, "video/index.ts"), webpackOverride });
 const composition = await selectComposition({ serveUrl, id: "Intro" });
 
-const progress = (label) => ({ progress }) => {
-  process.stdout.write(`\r${label} ${Math.round(progress * 100)}%   `);
-};
+const progress =
+  (label) =>
+  ({ progress }) => {
+    process.stdout.write(`\r${label} ${Math.round(progress * 100)}%   `);
+  };
 
 if (!only || only === "poster") {
-  await renderStill({ serveUrl, composition, frame: 230, output: media("intro-poster.jpg"), imageFormat: "jpeg", jpegQuality: 86 });
+  await renderStill({
+    serveUrl,
+    composition,
+    frame: 230,
+    output: media("intro-poster.jpg"),
+    imageFormat: "jpeg",
+    jpegQuality: 86,
+  });
   console.log("poster ✓");
 }
 if (!only || only === "mp4") {

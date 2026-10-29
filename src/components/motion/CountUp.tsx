@@ -5,7 +5,15 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/media";
 
 /** Number that counts up the first time it scrolls into view. Server-renders the final value. */
-export function CountUp({ value, suffix = "", className }: { value: number; suffix?: string; className?: string }) {
+export function CountUp({
+  value,
+  suffix = "",
+  className,
+}: {
+  value: number;
+  suffix?: string;
+  className?: string;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useGSAP(

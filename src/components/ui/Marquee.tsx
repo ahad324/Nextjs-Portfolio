@@ -30,7 +30,9 @@ export function Marquee({
           <div key={copy} className="flex shrink-0 items-center" aria-hidden={copy === 1}>
             {items.map((item, index) => (
               <Fragment key={item}>
-                <span className="shrink-0 px-5 whitespace-nowrap md:px-8">{renderItem(item, index)}</span>
+                <span className="shrink-0 px-5 whitespace-nowrap md:px-8">
+                  {renderItem(item, index)}
+                </span>
                 {separator}
               </Fragment>
             ))}

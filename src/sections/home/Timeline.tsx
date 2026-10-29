@@ -34,7 +34,11 @@ export function Timeline({ items }: { items: readonly Milestone[] }) {
           borderColor: "var(--color-ember)",
           scale: 1.2,
           duration: 0.4,
-          scrollTrigger: { trigger: item, start: "top 65%", toggleActions: "play none none reverse" },
+          scrollTrigger: {
+            trigger: item,
+            start: "top 65%",
+            toggleActions: "play none none reverse",
+          },
         });
       });
     },
@@ -44,10 +48,16 @@ export function Timeline({ items }: { items: readonly Milestone[] }) {
   return (
     <ol ref={ref} className="relative">
       <span aria-hidden className="absolute top-2 bottom-2 left-[5px] w-px bg-line-strong" />
-      <span aria-hidden className="tl-progress absolute top-2 bottom-2 left-[5px] w-px origin-top bg-ember" />
+      <span
+        aria-hidden
+        className="tl-progress absolute top-2 bottom-2 left-[5px] w-px origin-top bg-ember"
+      />
       {items.map((item) => (
         <li key={item.title} className="tl-item relative pb-12 pl-10 last:pb-0">
-          <span aria-hidden className="tl-dot absolute top-1.5 left-0 size-[11px] rounded-full border border-line-strong bg-ink" />
+          <span
+            aria-hidden
+            className="tl-dot absolute top-1.5 left-0 size-[11px] rounded-full border border-line-strong bg-ink"
+          />
           <div className="tl-body">
             <p className="font-mono text-xs tracking-wider text-ember uppercase">{item.period}</p>
             <h3 className="mt-2 text-title font-semibold">

@@ -182,7 +182,12 @@
 }
 
 @utility text-gradient-ember {
-  background: linear-gradient(100deg, var(--color-bone) 10%, var(--color-ember-2) 55%, var(--color-ember) 90%);
+  background: linear-gradient(
+    100deg,
+    var(--color-bone) 10%,
+    var(--color-ember-2) 55%,
+    var(--color-ember) 90%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -261,7 +266,8 @@ html.intro-seen .intro {
   html.has-custom-cursor * {
     cursor: none !important;
   }
-  html.has-custom-cursor :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select, [contenteditable]) {
+  html.has-custom-cursor
+    :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select, [contenteditable]) {
     cursor: text !important;
   }
 }

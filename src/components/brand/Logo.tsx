@@ -5,7 +5,13 @@ import { cn } from "@/lib/cn";
  * replaced by a single ember particle. Abdul Ahad, and the idea the whole
  * brand is built on: one small point that holds the structure together.
  */
-export function LogoMark({ className, title = "Abdul Ahad" }: { className?: string; title?: string }) {
+export function LogoMark({
+  className,
+  title = "Abdul Ahad",
+}: {
+  className?: string;
+  title?: string;
+}) {
   return (
     <svg viewBox="0 0 32 32" role="img" aria-label={title} className={cn("size-8", className)}>
       <path

@@ -5,14 +5,20 @@ import { FilmPlayer } from "./FilmPlayer";
 
 export function Film() {
   return (
-    <section id={sections.film} data-chapter="film" aria-labelledby="film-title" className="relative py-28 md:py-40">
+    <section
+      id={sections.film}
+      data-chapter="film"
+      aria-labelledby="film-title"
+      className="relative py-28 md:py-40"
+    >
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <SectionLabel index="04">The short version</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="film-title">
-                Forty seconds, <span className="font-serif font-normal text-ember italic">no fluff</span>
+                Forty seconds,{" "}
+                <span className="font-serif font-normal text-ember italic">no fluff</span>
               </span>
             </SplitReveal>
           </div>

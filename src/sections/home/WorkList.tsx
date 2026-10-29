@@ -71,8 +71,12 @@ export function WorkList() {
                 </span>
                 <span className="mt-2 block text-bone-2 md:hidden">{project.tagline}</span>
               </span>
-              <span className="hidden text-sm text-bone-2 md:col-span-3 md:block">{project.category}</span>
-              <span className="hidden font-mono text-sm text-muted md:col-span-1 md:block">{project.year}</span>
+              <span className="hidden text-sm text-bone-2 md:col-span-3 md:block">
+                {project.category}
+              </span>
+              <span className="hidden font-mono text-sm text-muted md:col-span-1 md:block">
+                {project.year}
+              </span>
               <span className="hidden justify-end md:col-span-1 md:flex">
                 <span className="flex size-12 items-center justify-center rounded-full border border-line-strong transition-[background-color,border-color,color,transform] duration-500 ease-[var(--ease-out-expo)] group-hover:-rotate-45 group-hover:border-ember group-hover:bg-ember group-hover:text-ink">
                   <ArrowUpRight className="size-4 rotate-45" />

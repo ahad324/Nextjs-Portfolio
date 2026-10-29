@@ -18,7 +18,8 @@ export function Contact() {
         <SectionLabel index="07">Contact</SectionLabel>
         <SplitReveal as="h2" by="words" className="mt-6 max-w-[14ch] text-mega font-semibold">
           <span id="contact-title">
-            Let&apos;s build something <span className="font-serif font-normal text-ember italic">real.</span>
+            Let&apos;s build something{" "}
+            <span className="font-serif font-normal text-ember italic">real.</span>
           </span>
         </SplitReveal>
 

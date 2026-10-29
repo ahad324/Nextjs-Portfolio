@@ -165,7 +165,8 @@ export function Particles({ count, onReady }: Props) {
     const forceGoal = p.active && !reduced ? (chapter.pointer ?? 0.6) : 0;
     s.force += (forceGoal - s.force) * (1 - Math.exp(-dt * 4));
 
-    s.velocity += (Math.min(Math.abs(sceneState.velocity), 60) - s.velocity) * (1 - Math.exp(-dt * 6));
+    s.velocity +=
+      (Math.min(Math.abs(sceneState.velocity), 60) - s.velocity) * (1 - Math.exp(-dt * 6));
 
     u.uTime!.value = state.clock.elapsedTime;
     u.uPixelRatio!.value = gl.getPixelRatio();

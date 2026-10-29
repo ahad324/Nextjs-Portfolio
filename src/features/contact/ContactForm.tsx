@@ -10,7 +10,10 @@ import { sendContact } from "./action";
 import { initialContactState, topics, type ContactState } from "./schema";
 
 export function ContactForm() {
-  const [state, action, pending] = useActionState<ContactState, FormData>(sendContact, initialContactState);
+  const [state, action, pending] = useActionState<ContactState, FormData>(
+    sendContact,
+    initialContactState,
+  );
   const startedAt = useRef<HTMLInputElement>(null);
   const [topic, setTopic] = useState<(typeof topics)[number]>(topics[0]);
   const form = useRef<HTMLFormElement>(null);
@@ -61,7 +64,8 @@ export function ContactForm() {
             noValidate
             onFocusCapture={() => {
               // Timestamp the first interaction; instant submissions are bots.
-              if (startedAt.current && !startedAt.current.value) startedAt.current.value = String(Date.now());
+              if (startedAt.current && !startedAt.current.value)
+                startedAt.current.value = String(Date.now());
             }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
@@ -155,10 +159,18 @@ export function ContactForm() {
                   "Goes straight to my inbox. No spam, ever."
                 )}
               </p>
-              <button type="submit" disabled={pending} className={buttonClasses({ size: "lg" })} aria-busy={pending}>
+              <button
+                type="submit"
+                disabled={pending}
+                className={buttonClasses({ size: "lg" })}
+                aria-busy={pending}
+              >
                 <RollingLabel>{pending ? "Sending…" : "Send message"}</RollingLabel>
                 {pending ? (
-                  <span className="size-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink" aria-hidden />
+                  <span
+                    className="size-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
+                    aria-hidden
+                  />
                 ) : (
                   <ArrowRight className="size-4 transition-transform duration-500 group-hover/btn:translate-x-1" />
                 )}
@@ -193,7 +205,7 @@ function Field({ id, name, label, error, multiline, ...rest }: FieldProps) {
     "aria-invalid": error ? true : undefined,
     "aria-describedby": error ? errorId : undefined,
     className: cn(
-      "peer w-full rounded-2xl border bg-ink/60 px-4 text-base text-bone placeholder:text-faint transition-[border-color,box-shadow] duration-300 outline-none",
+      "peer w-full rounded-2xl border bg-ink/60 px-4 text-base text-bone transition-[border-color,box-shadow] duration-300 outline-none placeholder:text-faint",
       "focus:border-ember focus:shadow-[0_0_0_4px_color-mix(in_oklab,var(--color-ember)_18%,transparent)]",
       error ? "border-ember/80" : "border-line-strong hover:border-bone/40",
     ),
@@ -204,9 +216,19 @@ function Field({ id, name, label, error, multiline, ...rest }: FieldProps) {
         {label}
       </label>
       {multiline ? (
-        <textarea {...shared} {...rest} rows={6} className={cn(shared.className, "resize-y py-3.5 leading-relaxed")} />
+        <textarea
+          {...shared}
+          {...rest}
+          rows={6}
+          className={cn(shared.className, "resize-y py-3.5 leading-relaxed")}
+        />
       ) : (
-        <input {...shared} {...rest} type={rest.type ?? "text"} className={cn(shared.className, "h-13")} />
+        <input
+          {...shared}
+          {...rest}
+          type={rest.type ?? "text"}
+          className={cn(shared.className, "h-13")}
+        />
       )}
       <AnimatePresence initial={false}>
         {error && (

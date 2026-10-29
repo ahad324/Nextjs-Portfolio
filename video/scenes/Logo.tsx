@@ -6,9 +6,17 @@ import { colors, ease, fonts } from "../theme";
 export function LogoScene() {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const draw = interpolate(frame, [4, 40], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease.inOutQuart });
+  const draw = interpolate(frame, [4, 40], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ease.inOutQuart,
+  });
   const dot = spring({ frame: frame - 34, fps, config: { damping: 9, stiffness: 160 } });
-  const out = interpolate(frame, [72, 90], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease.inExpo });
+  const out = interpolate(frame, [72, 90], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ease.inExpo,
+  });
 
   return (
     <AbsoluteFill

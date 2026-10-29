@@ -5,7 +5,13 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { hasFinePointer, prefersReducedMotion } from "@/lib/media";
 
 /** Pulls its child toward the cursor while hovered, then springs back. */
-export function Magnetic({ children, strength = 0.35 }: { children: ReactNode; strength?: number }) {
+export function Magnetic({
+  children,
+  strength = 0.35,
+}: {
+  children: ReactNode;
+  strength?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
 
   useGSAP(

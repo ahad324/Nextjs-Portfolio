@@ -29,7 +29,8 @@ export function SceneDirector() {
       let bestDistance = Infinity;
       for (const element of elements) {
         const rect = element.getBoundingClientRect();
-        const distance = rect.top > line ? rect.top - line : rect.bottom < line ? line - rect.bottom : 0;
+        const distance =
+          rect.top > line ? rect.top - line : rect.bottom < line ? line - rect.bottom : 0;
         if (distance < bestDistance) {
           bestDistance = distance;
           best = element;

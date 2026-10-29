@@ -1,6 +1,11 @@
 import { z } from "zod";
 
-export const topics = ["Full-time role", "Freelance project", "Collaboration", "Just saying hi"] as const;
+export const topics = [
+  "Full-time role",
+  "Freelance project",
+  "Collaboration",
+  "Just saying hi",
+] as const;
 
 /** Shared by the form (client hints) and the server action (source of truth). */
 export const contactSchema = z.object({

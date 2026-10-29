@@ -34,7 +34,10 @@ export function Statement() {
           ))}
         </dl>
 
-        <FadeIn stagger={0.1} className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:mt-28 md:grid-cols-3">
+        <FadeIn
+          stagger={0.1}
+          className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:mt-28 md:grid-cols-3"
+        >
           {services.map((service, index) => (
             <article
               key={service.title}

@@ -10,7 +10,10 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section data-chapter="lost" className="relative flex min-h-svh flex-col justify-center pt-[var(--header-h)]">
+    <section
+      data-chapter="lost"
+      className="relative flex min-h-svh flex-col justify-center pt-[var(--header-h)]"
+    >
       <div className="container-x">
         <FadeIn immediate>
           <p className="eyebrow">

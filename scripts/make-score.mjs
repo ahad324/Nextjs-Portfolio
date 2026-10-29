@@ -87,7 +87,8 @@ function kick(time, gain) {
   const s = Math.floor(time * SR);
   for (let i = 0; i < SR * 0.45; i++) {
     const t = i / SR;
-    const v = Math.sin(TAU * (45 * t + (80 / 28) * (1 - Math.exp(-t * 28)))) * Math.exp(-t * 7) * gain;
+    const v =
+      Math.sin(TAU * (45 * t + (80 / 28) * (1 - Math.exp(-t * 28)))) * Math.exp(-t * 7) * gain;
     add(s + i, v, v);
   }
 }
@@ -125,7 +126,8 @@ for (let s = 0; s * (BEAT / 2) < DURATION; s++) {
   for (let i = 0; i < SR * 0.6; i++) {
     const tt = i / SR;
     const env = Math.exp(-tt * 9) * Math.min(1, tt / 0.004);
-    const v = (Math.sin(TAU * f * tt) + 0.3 * Math.sin(TAU * 2 * f * tt) * Math.exp(-tt * 20)) * env * 0.05;
+    const v =
+      (Math.sin(TAU * f * tt) + 0.3 * Math.sin(TAU * 2 * f * tt) * Math.exp(-tt * 20)) * env * 0.05;
     add(start + i, v * (1 - pan) * 2, v * pan * 2, 0.5);
   }
 }
@@ -146,7 +148,9 @@ for (const cut of [3, 35]) {
   const s = Math.floor(cut * SR);
   for (let i = 0; i < SR * 2.2; i++) {
     const t = i / SR;
-    const v = Math.sin(TAU * 52 * t) * Math.exp(-t * 2.2) * 0.32 + (rand() * 2 - 1) * Math.exp(-t * 18) * 0.08;
+    const v =
+      Math.sin(TAU * 52 * t) * Math.exp(-t * 2.2) * 0.32 +
+      (rand() * 2 - 1) * Math.exp(-t * 18) * 0.08;
     add(s + i, v, v, 0.3);
   }
 }
@@ -154,7 +158,12 @@ for (const cut of [3, 35]) {
 // ── Reverb (Schroeder: 4 combs + 2 all-passes per side) ───────────────
 function reverb(input, offset) {
   const out = new Float32Array(N);
-  const combs = [1557, 1617, 1491, 1422].map((d) => ({ d: d + offset, buf: new Float32Array(d + offset), i: 0, f: 0 }));
+  const combs = [1557, 1617, 1491, 1422].map((d) => ({
+    d: d + offset,
+    buf: new Float32Array(d + offset),
+    i: 0,
+    f: 0,
+  }));
   for (let n = 0; n < N; n++) {
     let sum = 0;
     for (const c of combs) {

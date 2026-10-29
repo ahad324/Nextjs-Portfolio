@@ -8,7 +8,8 @@ type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
   solid: "bg-bone text-ink before:bg-ember",
-  outline: "text-bone ring-1 ring-inset ring-line-strong hover:ring-transparent before:bg-bone hover:text-ink",
+  outline:
+    "text-bone ring-1 ring-inset ring-line-strong hover:ring-transparent before:bg-bone hover:text-ink",
   ghost: "text-bone before:bg-ink-3",
 };
 
@@ -17,7 +18,15 @@ const sizes: Record<Size, string> = {
   lg: "h-14 px-7 text-[0.95rem]",
 };
 
-export function buttonClasses({ variant = "solid", size = "md", className }: { variant?: Variant; size?: Size; className?: string }) {
+export function buttonClasses({
+  variant = "solid",
+  size = "md",
+  className,
+}: {
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+}) {
   return cn(
     "group/btn relative isolate inline-flex shrink-0 items-center justify-center gap-2.5 overflow-hidden rounded-full font-medium tracking-[-0.01em] whitespace-nowrap",
     "transition-[color,box-shadow,transform] duration-500 ease-[var(--ease-out-expo)] active:scale-[0.97]",
@@ -49,7 +58,14 @@ export function RollingLabel({ children }: { children: ReactNode }) {
 
 type Common = { variant?: Variant; size?: Size; icon?: ReactNode; children: ReactNode };
 
-export function Button({ variant, size, icon, children, className, ...props }: Common & ComponentProps<"button">) {
+export function Button({
+  variant,
+  size,
+  icon,
+  children,
+  className,
+  ...props
+}: Common & ComponentProps<"button">) {
   return (
     <button className={buttonClasses({ variant, size, className })} {...props}>
       <RollingLabel>{children}</RollingLabel>

@@ -46,7 +46,12 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
       const first = flat[key]?.[0];
       if (first) fieldErrors[key] = first;
     }
-    return { status: "error", message: "Please check the highlighted fields.", fieldErrors, values: raw };
+    return {
+      status: "error",
+      message: "Please check the highlighted fields.",
+      fieldErrors,
+      values: raw,
+    };
   }
 
   const requestHeaders = await headers();

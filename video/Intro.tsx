@@ -20,10 +20,10 @@ const keys: Key[] = [
   { frame: T.tagline.from - 15, x: 1.35, y: -0.05, scale: 1, alpha: 1 },
   { frame: T.tagline.from + 30, x: 0, y: 0, scale: 1.25, alpha: 0.5 },
   { frame: T.work.from - 15, x: 0, y: 0, scale: 1.3, alpha: 0.5 },
-  { frame: T.work.from + 30, x: 0, y: -0.55, scale: 1, alpha: 0.45 },
-  { frame: T.stack.from - 15, x: 0, y: -0.55, scale: 1, alpha: 0.45 },
-  { frame: T.stack.from + 30, x: 2.05, y: 0, scale: 0.95, alpha: 0.95 },
-  { frame: T.outro.from - 15, x: 2.05, y: 0, scale: 0.95, alpha: 0.95 },
+  { frame: T.work.from + 30, x: 0, y: -0.55, scale: 1, alpha: 0.32 },
+  { frame: T.stack.from - 15, x: 0, y: -0.55, scale: 1, alpha: 0.32 },
+  { frame: T.stack.from + 30, x: 2.05, y: 0, scale: 0.95, alpha: 0.8 },
+  { frame: T.outro.from - 15, x: 2.05, y: 0, scale: 0.95, alpha: 0.8 },
   { frame: T.outro.from + 30, x: 0, y: 0, scale: 1.35, alpha: 0.55 },
   { frame: T.outro.from + T.outro.duration - 22, x: 0, y: 0, scale: 1.45, alpha: 0.55 },
   { frame: T.outro.from + T.outro.duration, x: 0, y: 0, scale: 1.5, alpha: 0 },
@@ -79,7 +79,11 @@ export function Intro() {
 
   return (
     <AbsoluteFill style={{ background: colors.ink }}>
-      <AbsoluteFill style={{ background: `radial-gradient(80% 60% at 70% 40%, ${colors.ink2}, ${colors.ink} 70%)` }} />
+      <AbsoluteFill
+        style={{
+          background: `radial-gradient(80% 60% at 70% 40%, ${colors.ink2}, ${colors.ink} 70%)`,
+        }}
+      />
       <ParticleField state={fieldAt(frame, fps)} />
 
       <Sequence from={T.logo.from} durationInFrames={T.logo.duration}>
@@ -102,7 +106,12 @@ export function Intro() {
       </Sequence>
 
       {/* Film grain + vignette */}
-      <AbsoluteFill style={{ background: "radial-gradient(120% 90% at 50% 50%, transparent 55%, #000000aa)", pointerEvents: "none" }} />
+      <AbsoluteFill
+        style={{
+          background: "radial-gradient(120% 90% at 50% 50%, transparent 55%, #000000aa)",
+          pointerEvents: "none",
+        }}
+      />
       <Audio src={score} />
     </AbsoluteFill>
   );

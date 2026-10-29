@@ -54,7 +54,9 @@ export function SplitReveal({
             stagger: stagger ?? (by === "chars" ? 0.025 : by === "words" ? 0.04 : 0.09),
             delay,
             paused: immediate,
-            scrollTrigger: immediate ? undefined : { trigger: element, start: "top 88%", once: true },
+            scrollTrigger: immediate
+              ? undefined
+              : { trigger: element, start: "top 88%", once: true },
           });
           if (immediate) cleanupIntro = onIntroDone(() => tween.play());
           return tween;

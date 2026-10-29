@@ -7,23 +7,60 @@ const everything = skillGroups.flatMap((group) => group.items);
 
 export function StackScene() {
   const frame = useCurrentFrame();
-  const out = interpolate(frame, [134, 150], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease.inExpo });
+  const out = interpolate(frame, [134, 150], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+    easing: ease.inExpo,
+  });
   return (
     <AbsoluteFill style={{ padding: "120px 140px", justifyContent: "center", opacity: 1 - out }}>
       <div style={{ width: 1000 }}>
         <Appear>
-          <div style={{ fontFamily: fonts.mono, fontSize: 24, letterSpacing: "0.16em", textTransform: "uppercase", color: colors.muted }}>
+          <div
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 24,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: colors.muted,
+            }}
+          >
             <span style={{ color: colors.ember }}>(03)</span> — The stack
           </div>
         </Appear>
-        <div style={{ marginTop: 26, fontFamily: fonts.sans, fontWeight: 600, fontSize: 130, lineHeight: 0.95, letterSpacing: "-0.05em", color: colors.bone }}>
+        <div
+          style={{
+            marginTop: 26,
+            fontFamily: fonts.sans,
+            fontWeight: 600,
+            fontSize: 130,
+            lineHeight: 0.95,
+            letterSpacing: "-0.05em",
+            color: colors.bone,
+          }}
+        >
           <Rise text={`${skillCount} tools,`} by="words" delay={2} stagger={5} />
           <br />
-          <Rise text="every layer." by="words" delay={10} stagger={5} style={{ fontFamily: fonts.serif, fontStyle: "italic", fontWeight: 400, color: colors.ember }} />
+          <Rise
+            text="every layer."
+            by="words"
+            delay={10}
+            stagger={5}
+            style={{
+              fontFamily: fonts.serif,
+              fontStyle: "italic",
+              fontWeight: 400,
+              color: colors.ember,
+            }}
+          />
         </div>
         <div style={{ marginTop: 44, display: "flex", flexWrap: "wrap", gap: 12 }}>
           {everything.map((item, i) => {
-            const p = interpolate(frame - 22 - i * 1.4, [0, 16], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp", easing: ease.outExpo });
+            const p = interpolate(frame - 22 - i * 1.4, [0, 16], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+              easing: ease.outExpo,
+            });
             return (
               <span
                 key={item}

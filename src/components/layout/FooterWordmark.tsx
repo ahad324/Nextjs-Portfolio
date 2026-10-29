@@ -16,7 +16,12 @@ export function FooterWordmark() {
         yPercent: 100,
         ease: "none",
         stagger: 0.04,
-        scrollTrigger: { trigger: ref.current, start: "top bottom", end: "bottom bottom", scrub: 0.6 },
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top bottom",
+          end: "bottom bottom",
+          scrub: 0.6,
+        },
       });
     },
     { scope: ref },

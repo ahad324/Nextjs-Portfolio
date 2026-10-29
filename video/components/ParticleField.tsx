@@ -34,7 +34,11 @@ function useShapes(): Shapes | null {
         canvas.height = size;
         const ctx = canvas.getContext("2d", { willReadFrequently: true })!;
         ctx.drawImage(image, 0, 0);
-        const { positions, brightness } = portraitFromImageData(ctx.getImageData(0, 0, size, size).data, size, COUNT);
+        const { positions, brightness } = portraitFromImageData(
+          ctx.getImageData(0, 0, size, size).data,
+          size,
+          COUNT,
+        );
         setShapes({
           portrait: positions,
           brightness,
@@ -93,7 +97,7 @@ export function ParticleField({ state }: { state: FieldState }) {
     const A = shapes[from];
     const B = shapes[to];
     const rnd = shapes.random;
-    const sizeK = (height / 1080) * 2.4;
+    const sizeK = (height / 1080) * 1.7;
 
     // Per-shape idle motion, mirroring the site's vertex shader.
     const place = (shape: ShapeName, arr: Float32Array, i: number, out: number[]) => {
@@ -167,14 +171,15 @@ export function ParticleField({ state }: { state: FieldState }) {
       if (depth < 0.5) continue;
 
       const portraitW = (from === "portrait" ? 1 - t : 0) + (to === "portrait" ? t : 0);
-      const bright = (0.5 + r1 * 0.25) * (1 - portraitW) + (0.18 + shapes.brightness[i]! * 1.05) * portraitW;
+      const bright =
+        (0.5 + r1 * 0.25) * (1 - portraitW) + (0.18 + shapes.brightness[i]! * 1.05) * portraitW;
       const size = ((sizeK * 15) / depth) * (0.55 + bright * 0.85);
       const o = (0.22 + bright * 0.78) * alpha * rv;
       if (o < 0.01) continue;
 
       const sx = width / 2 + (wx * focal) / depth;
       const sy = height / 2 - (wy * focal) / depth;
-      ctx.globalAlpha = Math.min(1, o * 0.75);
+      ctx.globalAlpha = Math.min(1, o * 0.62);
       ctx.fillStyle = r1 > 0.962 && portraitW < 0.5 ? ember : colors.bone;
       ctx.beginPath();
       ctx.arc(sx, sy, Math.max(0.5, size / 2), 0, Math.PI * 2);
@@ -184,5 +189,7 @@ export function ParticleField({ state }: { state: FieldState }) {
     ctx.globalCompositeOperation = "source-over";
   }, [shapes, state, width, height, focal, ember]);
 
-  return <canvas ref={canvas} width={width} height={height} style={{ position: "absolute", inset: 0 }} />;
+  return (
+    <canvas ref={canvas} width={width} height={height} style={{ position: "absolute", inset: 0 }} />
+  );
 }

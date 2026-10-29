@@ -42,7 +42,11 @@ export function Cursor() {
       ringY(event.clientY);
       const target = event.target as Element | null;
       const hinted = target?.closest<HTMLElement>("[data-cursor]");
-      if (target?.closest("input:not([type=radio]):not([type=checkbox]), textarea, select, [contenteditable]")) {
+      if (
+        target?.closest(
+          "input:not([type=radio]):not([type=checkbox]), textarea, select, [contenteditable]",
+        )
+      ) {
         setState("text");
       } else if (hinted) {
         setLabel(hinted.dataset.cursor ?? null);

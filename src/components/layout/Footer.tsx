@@ -22,11 +22,14 @@ export function Footer() {
 
         <nav aria-label="Footer" className="grid grid-cols-2 gap-8 md:col-span-7 md:grid-cols-3">
           <div>
-            <p className="eyebrow mb-5">Index</p>
+            <p className="mb-5 eyebrow">Index</p>
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.id}>
-                  <Link href={`/#${link.id}`} className="text-bone-2 transition-colors hover:text-bone">
+                  <Link
+                    href={`/#${link.id}`}
+                    className="text-bone-2 transition-colors hover:text-bone"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -34,7 +37,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="eyebrow mb-5">Elsewhere</p>
+            <p className="mb-5 eyebrow">Elsewhere</p>
             <ul className="space-y-2.5">
               {site.socials.map((social) => (
                 <li key={social.label}>
@@ -62,7 +65,7 @@ export function Footer() {
             </ul>
           </div>
           <div className="col-span-2 md:col-span-1">
-            <p className="eyebrow mb-5">Local time</p>
+            <p className="mb-5 eyebrow">Local time</p>
             <LocalTime className="font-mono text-bone-2 tabular-nums" />
             <p className="mt-2 text-sm text-muted">{site.location}</p>
           </div>

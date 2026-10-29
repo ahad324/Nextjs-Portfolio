@@ -46,7 +46,10 @@ function ConsoleCover({ project, className }: { project: Project; className?: st
     <div
       role="img"
       aria-label={`${project.title} — API activity illustration`}
-      className={cn("relative flex size-full flex-col overflow-hidden bg-ink-2 font-mono text-[clamp(0.6rem,1.1vw,0.85rem)]", className)}
+      className={cn(
+        "relative flex size-full flex-col overflow-hidden bg-ink-2 font-mono text-[clamp(0.6rem,1.1vw,0.85rem)]",
+        className,
+      )}
       style={{ ["--accent" as string]: project.accent }}
     >
       <div

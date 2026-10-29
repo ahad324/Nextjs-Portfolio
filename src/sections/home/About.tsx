@@ -9,14 +9,20 @@ import { Timeline } from "./Timeline";
 
 export function About() {
   return (
-    <section id={sections.about} data-chapter="about" aria-labelledby="about-title" className="relative py-28 md:py-40">
+    <section
+      id={sections.about}
+      data-chapter="about"
+      aria-labelledby="about-title"
+      className="relative py-28 md:py-40"
+    >
       <div className="container-x">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-7 md:col-start-6">
             <SectionLabel index="06">About</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="about-title">
-                The person behind <span className="font-serif font-normal text-ember italic">the commits</span>
+                The person behind{" "}
+                <span className="font-serif font-normal text-ember italic">the commits</span>
               </span>
             </SplitReveal>
           </div>
@@ -26,16 +32,21 @@ export function About() {
           <div className="md:col-span-4 md:col-start-2">
             <PortraitCard />
           </div>
-          <FadeIn stagger={0.12} className="space-y-6 text-lg text-bone-2 md:col-span-6 md:col-start-7 md:text-xl">
+          <FadeIn
+            stagger={0.12}
+            className="space-y-6 text-lg text-bone-2 md:col-span-6 md:col-start-7 md:text-xl"
+          >
             <p>
-              <span className="text-bone">I&apos;m a {site.education.degree} student at {site.education.school}</span>{" "}
-              and a full-stack engineer at Floty.ai. I started rebuilding small websites in public in 2023, and
-              I&apos;ve been chasing harder problems ever since — multiplayer state, encrypted transfers,
-              real-time money movement.
+              <span className="text-bone">
+                I&apos;m a {site.education.degree} student at {site.education.school}
+              </span>{" "}
+              and a full-stack engineer at Floty.ai. I started rebuilding small websites in public
+              in 2023, and I&apos;ve been chasing harder problems ever since — multiplayer state,
+              encrypted transfers, real-time money movement.
             </p>
             <p>
-              I like owning the whole thing: the schema, the API, the socket layer and the last hover
-              state. Fewer handoffs, more care — that&apos;s where good products come from.
+              I like owning the whole thing: the schema, the API, the socket layer and the last
+              hover state. Fewer handoffs, more care — that&apos;s where good products come from.
             </p>
             <p>
               Day to day I ship product at Floty.ai. Outside of that, I&apos;m always up for talking

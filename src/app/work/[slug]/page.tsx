@@ -25,7 +25,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
     title: `${project.title} — ${project.category}`,
     description: `${project.tagline} ${project.summary}`,
     alternates: { canonical: `/work/${project.slug}` },
-    openGraph: { type: "article", url: `/work/${project.slug}`, title: project.title, description: project.tagline },
+    openGraph: {
+      type: "article",
+      url: `/work/${project.slug}`,
+      title: project.title,
+      description: project.tagline,
+    },
     twitter: { title: project.title, description: project.tagline },
   };
 }
@@ -38,12 +43,24 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
   return (
     <article style={{ ["--accent" as string]: project.accent }}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(projectJsonLd(project))} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(projectJsonLd(project))}
+      />
 
-      <header data-chapter="ambient" className="pt-[calc(var(--header-h)+3rem)] md:pt-[calc(var(--header-h)+5rem)]">
+      <header
+        data-chapter="ambient"
+        className="pt-[calc(var(--header-h)+3rem)] md:pt-[calc(var(--header-h)+5rem)]"
+      >
         <div className="container-x">
-          <FadeIn immediate className="flex items-center justify-between font-mono text-xs tracking-wider text-muted uppercase">
-            <Link href="/#work" className="group inline-flex items-center gap-2 transition-colors hover:text-bone">
+          <FadeIn
+            immediate
+            className="flex items-center justify-between font-mono text-xs tracking-wider text-muted uppercase"
+          >
+            <Link
+              href="/#work"
+              className="group inline-flex items-center gap-2 transition-colors hover:text-bone"
+            >
               <ArrowLeft className="size-4 transition-transform duration-500 group-hover:-translate-x-1" />
               All work
             </Link>
@@ -53,7 +70,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             </span>
           </FadeIn>
 
-          <FadeIn immediate delay={0.1} className="mt-14 flex flex-wrap items-center gap-3 md:mt-20">
+          <FadeIn
+            immediate
+            delay={0.1}
+            className="mt-14 flex flex-wrap items-center gap-3 md:mt-20"
+          >
             <span className="eyebrow">{project.category}</span>
             {project.badge && (
               <span className="rounded-full border border-[var(--accent)]/50 bg-[var(--accent)]/10 px-3 py-1 text-xs font-medium text-[var(--accent)]">
@@ -61,10 +82,21 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               </span>
             )}
           </FadeIn>
-          <SplitReveal as="h1" immediate by="chars" delay={0.1} className="mt-5 text-mega font-semibold">
+          <SplitReveal
+            as="h1"
+            immediate
+            by="chars"
+            delay={0.1}
+            className="mt-5 text-mega font-semibold"
+          >
             {project.title}
           </SplitReveal>
-          <SplitReveal as="p" immediate delay={0.35} className="mt-6 max-w-3xl text-lead text-bone-2">
+          <SplitReveal
+            as="p"
+            immediate
+            delay={0.35}
+            className="mt-6 max-w-3xl text-lead text-bone-2"
+          >
             {project.tagline}
           </SplitReveal>
 
@@ -87,7 +119,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               )}
               {project.links.repo && (
                 <Magnetic>
-                  <ButtonLink href={project.links.repo} variant="outline" icon={<Github className="size-4" />}>
+                  <ButtonLink
+                    href={project.links.repo}
+                    variant="outline"
+                    icon={<Github className="size-4" />}
+                  >
                     Code
                   </ButtonLink>
                 </Magnetic>
@@ -105,7 +141,10 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
         </CoverReveal>
       </div>
 
-      <section data-chapter="ambient" className="container-x grid gap-12 py-24 md:grid-cols-12 md:py-36">
+      <section
+        data-chapter="ambient"
+        className="container-x grid gap-12 py-24 md:grid-cols-12 md:py-36"
+      >
         <div className="md:col-span-4">
           <p className="eyebrow">Overview</p>
         </div>
@@ -114,17 +153,23 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             {project.summary}
           </SplitReveal>
 
-          <h2 className="eyebrow mt-20">What went into it</h2>
+          <h2 className="mt-20 eyebrow">What went into it</h2>
           <ol className="mt-6 border-t border-line">
             {project.highlights.map((highlight, i) => (
-              <FadeIn as="li" key={highlight} className="flex gap-6 border-b border-line py-6 text-lg text-bone-2">
-                <span className="font-mono text-xs text-[var(--accent)] pt-1.5">{String(i + 1).padStart(2, "0")}</span>
+              <FadeIn
+                as="li"
+                key={highlight}
+                className="flex gap-6 border-b border-line py-6 text-lg text-bone-2"
+              >
+                <span className="pt-1.5 font-mono text-xs text-[var(--accent)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <span>{highlight}</span>
               </FadeIn>
             ))}
           </ol>
 
-          <h2 className="eyebrow mt-20">Built with</h2>
+          <h2 className="mt-20 eyebrow">Built with</h2>
           <FadeIn as="ul" stagger={0.04} className="mt-6 flex flex-wrap gap-2">
             {project.stack.map((tool) => (
               <li key={tool} className="rounded-full border border-line-strong px-4 py-2 text-sm">
@@ -136,7 +181,11 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
       </section>
 
       <section data-chapter="ambient" aria-label="Next project" className="border-t border-line">
-        <Link href={`/work/${next.slug}`} data-cursor="Next" className="group container-x block py-20 md:py-32">
+        <Link
+          href={`/work/${next.slug}`}
+          data-cursor="Next"
+          className="group container-x block py-20 md:py-32"
+        >
           <p className="eyebrow">Next project</p>
           <div className="mt-6 flex items-end justify-between gap-6">
             <span className="text-mega font-semibold transition-[color,translate] duration-700 ease-[var(--ease-out-expo)] group-hover:translate-x-3 group-hover:text-ember">

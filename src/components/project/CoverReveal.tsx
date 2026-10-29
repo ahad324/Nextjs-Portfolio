@@ -17,7 +17,13 @@ export function CoverReveal({ children }: { children: ReactNode }) {
       const tween = gsap.fromTo(
         element,
         { clipPath: "inset(18% 6% 0% 6% round 1.5rem)" },
-        { clipPath: "inset(0% 0% 0% 0% round 1.5rem)", duration: 1.6, ease: "expo.out", delay: 0.55, paused: true },
+        {
+          clipPath: "inset(0% 0% 0% 0% round 1.5rem)",
+          duration: 1.6,
+          ease: "expo.out",
+          delay: 0.55,
+          paused: true,
+        },
       );
       const stop = onIntroDone(() => tween.play());
       if (inner) {
@@ -28,7 +34,12 @@ export function CoverReveal({ children }: { children: ReactNode }) {
             scale: 1,
             yPercent: 4,
             ease: "none",
-            scrollTrigger: { trigger: element, start: "top bottom", end: "bottom top", scrub: true },
+            scrollTrigger: {
+              trigger: element,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: true,
+            },
           },
         );
       }

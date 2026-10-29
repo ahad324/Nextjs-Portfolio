@@ -75,7 +75,13 @@ export function Appear({
           easing: ease.inExpo,
         });
   return (
-    <div style={{ opacity: enter * (1 - exit), transform: `translateY(${(1 - enter) * y - exit * 20}px)`, ...style }}>
+    <div
+      style={{
+        opacity: enter * (1 - exit),
+        transform: `translateY(${(1 - enter) * y - exit * 20}px)`,
+        ...style,
+      }}
+    >
       {children}
     </div>
   );

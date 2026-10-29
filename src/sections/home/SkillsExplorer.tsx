@@ -32,7 +32,9 @@ export function SkillsExplorer() {
                 <span
                   className={cn(
                     "text-title font-semibold transition-[color,translate] duration-500 ease-[var(--ease-out-expo)]",
-                    isOpen ? "translate-x-1 text-bone" : "text-bone-2 group-hover:translate-x-1 group-hover:text-bone",
+                    isOpen
+                      ? "translate-x-1 text-bone"
+                      : "text-bone-2 group-hover:translate-x-1 group-hover:text-bone",
                   )}
                 >
                   {group.label}

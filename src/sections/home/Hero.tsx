@@ -22,7 +22,7 @@ export function Hero() {
       />
       <div className="container-x">
         <FadeIn immediate delay={0.05}>
-          <p className="eyebrow flex items-center gap-3 text-bone-2">
+          <p className="flex items-center gap-3 eyebrow text-bone-2">
             <StatusDot />
             {site.availability.label}
           </p>
@@ -56,7 +56,11 @@ export function Hero() {
             className="flex flex-wrap items-center gap-3 md:col-span-6 md:justify-end lg:col-span-7"
           >
             <Magnetic>
-              <ButtonLink href={`#${sections.work}`} size="lg" icon={<ArrowDown className="size-4" />}>
+              <ButtonLink
+                href={`#${sections.work}`}
+                size="lg"
+                icon={<ArrowDown className="size-4" />}
+              >
                 See the work
               </ButtonLink>
             </Magnetic>

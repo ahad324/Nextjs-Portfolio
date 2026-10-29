@@ -31,7 +31,10 @@ export function SceneLoader() {
 function pickQuality(): Quality | null {
   if (!supportsWebGL()) return null;
 
-  const nav = navigator as Navigator & { deviceMemory?: number; connection?: { saveData?: boolean } };
+  const nav = navigator as Navigator & {
+    deviceMemory?: number;
+    connection?: { saveData?: boolean };
+  };
   if (nav.connection?.saveData) return null;
 
   const cores = nav.hardwareConcurrency ?? 4;
@@ -40,7 +43,9 @@ function pickQuality(): Quality | null {
   const coarse = window.matchMedia("(pointer: coarse)").matches;
 
   if (small || coarse) {
-    return cores >= 8 && memory >= 6 ? { count: 13000, dpr: [1, 1.75] } : { count: 8000, dpr: [1, 1.5] };
+    return cores >= 8 && memory >= 6
+      ? { count: 13000, dpr: [1, 1.75] }
+      : { count: 8000, dpr: [1, 1.5] };
   }
   if (cores >= 8 && memory >= 8) return { count: 26000, dpr: [1, 2] };
   return { count: 16000, dpr: [1, 1.5] };

@@ -43,18 +43,31 @@ export function Intro() {
       onComplete: () => setGone(true),
     });
     tl.to(".intro-path", { strokeDashoffset: 0, duration: 1.1, ease: "power2.inOut" }, 0)
-      .to(count, {
-        value: 100,
-        duration: 1.3,
-        ease: "power3.inOut",
-        onUpdate: () => {
-          if (counter.current) counter.current.textContent = String(Math.round(count.value)).padStart(3, "0");
+      .to(
+        count,
+        {
+          value: 100,
+          duration: 1.3,
+          ease: "power3.inOut",
+          onUpdate: () => {
+            if (counter.current)
+              counter.current.textContent = String(Math.round(count.value)).padStart(3, "0");
+          },
         },
-      }, 0)
+        0,
+      )
       .from(".intro-dot", { scale: 0, duration: 0.7, ease: "back.out(3)" }, 0.85)
-      .from(".intro-name span", { yPercent: 110, stagger: 0.04, duration: 0.9, ease: "expo.out" }, 0.3)
+      .from(
+        ".intro-name span",
+        { yPercent: 110, stagger: 0.04, duration: 0.9, ease: "expo.out" },
+        0.3,
+      )
       .addLabel("lift", 1.55)
-      .to(".intro-name span", { yPercent: -110, stagger: 0.02, duration: 0.6, ease: "expo.in" }, "lift-=0.25")
+      .to(
+        ".intro-name span",
+        { yPercent: -110, stagger: 0.02, duration: 0.6, ease: "expo.in" },
+        "lift-=0.25",
+      )
       .to(element, { clipPath: "inset(0 0 100% 0)", duration: 1.05 }, "lift")
       .add(markIntroDone, "lift+=0.2");
 
@@ -84,7 +97,13 @@ export function Intro() {
           strokeDasharray="1"
           strokeDashoffset="1"
         />
-        <circle className="intro-dot origin-center [transform-box:fill-box]" cx="16" cy="19" r="2.4" fill="var(--color-ember)" />
+        <circle
+          className="intro-dot origin-center [transform-box:fill-box]"
+          cx="16"
+          cy="19"
+          r="2.4"
+          fill="var(--color-ember)"
+        />
       </svg>
       <p className="intro-name mt-8 flex overflow-hidden text-sm font-medium tracking-[0.3em] text-bone-2 uppercase">
         {site.name.split("").map((char, index) => (
@@ -93,7 +112,10 @@ export function Intro() {
           </span>
         ))}
       </p>
-      <span ref={counter} className="absolute right-[var(--gutter)] bottom-8 font-mono text-xs tabular-nums text-muted">
+      <span
+        ref={counter}
+        className="absolute right-[var(--gutter)] bottom-8 font-mono text-xs text-muted tabular-nums"
+      >
         000
       </span>
     </div>

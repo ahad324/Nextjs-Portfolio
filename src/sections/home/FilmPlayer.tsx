@@ -150,7 +150,7 @@ export function FilmPlayer() {
       </button>
 
       {/* Control bar */}
-      <div className="absolute inset-x-0 bottom-0 flex items-center gap-4 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-100 transition-opacity duration-500 md:p-6 md:opacity-0 md:group-hover:opacity-100 md:group-focus-within:opacity-100">
+      <div className="absolute inset-x-0 bottom-0 flex items-center gap-4 bg-gradient-to-t from-ink/80 to-transparent p-4 opacity-100 transition-opacity duration-500 md:p-6 md:opacity-0 md:group-focus-within:opacity-100 md:group-hover:opacity-100">
         <button
           type="button"
           onClick={toggle}
@@ -175,7 +175,10 @@ export function FilmPlayer() {
           }}
           className="relative h-1 flex-1 cursor-pointer rounded-full bg-bone/20"
         >
-          <div className="absolute inset-y-0 left-0 rounded-full bg-ember" style={{ width: `${progress * 100}%` }} />
+          <div
+            className="absolute inset-y-0 left-0 rounded-full bg-ember"
+            style={{ width: `${progress * 100}%` }}
+          />
         </div>
         <button
           type="button"

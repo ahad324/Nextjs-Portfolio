@@ -13,7 +13,11 @@ import { cn } from "@/lib/cn";
 import "@/styles/globals.css";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
-const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap" });
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 const instrument = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
@@ -66,7 +70,7 @@ export const metadata: Metadata = {
 };
 
 /** Runs before paint: flags JS for reveal styles and skips the intro for returning visitors. */
-const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');try{if(sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro-seen')}catch(e){}})();`;
+const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.hash||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro-seen')}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
