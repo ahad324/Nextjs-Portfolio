@@ -17,8 +17,8 @@ export function Skills() {
           <SectionLabel index="05">Skills</SectionLabel>
           <SplitReveal as="h2" className="mt-6 text-display font-semibold">
             <span id="skills-title">
-              Across the{" "}
-              <span className="font-serif font-normal text-ember italic">full stack</span>
+              Tools &amp;{" "}
+              <span className="font-serif font-normal text-ember italic">technologies</span>
             </span>
           </SplitReveal>
           <p className="mt-6 max-w-md text-bone-2">

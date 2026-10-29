@@ -36,16 +36,16 @@ export function TaglineScene() {
           marginTop: 40,
           fontFamily: fonts.sans,
           fontWeight: 600,
-          fontSize: 190,
+          fontSize: 150,
           lineHeight: 0.95,
           letterSpacing: "-0.05em",
           color: colors.bone,
         }}
       >
-        <Rise text="From the socket" by="words" delay={6} stagger={6} duration={30} />
+        <Rise text="Full-stack engineering" by="words" delay={6} stagger={6} duration={30} />
         <br />
         <Rise
-          text="to the screen."
+          text="for web and desktop."
           by="words"
           delay={30}
           stagger={6}
@@ -71,7 +71,7 @@ export function TaglineScene() {
           }),
         }}
       >
-        APIs · sockets · databases · interfaces
+        APIs · real-time systems · databases · interfaces
       </div>
     </AbsoluteFill>
   );

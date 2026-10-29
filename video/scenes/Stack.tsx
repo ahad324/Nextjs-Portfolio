@@ -39,10 +39,10 @@ export function StackScene() {
             color: colors.bone,
           }}
         >
-          <Rise text={`${skillCount} tools.`} by="words" delay={2} stagger={5} />
+          <Rise text={`${skillCount} technologies`} by="words" delay={2} stagger={5} />
           <br />
           <Rise
-            text="Across the stack."
+            text="across the stack."
             by="words"
             delay={10}
             stagger={5}

@@ -78,9 +78,6 @@ export function Hero() {
         >
           <ScrollCue />
           <span className="hidden sm:block">Based in {site.location}</span>
-          <span>
-            <span className="text-ember">(01)</span> Hello
-          </span>
         </FadeIn>
       </div>
     </section>

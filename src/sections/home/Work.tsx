@@ -15,7 +15,7 @@ export function Work() {
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <SectionLabel index="03">Selected work</SectionLabel>
+            <SectionLabel index="03">Work</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="work-title">
                 Selected <span className="font-serif font-normal text-ember italic">projects</span>

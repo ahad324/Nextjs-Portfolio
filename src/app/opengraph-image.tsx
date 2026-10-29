@@ -9,7 +9,7 @@ export default function OpenGraphImage() {
   return renderOg({
     eyebrow: site.role,
     title: site.name,
-    subtitle: `${site.role} at ${site.company.name}. ${site.tagline}`,
+    subtitle: `${site.role} at ${site.company.name}. Web, backend and desktop applications.`,
     withPortrait: true,
   });
 }

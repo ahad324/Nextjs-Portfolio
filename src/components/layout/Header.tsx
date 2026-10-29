@@ -150,7 +150,7 @@ export function Header() {
                   className={buttonClasses({ size: "md" })}
                 >
                   <StatusDot />
-                  <RollingLabel>Let&apos;s talk</RollingLabel>
+                  <RollingLabel>Get in touch</RollingLabel>
                 </Link>
               </Magnetic>
             </div>

@@ -114,13 +114,13 @@ await writeFile(
 Abdul Ahad — full-stack engineer at Floty.ai.
 
 00:09.000 --> 00:14.000
-From the socket to the screen.
+Full-stack engineering for web and desktop.
 
 00:14.000 --> 00:30.000
-Real-time by default. Secure from the first commit. Interfaces that feel instant. One engineer, every layer.
+Real-time applications. Security built in. Fast, accessible interfaces. End-to-end delivery.
 
 00:30.000 --> 00:35.000
-${skillCount} tools across the stack.
+${skillCount} technologies across the stack.
 
 00:35.000 --> 00:40.000
 Let's work together.

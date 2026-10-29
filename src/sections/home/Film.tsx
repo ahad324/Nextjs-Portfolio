@@ -14,18 +14,13 @@ export function Film() {
       <div className="container-x">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <SectionLabel index="04">Introduction</SectionLabel>
+            <SectionLabel index="04">Video</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="film-title">
-                A 40-second{" "}
-                <span className="font-serif font-normal text-ember italic">introduction</span>
+                Introduction <span className="font-serif font-normal text-ember italic">video</span>
               </span>
             </SplitReveal>
           </div>
-          <p className="max-w-xs text-bone-2">
-            An overview of what I build and how I work, rendered in code with the same particle
-            system used on this site.
-          </p>
         </div>
         <FilmPlayer />
       </div>

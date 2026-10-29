@@ -15,7 +15,7 @@ const spots = [
   { left: "30%", top: "76%", rotate: -3 },
 ];
 
-/** "Off the clock": hobbies as chips you can fling around the box. */
+/** Interests, shown as draggable tags. */
 export function Playground() {
   const box = useRef<HTMLDivElement>(null);
 
@@ -23,9 +23,7 @@ export function Playground() {
     <div className="grid gap-8 md:grid-cols-12">
       <div className="md:col-span-4 md:col-start-2">
         <p className="eyebrow">Outside work</p>
-        <p className="mt-4 max-w-xs text-bone-2">
-          Interests outside of engineering. Drag the tags to move them.
-        </p>
+        <p className="mt-4 max-w-xs text-bone-2">Interests outside of work.</p>
       </div>
       <div
         ref={box}
