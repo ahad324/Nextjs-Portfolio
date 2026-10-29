@@ -107,7 +107,7 @@ export function Header() {
           <Link
             href="/"
             onClick={(event) => go(event, sections.hero)}
-            className="relative z-10 -m-2 rounded-full p-2 transition-opacity hover:opacity-80"
+            className="relative z-10 -m-2 flex items-center rounded-full p-2 transition-opacity hover:opacity-80"
             aria-label={`${site.name} — home`}
           >
             <Wordmark />

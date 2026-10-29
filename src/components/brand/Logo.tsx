@@ -29,9 +29,9 @@ export function LogoMark({
 
 export function Wordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-2.5", className)}>
-      <LogoMark className="size-7" />
-      <span className="text-[0.95rem] font-semibold tracking-[-0.02em]">
+    <span className={cn("inline-flex items-center gap-3", className)}>
+      <LogoMark className="size-9 -my-1" />
+      <span className="text-[1.1875rem] leading-none font-semibold tracking-[-0.03em]">
         Abdul Ahad<span className="text-ember">.</span>
       </span>
     </span>
