@@ -3,13 +3,13 @@
  *
  *   npm run video:render                  render + encode everything
  *   node scripts/render-video.mjs --render-only
- *   node scripts/render-video.mjs --encode-only [--only h264|av1]
+ *   node scripts/render-video.mjs --encode-only
  *
  * 1. Synthesises the soundtrack (scripts/make-score.mjs)
  * 2. Renders a high-quality 1080p master  → video/out/intro-master.mp4 (gitignored)
- * 3. Encodes for the web with Remotion's bundled ffmpeg:
- *      intro.webm  AV1 1080p, constant quality (modern browsers)
- *      intro.mp4   H.264 720p ≈1.8 Mbps  (fallback, faststart)
+ * 3. Encodes the web version with Remotion's bundled ffmpeg:
+ *      intro.mp4   H.264 720p, two-pass ≈1.8 Mbps, faststart (plays everywhere)
+ *    (AV1/VP9 were tested: far slower to encode and no smaller for particle footage.)
  * 4. Poster frame + captions
  */
 import { execFileSync } from "node:child_process";
@@ -27,7 +27,6 @@ const media = (file) => path.join(root, "public/media", file);
 const master = path.join(out, "intro-master.mp4");
 const skipRender = process.argv.includes("--encode-only");
 const skipEncode = process.argv.includes("--render-only");
-const only = (codec) => !process.argv.includes("--only") || process.argv.includes(codec);
 
 await mkdir(out, { recursive: true });
 
@@ -77,7 +76,6 @@ const run = (args) =>
     stdio: "inherit",
   });
 
-const av1Args = ["-c:v", "libaom-av1", "-crf", "38", "-b:v", "0", "-cpu-used", "8", "-row-mt", "1"];
 const h264Args = [
   "-vf",
   "scale=1280:-2:flags=lanczos",
@@ -89,7 +87,7 @@ const h264Args = [
   "1800k",
 ];
 
-if (!skipEncode && only("h264")) {
+if (!skipEncode) {
   console.log("encoding H.264…");
   const log = ["-passlogfile", path.join(out, "x264")];
   run([...h264Args, "-pass", "1", ...log, "-an", "-f", "null", nullOut]);
@@ -102,16 +100,6 @@ if (!skipEncode && only("h264")) {
   for (const file of ["x264-0.log", "x264-0.log.mbtree"]) {
     await rm(path.join(out, file), { force: true });
   }
-}
-
-if (!skipEncode && only("av1")) {
-  console.log("encoding AV1…");
-  // Single-pass constant quality: this ffmpeg build's libaom fails on two-pass.
-  run([
-    ...av1Args,
-    ...["-tiles", "2x2", "-pix_fmt", "yuv420p", "-c:a", "libopus", "-b:a", "96k"],
-    media("intro.webm"),
-  ]);
 }
 
 // Captions: the film has no speech, so these describe the music and on-screen story.

@@ -9,7 +9,6 @@ import { cn } from "@/lib/cn";
 
 export const FILM = {
   mp4: "/media/intro.mp4",
-  webm: "/media/intro.webm",
   poster: "/media/intro-poster.jpg",
   captions: "/media/intro.vtt",
 };
@@ -177,7 +176,6 @@ export function FilmPlayer() {
     <div
       ref={frame}
       className="group film-frame relative mt-14 aspect-video w-full overflow-hidden rounded-3xl border border-line bg-ink-2 md:mt-20"
-      data-cursor={playing ? undefined : "Play"}
       role="group"
       aria-label="Intro film player"
       aria-describedby="film-shortcuts"
@@ -208,7 +206,6 @@ export function FilmPlayer() {
       >
         {near && (
           <>
-            <source src={FILM.webm} type={`video/webm; codecs="av01.0.08M.08, opus"`} />
             <source src={FILM.mp4} type="video/mp4" />
             <track kind="captions" src={FILM.captions} srcLang="en" label="English" />
           </>
