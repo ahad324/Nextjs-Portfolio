@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Design tokens — the brand lives here. Mirror of `brand` in content/site.ts.
+   ───────────────────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink: #08090b;
+  --color-ink-2: #0f1114;
+  --color-ink-3: #16191d;
+  --color-ink-4: #1f2328;
+  --color-bone: #ecebe6;
+  --color-bone-2: #c9c8c1;
+  --color-muted: #8d8c86;
+  --color-faint: #5b5b57;
+  --color-line: rgb(236 235 230 / 0.09);
+  --color-line-strong: rgb(236 235 230 / 0.18);
+  --color-ember: #ff5b23;
+  --color-ember-2: #ff8a5c;
+  --color-ion: #7c9cff;
+  --color-ok: #3ddc97;
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", monospace;
+  --font-serif: var(--font-instrument), ui-serif, Georgia, serif;
+
+  /* Fluid type scale (min @ 375px → max @ 1440px) */
+  --text-mega: clamp(3.75rem, 1.2rem + 10.9vw, 11rem);
+  --text-mega--line-height: 0.86;
+  --text-mega--letter-spacing: -0.055em;
+  --text-display: clamp(2.75rem, 1.4rem + 5.6vw, 6.5rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.045em;
+  --text-headline: clamp(2rem, 1.3rem + 3vw, 4rem);
+  --text-headline--line-height: 1;
+  --text-headline--letter-spacing: -0.035em;
+  --text-title: clamp(1.375rem, 1.1rem + 1.1vw, 2rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+  --text-lead: clamp(1.25rem, 0.95rem + 1.4vw, 2.125rem);
+  --text-lead--line-height: 1.25;
+  --text-lead--letter-spacing: -0.02em;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+
+  --breakpoint-xs: 26rem;
+
+  --animate-pulse-dot: pulse-dot 2.4s var(--ease-out-quart) infinite;
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+
+  @keyframes pulse-dot {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    70%,
+    100% {
+      transform: scale(2.8);
+      opacity: 0;
+    }
+  }
+
+  @keyframes scroll-cue {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(200%);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Base
+   ───────────────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    color-scheme: dark;
+    --gutter: clamp(1rem, 0.6rem + 1.8vw, 2.5rem);
+    --header-h: 4.5rem;
+  }
+
+  html {
+    background: var(--color-ink);
+    color: var(--color-bone);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scrollbar-color: var(--color-ink-4) var(--color-ink);
+    scrollbar-width: thin;
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-ember);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ember);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  img,
+  video,
+  canvas {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Components & utilities
+   ───────────────────────────────────────────────────────────────────────── */
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  max-width: 90rem;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@utility hairline {
+  border-color: var(--color-line);
+}
+
+@utility text-gradient-ember {
+  background: linear-gradient(100deg, var(--color-bone) 10%, var(--color-ember-2) 55%, var(--color-ember) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Split-text masks used by the Reveal components */
+.split-line {
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+/* Hide content that JS will reveal — only when JS + motion are available, so
+   no-JS and reduced-motion visitors always see everything. */
+.js [data-reveal] {
+  visibility: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    visibility: visible !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Opening curtain: skipped for returning visitors, and removed by CSS alone
+   if JavaScript never runs. */
+html.intro-seen .intro {
+  display: none;
+}
+.intro {
+  animation: intro-failsafe 0s 4.5s forwards;
+}
+@keyframes intro-failsafe {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* Failsafe for reveal targets if hydration ever stalls. */
+.js [data-reveal] {
+  animation: reveal-failsafe 0s 5s forwards;
+}
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
+  }
+}
+
+/* The custom cursor replaces the system arrow only while it is active
+   (mouse users, motion allowed). Text fields keep the native I-beam. */
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+  html.has-custom-cursor :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select, [contenteditable]) {
+    cursor: text !important;
+  }
+}
