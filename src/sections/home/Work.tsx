@@ -18,14 +18,12 @@ export function Work() {
             <SectionLabel index="03">Selected work</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="work-title">
-                Things I&apos;ve{" "}
-                <span className="font-serif font-normal text-ember italic">shipped</span>
+                Selected <span className="font-serif font-normal text-ember italic">projects</span>
               </span>
             </SplitReveal>
           </div>
           <p className="max-w-xs text-bone-2">
-            {projects.length} products — real-time systems, security-first desktop software and the
-            backends behind them.
+            {projects.length} projects across real-time web apps, desktop software and backend APIs.
           </p>
         </div>
         <WorkList />

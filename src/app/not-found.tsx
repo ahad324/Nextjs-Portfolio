@@ -17,15 +17,15 @@ export default function NotFound() {
       <div className="container-x">
         <FadeIn immediate>
           <p className="eyebrow">
-            <span className="text-ember">(404)</span> — Lost signal
+            <span className="text-ember">(404)</span> — Not found
           </p>
         </FadeIn>
         <SplitReveal as="h1" immediate by="chars" className="mt-6 text-mega font-semibold">
-          Drifted off.
+          Page not found.
         </SplitReveal>
         <FadeIn immediate delay={0.3}>
           <p className="mt-6 max-w-md text-lg text-bone-2">
-            This page doesn&apos;t exist — or it scattered into particles. Let&apos;s get you back.
+            The page you&apos;re looking for doesn&apos;t exist or has been moved.
           </p>
           <ButtonLink href="/" size="lg" className="mt-10" icon={<ArrowLeft className="size-4" />}>
             Back home

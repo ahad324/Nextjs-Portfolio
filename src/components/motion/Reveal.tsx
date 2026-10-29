@@ -41,6 +41,9 @@ export function SplitReveal({
       const split = SplitText.create(element, {
         type: by === "lines" ? "lines" : `lines,${by}`,
         mask: "lines",
+        // Lines and words read naturally as-is. Character splits get an aria-label on the
+        // element instead, so only use by="chars" on headings (where that label is valid).
+        aria: by === "chars" ? "auto" : "none",
         linesClass: "split-line",
         autoSplit: true,
         onSplit(self) {

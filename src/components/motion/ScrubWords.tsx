@@ -22,11 +22,12 @@ export function ScrubWords({
       if (!element || prefersReducedMotion()) return;
       const split = SplitText.create(element, {
         type: "words",
+        aria: "none",
         wordsClass: "will-change-[opacity]",
       });
       gsap.fromTo(
         split.words,
-        { opacity: 0.14 },
+        { opacity: 0.4 },
         {
           opacity: 1,
           ease: "none",

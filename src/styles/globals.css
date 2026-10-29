@@ -207,10 +207,12 @@
 }
 
 /* Split-text masks used by the Reveal components */
-.split-line {
-  overflow: clip;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
+/* SplitText wraps each line in a clipping ".split-line-mask". Pad that mask on
+   every side and pull it back with negative margins (layout is unchanged), so
+   italic overhangs, accents and descenders are never cut off. */
+.split-line-mask {
+  padding: 0.16em 0.2em 0.16em;
+  margin: -0.16em -0.2em -0.16em;
 }
 
 /* Hide content that JS will reveal — only when JS + motion are available, so
@@ -270,4 +272,28 @@ html.intro-seen .intro {
     :is(input:not([type="radio"]):not([type="checkbox"]), textarea, select, [contenteditable]) {
     cursor: text !important;
   }
+}
+
+/* Film in fullscreen: drop the scroll-driven inset frame and letterbox the video. */
+.film-frame:fullscreen {
+  clip-path: none !important;
+  border: 0;
+  border-radius: 0;
+  aspect-ratio: auto;
+  background: #000;
+}
+.film-frame:fullscreen video {
+  object-fit: contain;
+}
+.film-frame:fullscreen > div:last-child {
+  opacity: 1;
+}
+/* The custom cursor lives outside the fullscreen element — use the system one there. */
+html.has-custom-cursor .film-frame:fullscreen,
+html.has-custom-cursor .film-frame:fullscreen * {
+  cursor: auto !important;
+}
+html.has-custom-cursor .film-frame:fullscreen button,
+html.has-custom-cursor .film-frame:fullscreen [role="slider"] {
+  cursor: pointer !important;
 }

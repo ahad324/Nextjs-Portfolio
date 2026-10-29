@@ -2,6 +2,14 @@
   "name": "abdul-ahad-portfolio",
   "version": "2.0.0",
   "private": true,
+  "description": "Portfolio of Abdul Ahad — full-stack engineer. Next.js, React Three Fiber, GSAP.",
+  "author": "Abdul Ahad <ahadg446@gmail.com> (https://ahad-devsite.netlify.app)",
+  "homepage": "https://ahad-devsite.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahad324/Nextjs-Portfolio"
+  },
+  "license": "UNLICENSED",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -57,9 +65,5 @@
     "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "npm:@typescript/typescript6@^6.0.2"
-  },
-  "allowScripts": {
-    "esbuild@0.28.1": true,
-    "unrs-resolver@1.12.2": true
   }
 }

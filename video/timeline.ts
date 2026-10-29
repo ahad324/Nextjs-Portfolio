@@ -6,7 +6,7 @@ export const timeline = {
   logo: { from: 0, duration: s(3) },
   portrait: { from: s(3), duration: s(6) },
   tagline: { from: s(9), duration: s(5) },
-  work: { from: s(14), duration: s(16) },
+  capabilities: { from: s(14), duration: s(16) },
   stack: { from: s(30), duration: s(5) },
   outro: { from: s(35), duration: s(5) },
 } as const;

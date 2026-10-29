@@ -124,7 +124,7 @@ export function Header() {
                       "relative block rounded-full px-4 py-2 text-sm transition-colors duration-300",
                       current === link.id ? "text-ink" : "text-bone-2 hover:text-bone",
                     )}
-                    aria-current={current === link.id ? "true" : undefined}
+                    aria-current={current === link.id ? "location" : undefined}
                   >
                     {current === link.id && (
                       <m.span
@@ -195,7 +195,7 @@ export function Header() {
             <nav aria-label="Mobile" className="flex-1">
               <ul className="flex flex-col gap-1">
                 {[{ label: "Home", id: sections.hero }, ...navLinks].map((link, index) => (
-                  <li key={link.id} className="overflow-hidden">
+                  <li key={link.id} className="overflow-hidden py-0.5">
                     <m.div
                       initial={{ y: "110%" }}
                       animate={{ y: 0 }}

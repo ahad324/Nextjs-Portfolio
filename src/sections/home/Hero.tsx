@@ -28,20 +28,13 @@ export function Hero() {
           </p>
         </FadeIn>
 
-        <h1 className="mt-6 text-mega font-semibold md:mt-8">
-          <SplitReveal as="span" immediate by="chars" className="block">
-            {site.firstName}
-          </SplitReveal>
-          <SplitReveal
-            as="span"
-            immediate
-            by="chars"
-            delay={0.15}
-            className="block pr-[0.1em] font-serif font-normal tracking-[-0.03em] text-ember italic"
-          >
+        {/* The h1 itself is split, so it carries the accessible name for the animated letters. */}
+        <SplitReveal as="h1" immediate by="chars" className="mt-6 text-mega font-semibold md:mt-8">
+          <span className="block">{site.firstName}</span>{" "}
+          <span className="block pr-[0.1em] font-serif font-normal tracking-[-0.03em] text-ember italic">
             {site.lastName}
-          </SplitReveal>
-        </h1>
+          </span>
+        </SplitReveal>
 
         <div className="mt-8 grid gap-8 md:mt-12 md:grid-cols-12 md:items-end">
           <FadeIn immediate delay={0.45} className="md:col-span-6 lg:col-span-5">
@@ -84,7 +77,7 @@ export function Hero() {
           className="mt-12 flex items-center justify-between border-t border-line pt-5 font-mono text-xs tracking-wider text-muted uppercase md:mt-16"
         >
           <ScrollCue />
-          <span className="hidden sm:block">Based in {site.location} — working worldwide</span>
+          <span className="hidden sm:block">Based in {site.location}</span>
           <span>
             <span className="text-ember">(01)</span> Hello
           </span>

@@ -62,7 +62,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
               className="group inline-flex items-center gap-2 transition-colors hover:text-bone"
             >
               <ArrowLeft className="size-4 transition-transform duration-500 group-hover:-translate-x-1" />
-              All work
+              All projects
             </Link>
             <span>
               <span className="text-ember">{String(index + 1).padStart(2, "0")}</span> /{" "}
@@ -153,7 +153,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             {project.summary}
           </SplitReveal>
 
-          <h2 className="mt-20 eyebrow">What went into it</h2>
+          <h2 className="mt-20 eyebrow">Highlights</h2>
           <ol className="mt-6 border-t border-line">
             {project.highlights.map((highlight, i) => (
               <FadeIn
@@ -169,7 +169,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
             ))}
           </ol>
 
-          <h2 className="mt-20 eyebrow">Built with</h2>
+          <h2 className="mt-20 eyebrow">Tech stack</h2>
           <FadeIn as="ul" stagger={0.04} className="mt-6 flex flex-wrap gap-2">
             {project.stack.map((tool) => (
               <li key={tool} className="rounded-full border border-line-strong px-4 py-2 text-sm">

@@ -15,7 +15,7 @@ export const site = {
   company: { name: "Floty.ai", url: "https://floty.ai" },
   tagline: "From the socket to the screen.",
   pitch:
-    "I design and build real-time, secure software end to end — the APIs, the sockets, the databases and the interfaces people actually enjoy using.",
+    "I build real-time, secure web and desktop software end to end — APIs, WebSockets, databases and the interfaces on top.",
   description:
     "Abdul Ahad is a full-stack engineer at Floty.ai, building real-time, secure web and desktop products with TypeScript, React, Next.js, Node.js, FastAPI and Python.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_URL).replace(/\/$/, ""),

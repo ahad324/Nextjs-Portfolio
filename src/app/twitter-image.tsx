@@ -9,7 +9,7 @@ export default function OpenGraphImage() {
   return renderOg({
     eyebrow: site.role,
     title: site.name,
-    subtitle: site.tagline + " Real-time, secure products — built end to end.",
+    subtitle: `${site.role} at ${site.company.name}. ${site.tagline}`,
     withPortrait: true,
   });
 }

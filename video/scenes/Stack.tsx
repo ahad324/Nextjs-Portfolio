@@ -25,7 +25,7 @@ export function StackScene() {
               color: colors.muted,
             }}
           >
-            <span style={{ color: colors.ember }}>(03)</span> — The stack
+            <span style={{ color: colors.ember }}>●</span> Skills
           </div>
         </Appear>
         <div
@@ -39,10 +39,10 @@ export function StackScene() {
             color: colors.bone,
           }}
         >
-          <Rise text={`${skillCount} tools,`} by="words" delay={2} stagger={5} />
+          <Rise text={`${skillCount} tools.`} by="words" delay={2} stagger={5} />
           <br />
           <Rise
-            text="every layer."
+            text="Across the stack."
             by="words"
             delay={10}
             stagger={5}

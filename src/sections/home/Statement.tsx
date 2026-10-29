@@ -14,7 +14,7 @@ export function Statement() {
       className="relative py-28 md:py-44"
     >
       <div className="container-x">
-        <SectionLabel index="02">In a sentence</SectionLabel>
+        <SectionLabel index="02">Overview</SectionLabel>
         <h2 id="statement-title" className="sr-only">
           About my work
         </h2>

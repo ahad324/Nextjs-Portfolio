@@ -38,7 +38,7 @@ export const projects = [
       "A multiplayer game platform where friends create or join rooms with a short code and play instantly, with low-latency state sync across several game modes.",
     highlights: [
       "Custom Node.js + Socket.IO game server that owns player state, room lifecycle and match sync.",
-      "Lobby system with unique room codes — no accounts, no friction, straight into a match.",
+      "Lobby system with unique room codes, so players can join a match without signing up.",
       "Virtual joystick and full-screen layouts so the same game works on phones and desktops.",
       "Live emoji reactions, persistent usernames and dynamic themes for replayability.",
     ],
@@ -69,8 +69,8 @@ export const projects = [
     summary:
       "A zero-configuration file-sharing app for local networks. Devices discover each other automatically and every transfer is end-to-end encrypted with mutual TLS.",
     highlights: [
-      "Mutual TLS with certificate pinning and automatic certificate generation — encrypted by default.",
-      "mDNS discovery: devices on the same network find each other with zero setup.",
+      "Mutual TLS with certificate pinning and automatic certificate generation.",
+      "mDNS discovery, so devices on the same network connect without configuration.",
       "Chunked, compressed streaming for large files with real-time progress.",
       "Native Qt 6 interface with drag-and-drop, dark/light themes and a splash screen.",
       "Packaged and published as a Windows app on the Microsoft Store.",
@@ -115,14 +115,14 @@ export const projects = [
   {
     slug: "docnow",
     title: "DocNow",
-    tagline: "Drag, drop, done — documents that update live.",
+    tagline: "Real-time document sharing with drag-and-drop uploads.",
     year: 2024,
     category: "Real-time · Web app",
     role: "Solo — frontend, backend integration",
     summary:
       "A document-sharing app where uploads, downloads and deletions appear instantly for everyone, with an authenticated admin to moderate content.",
     highlights: [
-      "Realtime subscriptions — files appear and disappear for every viewer without a reload.",
+      "Real-time subscriptions update every viewer instantly, without reloading.",
       "Drag-and-drop uploads with live status and bulk download as a zip.",
       "Admin authentication with moderation controls.",
     ],
@@ -134,16 +134,16 @@ export const projects = [
   {
     slug: "homebudget",
     title: "HomeBudget",
-    tagline: "Personal finance without the spreadsheet.",
+    tagline: "Track income, expenses and budgets in one place.",
     year: 2024,
     category: "Web app · Finance",
     role: "Solo — product, design, frontend",
     summary:
-      "A budgeting app to track income and expenses, set budgets and see where the money goes — fast, themeable and pleasant on any screen.",
+      "A budgeting app to track income and expenses, set budgets and review spending, with a responsive interface and custom themes.",
     highlights: [
       "Dashboard that summarises spending, budgets and trends at a glance.",
       "Add, edit and filter income and expenses with instant recalculation.",
-      "Custom themes and motion that keep a dry task feeling light.",
+      "Custom themes and smooth, responsive animations.",
     ],
     stack: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
     links: {
@@ -156,12 +156,12 @@ export const projects = [
   {
     slug: "gradegenie",
     title: "GradeGenie",
-    tagline: "Every GPA calculation a student needs, in one place.",
+    tagline: "GPA, CGPA and SGPA calculators for students.",
     year: 2023,
     category: "Web app · Education",
     role: "Solo — product, design, frontend",
     summary:
-      "GPA, CGPA and SGPA calculators with customisable grading inputs, built to be quick on a phone in the middle of results week.",
+      "GPA, CGPA and SGPA calculators with customisable grading inputs and a mobile-first layout.",
     highlights: [
       "Multiple calculators sharing one flexible grading model.",
       "Mobile-first layout and SEO-friendly routes with generated sitemaps.",

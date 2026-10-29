@@ -29,7 +29,7 @@ export function contactEmail(input: ContactInput & { receivedAt: Date }) {
     ``,
     input.message,
     ``,
-    `— Reply to this email to answer ${input.name} directly.`,
+    `Reply to this email to respond to ${input.name}.`,
   ].join("\n");
 
   const html = `<!doctype html>
@@ -38,7 +38,7 @@ export function contactEmail(input: ContactInput & { receivedAt: Date }) {
 <table role="presentation" width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;background:${brand.ink2};border:1px solid #23262b;border-radius:20px;">
 <tr><td style="padding:28px 32px 8px;">
   <div style="font-size:12px;letter-spacing:3px;text-transform:uppercase;color:${brand.muted};">Portfolio · ${escape(input.topic)}</div>
-  <div style="margin-top:14px;font-size:26px;font-weight:700;color:${brand.bone};letter-spacing:-0.5px;">${escape(input.name)} wrote to you</div>
+  <div style="margin-top:14px;font-size:26px;font-weight:700;color:${brand.bone};letter-spacing:-0.5px;">New message from ${escape(input.name)}</div>
 </td></tr>
 <tr><td style="padding:12px 32px;">
   <table role="presentation" cellpadding="0" cellspacing="0" style="font-size:14px;color:${brand.bone};">
@@ -48,7 +48,7 @@ export function contactEmail(input: ContactInput & { receivedAt: Date }) {
 </td></tr>
 <tr><td style="padding:12px 32px 28px;">
   <div style="border-left:3px solid ${brand.ember};padding:4px 0 4px 16px;font-size:16px;line-height:1.6;color:${brand.bone};white-space:pre-wrap;">${escape(input.message)}</div>
-  <div style="margin-top:24px;font-size:13px;color:${brand.muted};">Hit reply to answer ${escape(input.name)} directly.</div>
+  <div style="margin-top:24px;font-size:13px;color:${brand.muted};">Reply to this email to respond to ${escape(input.name)}.</div>
 </td></tr>
 </table>
 </td></tr></table>

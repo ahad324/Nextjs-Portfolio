@@ -4,19 +4,23 @@ export const topics = [
   "Full-time role",
   "Freelance project",
   "Collaboration",
-  "Just saying hi",
+  "General enquiry",
 ] as const;
 
 /** Shared by the form (client hints) and the server action (source of truth). */
 export const contactSchema = z.object({
-  name: z.string().trim().min(2, "Tell me your name.").max(80, "That name is a bit long."),
-  email: z.email("That email doesn't look right.").trim().max(160),
-  topic: z.enum(topics).default("Just saying hi"),
+  name: z
+    .string()
+    .trim()
+    .min(2, "Please enter your name.")
+    .max(80, "Name must be 80 characters or fewer."),
+  email: z.email("Please enter a valid email address.").trim().max(160),
+  topic: z.enum(topics).default("General enquiry"),
   message: z
     .string()
     .trim()
-    .min(10, "A little more detail, please (10+ characters).")
-    .max(4000, "Please keep it under 4,000 characters."),
+    .min(10, "Message must be at least 10 characters.")
+    .max(4000, "Message must be 4,000 characters or fewer."),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

@@ -48,17 +48,33 @@ export function personJsonLd() {
 }
 
 export function projectJsonLd(project: Project) {
+  const url = absoluteUrl(`/work/${project.slug}`);
   return {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    headline: project.tagline,
-    description: project.summary,
-    url: absoluteUrl(`/work/${project.slug}`),
-    dateCreated: String(project.year),
-    author: { "@type": "Person", name: site.name, url: site.url },
-    keywords: project.stack.join(", "),
-    ...(project.links.live ? { sameAs: [project.links.live] } : {}),
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        "@id": `${url}#work`,
+        name: project.title,
+        headline: project.tagline,
+        description: project.summary,
+        url,
+        image: absoluteUrl(`/work/${project.slug}/opengraph-image`),
+        dateCreated: String(project.year),
+        genre: project.category,
+        keywords: project.stack.join(", "),
+        author: { "@id": absoluteUrl("/#person") },
+        ...(project.links.live ? { sameAs: [project.links.live] } : {}),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Work", item: absoluteUrl("/#work") },
+          { "@type": "ListItem", position: 3, name: project.title, item: url },
+        ],
+      },
+    ],
   };
 }
 

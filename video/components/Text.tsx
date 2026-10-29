@@ -21,7 +21,15 @@ export function Rise({
   const frame = useCurrentFrame();
   const parts = by === "chars" ? text.split("") : text.split(" ");
   return (
-    <span style={{ display: "inline-flex", overflow: "hidden", paddingBottom: "0.08em", ...style }}>
+    <span
+      style={{
+        display: "inline-flex",
+        overflow: "hidden",
+        padding: "0.14em 0.16em 0.12em",
+        margin: "-0.14em -0.16em -0.12em",
+        ...style,
+      }}
+    >
       {parts.map((part, index) => {
         const progress = interpolate(frame - delay - index * stagger, [0, duration], [0, 1], {
           extrapolateLeft: "clamp",

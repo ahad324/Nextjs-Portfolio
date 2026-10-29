@@ -27,7 +27,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
   const raw = {
     name: String(formData.get("name") ?? ""),
     email: String(formData.get("email") ?? ""),
-    topic: String(formData.get("topic") ?? "Just saying hi"),
+    topic: String(formData.get("topic") ?? "General enquiry"),
     message: String(formData.get("message") ?? ""),
   };
 
@@ -62,7 +62,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
   if (rateLimited(ip)) {
     return {
       status: "error",
-      message: "That's a lot of messages in a short time — please try again in a few minutes.",
+      message: "Too many messages sent. Please try again in a few minutes.",
       values: raw,
     };
   }
@@ -72,7 +72,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
     console.error("[contact] RESEND_API_KEY is not set — message not sent.");
     return {
       status: "error",
-      message: "The contact form isn't configured yet. Please email me directly instead.",
+      message: "The contact form is temporarily unavailable. Please email me directly.",
       values: raw,
     };
   }
@@ -93,7 +93,7 @@ export async function sendContact(_prev: ContactState, formData: FormData): Prom
     console.error("[contact] Resend error:", error);
     return {
       status: "error",
-      message: "Something went wrong sending your message. Please try again or email me directly.",
+      message: "Your message could not be sent. Please try again or email me directly.",
       values: raw,
     };
   }

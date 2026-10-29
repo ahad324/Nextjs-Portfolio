@@ -31,7 +31,7 @@ export function FooterWordmark() {
     <p
       ref={ref}
       aria-hidden
-      className="container-x flex justify-between overflow-hidden pb-2 text-[clamp(4rem,17.5vw,17rem)] leading-[0.8] font-semibold tracking-[-0.065em] text-bone select-none"
+      className="container-x flex justify-between overflow-hidden pt-[0.06em] pb-[0.04em] text-[clamp(4rem,17.5vw,17rem)] leading-[0.9] font-semibold tracking-[-0.065em] text-bone select-none"
     >
       {site.name.split("").map((char, index) =>
         char === " " ? (

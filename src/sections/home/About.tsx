@@ -21,8 +21,7 @@ export function About() {
             <SectionLabel index="06">About</SectionLabel>
             <SplitReveal as="h2" className="mt-6 text-display font-semibold">
               <span id="about-title">
-                The person behind{" "}
-                <span className="font-serif font-normal text-ember italic">the commits</span>
+                About <span className="font-serif font-normal text-ember italic">me</span>
               </span>
             </SplitReveal>
           </div>
@@ -38,29 +37,28 @@ export function About() {
           >
             <p>
               <span className="text-bone">
-                I&apos;m a {site.education.degree} student at {site.education.school}
+                I&apos;m a full-stack engineer at {site.company.name}
               </span>{" "}
-              and a full-stack engineer at Floty.ai. I started rebuilding small websites in public
-              in 2023, and I&apos;ve been chasing harder problems ever since — multiplayer state,
-              encrypted transfers, real-time money movement.
+              and a {site.education.degree} student at {site.education.school} (
+              {site.education.period.replace(" — ", "–")}). I&apos;ve been building for the web
+              since 2023, from small HTML, CSS and JavaScript projects to real-time apps, secure
+              desktop software and backend APIs.
             </p>
             <p>
-              I like owning the whole thing: the schema, the API, the socket layer and the last
-              hover state. Fewer handoffs, more care — that&apos;s where good products come from.
+              My work covers the whole stack: database design, REST and WebSocket APIs,
+              authentication and access control, and responsive interfaces in React and Next.js.
             </p>
             <p>
-              Day to day I ship product at Floty.ai. Outside of that, I&apos;m always up for talking
-              about a hard real-time problem.
+              Before {site.company.name}, I interned as a MERN developer at Innovent Tech and built
+              independent projects including TransferX, which is available on the Microsoft Store.
             </p>
           </FadeIn>
         </div>
 
         <div className="mt-24 grid gap-12 md:mt-36 md:grid-cols-12 md:gap-8">
           <div className="md:col-span-4 md:col-start-2">
-            <p className="eyebrow">The journey so far</p>
-            <p className="mt-4 max-w-xs text-bone-2">
-              From piano games in plain JavaScript to an app on the Microsoft Store.
-            </p>
+            <p className="eyebrow">Experience &amp; education</p>
+            <p className="mt-4 max-w-xs text-bone-2">Work and study since 2023.</p>
           </div>
           <div className="md:col-span-6 md:col-start-7">
             <Timeline items={journey} />

@@ -50,10 +50,9 @@ export function ContactForm() {
             >
               <Check className="size-7" />
             </m.span>
-            <h3 className="mt-8 text-headline font-semibold">Thanks, {state.name}.</h3>
+            <h3 className="mt-8 text-headline font-semibold">Thank you, {state.name}.</h3>
             <p className="mt-4 max-w-sm text-lg text-bone-2">
-              Your message is in my inbox. I&apos;ll get back to you at the email you gave — usually
-              within a day or two.
+              Your message has been sent. I&apos;ll reply to the email address you provided.
             </p>
           </m.div>
         ) : (
@@ -73,7 +72,7 @@ export function ContactForm() {
             aria-describedby={state.status === "error" ? `${id}-error` : undefined}
           >
             <fieldset>
-              <legend className="eyebrow">What&apos;s this about?</legend>
+              <legend className="eyebrow">Topic</legend>
               <div className="mt-4 flex flex-wrap gap-2">
                 {topics.map((option) => (
                   <label
@@ -127,7 +126,7 @@ export function ContactForm() {
                 multiline
                 defaultValue={values.message}
                 error={errors.message}
-                placeholder="A few lines about the role or the project — timeline, stack, anything useful."
+                placeholder="Tell me about the role or project."
               />
             </div>
 
@@ -156,7 +155,7 @@ export function ContactForm() {
                     )}
                   </>
                 ) : (
-                  "Goes straight to my inbox. No spam, ever."
+                  "Your details are only used to reply to your message."
                 )}
               </p>
               <button

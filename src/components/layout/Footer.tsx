@@ -16,7 +16,7 @@ export function Footer() {
         <div className="md:col-span-5">
           <LogoMark className="size-10 text-bone" />
           <p className="mt-6 max-w-sm text-lg text-bone-2">
-            {site.role} building real-time, secure products. {site.tagline}
+            {site.role} at {site.company.name}, based in {site.location}.
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function Footer() {
 
       <div className="container-x flex flex-col items-start justify-between gap-4 border-t border-line py-6 text-sm text-muted sm:flex-row sm:items-center">
         <p>
-          © {year} {site.name}. Designed &amp; built from scratch.
+          © {year} {site.name}. All rights reserved.
         </p>
         <BackToTop />
       </div>

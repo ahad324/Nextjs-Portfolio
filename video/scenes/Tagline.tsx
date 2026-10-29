@@ -29,7 +29,7 @@ export function TaglineScene() {
           color: colors.muted,
         }}
       >
-        <span style={{ color: colors.ember }}>(02)</span> — What I do
+        <span style={{ color: colors.ember }}>●</span> What I do
       </div>
       <div
         style={{

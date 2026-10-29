@@ -22,9 +22,9 @@ export function Playground() {
   return (
     <div className="grid gap-8 md:grid-cols-12">
       <div className="md:col-span-4 md:col-start-2">
-        <p className="eyebrow">Off the clock</p>
+        <p className="eyebrow">Outside work</p>
         <p className="mt-4 max-w-xs text-bone-2">
-          What fills the rest of the week. Go on — throw them around.
+          Interests outside of engineering. Drag the tags to move them.
         </p>
       </div>
       <div

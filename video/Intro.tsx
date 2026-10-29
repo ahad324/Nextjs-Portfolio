@@ -8,7 +8,7 @@ import { LogoScene } from "./scenes/Logo";
 import { OutroScene } from "./scenes/Outro";
 import { StackScene } from "./scenes/Stack";
 import { TaglineScene } from "./scenes/Tagline";
-import { WorkScene } from "./scenes/Work";
+import { CapabilitiesScene } from "./scenes/Capabilities";
 import { colors, ease } from "./theme";
 import { timeline as T } from "./timeline";
 
@@ -19,8 +19,8 @@ const keys: Key[] = [
   { frame: 0, x: 1.35, y: -0.05, scale: 1, alpha: 1 },
   { frame: T.tagline.from - 15, x: 1.35, y: -0.05, scale: 1, alpha: 1 },
   { frame: T.tagline.from + 30, x: 0, y: 0, scale: 1.25, alpha: 0.5 },
-  { frame: T.work.from - 15, x: 0, y: 0, scale: 1.3, alpha: 0.5 },
-  { frame: T.work.from + 30, x: 0, y: -0.55, scale: 1, alpha: 0.32 },
+  { frame: T.capabilities.from - 15, x: 0, y: 0, scale: 1.3, alpha: 0.5 },
+  { frame: T.capabilities.from + 30, x: 0, y: -0.55, scale: 1, alpha: 0.32 },
   { frame: T.stack.from - 15, x: 0, y: -0.55, scale: 1, alpha: 0.32 },
   { frame: T.stack.from + 30, x: 2.05, y: 0, scale: 0.95, alpha: 0.8 },
   { frame: T.outro.from - 15, x: 2.05, y: 0, scale: 0.95, alpha: 0.8 },
@@ -31,7 +31,7 @@ const keys: Key[] = [
 
 const morphs: { at: number; from: ShapeName; to: ShapeName }[] = [
   { at: T.tagline.from, from: "portrait", to: "galaxy" },
-  { at: T.work.from, from: "galaxy", to: "wave" },
+  { at: T.capabilities.from, from: "galaxy", to: "wave" },
   { at: T.stack.from, from: "wave", to: "sphere" },
   { at: T.outro.from, from: "sphere", to: "vortex" },
 ];
@@ -95,8 +95,8 @@ export function Intro() {
       <Sequence from={T.tagline.from} durationInFrames={T.tagline.duration}>
         <TaglineScene />
       </Sequence>
-      <Sequence from={T.work.from} durationInFrames={T.work.duration}>
-        <WorkScene />
+      <Sequence from={T.capabilities.from} durationInFrames={T.capabilities.duration}>
+        <CapabilitiesScene />
       </Sequence>
       <Sequence from={T.stack.from} durationInFrames={T.stack.duration}>
         <StackScene />

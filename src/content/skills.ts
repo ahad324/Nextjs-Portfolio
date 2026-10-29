@@ -9,13 +9,13 @@ export const skillGroups = [
   {
     id: "languages",
     label: "Languages",
-    blurb: "Typed where it matters, pragmatic everywhere else.",
+    blurb: "Primary languages across web, backend and desktop work.",
     items: ["TypeScript", "JavaScript", "Python", "C++", "SQL"],
   },
   {
     id: "frontend",
     label: "Frontend",
-    blurb: "Interfaces that feel fast because they are.",
+    blurb: "Web applications, interfaces and interactive 3D.",
     items: [
       "React",
       "Next.js",
@@ -30,7 +30,7 @@ export const skillGroups = [
   {
     id: "backend",
     label: "Backend & real-time",
-    blurb: "APIs and sockets that stay up and stay in sync.",
+    blurb: "APIs, services and real-time communication.",
     items: [
       "Node.js",
       "Express",
@@ -45,7 +45,7 @@ export const skillGroups = [
   {
     id: "data",
     label: "Data",
-    blurb: "Schemas designed before the first query.",
+    blurb: "Relational and document databases, caching and ORMs.",
     items: [
       "MongoDB",
       "PostgreSQL",
@@ -60,13 +60,13 @@ export const skillGroups = [
   {
     id: "ops",
     label: "DevOps & tools",
-    blurb: "From laptop to production without drama.",
+    blurb: "Containers, deployment and API tooling.",
     items: ["Docker", "Nginx", "Git", "GitHub", "Postman", "Netlify", "Vercel"],
   },
   {
     id: "desktop",
     label: "Desktop & automation",
-    blurb: "When the job lives outside the browser.",
+    blurb: "Desktop applications, browser automation and data collection.",
     items: ["PyQt6", "Tkinter", "Playwright", "Puppeteer", "Selenium", "Scrapy", "BeautifulSoup"],
   },
 ] as const satisfies readonly SkillGroup[];

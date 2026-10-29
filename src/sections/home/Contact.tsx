@@ -18,15 +18,15 @@ export function Contact() {
         <SectionLabel index="07">Contact</SectionLabel>
         <SplitReveal as="h2" by="words" className="mt-6 max-w-[14ch] text-mega font-semibold">
           <span id="contact-title">
-            Let&apos;s build something{" "}
-            <span className="font-serif font-normal text-ember italic">real.</span>
+            Let&apos;s work{" "}
+            <span className="font-serif font-normal text-ember italic">together.</span>
           </span>
         </SplitReveal>
 
         <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-12 md:gap-8">
           <FadeIn stagger={0.1} className="flex flex-col gap-10 md:col-span-4">
             <div>
-              <p className="eyebrow">Availability</p>
+              <p className="eyebrow">Currently</p>
               <p className="mt-3 flex items-center gap-3 text-lg">
                 <StatusDot /> {site.availability.label}
               </p>

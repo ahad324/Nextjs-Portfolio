@@ -27,11 +27,10 @@ export function OutroScene() {
           color: colors.bone,
         }}
       >
-        <Rise text="Let's build" by="words" delay={4} stagger={6} />
+        <Rise text="Let's work" by="words" delay={4} stagger={6} />
         <br />
-        <Rise text="something" by="words" delay={12} stagger={6} />{" "}
         <Rise
-          text="real."
+          text="together."
           delay={20}
           stagger={2}
           style={{
