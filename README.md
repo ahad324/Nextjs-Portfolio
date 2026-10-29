@@ -67,10 +67,12 @@ npm run dev
 ## Contact form (Resend)
 
 1. Create an API key at [resend.com/api-keys](https://resend.com/api-keys).
-2. Set `RESEND_API_KEY` in `.env.local` and in Netlify → Site settings → Environment variables.
-3. Without a verified domain, keep `CONTACT_FROM_EMAIL="Portfolio <onboarding@resend.dev>"` —
-   Resend then only delivers to the email that owns the Resend account, so `CONTACT_TO_EMAIL`
-   must be that address. After verifying your own domain, use e.g. `hello@yourdomain.com`.
+2. Set `RESEND_API_KEY` in `.env.local` and in Netlify → Site configuration → Environment
+   variables (mark it as a secret). It is the only variable the site needs.
+3. Sender, recipient and site URL have defaults in code (see `.env.example`). Leave them unset
+   unless you need to change them. The default sender is Resend's shared onboarding address,
+   which only delivers to the email that owns the Resend account; after verifying your own
+   domain in Resend, set `CONTACT_FROM_EMAIL` to an address on that domain.
 
 Spam protection: honeypot field, minimum fill time, per-IP rate limit, server-side validation.
 

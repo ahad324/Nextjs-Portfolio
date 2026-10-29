@@ -1,10 +1,11 @@
 import "server-only";
 import { z } from "zod";
+import { site } from "@/content/site";
 
 const schema = z.object({
   RESEND_API_KEY: z.string().min(1).optional(),
-  CONTACT_TO_EMAIL: z.email().default("ahadg446@gmail.com"),
-  CONTACT_FROM_EMAIL: z.string().min(3).default("Portfolio <onboarding@resend.dev>"),
+  CONTACT_TO_EMAIL: z.email().default(site.email),
+  CONTACT_FROM_EMAIL: z.string().min(3),
 });
 
 /** Parsed lazily so a missing key never breaks the build — only the contact action needs it. */
