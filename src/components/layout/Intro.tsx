@@ -1,52 +1,80 @@
+import type { CSSProperties } from "react";
 import { site } from "@/content/site";
+import { mulberry32 } from "@/lib/rng";
 import { IntroBridge } from "./IntroBridge";
 
 /**
  * Loading screen with real progress.
  *
- * It is plain HTML + CSS + a tiny inline script, so it is painted in the very
- * first frame and starts tracking before any app JavaScript downloads. Progress
- * reflects actual milestones, and the label names what is currently loading:
+ * A field of particles starts scattered and flies into formation as the page
+ * loads, the counter shows the real percentage, and a line under the name
+ * cycles through what Abdul does. Progress is driven by actual milestones
+ * (document parsed → fonts → images → app hydrated → 3D scene ready or skipped),
+ * tracked by a tiny inline script — so it paints in the first frame, before any
+ * app JavaScript arrives. Capped at 8 s.
  *
- *   document parsed → fonts → images & styles (window load) → app hydrated
- *   → 3D scene built (or skipped on devices that don't run it)
- *
- * When everything is in (and the mark has finished drawing), it adds
- * `data-intro="done"` to <html>, fires `intro:done`, and the curtain lifts via CSS.
- * Capped at 8 s so a slow 3D download never holds the page hostage.
+ * Everything visual is CSS driven by one custom property (`--p`, the number of
+ * particles in place) on the root, so the server HTML never needs patching.
  *
  * Skipped entirely (`data-intro="seen"`, set by the boot script) for returning
  * visitors in the same session, deep links, low-end devices and reduced motion.
  */
 const STEPS = [
-  { id: "dom", label: "Loading page", weight: 15 },
-  { id: "fonts", label: "Loading fonts", weight: 15 },
-  { id: "load", label: "Loading images", weight: 30 },
-  { id: "app", label: "Starting app", weight: 20 },
-  { id: "scene", label: "Building 3D scene", weight: 20 },
+  { id: "dom", weight: 15 },
+  { id: "fonts", weight: 15 },
+  { id: "load", weight: 30 },
+  { id: "app", weight: 20 },
+  { id: "scene", weight: 20 },
 ] as const;
+
+const LINES = [
+  "Full-stack engineer",
+  "Web · Mobile · Desktop",
+  "Real-time systems",
+  "IoT & connected devices",
+  "Idea to production",
+];
+
+const COLS = 22;
+const ROWS = 12;
+const COUNT = COLS * ROWS;
+
+/** Deterministic particles: fill order and scatter offsets (same on server and client). */
+const PARTICLES = (() => {
+  const rand = mulberry32(2026);
+  const order = Array.from({ length: COUNT }, (_, i) => i);
+  for (let i = COUNT - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [order[i], order[j]] = [order[j]!, order[i]!];
+  }
+  return order.map((fillIndex) => {
+    const angle = rand() * Math.PI * 2;
+    const distance = 120 + rand() * 420;
+    return {
+      i: fillIndex,
+      dx: Math.round(Math.cos(angle) * distance),
+      dy: Math.round(Math.sin(angle) * distance),
+      ember: rand() < 0.07,
+    };
+  });
+})();
 
 const script = `(function(){
 var d=document,h=d.documentElement,w=window;
 if(h.getAttribute('data-intro')==='seen')return;
-var steps=${JSON.stringify(STEPS)},done={},shown=0,start=performance.now(),MIN=900,CAP=8000,finished=false;
-function el(id){return d.getElementById(id)}
+var steps=${JSON.stringify(STEPS)},done={},shown=0,start=performance.now(),MIN=1400,CAP=8000,finished=false,N=${COUNT};
 function target(){var t=0;for(var i=0;i<steps.length;i++)if(done[steps[i].id])t+=steps[i].weight;return t}
-function pending(){for(var i=0;i<steps.length;i++)if(!done[steps[i].id])return steps[i].label;return 'Ready'}
 function mark(id){done[id]=true}
 function finish(){if(finished)return;finished=true;
   if(!done.app)h.setAttribute('data-reveal-all','');
   try{sessionStorage.setItem('intro-seen','1')}catch(e){}
   h.setAttribute('data-intro','done');w.dispatchEvent(new Event('intro:done'));}
 function frame(now){if(finished)return;
-  var t=target(),elapsed=now-start;
-  if(elapsed>CAP){t=100;}
-  shown+=(t-shown)*0.12;if(t-shown<0.4)shown=t;
-  var n=Math.round(shown),root=d.querySelector('.intro'),bar=el('intro-bar'),num=el('intro-num'),lab=el('intro-label');
-  if(bar)bar.style.transform='scaleX('+(shown/100)+')';
-  if(root)root.setAttribute('aria-valuenow',String(n));
-  if(num)num.textContent=(n<10?'00':n<100?'0':'')+n;
-  if(lab)lab.textContent=elapsed>CAP?'Ready':pending();
+  var elapsed=now-start,t=elapsed>CAP?100:target();
+  shown+=(t-shown)*0.07;if(t-shown<0.3)shown=t;
+  var n=Math.round(shown),root=d.querySelector('.intro'),num=d.getElementById('intro-num');
+  if(root){root.style.setProperty('--p',String(shown/100*N));root.setAttribute('aria-valuenow',String(n));}
+  if(num)num.textContent=String(n);
   if(n>=100&&elapsed>=MIN){finish();return}
   requestAnimationFrame(frame)}
 if(d.readyState!=='loading')mark('dom');else d.addEventListener('DOMContentLoaded',function(){mark('dom')});
@@ -63,42 +91,76 @@ export function Intro() {
     <>
       <div
         suppressHydrationWarning
-        className="intro fixed inset-0 z-[90] flex flex-col items-center justify-center bg-ink-2"
+        className="intro fixed inset-0 z-[90] flex flex-col items-center justify-center overflow-hidden bg-ink-2"
         role="progressbar"
         aria-label={`Loading ${site.name}`}
         aria-valuemin={0}
         aria-valuemax={100}
+        style={{ "--p": 0, "--n": COUNT } as CSSProperties}
       >
-        <svg viewBox="0 0 32 32" className="size-20 text-bone md:size-24" aria-hidden>
-          <path
-            className="intro-path"
-            d="M6.5 26.5 16 5.5l9.5 21"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            pathLength={1}
-          />
-          <circle className="intro-dot" cx="16" cy="19" r="2.4" fill="var(--color-ember)" />
-        </svg>
-        <p className="mt-8 text-sm font-medium tracking-[0.3em] text-bone-2 uppercase">
-          {site.name}
-        </p>
-        <div className="absolute inset-x-[var(--gutter)] bottom-8 flex items-end justify-between gap-6 font-mono text-xs text-muted">
-          <span id="intro-label" suppressHydrationWarning>
-            Loading page
-          </span>
-          <span id="intro-num" className="tabular-nums" suppressHydrationWarning>
-            000
-          </span>
+        {/* Particles assembling into formation */}
+        <div className="intro-field" aria-hidden>
+          {PARTICLES.map((particle, index) => (
+            <i
+              key={index}
+              className={particle.ember ? "is-ember" : undefined}
+              style={
+                { "--i": particle.i, "--dx": particle.dx, "--dy": particle.dy } as CSSProperties
+              }
+            />
+          ))}
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-px bg-line">
+
+        <div className="relative flex flex-col items-center text-center">
+          <svg viewBox="0 0 32 32" className="size-20 text-bone md:size-24" aria-hidden>
+            <path
+              className="intro-path"
+              d="M6.5 26.5 16 5.5l9.5 21"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              pathLength={1}
+            />
+            <circle className="intro-dot" cx="16" cy="19" r="2.4" fill="var(--color-ember)" />
+          </svg>
+          <p className="mt-8 text-sm font-medium tracking-[0.3em] text-bone uppercase">
+            {site.name}
+          </p>
           <div
-            id="intro-bar"
-            className="h-full origin-left scale-x-0 bg-ember"
+            className="intro-lines mt-3 h-[1.5em] overflow-hidden text-sm text-muted"
+            aria-hidden
+          >
+            <ul>
+              {[...LINES, LINES[0]].map((line, index) => (
+                <li key={index} className="h-[1.5em] leading-[1.5em]">
+                  {line}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <p
+          className="absolute right-[var(--gutter)] bottom-6 flex items-start font-semibold tracking-[-0.05em] text-bone tabular-nums md:bottom-8"
+          aria-hidden
+        >
+          <span
+            id="intro-num"
             suppressHydrationWarning
-          />
+            className="text-[clamp(3.5rem,9vw,7.5rem)] leading-none"
+          >
+            0
+          </span>
+          <span className="mt-2 ml-1 text-xl text-ember md:text-2xl">%</span>
+        </p>
+        <p className="absolute bottom-6 left-[var(--gutter)] font-mono text-xs tracking-wider text-muted uppercase md:bottom-8">
+          {site.location}
+        </p>
+
+        <div className="absolute inset-x-0 bottom-0 h-px bg-line" aria-hidden>
+          <div className="intro-bar h-full origin-left bg-ember" />
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: script }} />

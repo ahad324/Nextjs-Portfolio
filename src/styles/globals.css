@@ -272,8 +272,77 @@ html[data-intro="done"] .intro {
   transform: scale(0);
   animation: intro-dot 0.6s cubic-bezier(0.34, 1.8, 0.64, 1) 0.75s forwards;
 }
-#intro-bar {
-  transition: transform 0.2s linear;
+/* Progress bar and particles are driven by --p (particles in place, 0…--n). */
+.intro-bar {
+  transform: scaleX(calc(var(--p) / var(--n)));
+}
+.intro-field {
+  position: absolute;
+  inset: 12% 8%;
+  display: grid;
+  grid-template-columns: repeat(22, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+  place-items: center;
+  /* Keep the centre clear for the mark and name. */
+  mask-image: radial-gradient(closest-side, transparent 28%, #000 62%);
+}
+.intro-field i {
+  --k: clamp(0, calc(var(--p) - var(--i)), 1);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--color-bone);
+  opacity: calc(0.1 + var(--k) * 0.55);
+  transform: translate(
+      calc(var(--dx) * (1 - var(--k)) * 1px),
+      calc(var(--dy) * (1 - var(--k)) * 1px)
+    )
+    scale(calc(0.5 + var(--k) * 0.7));
+  transition:
+    transform 0.9s var(--ease-out-expo),
+    opacity 0.9s var(--ease-out-expo);
+}
+.intro-field i.is-ember {
+  background: var(--color-ember);
+  box-shadow: 0 0 8px var(--color-ember);
+}
+@media (max-width: 767px) {
+  .intro-field {
+    inset: 8% 4%;
+  }
+  .intro-field i {
+    width: 2px;
+    height: 2px;
+  }
+}
+/* What I do, one line at a time. */
+.intro-lines ul {
+  animation: intro-lines 7.5s var(--ease-in-out-quart) 0.6s infinite;
+}
+@keyframes intro-lines {
+  0%,
+  16% {
+    transform: translateY(0);
+  }
+  20%,
+  36% {
+    transform: translateY(-1.5em);
+  }
+  40%,
+  56% {
+    transform: translateY(-3em);
+  }
+  60%,
+  76% {
+    transform: translateY(-4.5em);
+  }
+  80%,
+  96% {
+    transform: translateY(-6em);
+  }
+  100% {
+    transform: translateY(-7.5em);
+  }
 }
 @keyframes intro-draw {
   to {
