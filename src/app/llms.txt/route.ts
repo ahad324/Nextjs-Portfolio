@@ -1,4 +1,4 @@
-import { journey } from "@/content/journey";
+import { education, experience } from "@/content/journey";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { skillGroups } from "@/content/skills";
@@ -25,7 +25,11 @@ ${projects.map((p) => `- [${p.title}](${absoluteUrl(`/work/${p.slug}`)}): ${p.ta
 
 ## Experience
 
-${journey.map((m) => `- ${m.period} — ${m.title}${m.place ? `, ${m.place}` : ""}: ${m.body}`).join("\n")}
+${experience.map((e) => `- ${e.period}: ${e.title}, ${e.org} (${e.kind}). ${e.points.join(" ")}`).join("\n")}
+
+## Education
+
+${education.map((e) => `- ${e.period}: ${e.title}, ${e.org}. ${e.points.join(" ")}`).join("\n")}
 
 ## Skills
 

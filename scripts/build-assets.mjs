@@ -16,7 +16,7 @@ import sharp from "sharp";
 const root = path.resolve(import.meta.dirname, "..");
 const src = (f) => path.join(root, "assets/source", f);
 
-const projects = ["pixelarena", "transferx", "docnow", "gradegenie", "homebudget"];
+const projects = ["eventsphere", "pixelarena", "transferx", "docnow", "gradegenie", "homebudget"];
 
 // Head-and-shoulders crop of the 1024² cut-out photo.
 const PORTRAIT_CROP = { left: 205, top: 0, width: 660, height: 610 };

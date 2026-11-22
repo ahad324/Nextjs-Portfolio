@@ -3,12 +3,14 @@ export const FPS = 30;
 const s = (seconds: number) => Math.round(seconds * FPS);
 
 export const timeline = {
-  logo: { from: 0, duration: s(3) },
-  portrait: { from: s(3), duration: s(6) },
-  tagline: { from: s(9), duration: s(5) },
-  capabilities: { from: s(14), duration: s(16) },
-  stack: { from: s(30), duration: s(5) },
-  outro: { from: s(35), duration: s(5) },
+  open: { from: 0, duration: s(5) },
+  code: { from: s(5), duration: s(7) },
+  system: { from: s(12), duration: s(14) },
+  deploy: { from: s(26), duration: s(7) },
+  close: { from: s(33), duration: s(12) },
 } as const;
 
-export const TOTAL_FRAMES = s(40);
+/** Seconds where the score lands a hit — keep in sync with scripts/make-score.mjs. */
+export const CUTS_SECONDS = [5, 12, 26, 33, 39];
+
+export const TOTAL_FRAMES = s(45);

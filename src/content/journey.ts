@@ -1,43 +1,58 @@
-export type Milestone = {
+/**
+ * Career history, kept separate from education. Newest first.
+ */
+export type Entry = {
   period: string;
   title: string;
-  place?: string;
-  body: string;
+  org: string;
+  /** Employment type or credential, e.g. "Full-time", "Internship". */
+  kind: string;
+  points: readonly string[];
 };
 
-/** The story, oldest first. */
-export const journey: readonly Milestone[] = [
+export const experience: readonly Entry[] = [
   {
-    period: "2023",
-    title: "Started building for the web",
-    body: "Published 20+ HTML, CSS and JavaScript projects on GitHub while learning web development.",
+    period: "Feb 2026 — Present",
+    title: "Full-stack Engineer",
+    org: "Floty.ai",
+    kind: "Full-time",
+    points: [
+      "Build product features end to end, across backend APIs, real-time functionality and user interfaces.",
+      "Own deployment and infrastructure, including build pipelines, environments and production releases.",
+      "Develop IoT integrations that connect devices to backend services and dashboards.",
+    ],
   },
   {
-    period: "2023 — 2027",
-    title: "BS Computer Science",
-    place: "Superior University",
-    body: "Coursework in data structures, computer networks, databases and software engineering.",
-  },
-  {
-    period: "2024",
-    title: "Full-stack projects",
-    body: "Built real-time apps with Appwrite, a C++ and Node.js banking system, and React apps including DocNow and HomeBudget.",
-  },
-  {
-    period: "2025",
-    title: "Backend and security work",
-    body: "Built a FastAPI banking backend, a Socket.IO multiplayer game server, and TransferX, an mTLS file-sharing app published on the Microsoft Store.",
+    period: "Ongoing",
+    title: "Full-stack Developer",
+    org: "Independent / Upwork",
+    kind: "Freelance",
+    points: [
+      "Design, build and deploy web applications and APIs for clients.",
+      "Handle projects end to end, from requirements and architecture to delivery and support.",
+    ],
   },
   {
     period: "Jul — Sep 2025",
-    title: "Full Stack (MERN) Intern",
-    place: "Innovent Tech",
-    body: "Developed and maintained web application features, debugged and tested releases, and improved interface usability.",
+    title: "Full-stack (MERN) Intern",
+    org: "Innovent Tech",
+    kind: "Internship",
+    points: [
+      "Developed and maintained features for production web applications.",
+      "Debugged and tested releases, and improved interface usability with the team.",
+    ],
   },
+];
+
+export const education: readonly Entry[] = [
   {
-    period: "Feb 2026 — Now",
-    title: "Full-stack Engineer",
-    place: "Floty.ai",
-    body: "Building product features end to end — APIs, real-time functionality and user interfaces.",
+    period: "2023 — 2027",
+    title: "BS Computer Science",
+    org: "Superior University, Lahore",
+    kind: "Degree",
+    points: [
+      "Final-year project: an AI-powered robotics system (in progress).",
+      "Coursework in data structures, computer networks, databases and software engineering.",
+    ],
   },
 ];

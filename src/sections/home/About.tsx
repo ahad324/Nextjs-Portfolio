@@ -1,4 +1,4 @@
-import { journey } from "@/content/journey";
+import { education, experience } from "@/content/journey";
 import { sections } from "@/content/navigation";
 import { site } from "@/content/site";
 import { FadeIn, SplitReveal } from "@/components/motion/Reveal";
@@ -38,30 +38,35 @@ export function About() {
             <p>
               <span className="text-bone">
                 I&apos;m a full-stack engineer at {site.company.name}
-              </span>{" "}
-              and a {site.education.degree} student at {site.education.school} (
-              {site.education.period.replace(" — ", "–")}). I&apos;ve been building for the web
-              since 2023, from small HTML, CSS and JavaScript projects to real-time apps, secure
-              desktop software and backend APIs.
+              </span>
+              , where I build product features end to end and handle deployment and infrastructure.
+              Alongside that, I take on freelance work, building and shipping applications for
+              clients.
             </p>
             <p>
-              My work covers the whole stack: database design, REST and WebSocket APIs,
-              authentication and access control, and responsive interfaces in React and Next.js.
+              I&apos;ve been writing software since 2022. My work covers web and desktop
+              applications, real-time systems, secure APIs, IoT integrations and the pipelines that
+              put them into production.
             </p>
             <p>
-              Before {site.company.name}, I interned as a MERN developer at Innovent Tech and built
-              independent projects including TransferX, which is available on the Microsoft Store.
+              I&apos;m completing a {site.education.degree} at {site.education.school}, where my
+              final-year project is an AI-powered robotics system.
             </p>
           </FadeIn>
         </div>
 
-        <div className="mt-24 grid gap-12 md:mt-36 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-4 md:col-start-2">
-            <p className="eyebrow">Experience &amp; education</p>
-            <p className="mt-4 max-w-xs text-bone-2">Work and study since 2023.</p>
+        <div className="mt-24 grid gap-16 md:mt-36 md:grid-cols-12 md:gap-8">
+          <div className="md:col-span-6 lg:col-span-5 lg:col-start-2">
+            <h3 className="eyebrow">Experience</h3>
+            <div className="mt-8">
+              <Timeline items={experience} label="Experience" />
+            </div>
           </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <Timeline items={journey} />
+          <div className="md:col-span-6 lg:col-span-4 lg:col-start-8">
+            <h3 className="eyebrow">Education</h3>
+            <div className="mt-8">
+              <Timeline items={education} label="Education" />
+            </div>
           </div>
         </div>
 

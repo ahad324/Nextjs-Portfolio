@@ -1,3 +1,4 @@
+import { cn } from "@/lib/cn";
 import { manifesto, services, stats } from "@/content/about";
 import { sections } from "@/content/navigation";
 import { CountUp } from "@/components/motion/CountUp";
@@ -23,20 +24,32 @@ export function Statement() {
           className="mt-10 max-w-[22ch] text-headline font-medium md:max-w-[26ch] lg:max-w-[30ch]"
         />
 
-        <dl className="mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t border-line pt-10 md:mt-28 md:grid-cols-4">
+        <dl className="mt-20 grid grid-cols-2 items-end gap-x-6 gap-y-10 border-t border-line pt-10 md:mt-28 md:grid-cols-4">
           {stats.map((stat) => (
-            <FadeIn key={stat.label} className="flex flex-col-reverse gap-2">
+            <FadeIn
+              key={stat.label}
+              className={cn(
+                "flex flex-col-reverse gap-2",
+                stat.kind === "text" && "col-span-2 md:col-span-1",
+              )}
+            >
               <dt className="text-sm text-muted">{stat.label}</dt>
-              <dd className="text-display font-semibold tabular-nums">
-                <CountUp value={stat.value} suffix={stat.suffix} />
-              </dd>
+              {stat.kind === "number" ? (
+                <dd className="text-display font-semibold tabular-nums">
+                  <CountUp value={stat.value} suffix={stat.suffix} />
+                </dd>
+              ) : (
+                <dd className="text-title leading-tight font-semibold md:min-h-[2lh] lg:min-h-0 lg:text-[clamp(1.5rem,1rem+1.4vw,2.25rem)]">
+                  {stat.text}
+                </dd>
+              )}
             </FadeIn>
           ))}
         </dl>
 
         <FadeIn
           stagger={0.1}
-          className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:mt-28 md:grid-cols-3"
+          className="mt-20 grid gap-px overflow-hidden rounded-3xl border border-line bg-line md:mt-28 md:grid-cols-2 lg:grid-cols-4"
         >
           {services.map((service, index) => (
             <article

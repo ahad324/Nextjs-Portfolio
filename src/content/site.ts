@@ -14,13 +14,15 @@ export const site = {
   role: "Full-stack engineer",
   company: { name: "Floty.ai", url: "https://floty.ai" },
   pitch:
-    "I build secure, real-time web and desktop applications, from backend APIs and databases to the user interface.",
+    "I build and ship secure, real-time software: web and desktop applications, backend APIs, IoT integrations and the infrastructure they run on.",
   description:
-    "Abdul Ahad is a full-stack engineer at Floty.ai, building real-time, secure web and desktop products with TypeScript, React, Next.js, Node.js, FastAPI and Python.",
+    "Abdul Ahad is a full-stack engineer at Floty.ai who builds and deploys secure, real-time web, desktop and IoT products with TypeScript, React, Next.js, Node.js, FastAPI and Python.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_URL).replace(/\/$/, ""),
   locale: "en_US",
   email: "ahadg446@gmail.com",
-  location: "Pakistan",
+  location: "Lahore, Pakistan",
+  /** Started learning to program; first public commit followed in Jan 2023. */
+  startedCoding: new Date("2022-08-01"),
   timezone: "Asia/Karachi",
   availability: {
     open: true,
@@ -59,8 +61,12 @@ export const site = {
     "Node.js",
     "FastAPI",
     "real-time applications",
+    "DevOps",
+    "deployment",
+    "IoT",
     "Socket.IO",
     "MERN stack",
+    "Lahore software engineer",
     "Pakistan developer",
     "freelance web developer",
   ],

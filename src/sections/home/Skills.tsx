@@ -1,5 +1,4 @@
 import { sections } from "@/content/navigation";
-import { skillCount } from "@/content/skills";
 import { SplitReveal } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { SkillsExplorer } from "./SkillsExplorer";
@@ -22,8 +21,8 @@ export function Skills() {
             </span>
           </SplitReveal>
           <p className="mt-6 max-w-md text-bone-2">
-            {skillCount} languages, frameworks and tools I use across frontend, backend, data and
-            infrastructure.
+            Languages, frameworks and tools I use across frontend, backend, data, deployment and
+            IoT.
           </p>
           <SkillsExplorer />
         </div>

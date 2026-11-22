@@ -19,7 +19,6 @@ import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, renderStill, selectComposition } from "@remotion/renderer";
 import { webpackOverride } from "../video/webpack-override.ts";
-import { skillCount } from "../src/content/skills.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
 const out = path.join(root, "video/out");
@@ -40,7 +39,7 @@ if (!skipRender) {
   await renderStill({
     serveUrl,
     composition,
-    frame: 230,
+    frame: 330,
     output: media("intro-poster.jpg"),
     scale: 0.75,
     imageFormat: "jpeg",
@@ -107,23 +106,23 @@ await writeFile(
   media("intro.vtt"),
   `WEBVTT
 
-00:00.000 --> 00:03.000
-[Ambient electronic music] Abdul Ahad
+00:00.000 --> 00:05.000
+[Electronic music] Ideas. Interfaces. APIs. Devices. Production.
 
-00:03.000 --> 00:09.000
-Abdul Ahad — full-stack engineer at Floty.ai.
+00:05.000 --> 00:12.000
+Write it: a real-time server streaming device readings to clients.
 
-00:09.000 --> 00:14.000
-Full-stack engineering for web and desktop.
+00:12.000 --> 00:26.000
+Connect it: web, desktop and IoT clients linked through an API to real-time, auth and data services in production.
 
-00:14.000 --> 00:30.000
-Real-time applications. Security built in. Fast, accessible interfaces. End-to-end delivery.
+00:26.000 --> 00:33.000
+Ship it: a CI/CD pipeline takes the code from git push to production.
 
-00:30.000 --> 00:35.000
-${skillCount} technologies across the stack.
+00:33.000 --> 00:39.000
+Full-stack engineering, idea to production. Web, backend, real-time, IoT, deployment.
 
-00:35.000 --> 00:40.000
-Let's work together.
+00:39.000 --> 00:45.000
+Abdul Ahad, full-stack engineer at Floty.ai.
 `,
 );
 console.log("captions ✓ — done");

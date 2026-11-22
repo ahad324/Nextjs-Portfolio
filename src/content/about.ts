@@ -1,16 +1,26 @@
-import { projects } from "./projects";
-import { skillCount } from "./skills";
+import { site } from "./site";
 
 export const manifesto =
-  "I'm a full-stack engineer at Floty.ai. I build products end to end — real-time features over WebSockets, secure APIs in Node.js and FastAPI, and fast, accessible interfaces in React and Next.js.";
+  "I'm a full-stack engineer at Floty.ai, where I build product features end to end and own their deployment. My work spans real-time systems, secure APIs, web and desktop applications and IoT integrations, from the database to the interface to production.";
 
-/** Derived, never hand-typed — stays true as content changes. */
-export const stats = [
-  { value: projects.length, suffix: "", label: "Projects shipped" },
-  { value: skillCount, suffix: "", label: "Technologies I work with" },
-  { value: 1, suffix: "", label: "App on the Microsoft Store" },
-  { value: new Date().getFullYear() - 2023, suffix: "+", label: "Years building software" },
-] as const;
+const yearsCoding = Math.floor(
+  (Date.now() - site.startedCoding.getTime()) / (365.25 * 24 * 60 * 60 * 1000),
+);
+
+/**
+ * Headline facts. Numbers are kept deliberately general ("60+") so they stay
+ * true as work grows; `text` stats render as-is instead of counting up.
+ */
+export type Stat =
+  | { kind: "number"; value: number; suffix: string; label: string }
+  | { kind: "text"; text: string; label: string };
+
+export const stats: readonly Stat[] = [
+  { kind: "number", value: yearsCoding, suffix: "+", label: "Years writing software" },
+  { kind: "number", value: 60, suffix: "+", label: "Repositories on GitHub" },
+  { kind: "text", text: "Web · Desktop · IoT", label: "Platforms I build for" },
+  { kind: "text", text: "Full-time & freelance", label: "How I work" },
+];
 
 export const hobbies = [
   { label: "Cricket", emoji: "🏏" },
@@ -24,14 +34,18 @@ export const hobbies = [
 export const services = [
   {
     title: "Full-stack products",
-    body: "Database design, APIs and user interfaces, built and maintained by one engineer.",
+    body: "Database design, secure APIs in Node.js and FastAPI, and the web or desktop interface on top.",
   },
   {
     title: "Real-time systems",
-    body: "Live dashboards, multiplayer, chat and notifications with WebSockets and Socket.IO.",
+    body: "Live dashboards, multiplayer, chat and notifications over WebSockets and Socket.IO.",
   },
   {
-    title: "APIs & backends",
-    body: "Secure, documented REST and GraphQL APIs in Node.js, NestJS and FastAPI.",
+    title: "Deployment & infrastructure",
+    body: "Containerised services, CI/CD pipelines and production hosting with Docker, Nginx and cloud platforms.",
+  },
+  {
+    title: "IoT integrations",
+    body: "Connecting devices and sensors to backend services, data storage and live dashboards.",
   },
 ] as const;

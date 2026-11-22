@@ -9,8 +9,8 @@ export const skillGroups = [
   {
     id: "languages",
     label: "Languages",
-    blurb: "Primary languages across web, backend and desktop work.",
-    items: ["TypeScript", "JavaScript", "Python", "C++", "SQL"],
+    blurb: "Primary languages across web, backend, systems and desktop work.",
+    items: ["TypeScript", "JavaScript", "Python", "C / C++", "Rust", "Dart", "SQL"],
   },
   {
     id: "frontend",
@@ -47,10 +47,12 @@ export const skillGroups = [
     label: "Data",
     blurb: "Relational and document databases, caching and ORMs.",
     items: [
-      "MongoDB",
       "PostgreSQL",
+      "MongoDB",
       "MySQL",
+      "SQLite",
       "Redis",
+      "Supabase",
       "Appwrite",
       "Mongoose",
       "TypeORM",
@@ -59,15 +61,25 @@ export const skillGroups = [
   },
   {
     id: "ops",
-    label: "DevOps & tools",
-    blurb: "Containers, deployment and API tooling.",
-    items: ["Docker", "Nginx", "Git", "GitHub", "Postman", "Netlify", "Vercel"],
+    label: "Deployment & DevOps",
+    blurb: "Containers, CI/CD and production hosting.",
+    items: [
+      "Docker",
+      "Nginx",
+      "Linux",
+      "GitHub Actions",
+      "CI/CD",
+      "Railway",
+      "Vercel",
+      "Netlify",
+      "Git",
+    ],
   },
   {
     id: "desktop",
-    label: "Desktop & automation",
-    blurb: "Desktop applications, browser automation and data collection.",
-    items: ["PyQt6", "Tkinter", "Playwright", "Puppeteer", "Selenium", "Scrapy", "BeautifulSoup"],
+    label: "Desktop, IoT & automation",
+    blurb: "Desktop applications, connected devices and browser automation.",
+    items: ["PyQt6", "Tkinter", "Arduino", "Playwright", "Puppeteer", "Selenium", "Scrapy"],
   },
 ] as const satisfies readonly SkillGroup[];
 

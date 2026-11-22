@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import eventsphere from "@/assets/projects/eventsphere.webp";
 import pixelarena from "@/assets/projects/pixelarena.webp";
 import transferx from "@/assets/projects/transferx.webp";
 import docnow from "@/assets/projects/docnow.webp";
@@ -27,6 +28,28 @@ export type Project = {
 };
 
 export const projects = [
+  {
+    slug: "eventsphere",
+    title: "EventSphere",
+    tagline:
+      "Event booking for planners, venues and vendors, from date holds to signed agreements.",
+    year: 2026,
+    category: "Platform · Marketplace",
+    role: "Full-stack engineering and deployment",
+    summary:
+      "A booking platform that connects event planners with venues and vendors across Pakistan's major cities. Planners check availability, hold a date while they decide, compare quotes side by side and sign agreements in one place.",
+    highlights: [
+      "Venue availability calendar with date holds that reserve a slot while the planner decides.",
+      "One brief sent to many vendors, with quotes compared side by side.",
+      "Signed agreements where both parties sign the same terms, with names and timestamps recorded.",
+      "Per-event booking files with checklists, an activity log and issue reporting.",
+      "Role-based access for planners, venue owners and vendors, team invitations, two-step sign-in and verified organisations.",
+    ],
+    stack: ["Next.js", "React", "Railway"],
+    links: { live: "https://eventsphereai.up.railway.app" },
+    image: eventsphere,
+    accent: "#c9a227",
+  },
   {
     slug: "pixel-arena",
     title: "Pixel Arena",
@@ -83,34 +106,6 @@ export const projects = [
     image: transferx,
     badge: "On the Microsoft Store",
     accent: "#7c9cff",
-  },
-  {
-    slug: "aut-bank",
-    title: "AUT Bank",
-    tagline: "A banking backend with real-time money movement.",
-    year: 2025,
-    category: "Backend · FinTech",
-    role: "Solo — API design, backend, admin dashboard",
-    summary:
-      "A full banking API — accounts, transfers, loans and cards — with role-based access, caching and live notifications, plus a Next.js admin dashboard on top.",
-    highlights: [
-      "FastAPI services with JWT auth, role-based access control and rate limiting.",
-      "Deposits, withdrawals, transfers and history with filtering, pagination and CSV export.",
-      "WebSocket notifications and live analytics for the admin dashboard.",
-      "Redis caching and auto-generated OpenAPI docs; SQLAlchemy over SQL Server with a clean modular layout.",
-    ],
-    stack: [
-      "Python",
-      "FastAPI",
-      "SQLAlchemy",
-      "SQL Server",
-      "Redis",
-      "WebSockets",
-      "Next.js",
-      "TypeScript",
-    ],
-    links: { live: "https://aut-bank-web.vercel.app", repo: "https://github.com/ahad324/AUT-Bank" },
-    accent: "#3ddc97",
   },
   {
     slug: "docnow",

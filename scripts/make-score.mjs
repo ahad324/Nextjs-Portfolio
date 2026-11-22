@@ -9,14 +9,19 @@ import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const SR = 44100;
-const DURATION = 40;
+const DURATION = 45;
 const N = SR * DURATION;
 const BPM = 96;
 const BEAT = 60 / BPM;
 const TAU = Math.PI * 2;
 
 // Scene cuts (seconds) — keep in sync with video/timeline.ts
-const CUTS = [3, 9, 14, 30, 35];
+const CUTS = [5, 12, 26, 33, 39];
+// Section markers: drums from the code scene, full groove through the system map,
+// resolve on the closing statement.
+const DRUMS_FROM = 5;
+const GROOVE = [12, 33];
+const RESOLVE = 33;
 
 const L = new Float32Array(N);
 const R = new Float32Array(N);
@@ -47,7 +52,7 @@ const chords = [
 ];
 const chordLen = BEAT * 8;
 for (let c = 0; c * chordLen < DURATION; c++) {
-  const notes = c * chordLen >= 35 ? chords[0] : chords[c % 4];
+  const notes = c * chordLen >= RESOLVE ? chords[0] : chords[c % 4];
   const start = c * chordLen;
   const end = Math.min(DURATION, start + chordLen + 1.2);
   for (const note of notes) {
@@ -72,8 +77,8 @@ for (let c = 0; c * chordLen < DURATION; c++) {
 // ── Sub bass on chord roots ────────────────────────────────────────────
 for (let c = 0; c * chordLen < DURATION; c++) {
   const start = c * chordLen;
-  if (start < 3 || start >= 37) continue;
-  const f = midi((c * chordLen >= 35 ? chords[0] : chords[c % 4])[0] - 12);
+  if (start < DRUMS_FROM || start >= DURATION - 3) continue;
+  const f = midi((c * chordLen >= RESOLVE ? chords[0] : chords[c % 4])[0] - 12);
   for (let i = Math.floor(start * SR); i < (start + chordLen) * SR && i < N; i++) {
     const t = i / SR - start;
     const env = Math.min(1, t / 0.2) * Math.min(1, (chordLen - t) / 0.3);
@@ -106,8 +111,8 @@ function hat(time, gain) {
 }
 for (let b = 0; b * BEAT < DURATION; b++) {
   const t = b * BEAT;
-  if (t >= 3 && t < 35) {
-    const inMontage = t >= 14 && t < 30;
+  if (t >= DRUMS_FROM && t < RESOLVE + 6) {
+    const inMontage = t >= GROOVE[0] && t < GROOVE[1];
     if (inMontage || b % 2 === 0) kick(t, inMontage ? 0.42 : 0.3);
     if (inMontage) hat(t + BEAT / 2, 0.12);
   }
@@ -116,7 +121,7 @@ for (let b = 0; b * BEAT < DURATION; b++) {
 // ── Plucked arpeggio from the tagline onwards ──────────────────────────
 for (let s = 0; s * (BEAT / 2) < DURATION; s++) {
   const t = s * (BEAT / 2);
-  if (t < 9 || t >= 35) continue;
+  if (t < DRUMS_FROM || t >= RESOLVE + 6) continue;
   const chord = chords[Math.floor(t / chordLen) % 4];
   const pattern = [0, 2, 1, 3, 2, 1, 3, 2];
   const note = chord[pattern[s % 8]] + 12;
@@ -144,7 +149,7 @@ for (const cut of CUTS) {
     add(start + i, v * (1 - t * 0.5), v * (0.5 + t * 0.5), 0.4);
   }
 }
-for (const cut of [3, 35]) {
+for (const cut of [DRUMS_FROM, RESOLVE]) {
   const s = Math.floor(cut * SR);
   for (let i = 0; i < SR * 2.2; i++) {
     const t = i / SR;

@@ -1,4 +1,3 @@
-import { projects } from "@/content/projects";
 import { sections } from "@/content/navigation";
 import { SplitReveal } from "@/components/motion/Reveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -23,7 +22,8 @@ export function Work() {
             </SplitReveal>
           </div>
           <p className="max-w-xs text-bone-2">
-            {projects.length} projects across real-time web apps, desktop software and backend APIs.
+            A selection from 60+ repositories: platforms, real-time systems, desktop software and
+            web apps.
           </p>
         </div>
         <WorkList />

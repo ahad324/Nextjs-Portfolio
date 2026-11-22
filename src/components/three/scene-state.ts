@@ -75,11 +75,11 @@ export const chapters: Record<ChapterName, Chapter> = {
   about: {
     shape: "helix",
     x: -2.35,
-    xMobile: 0,
+    xMobile: 1.9,
     scale: 0.9,
     scaleMobile: 0.75,
-    dim: 0.5,
-    pointer: 0.6,
+    dim: 0.95,
+    pointer: 0.3,
   },
   contact: {
     shape: "vortex",
