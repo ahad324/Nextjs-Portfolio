@@ -18,12 +18,13 @@ type Node = {
 };
 
 const NODES: Node[] = [
-  { id: "web", label: "Web app", sub: "React · Next.js", x: 290, y: 360, at: 8 },
-  { id: "desktop", label: "Desktop app", sub: "PyQt · Qt", x: 290, y: 560, at: 16 },
+  { id: "web", label: "Web app", sub: "React · Next.js", x: 290, y: 310, at: 8 },
+  { id: "mobile", label: "Mobile app", sub: "Flutter", x: 290, y: 460, at: 12 },
+  { id: "desktop", label: "Desktop app", sub: "PyQt · Qt", x: 290, y: 610, at: 16 },
   {
     id: "iot",
     label: "IoT devices",
-    sub: "Sensors · Arduino",
+    sub: "Trackers · ESP32",
     x: 290,
     y: 760,
     at: 24,
@@ -39,6 +40,7 @@ const NODES: Node[] = [
 
 const EDGES: [from: string, to: string][] = [
   ["web", "api"],
+  ["mobile", "api"],
   ["desktop", "api"],
   ["iot", "api"],
   ["api", "rt"],
@@ -263,7 +265,7 @@ export function SystemScene() {
           p95 latency <span style={{ color: colors.bone }}>38 ms</span>
         </span>
         <span>
-          clients <span style={{ color: colors.bone }}>web · desktop · iot</span>
+          clients <span style={{ color: colors.bone }}>web · mobile · desktop · iot</span>
         </span>
       </div>
     </AbsoluteFill>

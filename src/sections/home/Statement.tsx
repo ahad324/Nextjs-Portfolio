@@ -24,7 +24,7 @@ export function Statement() {
           className="mt-10 max-w-[22ch] text-headline font-medium md:max-w-[26ch] lg:max-w-[30ch]"
         />
 
-        <dl className="mt-20 grid grid-cols-2 items-end gap-x-6 gap-y-10 border-t border-line pt-10 md:mt-28 md:grid-cols-4">
+        <dl className="mt-20 grid grid-cols-2 items-end gap-x-6 gap-y-10 border-t border-line pt-10 md:mt-28 md:grid-cols-3">
           {stats.map((stat) => (
             <FadeIn
               key={stat.label}

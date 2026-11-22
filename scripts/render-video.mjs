@@ -113,13 +113,13 @@ await writeFile(
 Write it: a real-time server streaming device readings to clients.
 
 00:12.000 --> 00:26.000
-Connect it: web, desktop and IoT clients linked through an API to real-time, auth and data services in production.
+Connect it: web, mobile, desktop and IoT clients linked through an API to real-time, auth and data services in production.
 
 00:26.000 --> 00:33.000
 Ship it: a CI/CD pipeline takes the code from git push to production.
 
 00:33.000 --> 00:39.000
-Full-stack engineering, idea to production. Web, backend, real-time, IoT, deployment.
+Full-stack engineering, idea to production. Web, mobile, backend, real-time, IoT, deployment.
 
 00:39.000 --> 00:45.000
 Abdul Ahad, full-stack engineer at Floty.ai.

@@ -19,7 +19,7 @@ export const experience: readonly Entry[] = [
     points: [
       "Build product features end to end, across backend APIs, real-time functionality and user interfaces.",
       "Own deployment and infrastructure, including build pipelines, environments and production releases.",
-      "Develop IoT integrations that connect devices to backend services and dashboards.",
+      "Integrate tracking devices with backend services and live dashboards.",
     ],
   },
   {
@@ -28,7 +28,7 @@ export const experience: readonly Entry[] = [
     org: "Independent / Upwork",
     kind: "Freelance",
     points: [
-      "Design, build and deploy web applications and APIs for clients.",
+      "Design, build and deploy web, mobile and desktop applications and APIs for clients.",
       "Handle projects end to end, from requirements and architecture to delivery and support.",
     ],
   },
@@ -51,7 +51,7 @@ export const education: readonly Entry[] = [
     org: "Superior University, Lahore",
     kind: "Degree",
     points: [
-      "Final-year project: an AI-powered robotics system (in progress).",
+      "Final-year project: an AI-powered robotics system built on ESP32 (in progress).",
       "Coursework in data structures, computer networks, databases and software engineering.",
     ],
   },

@@ -14,8 +14,8 @@ export const skillGroups = [
   },
   {
     id: "frontend",
-    label: "Frontend",
-    blurb: "Web applications, interfaces and interactive 3D.",
+    label: "Frontend & mobile",
+    blurb: "Web and mobile applications, interfaces and interactive 3D.",
     items: [
       "React",
       "Next.js",
@@ -25,6 +25,7 @@ export const skillGroups = [
       "MUI",
       "Framer Motion",
       "Three.js",
+      "Flutter",
     ],
   },
   {
@@ -78,8 +79,17 @@ export const skillGroups = [
   {
     id: "desktop",
     label: "Desktop, IoT & automation",
-    blurb: "Desktop applications, connected devices and browser automation.",
-    items: ["PyQt6", "Tkinter", "Arduino", "Playwright", "Puppeteer", "Selenium", "Scrapy"],
+    blurb: "Desktop applications, embedded hardware, tracking devices and browser automation.",
+    items: [
+      "PyQt6",
+      "Tkinter",
+      "ESP32",
+      "Arduino",
+      "GPS / tracking devices",
+      "Playwright",
+      "Puppeteer",
+      "Selenium",
+    ],
   },
 ] as const satisfies readonly SkillGroup[];
 

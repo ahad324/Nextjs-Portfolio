@@ -21,7 +21,7 @@ export function Skills() {
             </span>
           </SplitReveal>
           <p className="mt-6 max-w-md text-bone-2">
-            Languages, frameworks and tools I use across frontend, backend, data, deployment and
+            Languages, frameworks and tools I use across web, mobile, backend, data, deployment and
             IoT.
           </p>
           <SkillsExplorer />

@@ -14,9 +14,9 @@ export const site = {
   role: "Full-stack engineer",
   company: { name: "Floty.ai", url: "https://floty.ai" },
   pitch:
-    "I build and ship secure, real-time software: web and desktop applications, backend APIs, IoT integrations and the infrastructure they run on.",
+    "I build and ship secure, real-time software: web, mobile and desktop applications, backend APIs, IoT integrations and the infrastructure they run on.",
   description:
-    "Abdul Ahad is a full-stack engineer at Floty.ai who builds and deploys secure, real-time web, desktop and IoT products with TypeScript, React, Next.js, Node.js, FastAPI and Python.",
+    "Abdul Ahad is a full-stack engineer at Floty.ai who builds and deploys secure, real-time web, mobile, desktop and IoT products with TypeScript, React, Next.js, Node.js, FastAPI and Python.",
   url: (process.env.NEXT_PUBLIC_SITE_URL || FALLBACK_URL).replace(/\/$/, ""),
   locale: "en_US",
   email: "ahadg446@gmail.com",

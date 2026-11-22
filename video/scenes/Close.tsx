@@ -26,7 +26,7 @@ export function CloseScene() {
   );
 }
 
-const DISCIPLINES = ["Web", "Backend", "Real-time", "IoT", "Deployment"];
+const DISCIPLINES = ["Web", "Mobile", "Backend", "Real-time", "IoT", "Deployment"];
 
 function Statement() {
   const frame = useCurrentFrame();
