@@ -1,5 +1,5 @@
 import { brand, site } from "@/content/site";
-import type { ContactInput } from "./schema";
+import type { ContactInput } from "./shared";
 
 const escape = (value: string) =>
   value

@@ -8,7 +8,8 @@
  * 1. Synthesises the soundtrack (scripts/make-score.mjs)
  * 2. Renders a high-quality 1080p master  → video/out/intro-master.mp4 (gitignored)
  * 3. Encodes the web version with Remotion's bundled ffmpeg:
- *      intro.mp4   H.264 720p, two-pass ≈1.8 Mbps, faststart (plays everywhere)
+ *      intro.mp4      H.264 720p, two-pass ≈1.8 Mbps (desktop)
+ *      intro-540.mp4  H.264 540p, two-pass ≈0.7 Mbps (phones)
  *    (AV1/VP9 were tested: far slower to encode and no smaller for particle footage.)
  * 4. Poster frame + captions
  */
@@ -18,6 +19,7 @@ import { createRequire } from "node:module";
 import path from "node:path";
 import { bundle } from "@remotion/bundler";
 import { renderMedia, renderStill, selectComposition } from "@remotion/renderer";
+import { captionsVtt } from "../src/content/film.ts";
 import { webpackOverride } from "../video/webpack-override.ts";
 
 const root = path.resolve(import.meta.dirname, "..");
@@ -36,12 +38,14 @@ if (!skipRender) {
   const serveUrl = await bundle({ entryPoint: path.join(root, "video/index.ts"), webpackOverride });
   const composition = await selectComposition({ serveUrl, id: "Intro" });
 
+  // Thumbnail: a dedicated still composition (video/Poster.tsx), 1280×720.
+  const poster = await selectComposition({ serveUrl, id: "Poster" });
   await renderStill({
     serveUrl,
-    composition,
-    frame: 330,
+    composition: poster,
+    frame: 0,
     output: media("intro-poster.jpg"),
-    scale: 0.75,
+    scale: 1280 / 1920,
     imageFormat: "jpeg",
     jpegQuality: 80,
   });
@@ -75,54 +79,38 @@ const run = (args) =>
     stdio: "inherit",
   });
 
-const h264Args = [
-  "-vf",
-  "scale=1280:-2:flags=lanczos",
-  "-c:v",
-  "libx264",
-  "-preset",
-  "slow",
-  "-b:v",
-  "1800k",
-];
-
-if (!skipEncode) {
-  console.log("encoding H.264…");
+/** Two-pass H.264 at a target width and bitrate, web-optimised (faststart). */
+async function encode({ width, kbps, maxKbps, audioKbps, file }) {
+  const args = [
+    "-vf",
+    `scale=${width}:-2:flags=lanczos`,
+    "-c:v",
+    "libx264",
+    "-preset",
+    "slow",
+    "-b:v",
+    `${kbps}k`,
+  ];
   const log = ["-passlogfile", path.join(out, "x264")];
-  run([...h264Args, "-pass", "1", ...log, "-an", "-f", "null", nullOut]);
+  run([...args, "-pass", "1", ...log, "-an", "-f", "null", nullOut]);
   run([
-    ...h264Args,
-    ...["-maxrate", "2600k", "-bufsize", "4000k", "-pass", "2", ...log],
+    ...args,
+    ...["-maxrate", `${maxKbps}k`, "-bufsize", `${maxKbps * 1.6}k`, "-pass", "2", ...log],
     ...["-pix_fmt", "yuv420p", "-profile:v", "high", "-movflags", "+faststart"],
-    ...["-c:a", "aac", "-b:a", "128k", media("intro.mp4")],
+    ...["-c:a", "aac", "-b:a", `${audioKbps}k`, media(file)],
   ]);
-  for (const file of ["x264-0.log", "x264-0.log.mbtree"]) {
-    await rm(path.join(out, file), { force: true });
+  for (const name of ["x264-0.log", "x264-0.log.mbtree"]) {
+    await rm(path.join(out, name), { force: true });
   }
 }
 
-// Captions: the film has no speech, so these describe the music and on-screen story.
-await writeFile(
-  media("intro.vtt"),
-  `WEBVTT
+if (!skipEncode) {
+  console.log("encoding 720p…");
+  await encode({ width: 1280, kbps: 1800, maxKbps: 2600, audioKbps: 128, file: "intro.mp4" });
+  console.log("encoding 540p (phones)…");
+  await encode({ width: 960, kbps: 700, maxKbps: 1100, audioKbps: 96, file: "intro-540.mp4" });
+}
 
-00:00.000 --> 00:05.000
-[Electronic music] Ideas. Interfaces. APIs. Devices. Production.
-
-00:05.000 --> 00:12.000
-Write it: a real-time server streaming device readings to clients.
-
-00:12.000 --> 00:26.000
-Connect it: web, mobile, desktop and IoT clients linked through an API to real-time, auth and data services in production.
-
-00:26.000 --> 00:33.000
-Ship it: a CI/CD pipeline takes the code from git push to production.
-
-00:33.000 --> 00:39.000
-Full-stack engineering, idea to production. Web, mobile, backend, real-time, IoT, deployment.
-
-00:39.000 --> 00:45.000
-Abdul Ahad, full-stack engineer at Floty.ai.
-`,
-);
+// Captions: generated from the transcript in src/content/film.ts.
+await writeFile(media("intro.vtt"), captionsVtt());
 console.log("captions ✓ — done");

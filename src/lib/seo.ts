@@ -1,3 +1,4 @@
+import { film, isoDuration } from "@/content/film";
 import { projects, type Project } from "@/content/projects";
 import { site } from "@/content/site";
 import { skillGroups } from "@/content/skills";
@@ -72,6 +73,46 @@ export function projectJsonLd(project: Project) {
           { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
           { "@type": "ListItem", position: 2, name: "Work", item: absoluteUrl("/#work") },
           { "@type": "ListItem", position: 3, name: project.title, item: url },
+        ],
+      },
+    ],
+  };
+}
+
+/** VideoObject for the /video watch page (eligible for Google video results). */
+export function videoJsonLd() {
+  const url = absoluteUrl("/video");
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "VideoObject",
+        "@id": `${url}#video`,
+        name: film.title,
+        description: film.description,
+        thumbnailUrl: [absoluteUrl(film.poster)],
+        uploadDate: `${film.uploadDate}T00:00:00+05:00`,
+        duration: isoDuration(film.durationSeconds),
+        contentUrl: absoluteUrl(film.sources.desktop),
+        embedUrl: url,
+        inLanguage: "en",
+        isFamilyFriendly: true,
+        creator: { "@id": absoluteUrl("/#person") },
+        author: { "@type": "Person", name: site.name, url: site.url },
+        transcript: film.chapters.map((chapter) => chapter.text).join(" "),
+        hasPart: film.chapters.map((chapter) => ({
+          "@type": "Clip",
+          name: chapter.title,
+          startOffset: chapter.start,
+          endOffset: chapter.end,
+          url: `${url}?t=${chapter.start}`,
+        })),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+          { "@type": "ListItem", position: 2, name: "Introduction video", item: url },
         ],
       },
     ],

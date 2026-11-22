@@ -79,8 +79,13 @@ const hex = (v: number) =>
 
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 
-export function SystemScene() {
-  const frame = useCurrentFrame();
+/**
+ * `bare` hides the scene label and metrics strip; `at` pins the scene to a
+ * frame. Both are used by the thumbnail (video/Poster.tsx).
+ */
+export function SystemScene({ bare = false, at }: { bare?: boolean; at?: number }) {
+  const current = useCurrentFrame();
+  const frame = at ?? current;
   const zoom = interpolate(frame, [0, 420], [1.07, 1]);
   const exit = interpolate(frame, [400, 420], [0, 1], { ...clamp, easing: ease.inExpo });
   const boundary = interpolate(frame, [118, 150], [0, 1], { ...clamp, easing: ease.outExpo });
@@ -89,19 +94,21 @@ export function SystemScene() {
 
   return (
     <AbsoluteFill style={{ opacity: 1 - exit }}>
-      <Appear delay={2} style={{ position: "absolute", top: 110, left: 140 }}>
-        <div
-          style={{
-            fontFamily: fonts.mono,
-            fontSize: 24,
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            color: colors.muted,
-          }}
-        >
-          <span style={{ color: colors.ember }}>02</span> — Connect it
-        </div>
-      </Appear>
+      {!bare && (
+        <Appear delay={2} style={{ position: "absolute", top: 110, left: 140 }}>
+          <div
+            style={{
+              fontFamily: fonts.mono,
+              fontSize: 24,
+              letterSpacing: "0.16em",
+              textTransform: "uppercase",
+              color: colors.muted,
+            }}
+          >
+            <span style={{ color: colors.ember }}>02</span> — Connect it
+          </div>
+        </Appear>
+      )}
 
       <AbsoluteFill style={{ transform: `scale(${zoom}) translateY(30px)` }}>
         {/* Production boundary */}
@@ -241,33 +248,35 @@ export function SystemScene() {
       </AbsoluteFill>
 
       {/* Live metrics strip */}
-      <div
-        style={{
-          position: "absolute",
-          left: 140,
-          right: 140,
-          bottom: 90,
-          display: "flex",
-          gap: 60,
-          fontFamily: fonts.mono,
-          fontSize: 22,
-          color: colors.muted,
-          opacity: live,
-        }}
-      >
-        <span>
-          <span style={{ color: colors.ok }}>●</span> live
-        </span>
-        <span>
-          events <span style={{ color: colors.bone }}>{events.toLocaleString("en-US")}</span>
-        </span>
-        <span>
-          p95 latency <span style={{ color: colors.bone }}>38 ms</span>
-        </span>
-        <span>
-          clients <span style={{ color: colors.bone }}>web · mobile · desktop · iot</span>
-        </span>
-      </div>
+      {!bare && (
+        <div
+          style={{
+            position: "absolute",
+            left: 140,
+            right: 140,
+            bottom: 90,
+            display: "flex",
+            gap: 60,
+            fontFamily: fonts.mono,
+            fontSize: 22,
+            color: colors.muted,
+            opacity: live,
+          }}
+        >
+          <span>
+            <span style={{ color: colors.ok }}>●</span> live
+          </span>
+          <span>
+            events <span style={{ color: colors.bone }}>{events.toLocaleString("en-US")}</span>
+          </span>
+          <span>
+            p95 latency <span style={{ color: colors.bone }}>38 ms</span>
+          </span>
+          <span>
+            clients <span style={{ color: colors.bone }}>web · mobile · desktop · iot</span>
+          </span>
+        </div>
+      )}
     </AbsoluteFill>
   );
 }

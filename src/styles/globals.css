@@ -225,6 +225,10 @@
     visibility: visible !important;
   }
 }
+/* Low-end devices show content immediately instead of animating it in. */
+html.low [data-reveal] {
+  visibility: visible !important;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -237,28 +241,62 @@
   }
 }
 
-/* Opening curtain: skipped for returning visitors, and removed by CSS alone
-   if JavaScript never runs. */
+/* Loading screen (see components/layout/Intro). Static HTML + CSS so it
+   paints in the first frame; an inline script drives real progress. */
+html:not(.js) .intro,
 html.intro-seen .intro {
   display: none;
 }
-.intro {
-  animation: intro-failsafe 0s 4.5s forwards;
+html.js:not(.intro-seen):not(.intro-done) {
+  overflow: hidden;
 }
-@keyframes intro-failsafe {
+.intro {
+  clip-path: inset(0 0 0% 0);
+  transition:
+    clip-path 1s var(--ease-in-out-quart),
+    visibility 0s 1s;
+}
+html.intro-done .intro {
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  pointer-events: none;
+}
+.intro-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: intro-draw 0.9s var(--ease-in-out-quart) 0.1s forwards;
+}
+.intro-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  animation: intro-dot 0.6s cubic-bezier(0.34, 1.8, 0.64, 1) 0.75s forwards;
+}
+#intro-bar {
+  transition: transform 0.2s linear;
+}
+@keyframes intro-draw {
   to {
-    visibility: hidden;
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes intro-dot {
+  to {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-path {
+    stroke-dashoffset: 0;
+  }
+  .intro-dot {
+    transform: none;
   }
 }
 
-/* Failsafe for reveal targets if hydration ever stalls. */
-.js [data-reveal] {
-  animation: reveal-failsafe 0s 5s forwards;
-}
-@keyframes reveal-failsafe {
-  to {
-    visibility: visible;
-  }
+/* If the app never hydrated (the loader's 8 s cap), show all content. */
+html.reveal-all [data-reveal] {
+  visibility: visible !important;
 }
 
 /* The custom cursor replaces the system arrow only while it is active
@@ -296,4 +334,16 @@ html.has-custom-cursor .film-frame:fullscreen * {
 html.has-custom-cursor .film-frame:fullscreen button,
 html.has-custom-cursor .film-frame:fullscreen [role="slider"] {
   cursor: pointer !important;
+}
+
+/* Lite mode (weak GPUs / low frame rate): no live blur over the WebGL canvas.
+   Surfaces become near-opaque instead, so contrast and layout are unchanged. */
+html.lite *,
+html.lite *::before,
+html.lite *::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+html.lite header > div:first-child {
+  background-color: rgb(8 9 11 / 0.94);
 }

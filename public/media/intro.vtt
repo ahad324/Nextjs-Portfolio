@@ -4,16 +4,16 @@ WEBVTT
 [Electronic music] Ideas. Interfaces. APIs. Devices. Production.
 
 00:05.000 --> 00:12.000
-Write it: a real-time server streaming device readings to clients.
+A real-time server that authenticates clients and streams live device readings over WebSockets.
 
 00:12.000 --> 00:26.000
-Connect it: web, desktop and IoT clients linked through an API to real-time, auth and data services in production.
+Web, mobile, desktop and IoT clients connected through an API gateway to real-time, authentication and device-ingest services, backed by PostgreSQL and Redis in production.
 
 00:26.000 --> 00:33.000
-Ship it: a CI/CD pipeline takes the code from git push to production.
+A CI/CD pipeline takes the code from git push through linting, tests, builds and a Docker image to a production deployment.
 
 00:33.000 --> 00:39.000
-Full-stack engineering, idea to production. Web, backend, real-time, IoT, deployment.
+Full-stack engineering, idea to production. Web, mobile, backend, real-time, IoT and deployment.
 
 00:39.000 --> 00:45.000
 Abdul Ahad, full-stack engineer at Floty.ai.

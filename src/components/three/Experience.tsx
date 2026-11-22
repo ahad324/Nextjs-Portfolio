@@ -1,42 +1,47 @@
 "use client";
 
-import { useCallback, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { PerformanceMonitor } from "@react-three/drei";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/cn";
-import { Particles } from "./Particles";
+import { setLiteMode } from "@/lib/lite-mode";
+import { prefersReducedMotion } from "@/lib/media";
+import { ParticleEngine, type Quality } from "./engine";
 
-export type Quality = { count: number; dpr: [number, number] };
+export type { Quality };
 
 /** The one WebGL canvas for the whole site. Loaded lazily by SceneLoader. */
 export default function Experience({ quality }: { quality: Quality }) {
+  const canvas = useRef<HTMLCanvasElement>(null);
   const [ready, setReady] = useState(false);
-  const [dpr, setDpr] = useState(quality.dpr[1]);
-  const handleReady = useCallback(() => setReady(true), []);
+
+  useEffect(() => {
+    if (!canvas.current) return;
+    let engine: ParticleEngine | null = null;
+    try {
+      engine = new ParticleEngine(canvas.current, {
+        quality,
+        reducedMotion: prefersReducedMotion(),
+        onReady: () => {
+          setReady(true);
+          window.dispatchEvent(new Event("scene:ready"));
+        },
+        onStruggle: () => setLiteMode(true),
+      });
+    } catch {
+      // WebGL context creation can still fail (blocklisted GPU, lost context);
+      // the site is fully usable without the canvas.
+      window.dispatchEvent(new Event("scene:skip"));
+    }
+    return () => engine?.dispose();
+  }, [quality]);
 
   return (
-    <div
+    <canvas
+      ref={canvas}
       aria-hidden
       className={cn(
-        "pointer-events-none fixed inset-0 z-0 transition-opacity duration-[1600ms] ease-out",
+        "pointer-events-none fixed inset-0 z-0 size-full transition-opacity duration-[1600ms] ease-out",
         ready ? "opacity-100" : "opacity-0",
       )}
-    >
-      <Canvas
-        dpr={dpr}
-        flat
-        camera={{ position: [0, 0, 6], fov: 35, near: 0.1, far: 50 }}
-        gl={{ antialias: false, alpha: true, powerPreference: "high-performance", stencil: false }}
-      >
-        <PerformanceMonitor
-          bounds={() => [45, 58]}
-          onDecline={() => setDpr((value) => Math.max(quality.dpr[0], value - 0.5))}
-          onIncline={() => setDpr((value) => Math.min(quality.dpr[1], value + 0.25))}
-          flipflops={3}
-          onFallback={() => setDpr(quality.dpr[0])}
-        />
-        <Particles count={quality.count} onReady={handleReady} />
-      </Canvas>
-    </div>
+    />
   );
 }

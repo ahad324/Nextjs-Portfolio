@@ -69,8 +69,12 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, email: false, address: false },
 };
 
-/** Runs before paint: flags JS for reveal styles and skips the intro for returning visitors. */
-const bootScript = `(function(){var d=document.documentElement;d.classList.add('js');try{if(location.hash||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro-seen')}catch(e){}})();`;
+/**
+ * Runs before paint: flags JS for reveal styles, flags low-end devices (`low`:
+ * ≤4 cores, ≤4 GB RAM, data-saver or 2G) and skips the intro for returning or
+ * low-end visitors.
+ */
+const bootScript = `(function(){var d=document.documentElement,n=navigator;d.classList.add('js');try{var c=n.connection||{},low=(n.hardwareConcurrency||8)<=4||(n.deviceMemory||8)<=4||c.saveData||/2g/.test(c.effectiveType||'');if(low)d.classList.add('low');if(low||location.hash||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro-seen')}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

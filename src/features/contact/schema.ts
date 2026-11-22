@@ -1,13 +1,8 @@
+import "server-only";
 import { z } from "zod";
+import { topics, type ContactInput } from "./shared";
 
-export const topics = [
-  "Full-time role",
-  "Freelance project",
-  "Collaboration",
-  "General enquiry",
-] as const;
-
-/** Shared by the form (client hints) and the server action (source of truth). */
+/** Server-side source of truth for contact-form validation. */
 export const contactSchema = z.object({
   name: z
     .string()
@@ -21,18 +16,4 @@ export const contactSchema = z.object({
     .trim()
     .min(10, "Message must be at least 10 characters.")
     .max(4000, "Message must be 4,000 characters or fewer."),
-});
-
-export type ContactInput = z.infer<typeof contactSchema>;
-
-export type ContactState =
-  | { status: "idle" }
-  | { status: "success"; name: string }
-  | {
-      status: "error";
-      message: string;
-      fieldErrors?: Partial<Record<keyof ContactInput, string>>;
-      values?: Partial<Record<keyof ContactInput, string>>;
-    };
-
-export const initialContactState: ContactState = { status: "idle" };
+}) satisfies z.ZodType<ContactInput, unknown>;

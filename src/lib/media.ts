@@ -1,9 +1,15 @@
 "use client";
 
-/** True when the visitor asked the OS for less motion. Safe on the server (returns false). */
+/**
+ * True when motion should be minimised: the visitor asked the OS for less
+ * motion, or the device was flagged as low-end before paint (see the boot
+ * script in the root layout). Safe on the server (returns false).
+ */
 export function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
   return (
-    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    document.documentElement.classList.contains("low")
   );
 }
 

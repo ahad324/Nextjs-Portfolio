@@ -7,7 +7,7 @@ import { buttonClasses, RollingLabel } from "@/components/ui/Button";
 import { ArrowRight, Check } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
 import { sendContact } from "./action";
-import { initialContactState, topics, type ContactState } from "./schema";
+import { initialContactState, topics, type ContactState } from "./shared";
 
 export function ContactForm() {
   const [state, action, pending] = useActionState<ContactState, FormData>(

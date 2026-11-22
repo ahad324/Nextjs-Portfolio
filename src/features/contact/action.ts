@@ -5,7 +5,8 @@ import { Resend } from "resend";
 import { z } from "zod";
 import { serverEnv } from "@/lib/env.server";
 import { contactEmail } from "./email";
-import { contactSchema, type ContactInput, type ContactState } from "./schema";
+import { contactSchema } from "./schema";
+import type { ContactInput, ContactState } from "./shared";
 
 const MIN_FILL_MS = 2500;
 const WINDOW_MS = 10 * 60 * 1000;

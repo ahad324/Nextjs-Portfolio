@@ -2,7 +2,9 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import type { Quality } from "./Experience";
+import { isIntroDone } from "@/lib/intro";
+import { setLiteMode } from "@/lib/lite-mode";
+import type { Quality } from "./engine";
 
 const Experience = dynamic(() => import("./Experience"), { ssr: false });
 
@@ -15,8 +17,19 @@ export function SceneLoader() {
 
   useEffect(() => {
     const picked = pickQuality();
-    if (!picked) return;
+    if (!picked) {
+      // Tell the loading screen there is no 3D scene to wait for.
+      window.dispatchEvent(new Event("scene:skip"));
+      return;
+    }
+    if (picked.lite) setLiteMode(true);
     const start = () => setQuality(picked);
+    // While the loading screen covers the page, build the scene right away;
+    // otherwise wait for an idle moment so it never competes with the page.
+    if (!isIntroDone()) {
+      start();
+      return;
+    }
     if ("requestIdleCallback" in window) {
       const id = window.requestIdleCallback(start, { timeout: 1200 });
       return () => window.cancelIdleCallback(id);
@@ -33,9 +46,10 @@ function pickQuality(): Quality | null {
 
   const nav = navigator as Navigator & {
     deviceMemory?: number;
-    connection?: { saveData?: boolean };
+    connection?: { saveData?: boolean; effectiveType?: string };
   };
-  if (nav.connection?.saveData) return null;
+  // Respect data-saver and very slow networks: the site works fully without WebGL.
+  if (nav.connection?.saveData || /(^|-)2g$/.test(nav.connection?.effectiveType ?? "")) return null;
 
   const cores = nav.hardwareConcurrency ?? 4;
   const memory = nav.deviceMemory ?? 4;
@@ -43,12 +57,13 @@ function pickQuality(): Quality | null {
   const coarse = window.matchMedia("(pointer: coarse)").matches;
 
   if (small || coarse) {
-    return cores >= 8 && memory >= 6
-      ? { count: 13000, dpr: [1, 1.75] }
-      : { count: 8000, dpr: [1, 1.5] };
+    if (cores >= 8 && memory >= 6) return { count: 13000, dpr: [1, 1.75], lite: false };
+    if (cores >= 4 && memory >= 3) return { count: 8000, dpr: [1, 1.5], lite: true };
+    return { count: 5000, dpr: [1, 1], lite: true };
   }
-  if (cores >= 8 && memory >= 8) return { count: 26000, dpr: [1, 2] };
-  return { count: 16000, dpr: [1, 1.5] };
+  if (cores >= 8 && memory >= 8) return { count: 26000, dpr: [1, 2], lite: false };
+  if (cores >= 4) return { count: 16000, dpr: [1, 1.5], lite: false };
+  return { count: 9000, dpr: [1, 1], lite: true };
 }
 
 function supportsWebGL() {

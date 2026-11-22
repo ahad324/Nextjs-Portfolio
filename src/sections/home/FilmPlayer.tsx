@@ -1,26 +1,32 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { film } from "@/content/film";
 import { site } from "@/content/site";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { prefersReducedMotion } from "@/lib/media";
 import { Collapse, Expand, Pause, Play } from "@/components/ui/Icons";
 import { cn } from "@/lib/cn";
 
-export const FILM = {
-  mp4: "/media/intro.mp4",
-  poster: "/media/intro-poster.jpg",
-  captions: "/media/intro.vtt",
+const FILM = {
+  mp4: film.sources.desktop,
+  mobile: film.sources.mobile,
+  poster: film.poster,
+  captions: film.captions,
 };
 
 /**
  * The intro film. Autoplays muted while on screen (never for reduced motion),
  * pauses when you scroll away, and only downloads once it's near the viewport.
  */
-export function FilmPlayer() {
+/**
+ * `eager` (the /video watch page) renders the sources in the HTML so crawlers
+ * and the browser see them immediately, and skips the scroll-in animation.
+ */
+export function FilmPlayer({ eager = false, className }: { eager?: boolean; className?: string }) {
   const frame = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const [near, setNear] = useState(false);
+  const [near, setNear] = useState(eager);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -39,7 +45,7 @@ export function FilmPlayer() {
     const element = frame.current;
     if (!element) return;
     const observer = new IntersectionObserver(([entry]) => entry?.isIntersecting && setNear(true), {
-      rootMargin: "600px 0px",
+      rootMargin: "200px 0px",
     });
     observer.observe(element);
     return () => observer.disconnect();
@@ -53,7 +59,7 @@ export function FilmPlayer() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry) return;
-        if (entry.isIntersecting && !userPaused && !prefersReducedMotion()) {
+        if (entry.isIntersecting && !userPaused && !prefersReducedMotion() && !constrained()) {
           media.play().catch(() => {});
         } else if (!entry.isIntersecting) {
           media.pause();
@@ -68,7 +74,7 @@ export function FilmPlayer() {
   // Frame grows from an inset window to full width as it scrolls in.
   useGSAP(
     () => {
-      if (prefersReducedMotion()) return;
+      if (eager || prefersReducedMotion()) return;
       gsap.fromTo(
         frame.current,
         { clipPath: "inset(8% 10% 8% 10% round 2rem)" },
@@ -175,7 +181,10 @@ export function FilmPlayer() {
   return (
     <div
       ref={frame}
-      className="group film-frame relative mt-14 aspect-video w-full overflow-hidden rounded-3xl border border-line bg-ink-2 md:mt-20"
+      className={cn(
+        "group film-frame relative mt-14 aspect-video w-full overflow-hidden rounded-3xl border border-line bg-ink-2 md:mt-20",
+        className,
+      )}
       role="group"
       aria-label="Intro film player"
       aria-describedby="film-shortcuts"
@@ -192,7 +201,7 @@ export function FilmPlayer() {
         muted={muted}
         playsInline
         loop
-        preload="none"
+        preload={eager ? "metadata" : "none"}
         aria-label={`Intro film — ${site.name}, ${site.role}`}
         tabIndex={-1}
         onPlay={() => setPlaying(true)}
@@ -206,6 +215,7 @@ export function FilmPlayer() {
       >
         {near && (
           <>
+            <source src={FILM.mobile} type="video/mp4" media="(max-width: 767px)" />
             <source src={FILM.mp4} type="video/mp4" />
             <track kind="captions" src={FILM.captions} srcLang="en" label="English" />
           </>
@@ -290,4 +300,12 @@ export function FilmPlayer() {
       </div>
     </div>
   );
+}
+
+/** Data-saver or a very slow connection: show the poster and wait for a tap. */
+function constrained() {
+  const connection = (
+    navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }
+  ).connection;
+  return Boolean(connection?.saveData) || /(^|-)2g$|^3g$/.test(connection?.effectiveType ?? "");
 }
