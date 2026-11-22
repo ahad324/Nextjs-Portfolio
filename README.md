@@ -62,7 +62,7 @@ npm run dev
 | `npm run check`        | Type-check + lint + formatting                                    |
 | `npm run assets`       | Re-generate optimised images + portrait map from `assets/source`  |
 | `npm run video:studio` | Open the intro film in Remotion Studio                            |
-| `npm run video:render` | Render the film (+ soundtrack, poster, captions) to `public/media` |
+| `npm run video:render` | Render the film, thumbnail, captions and web encodes to `public/media` |
 
 ## Contact form (Resend)
 
@@ -78,11 +78,29 @@ Spam protection: honeypot field, minimum fill time, per-IP rate limit, server-si
 
 ## Performance notes
 
-- Hero text is server-rendered; WebGL loads in an idle callback after first paint.
-- Particle count and pixel ratio adapt to the device (and drop under load); Save-Data and
-  no-WebGL visitors get the site without the canvas.
-- `prefers-reduced-motion` disables smooth scrolling, text animation, autoplay and swirl.
-- Images are AVIF/WebP via `next/image`; the film loads only when it nears the viewport.
+- **Loading screen with real progress** — static HTML + an inline script (paints in the first
+  frame) tracking parse → fonts → images → hydration → 3D scene; capped at 8 s. Skipped for
+  returning visitors, deep links, low-end devices and reduced motion.
+- **3D is optional and adaptive** — plain three.js (tree-shaken, no React renderer), loaded after
+  the page is idle. Particle count and pixel ratio are picked per device, then stepped down at
+  runtime (pixel ratio → no CSS blur → fewer particles → still frame) if frames drop. Save-Data
+  and 2G skip WebGL entirely.
+- **Low-end devices** (≤4 cores, ≤4 GB RAM, Save-Data) are flagged before paint and get content
+  without entrance animations, native scrolling and no backdrop blur.
+- **Animation work is scheduled** — headline splitting happens in idle time, entrances play on
+  approach, off-screen marquees aren't rendered (`content-visibility`), and UI animation
+  features load lazily.
+- **Media** — AVIF/WebP via `next/image`; the film ships at 720p (desktop) and 540p (phones), loads
+  only near the viewport and never autoplays on Save-Data or slow connections.
+- **Server-only code stays on the server** — validation (zod) never reaches the browser.
+- Flags live on `<html>` as data attributes (`data-js`, `data-low`, `data-intro`, `data-lite`)
+  because React owns its `className`.
+
+## Video & SEO
+
+The film has its own watch page (`/video`) with a transcript, `VideoObject` structured data
+and a video sitemap entry, so search engines can index it. Its title, description, chapters and
+captions all come from `src/content/film.ts`.
 
 ## Deploy
 

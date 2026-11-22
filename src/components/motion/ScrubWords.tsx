@@ -23,7 +23,6 @@ export function ScrubWords({
       const split = SplitText.create(element, {
         type: "words",
         aria: "none",
-        wordsClass: "will-change-[opacity]",
       });
       gsap.fromTo(
         split.words,

@@ -28,12 +28,12 @@ function whenNear(element: Element, start: () => (() => void) | void) {
   };
 }
 
-const scheduleIdle = (callback: () => void) =>
-  "requestIdleCallback" in window
+const hasIdle = () => typeof window.requestIdleCallback === "function";
+const scheduleIdle = (callback: () => void): number =>
+  hasIdle()
     ? window.requestIdleCallback(callback, { timeout: 4000 })
-    : window.setTimeout(callback, 200);
-const cancelIdle = (id: number) =>
-  "cancelIdleCallback" in window ? window.cancelIdleCallback(id) : window.clearTimeout(id);
+    : (setTimeout(callback, 200) as unknown as number);
+const cancelIdle = (id: number) => (hasIdle() ? window.cancelIdleCallback(id) : clearTimeout(id));
 
 type SplitRevealProps = {
   as?: ElementType;

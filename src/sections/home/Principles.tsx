@@ -22,7 +22,10 @@ const word = (item: string, index: number) =>
 export function Principles() {
   const reversed = [...principles].reverse();
   return (
-    <div aria-label="What I care about" className="relative z-10 overflow-x-clip py-16 md:py-24">
+    <div
+      aria-label="What I care about"
+      className="relative z-10 overflow-x-clip py-16 [contain-intrinsic-size:auto_260px] [content-visibility:auto] md:py-24"
+    >
       <div className="relative">
         {/* Back tape */}
         <div className="absolute inset-x-[-5%] top-1/2 -translate-y-1/2 rotate-[3deg] bg-ember py-3 text-ink shadow-[0_20px_60px_-20px_rgb(0_0_0/0.8)] md:py-4">
