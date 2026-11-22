@@ -217,16 +217,16 @@
 
 /* Hide content that JS will reveal — only when JS + motion are available, so
    no-JS and reduced-motion visitors always see everything. */
-.js [data-reveal] {
+html[data-js] [data-reveal] {
   visibility: hidden;
 }
 @media (prefers-reduced-motion: reduce) {
-  .js [data-reveal] {
+  html[data-js] [data-reveal] {
     visibility: visible !important;
   }
 }
 /* Low-end devices show content immediately instead of animating it in. */
-html.low [data-reveal] {
+html[data-low] [data-reveal] {
   visibility: visible !important;
 }
 
@@ -243,11 +243,11 @@ html.low [data-reveal] {
 
 /* Loading screen (see components/layout/Intro). Static HTML + CSS so it
    paints in the first frame; an inline script drives real progress. */
-html:not(.js) .intro,
-html.intro-seen .intro {
+html:not([data-js]) .intro,
+html[data-intro="seen"] .intro {
   display: none;
 }
-html.js:not(.intro-seen):not(.intro-done) {
+html[data-js]:not([data-intro]) {
   overflow: hidden;
 }
 .intro {
@@ -256,7 +256,7 @@ html.js:not(.intro-seen):not(.intro-done) {
     clip-path 1s var(--ease-in-out-quart),
     visibility 0s 1s;
 }
-html.intro-done .intro {
+html[data-intro="done"] .intro {
   clip-path: inset(0 0 100% 0);
   visibility: hidden;
   pointer-events: none;
@@ -295,7 +295,7 @@ html.intro-done .intro {
 }
 
 /* If the app never hydrated (the loader's 8 s cap), show all content. */
-html.reveal-all [data-reveal] {
+html[data-reveal-all] [data-reveal] {
   visibility: visible !important;
 }
 
@@ -338,12 +338,12 @@ html.has-custom-cursor .film-frame:fullscreen [role="slider"] {
 
 /* Lite mode (weak GPUs / low frame rate): no live blur over the WebGL canvas.
    Surfaces become near-opaque instead, so contrast and layout are unchanged. */
-html.lite *,
-html.lite *::before,
-html.lite *::after {
+html[data-lite] *,
+html[data-lite] *::before,
+html[data-lite] *::after {
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
 }
-html.lite header > div:first-child {
+html[data-lite] header > div:first-child {
   background-color: rgb(8 9 11 / 0.94);
 }

@@ -70,11 +70,13 @@ export const metadata: Metadata = {
 };
 
 /**
- * Runs before paint: flags JS for reveal styles, flags low-end devices (`low`:
- * ≤4 cores, ≤4 GB RAM, data-saver or 2G) and skips the intro for returning or
- * low-end visitors.
+ * Runs before paint and sets flags on <html> as data attributes (React only
+ * manages `className`, so these survive hydration): `data-js` for reveal
+ * styles, `data-low` for low-end devices (≤4 cores, ≤4 GB RAM, data-saver or
+ * 2G) and `data-intro="seen"` to skip the loading screen for returning,
+ * deep-linked, low-end or reduced-motion visitors.
  */
-const bootScript = `(function(){var d=document.documentElement,n=navigator;d.classList.add('js');try{var c=n.connection||{},low=(n.hardwareConcurrency||8)<=4||(n.deviceMemory||8)<=4||c.saveData||/2g/.test(c.effectiveType||'');if(low)d.classList.add('low');if(low||location.hash||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('intro-seen')}catch(e){}})();`;
+const bootScript = `(function(){var d=document.documentElement,n=navigator;d.setAttribute('data-js','');try{var c=n.connection||{},low=(n.hardwareConcurrency||8)<=4||(n.deviceMemory||8)<=4||c.saveData||/2g/.test(c.effectiveType||'');if(low)d.setAttribute('data-low','');if(low||location.hash||sessionStorage.getItem('intro-seen')||matchMedia('(prefers-reduced-motion: reduce)').matches)d.setAttribute('data-intro','seen')}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

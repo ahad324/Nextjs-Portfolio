@@ -12,10 +12,10 @@ import { IntroBridge } from "./IntroBridge";
  *   → 3D scene built (or skipped on devices that don't run it)
  *
  * When everything is in (and the mark has finished drawing), it adds
- * `intro-done` to <html>, fires `intro:done`, and the curtain lifts via CSS.
+ * `data-intro="done"` to <html>, fires `intro:done`, and the curtain lifts via CSS.
  * Capped at 8 s so a slow 3D download never holds the page hostage.
  *
- * Skipped entirely (class `intro-seen`, set by the boot script) for returning
+ * Skipped entirely (`data-intro="seen"`, set by the boot script) for returning
  * visitors in the same session, deep links, low-end devices and reduced motion.
  */
 const STEPS = [
@@ -28,22 +28,23 @@ const STEPS = [
 
 const script = `(function(){
 var d=document,h=d.documentElement,w=window;
-if(h.classList.contains('intro-seen'))return;
+if(h.getAttribute('data-intro')==='seen')return;
 var steps=${JSON.stringify(STEPS)},done={},shown=0,start=performance.now(),MIN=900,CAP=8000,finished=false;
 function el(id){return d.getElementById(id)}
 function target(){var t=0;for(var i=0;i<steps.length;i++)if(done[steps[i].id])t+=steps[i].weight;return t}
 function pending(){for(var i=0;i<steps.length;i++)if(!done[steps[i].id])return steps[i].label;return 'Ready'}
 function mark(id){done[id]=true}
 function finish(){if(finished)return;finished=true;
-  if(!done.app)h.classList.add('reveal-all');
+  if(!done.app)h.setAttribute('data-reveal-all','');
   try{sessionStorage.setItem('intro-seen','1')}catch(e){}
-  h.classList.add('intro-done');w.dispatchEvent(new Event('intro:done'));}
+  h.setAttribute('data-intro','done');w.dispatchEvent(new Event('intro:done'));}
 function frame(now){if(finished)return;
   var t=target(),elapsed=now-start;
   if(elapsed>CAP){t=100;}
   shown+=(t-shown)*0.12;if(t-shown<0.4)shown=t;
-  var n=Math.round(shown),bar=el('intro-bar'),num=el('intro-num'),lab=el('intro-label');
+  var n=Math.round(shown),root=d.querySelector('.intro'),bar=el('intro-bar'),num=el('intro-num'),lab=el('intro-label');
   if(bar)bar.style.transform='scaleX('+(shown/100)+')';
+  if(root)root.setAttribute('aria-valuenow',String(n));
   if(num)num.textContent=(n<10?'00':n<100?'0':'')+n;
   if(lab)lab.textContent=elapsed>CAP?'Ready':pending();
   if(n>=100&&elapsed>=MIN){finish();return}
@@ -61,6 +62,7 @@ export function Intro() {
   return (
     <>
       <div
+        suppressHydrationWarning
         className="intro fixed inset-0 z-[90] flex flex-col items-center justify-center bg-ink-2"
         role="progressbar"
         aria-label={`Loading ${site.name}`}
@@ -84,13 +86,19 @@ export function Intro() {
           {site.name}
         </p>
         <div className="absolute inset-x-[var(--gutter)] bottom-8 flex items-end justify-between gap-6 font-mono text-xs text-muted">
-          <span id="intro-label">Loading page</span>
-          <span id="intro-num" className="tabular-nums">
+          <span id="intro-label" suppressHydrationWarning>
+            Loading page
+          </span>
+          <span id="intro-num" className="tabular-nums" suppressHydrationWarning>
             000
           </span>
         </div>
         <div className="absolute inset-x-0 bottom-0 h-px bg-line">
-          <div id="intro-bar" className="h-full origin-left scale-x-0 bg-ember" />
+          <div
+            id="intro-bar"
+            className="h-full origin-left scale-x-0 bg-ember"
+            suppressHydrationWarning
+          />
         </div>
       </div>
       <script dangerouslySetInnerHTML={{ __html: script }} />
